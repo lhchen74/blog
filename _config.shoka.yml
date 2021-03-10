@@ -1,0 +1,17 @@
+widgets:
+  # if true, will show random posts
+  random_posts: false
+  # if true, will show recent comments
+  recent_comments: false
+
+
+menu:
+  home: / || home
+  about: /about/ || user
+  posts:
+    default: / || feather
+    archives: /archives/ || list-alt
+    categories: /categories/ || th
+    tags: /tags/ || tags
+  friends: /friends/ || heart
+  links: /links/ || magic

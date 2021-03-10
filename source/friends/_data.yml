@@ -1,0 +1,30 @@
+- site: 優萌初華
+  owner: 霜月琉璃
+  url: https://shoka.lostyu.me
+  desc: 琉璃的医学 & 编程笔记
+  image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+  color: "#e9546b"
+
+- site: Vamei
+  owner: Vamei
+  url: https://www.cnblogs.com/vamei/
+  desc: HTTP & Java & Python
+  image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+  color: "#e9546b"
+
+
+- site: Python之禅
+  owner: Python之禅
+  url: https://foofish.net/
+  desc: Python
+  image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+  color: "#e9546b"
+
+
+- site: 李文周的博客
+  owner: 李文周
+  url: https://foofish.net/
+  desc: Go
+  image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+  color: "#e9546b"
+
