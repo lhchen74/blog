@@ -33,7 +33,7 @@ fmt.Printf("%s\n", uglyBody)
 
 打印结果：
 
-```
+```json
 {"id":1,"name":"poloxue"}
 ```
 
@@ -51,7 +51,7 @@ fmt.Printf("%s\n", body)
 
 \t 表示缩进效果。最终的结果如下：
 
-```
+```json
 {
 	"id": 1,
 	"name": "poloxue"
@@ -81,7 +81,7 @@ fmt.Printf("%s\n", out.String())
 
 结果如下：
 
-```
+```json
 {
 	"id": 1,
 	"name": "poloxue"
@@ -102,7 +102,7 @@ fmt.Printf("%s\n", pretty.Pretty(uglyBody))
 
 结果如下：
 
-```
+```json
 {
   "id": 1,
   "name": "poloxue"
@@ -120,7 +120,7 @@ fmt.Printf("%s\n", pretty.Color(pretty.Pretty(uglyBody), pretty.TerminalStyle))
 
 pretty.TerminalStyle 表示打印控制台的着色风格，结果如下：
 
-![img](go-json\1.jpg)
+![](go-json\1.jpg)
 
 SO 漂亮！
 
@@ -170,4 +170,4 @@ $ ./jsonpretty -s '{"id":1,"name":"poloxue"}'
 
 效果如下：
 
-![img](go-json/2.png)
+![](go-json/2.png)

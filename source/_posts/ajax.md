@@ -1,10 +1,18 @@
 ---
-title: ajax
+title: AJAX
 tags: js
 date: 2020-04-17
 ---
 
-xhr
+## XMLHttpRequest
+
+XMLHttpRequest readyState:
+
+0. xhr instance created, but open not called.
+1. open already called, but send not called.
+2. send already called and return http header and status, but not return http body.
+3. receiving http body but not completed.
+4. fully receive http body. 
 
 ```html
 <!DOCTYPE html>
@@ -19,10 +27,10 @@ xhr
         <h1 id="demo"></h1>
         <script>
             const xhr = new XMLHttpRequest();
-            
+
             if (xhr.readyState === 0)
                 console.log("0. xhr instance created, but open not called");
-            
+
             xhr.onreadystatechange = function () {
                 if (this.readyState === 1)
                     console.log("1. open already called, but send not called");
@@ -56,26 +64,9 @@ xhr
         </script>
     </body>
 </html>
-
-/*
-0. xhr instance created, but open not called 
-1. open already called, but send not called
-2. send already called and return http header and status, but not return http body 
-accept-ranges: bytes
-access-control-allow-credentials: true 
-cache-control: public, max-age=0
-content-length: 48 
-content-type: text/plain; 
-charset=UTF-8 date: Fri, 17 Apr 2020 07:00:57 GMT 
-etag: W/"30-170d6998891" 
-last-modified: Sat, 14 Mar 2020 01:12:31 GMT 
-vary: Origin 200 
-3. receiving http body but not completed 
-4. fully receive http body
-*/
 ```
 
-### jsonp
+## JSONP
 
 ```html
 <!DOCTYPE html>
@@ -105,14 +96,9 @@ vary: Origin 200
 </html>
 
 <!-- 
-https://www.runoob.com/try/ajax/jsonp.php?jsoncallback=callbackFunction 返回
+https://www.runoob.com/try/ajax/jsonp.php?jsoncallback=callbackFunction respose result as follow
 
-callbackFunction(
-[
-"customername1",
-"customername2"
-]
-) -->
+callbackFunction(["customername1", "customername2"]) -->
 ```
 
-![1587179903092](ajax/a01.png)
+![](ajax/a01.png)

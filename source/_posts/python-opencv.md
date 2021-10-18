@@ -53,8 +53,6 @@ cv2.imshow('Image Title', img)
 cv2.waitKey(2000) 
 ```
 
-
-
 ### 图像美化
 
 #### 彩色图片直方图

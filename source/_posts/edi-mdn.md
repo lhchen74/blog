@@ -4,7 +4,7 @@ tags: edi
 date: 2020-10-25
 ---
 
-> Reproduced [What is an AS2 MDN?](https://www.jscape.com/blog/bid/100671/What-is-an-AS2-MDN#:~:text=An%20MDN%20is%20an%20electronic,and%20non%2Drepudiation%20in%20AS2.)
+> 转载 [What is an AS2 MDN?](https://www.jscape.com/blog/bid/100671/What-is-an-AS2-MDN#:~:text=An%20MDN%20is%20an%20electronic,and%20non%2Drepudiation%20in%20AS2.)
 
 ### Overview
 

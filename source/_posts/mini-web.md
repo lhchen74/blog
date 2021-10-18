@@ -7,6 +7,8 @@ tags:
 date: 2019-07-10
 ---
 
+> 来源： https://www.bilibili.com/video/av67118491
+
 web 中的基本功能:
 
 1. 获取路径参数，查询字符串，form 表单数据(body)，json 数据(body)
@@ -141,4 +143,3 @@ func main() {
 }
 ```
 
-> 引用: https://www.bilibili.com/video/av67118491

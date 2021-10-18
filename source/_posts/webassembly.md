@@ -1,6 +1,6 @@
 ---
-title: webassembly test
-tags: node
+title: Webassembly Test
+tags: js
 date: 2020-07-03
 ---
 
@@ -76,9 +76,9 @@ int main()
 
 ### webassemby fibnacci
 
-[WasmExplorer](https://mbebenita.github.io/WasmExplorer/) complie c++ to wasm
+[WasmExplorer](https://mbebenita.github.io/WasmExplorer/) complie c++ to wasm，then download rename as fib.wasm
 
-![1593768680257](webassembly/compile.png)
+![](webassembly/compile.png)
 
 load wasm
 
@@ -105,7 +105,7 @@ load wasm
                     const { fib } = instance.exports;
                     console.time("test wasm fib: ");
                     const res = fib(40);
-                    console.timeEnd("test wasm fib: "); // test wasm fib: : 840.23291015625ms
+                    console.timeEnd("test wasm fib: "); // test wasm fib: 840.23291015625ms
                 });
         </script>
     </body>

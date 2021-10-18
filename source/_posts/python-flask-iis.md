@@ -23,17 +23,17 @@ tags: python
 
 IIS 管理工具
 
-![1565146695079](python-flask-iis/1565146695079.png)
+![](python-flask-iis/1565146695079.png)
 
 CGI 如果沒有安裝 CGI, **後續處理常式對應 會找不到 FastCgiModule**
 
-![1565149653704](python-flask-iis/1565149653704.png)
+![](python-flask-iis/1565149653704.png)
 
 ### 添加站臺
 
 打開 IIS 服務 -> 站台 -> 新增網站，在弹出的窗口输入 `站台名稱` `實體路徑` `連接埠`
 
-![1565155471556](python-flask-iis/1565155471556.png)
+![](python-flask-iis/1565155471556.png)
 
 ### Flask 项目添加插件
 
@@ -45,7 +45,7 @@ CGI 如果沒有安裝 CGI, **後續處理常式對應 會找不到 FastCgiModul
 
 進入 Python Scripts 目錄 `C:\Program Files\Python36\Scripts` 執行 `wfastcgi-enable.exe`
 
-![1565147818362](python-flask-iis/1565147818362.png)
+![](python-flask-iis/1565147818362.png)
 
 複製 FastCGI script processor
 
@@ -92,19 +92,19 @@ CGI 如果沒有安裝 CGI, **後續處理常式對應 會找不到 FastCgiModul
 
 處理常式對應 -> 新增模組對應
 
-![1565148545865](python-flask-iis/1565148545865.png)
+![](python-flask-iis/1565148545865.png)
 
-![1565148667449](python-flask-iis/1565148667449.png)
+![](python-flask-iis/1565148667449.png)
 
 執行檔案填寫之前複製的 FastCGI script processor，program files 包含空格，需要用引號引起來
 
 `"c:\program files\python36\python.exe"|"c:\program files\python36\lib\site-packges\wfastcgi.py"`
 
-![1565149860744](python-flask-iis/1565149860744.png)
+![](python-flask-iis/1565149860744.png)
 
 點擊要求限制：不要勾選方框
 
-![1565150015464](python-flask-iis/1565150015464.png)
+![](python-flask-iis/1565150015464.png)
 
 #### 主頁 FastCGI 設置
 
@@ -112,12 +112,12 @@ CGI 如果沒有安裝 CGI, **後續處理常式對應 會找不到 FastCgiModul
 
 `WSGI_HANDLER(flask 啓動程序,例如項目啓動程序是 hello.py, 那麽此處需要填寫 hello.app)`
 
-![1565156907201](python-flask-iis/1565156907201.png)
+![](python-flask-iis/1565156907201.png)
 
-![1565156984282](python-flask-iis/1565156984282.png)
+![](python-flask-iis/1565156984282.png)
 
-![1565157431919](python-flask-iis/1565157431919.png)
+![](python-flask-iis/1565157431919.png)
 
-![1565157521446](python-flask-iis/1565157521446.png)
+![](python-flask-iis/1565157521446.png)
 
 > 引用: [https://gelomen.github.io/Flask/%E4%BD%BF%E7%94%A8-IIS-%E5%9C%A8-Windows-%E9%83%A8%E7%BD%B2-Flask-%E7%BD%91%E7%AB%99.html](https://gelomen.github.io/Flask/使用-IIS-在-Windows-部署-Flask-网站.html)

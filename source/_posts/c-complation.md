@@ -1,10 +1,10 @@
 ---
 title: The C compilation process
 tags: c
-date: 2020-04-15
+date: 2020-04-14
 ---
 
-> reproduced: [The C compilation process - Codeforwin](https://codeforwin.org/2017/08/c-compilation-process.html#)
+> 转载: [The C compilation process - Codeforwin](https://codeforwin.org/2017/08/c-compilation-process.html#)
 
 In the series of C tutorial we learned some basic of [C programming language](https://codeforwin.org/2017/08/introduction-c-programming.html), [configured C compiler](https://codeforwin.org/2017/08/setting-c-environment-lab.html) and learned to [compile and execute C program](https://codeforwin.org/2017/08/compile-c-program-using-command-line.html).
 

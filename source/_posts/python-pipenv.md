@@ -40,7 +40,7 @@ pipenv install
 
 如下：
 
-![img](python-pipenv/986023-20180307194947220-1506286222.png)
+![](python-pipenv/986023-20180307194947220-1506286222.png)
 
 初始化好虚拟环境后，会在项目目录下生成 2 个文件`Pipfile`和`Pipfile.lock`。为 pipenv 包的配置文件，代替原来的 requirement.txt。
 
@@ -52,7 +52,7 @@ pipenv install
 
 用 pycharm 先打开咱们刚刚创建的 project，然后创建 APP 目录，在 app 目录下创建如下 spider.py 文件，导入 requests 库，并没有安装这个包。
 
-![img](python-pipenv/986023-20180307195400840-133682225.png)
+![](python-pipenv/986023-20180307195400840-133682225.png)
 
 安装 requests 包，命令如下：
 
@@ -62,11 +62,11 @@ pipenv install requests
 
 详情参见下图：
 
-![img](python-pipenv/986023-20180307195456749-1053646299.png)
+![](python-pipenv/986023-20180307195456749-1053646299.png)
 
 这样，在 pycharm 里就能看到 requests 已经可用，并且能抓取到网页了。
 
-![img](python-pipenv/986023-20180307195530532-1590317241.png)
+![](python-pipenv/986023-20180307195530532-1590317241.png)
 
 ### 4 查看安装包及依赖关系
 
@@ -78,7 +78,7 @@ pipenv graph
 
 详情参见下图：
 
-![img](python-pipenv/986023-20180307195620080-521697996.png)
+![](python-pipenv/986023-20180307195620080-521697996.png)
 
 4.1 通过--dev 指明只安装在开发环境中
 
@@ -88,7 +88,7 @@ pipenv install --dev requests --three
 
 详情如下图：
 
-![img](python-pipenv/986023-20180307195741595-1234780798.png)
+![](python-pipenv/986023-20180307195741595-1234780798.png)
 
 反应在 Pipfile 如下：
 
@@ -131,7 +131,7 @@ pipenv lock -r --dev > requirements.txt
 
 详情如下图：
 
-![img](python-pipenv/986023-20180307200027248-1095832128.png)
+![](python-pipenv/986023-20180307200027248-1095832128.png)
 
 **5.2 pipenv 也可以通过 requirements.txt 安装包**
 
@@ -141,7 +141,7 @@ pipenv lock -r --dev > requirements.txt
 pipenv install -r requirements.txt
 ```
 
-![img](python-pipenv/986023-20180307200204047-2082092811.png)
+![](python-pipenv/986023-20180307200204047-2082092811.png)
 
 这样我们可以重用之前的 requirement.txt 文件来构建我们新的开发环境，把我们的项目顺利的迁到 pipenv。
 
@@ -155,7 +155,7 @@ pipenv run python xxx.py
 
 详情如下：
 
-![img](python-pipenv/986023-20180307200346699-591006324.png)
+![](python-pipenv/986023-20180307200346699-591006324.png)
 
 **6.2 方法二：启动虚拟环境的 shell 环境**
 
@@ -165,11 +165,11 @@ pipenv shell
 
 详情如下：
 
-![img](python-pipenv/986023-20180307200522611-1308404339.png)
+![](python-pipenv/986023-20180307200522611-1308404339.png)
 
 加上参数也可：
 
-![img](python-pipenv/986023-20180307200555686-235624378.png)
+![](python-pipenv/986023-20180307200555686-235624378.png)
 
 ### 7 删除 python 包（module）
 
@@ -181,7 +181,7 @@ pipenv uninstall [module_name]
 
 例如卸载之前安装的 requests 包：
 
-![img](python-pipenv/986023-20180307200637607-866216967.png)
+![](python-pipenv/986023-20180307200637607-866216967.png)
 
 ### 8 删除虚拟环境
 
@@ -191,11 +191,11 @@ pipenv --rm
 
 如下：
 
-![img](python-pipenv/986023-20180307200738436-186882846.png)
+![](python-pipenv/986023-20180307200738436-186882846.png)
 
 删除虚拟环境之后，再次运行 pip shell 会发现先为这个 project 创建虚拟环境，然后再打开 shell。如下：
 
-![img](python-pipenv/986023-20180307200832440-759998131.png)
+![](python-pipenv/986023-20180307200832440-759998131.png)
 
 ### 9 常用命令一览
 

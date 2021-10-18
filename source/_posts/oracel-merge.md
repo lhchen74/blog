@@ -4,7 +4,7 @@ tags: db
 date: 2020-07-24
 ---
 
-> reproduced:[ORACLE-BASE - MERGE Statement Enhancements in Oracle Database 10g](https://oracle-base.com/articles/10g/merge-enhancements-10g)
+> 转载:[ORACLE-BASE - MERGE Statement Enhancements in Oracle Database 10g](https://oracle-base.com/articles/10g/merge-enhancements-10g)
 
 ### Test Table
 

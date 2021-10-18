@@ -167,7 +167,7 @@ httpGet(url, function (html) {
 
 ### chokidar
 
-[A neat wrapper around Node.js fs.watch / fs.watchFile / FSEvents.](https://www.npmjs.com/package/chokidar
+[A neat wrapper around Node.js fs.watch / fs.watchFile / FSEvents.](https://www.npmjs.com/package/chokidar)
 
 ### yrm
 
@@ -194,3 +194,12 @@ yarn ---- https://registry.yarnpkg.com
 
 **测试访问速度**
 `yrm test taobao`
+
+### Prism
+
+[Prism is a lightweight, extensible syntax highlighter, built with modern web standards in mind. It’s used in millions of websites, including some of those you visit daily.](https://prismjs.com/)
+
+### furigana-markdown-it
+
+[furigana-markdown-it  A markdown-it plugin which adds furigana support](https://www.npmjs.com/package/furigana-markdown-it)
+

@@ -4,7 +4,7 @@ tags: db
 date: 2020-3-17
 ---
 
-> reproduced: [ORACLE-BASE - SQL/XML (SQLX) : Generating XML using SQL](https://oracle-base.com/articles/misc/sqlxml-sqlx-generating-xml-content-using-sql)
+> 转载: [ORACLE-BASE - SQL/XML (SQLX) : Generating XML using SQL](https://oracle-base.com/articles/misc/sqlxml-sqlx-generating-xml-content-using-sql)
 
 The example code in this article assumes you have access to the SCOTT schema.
 

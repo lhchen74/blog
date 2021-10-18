@@ -1,6 +1,6 @@
 ---
 title: docker
-tags: other
+tags: docker
 date: 2019-11-11
 ---
 
@@ -8,11 +8,11 @@ date: 2019-11-11
 
 ### Architecture
 
-![img](docker/architecture.png)
+![Architecture](docker/architecture.png)
 
 ### Common Commands
 
-![img](docker/command.png)
+![Command](docker/command.png)
 
 | 命令                            | 含义                                         |
 | ------------------------------- | -------------------------------------------- |
@@ -39,7 +39,7 @@ date: 2019-11-11
 CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
 dc514a87b6f7 nginx "nginx -g 'daemon of…" 22 seconds ago Up 20 seconds 0.0.0.0:8080->80/tcp confident_brahmagupta
 
-![img](docker/1.png)
+![](docker/1.png)
 
 3> `docker cp index.html dc514a87b6f7://usr/share/nginx/html` 复制本地 index.html 到 nginx html 文件夹下
 
@@ -48,7 +48,7 @@ dc514a87b6f7 nginx "nginx -g 'daemon of…" 22 seconds ago Up 20 seconds 0.0.0.0
 <h1>Hello Docker!</h1>
 ```
 
-![img](docker/2.png)
+![](docker/2.png)
 
 4> `docker commit -m 'hello' dc514a87b6f7 hello-docker` , hello-docker 是 image 的 tag。
 
@@ -103,7 +103,7 @@ Dockerfile 每一行都会产生一个新层，并且是 Read Only 的，根据 
 
 3> 在本地的修改会反映到 container
 
-![img](docker/2.png)
+![](docker/2.png)
 
 创建仅有数据的容器，其它容器通过此容器挂载 volume
 

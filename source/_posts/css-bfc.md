@@ -48,7 +48,7 @@ W3C 规范描述如下：
 
 > In a block formatting context, each box’s left outer edge touches the left edge of the containing block (for right-to-left formatting, right edges touch). This is true even in the presence of floats (although a box’s line boxes may shrink due to the floats), unless the box establishes a new block formatting context (in which case the box itself may become narrower due to the floats).bfcbfc.jpg
 
-![img](css-bfc/bfc.jpg)
+![](css-bfc/bfc.jpg)
 
 简单的说：上图中所有属于 BFC 的 box 都默认左对齐，并且它们的左边距可以触及到容器 container 的左边。最后一个 box，尽管它是浮动的，但它依然遵循这个原则。（BFC 中的浮动下面会介绍）
 
@@ -91,7 +91,7 @@ p {
 
 结果如下：
 
-![img](css-bfc/demo1-1.jpg)
+![](css-bfc/demo1-1.jpg)
 
 这似乎让人有点困惑，BFC 导致了 margin collapse，而现在又要用它来解决 margin cllapse.但是始终要记住一点：只有当元素在同一个 BFC 中时，垂直方向上的 margin 才会 clollpase.如果它们属于不同的 BFC，则不会有 margin collapse.因此我们可以再建立一个 BFC 去阻止 margin collpase 的发生。
 
@@ -127,7 +127,7 @@ p {
 
 现在的结果为：
 
-![img](css-bfc/demo1-2.jpg)
+![](css-bfc/demo1-2.jpg)
 
 由于第二个 p 元素和第三个 p 元素属于不同的 BFC，因此避免了 margin collapse.
 
@@ -162,7 +162,7 @@ CSS:
 
 结果：
 
-![img](css-bfc/demo2-2.jpg)
+![](css-bfc/demo2-2.jpg)
 
 在上边的情形中，container 是不会有高度的，因为它包含了浮动元素。通常我们解决这个问题的办法是利用一个伪元素去实现[clear fix](http://www.sitepoint.com/clearing-floats-overview-different-clearfix-methods/)，但是现在我们有了更好的解决办法，即利用 BFC，因为它够容纳浮动元素的。 我们现在让 container 形成 BFC 规则，结果如下：
 
@@ -181,25 +181,25 @@ CSS:
 
 结果：
 
-![img](css-bfc/demo2-3.jpg)
+![](css-bfc/demo2-3.jpg)
 
 #### 3.利用 BFC 阻止文本换行
 
 有时候，确切的说大多数情况(若没有特殊设置)，文本将会环绕浮动元素(如 Figure 1), 但有时候这并不是我们期望的，我们想要的是 Figure2。
 
-![img](css-bfc/demo3-1.jpg)
+![](css-bfc/demo3-1.jpg)
 
 往往可能大家都会选择利用 margin－left 来强行让 p 的容器有一个左边距，而距离恰好为 Floated div 的宽度，但现在我们可以利用 BFC 更好的解决这个问题。
 
 首先让我们了解一下文本换行的原理吧：
 
-![img](css-bfc/demo3-2.jpg)
+![](css-bfc/demo3-2.jpg)
 
 在 Figure1 中，整个 p 元素实际上是处于上图中的黑色区域，p 元素没有移动是因为它在浮动元素的下方。但实际上 p 作为行块级别的元素（相对于行内文本）却发生了移动，因为要给 float 元素’腾’位置，而随着文本的增加，文本高度超过浮动元素的部分则不会在水平方向上收缩内部距离，因此看起来像是环绕。
 
 如图：
 
-![img](css-bfc/demo3-3.jpg)
+![](css-bfc/demo3-3.jpg)
 
 在解决这个问题之前，我们先来看一下 W3C 的规范在这方面的描述：
 
@@ -209,6 +209,6 @@ W3C 为这种情况提供了一个解决方案：`unless the box establishes a n
 
 结果：
 
-![img](css-bfc/demo3-4.jpg)
+![](css-bfc/demo3-4.jpg)
 
 注：此文为译文 [原文请戳](http://www.sitepoint.com/understanding-block-formatting-contexts-in-css/)

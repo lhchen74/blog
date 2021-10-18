@@ -1,10 +1,10 @@
 ---
-title: PHP数组的相关操作
+title: PHP 数组的相关操作
 tags: php
 date: 2019-10-29
 ---
 
-> 转载: [PHP 数组的相关操作 - 简书](https://www.jianshu.com/p/387a51fe06c2)
+> 转载: [PHP 数组的相关操作](https://www.jianshu.com/p/387a51fe06c2)
 
 ### 创建数组
 

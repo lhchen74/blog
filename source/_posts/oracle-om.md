@@ -6,7 +6,7 @@ tags: db
 
 ## 基本流程
 
-![img](oracle-om/1362105573_3288.jpg)
+![](oracle-om/1362105573_3288.jpg)
 
 ## 创建订单
 
@@ -14,11 +14,11 @@ tags: db
 
 填写订单头信息，客户，订单类型，销售人员
 
-![img](oracle-om/1340699459_4815.jpg)
+![](oracle-om/1340699459_4815.jpg)
 
 填写订单体信息，输入物料，数量...
 
-![img](oracle-om/1340699486_2792.jpg)
+![](oracle-om/1340699486_2792.jpg)
 
 然后 Book Order，订单 Book 之后，你会发现订单头的 Status 的状态变成了`"Booked"`，订单行的状态为 `"Awaiting Shipping"`，记录下来你的订单号，后边的每一步都需要这个订单号。
 
@@ -30,15 +30,15 @@ tags: db
 
 Pick Release 俗称挑库（即从仓库中挑选货物），在 Order Number 中输入待挑库的订单号
 
-![img](oracle-om/1340700540_3071.jpg)
+![](oracle-om/1340700540_3071.jpg)
 
 Auto Pick Confirm 设置为 No
 
-![img](oracle-om/1340700742_5739.jpg)
+![](oracle-om/1340700742_5739.jpg)
 
 Auto Allocate 设置为 N
 
-![img](oracle-om/1340700697_4677.jpg)
+![](oracle-om/1340700697_4677.jpg)
 
 Auto Allocate 和 Auto Pick Confirm 都可以设置为 Yes，只不过为了讲的更加详细，这里都设置为 No，设置为 Yes 的话，那么后边的 Allocate 和 Pick Confirm 两步，系统就会自动帮你完成。
 
@@ -58,25 +58,25 @@ Pick Confirm（挑库确认）的动作实际上是在 Transact Move Order 中�
 
 查询页面，Pick Wave 那个 Tab，输入订单号
 
-![img](https://img-my.csdn.net/uploads/201206/26/1340702406_9193.jpg)
+![](https://img-my.csdn.net/uploads/201206/26/1340702406_9193.jpg)
 
 进入 TMO 主界面后，点击 Allocate，Allocate 会根据你系统默认的 Picking Rule 来挑选货物，然后给你一个 Suggestion 的挑库项，Suggestion 记录会保存在 MTL_MATERIAL_TRANSACTIONS_TEMP 表（即 Pending Transactions）。
 
 另外完成 Allocate 之后，你会看到界面 Allocation 项会出现 Single,Multiple 或者 None 的标识，Single 表示，系统给你了产生了一条 Suggestion 的 Transaction 记录，Multiple 表示产生了多条；None 表示没有产生 Suggestion 记录（很可能是因为你系统中库存数量不足）
 
-![img](https://img-my.csdn.net/uploads/201206/26/1340702545_4311.jpg)
+![](https://img-my.csdn.net/uploads/201206/26/1340702545_4311.jpg)
 
 接下来一步就是去 Transact 这个 Move Order
 
-![img](https://img-my.csdn.net/uploads/201206/26/1340704044_4532.jpg)
+![](https://img-my.csdn.net/uploads/201206/26/1340704044_4532.jpg)
 
 按 Transact 之后，Inventory Transaction Manager 会处理 Suggestion Transactions（MMTT），然后物料转移的动作就真实发生了,`物料就从正式Subinventory到临时存货区(Staging)`。这个 Transction 可以从 Material Transaction 的 Form 中查询到。
 
-![img](https://img-my.csdn.net/uploads/201206/26/1340710485_9329.jpg)
+![](https://img-my.csdn.net/uploads/201206/26/1340710485_9329.jpg)
 
 另外对于 Reservation 来说，在 Transact 之后，因为库存明确了，Reservation 就会变得更加明确，是对哪个 Sub，locator 做保留。
 
-![img](https://img-my.csdn.net/uploads/201206/26/1340704743_5278.jpg)
+![](https://img-my.csdn.net/uploads/201206/26/1340704743_5278.jpg)
 
 状态：这个时候，Shipping Transaction 的 Line Status 为"Staged/Pick Confirmed",Next Step 为"Ship Confirm/Close Trip Stop"；订单头的状态仍为 Booked,行状态变为了”Picked“。
 
@@ -84,21 +84,21 @@ Pick Confirm（挑库确认）的动作实际上是在 Transact Move Order 中�
 
 路径：Order Management > Shipping > Transactions
 
-![img](https://img-my.csdn.net/uploads/201206/26/1340704823_5002.jpg)
+![](https://img-my.csdn.net/uploads/201206/26/1340704823_5002.jpg)
 
 切换到 Delivery 页签，准备 Ship Confirm(发货确认)，如果你在 Pick Release 的时候，没有选择 Autocreate Delivery，那么系统会检查 Define Shipping Parameters 里边这两个的设置，如果 shipping parameters 里边也没有选择，那么你需要手工的在 Ship Confirm 的时候选择 Action->Auto-create Deliveries.
 
 Delivery 信息实际上包含你要投递货物到哪里，使用哪家物流公司....
 
-![img](https://img-my.csdn.net/uploads/201206/26/1340704935_6991.jpg)
+![](https://img-my.csdn.net/uploads/201206/26/1340704935_6991.jpg)
 
 Delivery 页签，点击 Ship Confirm 按钮后，会弹出一个窗口，"Defer Interface"如果被勾上，说明你要手动的运行 Interface Trip Stop SRS，我们勾上 Defer Interface，点 OK。
 
-![img](https://img-my.csdn.net/uploads/201206/26/1340705223_3614.jpg)
+![](https://img-my.csdn.net/uploads/201206/26/1340705223_3614.jpg)
 
 Delivery was successfully confirmed!!!
 
-![img](https://img-my.csdn.net/uploads/201206/26/1340705397_7573.jpg)
+![](https://img-my.csdn.net/uploads/201206/26/1340705397_7573.jpg)
 
 Ship Confirm 这个动作会插入一条记录到 MTL_TRANSACTIONS_INTERFACE 表中，这个 MTI 记录的类型为 Sales Order Issue，这条记录会被接下来的 Interface Trip Stop 来处理，最终从 MTI 转到 MMT 表中。
 
@@ -110,13 +110,13 @@ Ship Confirm 这个动作会插入一条记录到 MTL_TRANSACTIONS_INTERFACE 表
 
 路径：Order Management > Shipping > Interface > Run > Request:Interface Trip Stop - SRS
 
-![img](https://img-my.csdn.net/uploads/201206/26/1340706303_7309.jpg)
+![](https://img-my.csdn.net/uploads/201206/26/1340706303_7309.jpg)
 Interface Trip Stop 实际上包含两部分：Order Management Interface SRS（更新发运行状态、以准备生成 AR 发票）和 Inventory Interface SRS（产生库存出货事务）
 
 Order Management Interface - SRS 是在 Inventory Interface SRS 之前运行的，这个 Request 更新发运行状态、以准备生成 AR 发票，OM Interface 运行结束后会更新 WSH_DELIVERY_DETAILS 表的 OE_INTERFACED_FLAG 为 Y。
 
 Inventory Interface SRS 会根据 Shipping Transaction 来插入记录到 MTI,进而 INV Manager 会把这条 MTI 记录转到 MMT 表中，一条 Sales Order Issue 的 transaction 记录就产生了，并完成库存数量的扣减和 Reservation 的删除。Inventory Interface SRS 运行完之后，会更新 WSH_DELIVERY_DETAILS 表的 INV_INTERFACED_FLAG 字段为 Y。
-![img](https://img-my.csdn.net/uploads/201206/26/1340710397_7626.jpg)
+![](https://img-my.csdn.net/uploads/201206/26/1340710397_7626.jpg)
 
 状态：这个时候，Shipping Transaction 的 Line Status 为"Interfaced",Next Step 为"Not Applicable"；订单头的状态仍为 Booked,行状态变为了”Shipped“。
 
@@ -134,7 +134,7 @@ Process Timeout:No
 
 这个 program 用于处理 Deffered 状态的 workflow,Workflow Background Process 运行后，相关数据就会从 Order 表导入到 RA Interface 表中去(RA_INTERFACE_LINES_ALL,RA_INTERFACE_SALESCREDITS_ALL,RA_Interface_distribution)
 
-![img](https://img-my.csdn.net/uploads/201206/27/1340776215_6650.jpg)
+![](https://img-my.csdn.net/uploads/201206/27/1340776215_6650.jpg)
 
 你可以通过下边的 SQL 来查看 RA Interface 信息：
 
@@ -162,13 +162,13 @@ Invoice Source:Order Entry
 
 Default Day:当前日期
 
-![img](https://img-my.csdn.net/uploads/201206/26/1340711687_2188.jpg)
+![](https://img-my.csdn.net/uploads/201206/26/1340711687_2188.jpg)
 
 提交后，在 request 里能看到”Autoinvoice Import Program“在运行。
 
-![img](https://img-my.csdn.net/uploads/201206/26/1340712268_1890.jpg)
+![](https://img-my.csdn.net/uploads/201206/26/1340712268_1890.jpg)
 
-![img](https://img-my.csdn.net/uploads/201206/26/1340722156_4927.jpg)
+![](https://img-my.csdn.net/uploads/201206/26/1340722156_4927.jpg)
 
 从上图，可以看出 Auto Invoice Program 用于处理 RA 的 interface 表，然后生成真正的营收发票信息,最终数据会插入 AR 正式表中（RA_CUSTOMER_TRX_ALL,RA_CUSTOMER_TRX_LINES,AR_PAYMENT_SCHEDULES）.
 
@@ -208,10 +208,10 @@ AND order_number = :p_order_number;
 
 Oracle Order Management Flow([Source Link](http://oracleapps88.blogspot.com/2015/07/oracle-order-management-flow.html))
 
-![img](https://img-blog.csdn.net/20150714001754372)
+![](https://img-blog.csdn.net/20150714001754372)
 
-![img](https://img-blog.csdn.net/20150714001803242)
+![](https://img-blog.csdn.net/20150714001803242)
 
-![img](https://img-blog.csdn.net/20150714001813822)
+![](https://img-blog.csdn.net/20150714001813822)
 
 > [Oracle EBS 订单的流程(Order->AR) - xxc_weil 的博客 - CSDN 博客](https://blog.csdn.net/xxc_weil/article/details/78740569)

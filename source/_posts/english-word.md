@@ -4,7 +4,65 @@ tags: english
 date: 2020-08-13
 ---
 
-### rust
+### Business
+
+> Can I move this call for tomorrow? I am stuck in other call. 我可以把这个电话挪到明天吗?我被其他电话困住了。
+
+> We had an issue with the invoice. Can you please resubmit the invoice with the correct Tax type? Please confirm once corrected invoice is submitted. 我们的发票出了问题。能否重新提交正确税种的发票?提交正确的发票后，请确认。
+
+> Kindly find the attached file of invoice and packing list for review , thanks. 请查收附件中的发票和装箱单，谢谢。
+
+> I just send 856 and 810 to you so please check do you have receive it successfully ? 我刚刚发送了 856 和 810 给你，请问你是否成功收到?
+
+> Could you please advise/confirm if you are the right person to work with? If not, could you please help forward this email to right persons?  
+> If you have any questions, please feel free to contact us, thank you.
+>
+> 你能告诉我/确认一下你是不是合适的合作伙伴吗?如果不是，请帮忙将此邮件转发给合适的人。
+> 如果您有任何问题，请随时与我们联系，谢谢。
+
+### CET 6
+
+> He was abrupt to the point of rudeness. 他唐突到了无礼的地步。
+>
+> abrupt: 突然的；唐突的
+>
+> rudeness: n. 无礼；粗蛮
+
+> They specified a spacious entrance hall. 他们指定要一个宽敞的门厅。
+>
+> specify： vt. 指定；详细说明；列举；把…列入说明书
+>
+> spacious: adj. 宽敞的，广阔的；无边无际的
+
+> He pursed her lips in disapproval. 他撅起嘴唇表示反对。
+>
+> purse: n. (女士)手提袋；(国家、家庭、团体等的) 财力 vt. （嘴巴）皱起，使缩拢；撅嘴
+>
+> lip: n. 嘴唇；边缘
+>
+> disapproval: n. 不赞成；不喜欢
+
+> I had another spontaneous miscarriage at around the 16th to 18th week.
+>
+> spontaneous: adj. 自发的；自然的；无意识的
+>
+> miscarriage: n. [妇产] 流产；失败；误送
+
+> Italy has been afflicted by political corruption for decades. 几十年来，意大利一直受到政治腐败的困扰。
+>
+> afflict： vt. 折磨；使痛苦；使苦恼
+>
+> corruption: n. 贪污，腐败；堕落
+
+> Officers armed with a search warrant entered the apartment. 携带搜查证的警察进入了公寓。
+>
+> officer: n. 军官，警官；公务员，政府官员；船长 vt. 指挥
+>
+> arm: n. 手臂；武器；袖子；装备；部门 vi. 武装起来 vt. 武装；备战
+>
+> warrant: n. 根据；证明；正当理由；委任状 vt. 保证；担保；批准；辩解
+
+### Rust
 
 > The main aim of lifetimes is to prevent dangling references, which cause a program to reference data **other than(除了，不同于)** the data it’s intended to reference. 生存期的主要目的是防止悬空引用，悬空引用导致程序引用的数据不是它打算引用的数据。
 
@@ -47,7 +105,7 @@ date: 2020-08-13
 > This saves compile time when you only want to build the library and saves space in the resulting compiled artifact because the tests are not included.
 > 当您只希望构建库时，这将节省编译时间，并在结果编译工件中节省空间，因为没有包含测试。
 
-There’s **debate n. 辩论；（正式的）讨论 v. （尤指正式）讨论,辩论；仔细考虑** within the testing community about whether or not private functions should be tested directly. 在测试社区中，对于是否应该直接测试私有功能存在争议。
+> There’s **debate n. 辩论；（正式的）讨论 v. （尤指正式）讨论,辩论；仔细考虑** within the testing community about whether or not private functions should be tested directly. 在测试社区中，对于是否应该直接测试私有功能存在争议。
 
 > Even though this file doesn’t contain any test functions nor did we call the setup function from anywhere. 尽管这个文件不包含任何测试函数，我们也没有从任何地方调用 setup 函数。
 
@@ -477,7 +535,7 @@ There’s **debate n. 辩论；（正式的）讨论 v. （尤指正式）讨论
 > extraordinary: adj. 非凡的；特别的；离奇的；特派的
 > extraordinarily: adv. 极其，极端地；奇怪地
 
-### node
+### Node
 
 > npx is an useful tool to run one-off commands like create-react-app, http-server etc. npx 是运行诸如 create- response -app、http-server 等一次性命令的有用工具。
 > one-off: adj. 一次性的 n. 一次性事物；与他人完全不同者
@@ -488,49 +546,72 @@ There’s **debate n. 辩论；（正式的）讨论 v. （尤指正式）讨论
 
 > The light-weight runtime is built on Node.js, taking full advantage of its event-driven, non-blocking model. 轻量级运行时构建在 Node.js 上，充分利用其事件驱动、非阻塞模型。
 
-### CET 6
+### C#
 
-> He was abrupt to the point of rudeness. 他唐突到了无礼的地步。
->
-> abrupt: 突然的；唐突的
->
-> rudeness: n. 无礼；粗蛮
+> The retry logic is designed to gracefully process temporary errors or transient faults which tend to go away if the program waits several seconds and retries. 重试逻辑被设计为优雅地处理临时错误或瞬态错误，如果程序等待几秒钟并重试，这些错误往往会消失。
+> transient: adj. 短暂的；路过的 n. 瞬变现象；过往旅客；候鸟
 
-> They specified a spacious entrance hall. 他们指定要一个宽敞的门厅。
->
-> specify： vt. 指定；详细说明；列举；把…列入说明书
->
-> spacious: adj. 宽敞的，广阔的；无边无际的
+> A brief failure of the networking that supports the Internet. 支持 Internet 的网络的短暂故障。
 
-> He pursed her lips in disapproval. 他撅起嘴唇表示反对。
->
-> purse: n. (女士)手提袋；(国家、家庭、团体等的) 财力 vt. （嘴巴）皱起，使缩拢；撅嘴
->
-> lip: n. 嘴唇；边缘
->
-> disapproval: n. 不赞成；不喜欢
+> Your client program can encounter transient faults from which it should silently and gracefully recover and continue on its own. 您的客户机程序可能会遇到瞬态错误，它应该安静地、优雅地自行恢复并继续运行。
 
-> I had another spontaneous miscarriage at around the 16th to 18th week.
->
-> spontaneous: adj. 自发的；自然的；无意识的
->
-> miscarriage: n. [妇产] 流产；失败；误送
+> NOTE: The connection string for server name is geared toward Azure SQL Database, because it includes the four character prefix of tcp:. 注意:服务器名称的连接字符串是面向 Azure SQL 数据库的，因为它包含 tcp:的四个字符前缀。
+> gear: n. 齿轮；装置，工具；传动装置；排挡 vi. 适合；搭上齿轮；开始工作 vt. 开动；搭上齿轮；使……适合；使……准备好 adj. 好极了
+> be geared toward: 使与……相适应, 使适合于
 
-> Italy has been afflicted by political corruption for decades. 几十年来，意大利一直受到政治腐败的困扰。
->
-> afflict： vt. 折磨；使痛苦；使苦恼
->
-> corruption: n. 贪污，腐败；堕落
+> A small second class named TestSqlException, with a property named Number. 第二个小类 TestSqlException，带有一个名为 Number 的属性。
 
-> Officers armed with a search warrant entered the apartment. 携带搜查证的警察进入了公寓。
->
-> officer: n. 军官，警官；公务员，政府官员；船长 vt. 指挥
->
-> arm: n. 手臂；武器；袖子；装备；部门 vi. 武装起来 vt. 武装；备战
->
-> warrant: n. 根据；证明；正当理由；委任状 vt. 保证；担保；批准；辩解
+> For a desktop, unplug the network cable. 对于台式电脑，拔掉网线。
+> cable: n. 缆绳；电缆；海底电报 vt. 打电报 vi. 打海底电报
 
-### other
+> For a laptop, press the function combination of keys to turn off the network adapter. 对于笔记本电脑，按功能组合键关闭网络适配器。
+
+> In addition, there are often legal requirements that must be adhered to, such as the correct storage of confidential information. Storing some kinds of personal data is proscribed entirely, depending on the laws that apply in a particular jurisdiction. 此外，通常还必须遵守一些法律要求，例如机密信息的正确存储。根据某一特定司法管辖区所适用的法律，某些类型的个人资料被完全禁止储存。
+> adhere: vi. 坚持；依附；粘着；追随 vt. 使粘附
+> confidential: adj. 机密的；表示信任的；获信任的
+> proscribe: vt. 剥夺……的公权；禁止
+> jurisdiction: n. 司法权，审判权，管辖权；权限，权力
+
+> Some applications that are local in scope may need only minimal security whereas other local applications or applications deployed over the Internet may require stringent security measures and ongoing monitoring and evaluation. 一些本地应用程序可能只需要很少的安全性，而其他本地应用程序或部署在 Internet 上的应用程序可能需要严格的安全性措施和持续的监视和评估。
+> stringent: adj. 严格的；严厉的；紧缩的；短缺的
+> measure: n. 测量；措施；程度；尺寸 vt. 测量；估量；权衡 vi. 测量；估量
+> ongoing: adj. 仍在进行的；不断前进的；持续存在的
+> evaluation: n. 评价； 评估；估价；求值
+
+> The security requirements of a SQL Server database application should be considered at design time, not as an afterthought. Evaluating threats early in the development cycle gives you the opportunity to mitigate potential damage wherever a vulnerability is detected. SQL Server 数据库应用程序的安全性要求应该在设计时考虑，而不是事后再考虑。在开发周期的早期评估威胁，使您有机会在检测到漏洞的地方减轻潜在的损害。
+> afterthought: n. 事后的想法，马后炮；后来添加的东西
+> mitigate: vt. 使缓和，使减轻 vi. 减轻，缓和下来
+> vulnerability: /ˌvʌlnərəˈbɪləti/ n. 易损性；弱点
+
+> SQL Server 2008 introduces new data types that are designed to meet business needs to work with date and time, structured, semi-structured, and unstructured data. SQL Server 2008 引入了新的数据类型，旨在满足处理日期和时间、结构化、半结构化和非结构化数据的业务需求。
+> semi: n. 半挂车；半独立式的住宅
+
+### Oracle
+
+> Java is the object-oriented programming language of choice that provides platform independence and automated storage management techniques. Java 是提供平台独立性和自动化存储管理技术的首选面向对象编程语言。
+> of choice: 首选的
+
+> Vertical ellipsis points in an example mean that information not directly related to the example has been omitted. 示例中的垂直省略点表示省略了与示例不直接相关的信息。
+
+> Boldface type in text indicates a term defined in the text, the glossary, or in both locations. 文本中的黑体类型表示在文本、术语表或这两个位置中定义的术语。
+>
+> glossary: n. 术语（特殊用语）表；词汇表；专业词典
+
+> Angle brackets enclose user-supplied names. 尖括号括起用户提供的名称。<>
+
+> Brackets enclose optional clauses from which you can choose one or none. 方括号包含可选的子句，您可以从中选择一个或没有。[]
+
+> Java has emerged as the object-oriented programming language of choice. Java 已成为首选的面向对象编程语言
+>
+> emerge: vi. 浮现；摆脱；暴露
+>
+> emerged as: 如……涌现；以……形式出现
+
+> As with other high-level computer languages, the Java source compiles to low-level machine instructions. 与其他高级计算机语言一样，Java 源代码编译为低级机器指令。
+
+> Java has been developed to prevent anyone from tampering with the operating system where the Java code resides in. 开发 Java 是为了防止任何人篡改 Java 代码所在的操作系统。
+
+### Other
 
 > By now you should have a good idea about how this is different from normal LIKE or pattern matching. 到目前为止，您应该已经很清楚这与一般的 LIKE 或模式匹配有何不同。
 
@@ -594,84 +675,3 @@ There’s **debate n. 辩论；（正式的）讨论 v. （尤指正式）讨论
 > Plus, containers are part of the whole Microservices Architecture that DevOps keep going on about, and inevitably lead to talking about Kubernetes. 另外，容器是 DevOps 一直在讨论的整个微服务体系结构的一部分，这不可避免地导致了对 Kubernetes 的讨论。
 > inevitable: adj. 必然的，不可避免的
 > inevitably: adv. 不可避免地；必然地
-
-### Oracle
-
-> Java is the object-oriented programming language of choice that provides platform independence and automated storage management techniques. Java 是提供平台独立性和自动化存储管理技术的首选面向对象编程语言。
-> of choice: 首选的
-
-> Vertical ellipsis points in an example mean that information not directly related to the example has been omitted. 示例中的垂直省略点表示省略了与示例不直接相关的信息。
-
-> Boldface type in text indicates a term defined in the text, the glossary, or in both locations. 文本中的黑体类型表示在文本、术语表或这两个位置中定义的术语。
->
-> glossary: n. 术语（特殊用语）表；词汇表；专业词典
-
-> Angle brackets enclose user-supplied names. 尖括号括起用户提供的名称。<>
-
-> Brackets enclose optional clauses from which you can choose one or none. 方括号包含可选的子句，您可以从中选择一个或没有。[]
-
-> Java has emerged as the object-oriented programming language of choice. Java 已成为首选的面向对象编程语言
->
-> emerge: vi. 浮现；摆脱；暴露
->
-> emerged as: 如……涌现；以……形式出现
-
-> As with other high-level computer languages, the Java source compiles to low-level machine instructions. 与其他高级计算机语言一样，Java 源代码编译为低级机器指令。
-
-> Java has been developed to prevent anyone from tampering with the operating system where the Java code resides in. 开发 Java 是为了防止任何人篡改 Java 代码所在的操作系统。
-
-### business
-
-> Can I move this call for tomorrow? I am stuck in other call. 我可以把这个电话挪到明天吗?我被其他电话困住了。
-
-> We had an issue with the invoice. Can you please resubmit the invoice with the correct Tax type? Please confirm once corrected invoice is submitted. 我们的发票出了问题。能否重新提交正确税种的发票?提交正确的发票后，请确认。
-
-> Kindly find the attached file of invoice and packing list for review , thanks. 请查收附件中的发票和装箱单，谢谢。
-
-> I just send 856 and 810 to you so please check do you have receive it successfully ? 我刚刚发送了 856 和 810 给你，请问你是否成功收到?
-
-> Could you please advise/confirm if you are the right person to work with? If not, could you please help forward this email to right persons?  
-> If you have any questions, please feel free to contact us, thank you.
->
-> 你能告诉我/确认一下你是不是合适的合作伙伴吗?如果不是，请帮忙将此邮件转发给合适的人。
-> 如果您有任何问题，请随时与我们联系，谢谢。
-
-### c#
-
-> The retry logic is designed to gracefully process temporary errors or transient faults which tend to go away if the program waits several seconds and retries. 重试逻辑被设计为优雅地处理临时错误或瞬态错误，如果程序等待几秒钟并重试，这些错误往往会消失。
-> transient: adj. 短暂的；路过的 n. 瞬变现象；过往旅客；候鸟
-
-> A brief failure of the networking that supports the Internet. 支持 Internet 的网络的短暂故障。
-
-> Your client program can encounter transient faults from which it should silently and gracefully recover and continue on its own. 您的客户机程序可能会遇到瞬态错误，它应该安静地、优雅地自行恢复并继续运行。
-
-> NOTE: The connection string for server name is geared toward Azure SQL Database, because it includes the four character prefix of tcp:. 注意:服务器名称的连接字符串是面向 Azure SQL 数据库的，因为它包含 tcp:的四个字符前缀。
-> gear: n. 齿轮；装置，工具；传动装置；排挡 vi. 适合；搭上齿轮；开始工作 vt. 开动；搭上齿轮；使……适合；使……准备好 adj. 好极了
-> be geared toward: 使与……相适应, 使适合于
-
-> A small second class named TestSqlException, with a property named Number. 第二个小类 TestSqlException，带有一个名为 Number 的属性。
-
-> For a desktop, unplug the network cable. 对于台式电脑，拔掉网线。
-> cable: n. 缆绳；电缆；海底电报 vt. 打电报 vi. 打海底电报
-
-> For a laptop, press the function combination of keys to turn off the network adapter. 对于笔记本电脑，按功能组合键关闭网络适配器。
-
-> In addition, there are often legal requirements that must be adhered to, such as the correct storage of confidential information. Storing some kinds of personal data is proscribed entirely, depending on the laws that apply in a particular jurisdiction. 此外，通常还必须遵守一些法律要求，例如机密信息的正确存储。根据某一特定司法管辖区所适用的法律，某些类型的个人资料被完全禁止储存。
-> adhere: vi. 坚持；依附；粘着；追随 vt. 使粘附
-> confidential: adj. 机密的；表示信任的；获信任的
-> proscribe: vt. 剥夺……的公权；禁止
-> jurisdiction: n. 司法权，审判权，管辖权；权限，权力
-
-> Some applications that are local in scope may need only minimal security whereas other local applications or applications deployed over the Internet may require stringent security measures and ongoing monitoring and evaluation. 一些本地应用程序可能只需要很少的安全性，而其他本地应用程序或部署在 Internet 上的应用程序可能需要严格的安全性措施和持续的监视和评估。
-> stringent: adj. 严格的；严厉的；紧缩的；短缺的
-> measure: n. 测量；措施；程度；尺寸 vt. 测量；估量；权衡 vi. 测量；估量
-> ongoing: adj. 仍在进行的；不断前进的；持续存在的
-> evaluation: n. 评价； 评估；估价；求值
-
-> The security requirements of a SQL Server database application should be considered at design time, not as an afterthought. Evaluating threats early in the development cycle gives you the opportunity to mitigate potential damage wherever a vulnerability is detected. SQL Server 数据库应用程序的安全性要求应该在设计时考虑，而不是事后再考虑。在开发周期的早期评估威胁，使您有机会在检测到漏洞的地方减轻潜在的损害。
-> afterthought: n. 事后的想法，马后炮；后来添加的东西
-> mitigate: vt. 使缓和，使减轻 vi. 减轻，缓和下来
-> vulnerability: /ˌvʌlnərəˈbɪləti/ n. 易损性；弱点
-
-> SQL Server 2008 introduces new data types that are designed to meet business needs to work with date and time, structured, semi-structured, and unstructured data. SQL Server 2008 引入了新的数据类型，旨在满足处理日期和时间、结构化、半结构化和非结构化数据的业务需求。
-> semi: n. 半挂车；半独立式的住宅

@@ -1,12 +1,12 @@
 ---
 title: C# WebForm
-tags: c#
+tags: csharp
 date: 2019-10-05
 ---
 
 ### 新建 webform 窗体程序
 
-![1570241518556](csharp-webform/1570241518556.png)
+![](csharp-webform/1570241518556.png)
 
 ### 实现按钮点击事件
 
@@ -66,7 +66,7 @@ namespace WindowsFormsApp1
 
 `JavaScriptSerializer` 类需要添加 `System.Web.Extensions` 引用，因为此程序不是 web 程序
 
-![1570241718390](csharp-webform/1570241718390.png)
+![](csharp-webform/1570241718390.png)
 
 User.cs
 
@@ -93,6 +93,6 @@ namespace WindowsFormsApp1
 
 ### 运行效果
 
-![1570241940875](c#-webform/1570241940875.png)
+![](csharp-webform/1570241940875.png)
 
-> 引用: https://www.bilibili.com/video/av67718217
+> 来源: https://www.bilibili.com/video/av67718217

@@ -1,12 +1,8 @@
 ---
 title: oracle
 tags: db
+categories: manual
 date: 2019-06-06
-music:
-    enable: true
-    server: netease
-    type: song
-    id: 26289183
 ---
 
 ## DDL
@@ -807,7 +803,7 @@ select substr('c:\test\test.xlsx',
 
 ### Option Filter
 
-edi_id 是一个栏位并不是一个变量，如果没有传入 p_edi_id 则 edi_id = edi_id 恒成立
+edi_id 是一个栏位并不是一个变量，如果没有传入 p_edi_id 则 edi_id 栏位不为空的情况下 edi_id = edi_id 恒成立 (null=null 不成立)
 
 ```sql
 cursor c_edi_id is
@@ -1215,3 +1211,52 @@ X
 ```
 
 ![ampersand](oracle/ampersand.png)
+
+### Request Check
+
+```sql
+select r.argument1, r.argument2, r.request_date
+from sfn_fnd_concurrent_requests r,
+      fnd_concurrent_programs_tl  t
+where 1 = 1
+  and t.concurrent_program_id = r.concurrent_program_id
+  --and r.request_id = 33534323
+  --and r.concurrent_program_id = 62486
+  and r.last_update_date > to_date('2020-05-01 18:14:15', 'yyyy-mm-dd hh24:mi:ss')
+  and t.user_concurrent_program_name = 'SOMP4024: 3C3 Invoice OUTPUT'
+  and r.status_code = 'E';
+```
+
+### In Trigger call Request
+
+```sql
+begin
+  if som_edi_broadcom_po_insert_pkg.check_is_broadcom(:new.vendor_id) = 'Y' then
+      l_result := fnd_request.set_mode(true);
+      l_req_id := fnd_request.submit_request(application  => 'YSC',
+                                            program      => 'SOMP4081',
+                                            description  => null,
+                                            start_time   => null,
+                                            sub_request  => false,
+                                            argument1    => :new.po_header_id);
+  end if;
+exception
+    when others then
+      null;
+end;
+```
+
+## Form
+
+### ERP Form Error
+
+在做 Transact Move Orders 时弹出错误：`累计拣货数量超过报关数量`
+
+1. 搜索 `累计拣货数量超过报关数量`, 检查 form 的 trigger 都没有发现相关代码和描述
+2. 在 plsql 中使用 `select * from all_source s where s.TEXT like '%累计拣货数量超过报关数量%';` 结果在一个 table trigger 中找到相关文字，查看 trigger 代码可以看到实际原因是报关资料抄写没有抄写成功。
+
+### ERP Form setting item property to <Unspecified>
+
+How to set item propert to <Unspecified> value. For example, i have radio button with Background color sets to 'gray' and i want set it to <Unspecified> to get transparency effect and i can't do this. If i set property value to blank forms builder shout "color by this name does not exist".
+
+Answser: Go to the item in question and press the 'Inherit' button in the 'Property Palette'.

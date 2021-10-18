@@ -1,6 +1,7 @@
 ---
 title: es6
 tags: js
+date: 2019-10-29
 ---
 
 #### destructing

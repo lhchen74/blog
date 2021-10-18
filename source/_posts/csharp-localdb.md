@@ -1,6 +1,6 @@
 ---
-title: SqlServer LOCALDB 安装和连接 
-tags: c#
+title: SqlServer LOCALDB 安装和连接
+tags: csharp
 date: 2019-10-25
 ---
 
@@ -16,7 +16,7 @@ date: 2019-10-25
 
 另外 localdb2014 有单独的安装包,而 2016 则没找到.VS2015 的安装包里有 LOCALDB2016 的 MSI 文件,但是安装之后却无法使用. 使用命令查看版本,如下:
 
-![img](csharp-localdb/540771-20170314154618620-1044166666.jpg)
+![](csharp-localdb/540771-20170314154618620-1044166666.jpg)
 
 > sqllocaldb 使用
 
@@ -30,7 +30,7 @@ sqllocaldb.exe s [实例名] // 启动这个实例
 
 sqllocaldb.exe -? // 这个命令的帮助信息
 
-![img](csharp-localdb/540771-20161010173121446-1241040689.jpg)
+![](csharp-localdb/540771-20161010173121446-1241040689.jpg)
 
 > 使用 MSSM 连接 sqllocaldb
 
@@ -38,21 +38,21 @@ sqllocaldb.exe -? // 这个命令的帮助信息
 
 然后就连接上了,可以建库建数据了
 
-![img](csharp-localdb/540771-20161010180111305-661520541.jpg)
+![](csharp-localdb/540771-20161010180111305-661520541.jpg)
 
 > ASP.NET 程序中使用
 
-- 指定连接到这个数据库文件 MDF
+-   指定连接到这个数据库文件 MDF
 
-  `Server=(LocalDB)\MSSQLLocalDB; Integrated Security=true;AttachDbFileName=D:\Data\MyDB1.mdf`
+    `Server=(LocalDB)\MSSQLLocalDB; Integrated Security=true;AttachDbFileName=D:\Data\MyDB1.mdf`
 
-- 不指定到 MDF 文件路径,指定默认数据库名
+-   不指定到 MDF 文件路径,指定默认数据库名
 
-  `Server=(LocalDB)\MSSQLLocalDB; Integrated Security=true;Initial Catalog=MyDB1"`
+    `Server=(LocalDB)\MSSQLLocalDB; Integrated Security=true;Initial Catalog=MyDB1"`
 
-* 指定用户名和密码(目前使用这是这种,简单明了
+*   指定用户名和密码(目前使用这是这种,简单明了
 
-  `Server=(localdb)\MSSQLLocalDB;uid=sa;pwd=123456;Initial Catalog=MyDB1`
+    `Server=(localdb)\MSSQLLocalDB;uid=sa;pwd=123456;Initial Catalog=MyDB1`
 
 **使用这几种连接串在 VS 中使用 IISEXPRESS 调试时,没有问题,但是发布到 IIS 中,却连接不上数据库.因为访问权限的问题.细节请看文章第一行链接.**
 
@@ -72,7 +72,7 @@ MSSQLLocalDB:实例名 mylocaldb, 为实例名取的共享实例别名,其它帐
 
 为什么上面的 MSSM 要使用管理员工具打开,因为下面的验证方式是帐号密码形式的,如果使用 WINDOWS 验证,则不需要.
 
-![img](D:\study\jbn\source_posts\csharp-localdb/540771-20170124111204691-1671264676.jpg)
+![](D:\study\jbn\source_posts\csharp-localdb/540771-20170124111204691-1671264676.jpg)
 
 **给 LOCALDB 设定连接帐号**
 
@@ -82,7 +82,7 @@ server=(localdb)\.\mylocaldb;uid=sa;pwd=123456;AttachDbFileName=D:\Data\MyDB1.md
 
 **查看数据库帐号,发现 LOCALDB 并没有 SA 这个帐号**,于是加上它,并且给予 DB_OWNER
 
-![img](csharp-localdb/540771-20170124112301300-1557512723.jpg)
+![](csharp-localdb/540771-20170124112301300-1557512723.jpg)
 
 最后,在浏览器中打开程序,发现连接成功,网页打开了..
 

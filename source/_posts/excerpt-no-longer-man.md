@@ -2,6 +2,7 @@
 title: 人间失格
 tags: excerpt
 date: 2020-05-23
+categories: excerpt
 ---
 
 > 相互轻蔑却又彼此来往，并一起自我作贱 —这就是世上所谓朋友的真面目。

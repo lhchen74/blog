@@ -1,12 +1,12 @@
 ---
 title: A Simple Makefile Tutorial
-tags: c
 date: 2020-04-15
+tags: c
 ---
 
-> reproduced: [A Simple Makefile Tutorial](http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/)
+> 转载: [A Simple Makefile Tutorial](http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/)
 
-Makefiles are a simple way to organize code compilation. This tutorial does not even scratch the surface of what is possible using *make*, but is intended as a starters guide so that you can quickly and easily create your own makefiles for small to medium-sized projects.
+Makefiles are a simple way to organize code compilation. This tutorial does not even scratch the surface of what is possible using _make_, but is intended as a starters guide so that you can quickly and easily create your own makefiles for small to medium-sized projects.
 
 ### A Simple Example
 
@@ -15,8 +15,8 @@ Let's start off with the following three files, hellomake.c, hellofunc.c, and he
 hellomake.c
 
 ```c
-#include <hellomake.h> int main() { 
-     // call a function in another file 
+#include <hellomake.h> int main() {
+     // call a function in another file
      myPrintHelloMake();
      return(0);
 }
@@ -25,18 +25,18 @@ hellomake.c
 hellofunc.c
 
 ```c
-#include <stdio.h> 
-#include <hellomake.h> 
-void myPrintHelloMake(void) { 
-     printf("Hello makefiles!\n"); 
-     return; 
+#include <stdio.h>
+#include <hellomake.h>
+void myPrintHelloMake(void) {
+     printf("Hello makefiles!\n");
+     return;
 }
 ```
 
 hellomake.h
 
 ```c
-/* example include file */ 
+/* example include file */
 void myPrintHelloMake(void);
 ```
 
@@ -83,8 +83,8 @@ DEPS = hellomake.h
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-hellomake: hellomake.o hellofunc.o 
-	$(CC) -o hellomake hellomake.o hellofunc.o 
+hellomake: hellomake.o hellofunc.o
+	$(CC) -o hellomake hellomake.o hellofunc.o
 ```
 
 This addition first creates the macro DEPS, which is the set of .h files on which the .c files depend. Then we define a rule that applies to all files ending in the .o suffix. The rule says that the .o file depends upon the .c version of the file and the .h files included in the DEPS macro. The rule then says that to generate the .o file, `make` needs to compile the .c file using the compiler defined in the CC macro. The -c flag says to generate the object file, the `-o $@` says to put the output of the compilation in the file named on the left side of the `:`, the `$<` is the first item in the dependencies list, and the CFLAGS macro is defined as above.
@@ -95,7 +95,7 @@ As a final simplification, let's use the special macros `$@` and `$^`, which are
 CC=gcc
 CFLAGS=-I.
 DEPS = hellomake.h
-OBJ = hellomake.o hellofunc.o 
+OBJ = hellomake.o hellofunc.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
@@ -119,7 +119,7 @@ LIBS=-lm
 _DEPS = hellomake.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = hellomake.o hellofunc.o 
+_OBJ = hellomake.o hellofunc.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 
@@ -132,13 +132,13 @@ hellomake: $(OBJ)
 .PHONY: clean
 
 clean:
-	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ 
+	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~
 ```
 
 Directory structure
 
 ```
-▶ tree /F                                                                                            
+▶ tree /F
 C:.
 ├─include
 │      hellomake.h

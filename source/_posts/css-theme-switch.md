@@ -4,7 +4,7 @@ tags: css
 date: 2020-06-12
 ---
 
-> reproduced: [Quick & Dirty Theme Switcher | Ugly Duck](https://uglyduck.ca/quick-dirty-theme-switcher/)
+> 转载: [Quick & Dirty Theme Switcher | Ugly Duck](https://uglyduck.ca/quick-dirty-theme-switcher/)
 
 I recently added a fairly straightforward color scheme (theme) switcher to my personal website. You can toggle this simple color switcher in the footer of the site to see it in action. In case anyone else had the desire to add such functionality to their own sites/projects, I figured I’d write up a quick post explaining how to do so. Let’s get into it.
 

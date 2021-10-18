@@ -12,7 +12,7 @@ date: 2019-09-30
 
 注意: 不要将解压缩的文件放到有空格的目录中，例如 `C:\Program Files\instantclient_11_2` 否则后续会找不到 oci.h
 
-![1569836319598](go-oracle/1569836319598.png)
+![](go-oracle/1569836319598.png)
 
 ### 下载安装 MINGW64
 
@@ -30,7 +30,7 @@ date: 2019-09-30
 
 进入 GOPATH 目录 `%GoPath%\src\github.com\wendal\go-oci8\windows`，找到 OCI8.PC 文件，修改 `prefix` 和 `exec_prefix`
 
-![1569837019951](go-oracle/1569837019951.png)
+![](go-oracle/1569837019951.png)
 
 然后
 
@@ -38,7 +38,7 @@ date: 2019-09-30
 
 2. 复制此目录下 oci8.pc 到 mingw64 下的 lib/pkg-config 目录（pkg-config 目录需要自己建), 添加 `PKG_CONFIG_PATH` 环境变量, 值为 oci8.pc 所在位置 `C:\mingw64\lib\pkg-config`
 
-   ![1569837340983](go-oracle/1569837340983.png)
+   ![](go-oracle/1569837340983.png)
 
 ### 继续安装 go-oci8
 

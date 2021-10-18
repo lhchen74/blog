@@ -1,12 +1,10 @@
 ---
 title: Forget NodeJS! Build native TypeScript applications with Deno
-tags: deno
+tags: node
 date: 2020-04-16
 ---
 
-> [Forget NodeJS! Build native TypeScript applications with Deno 🦖 | Technorage](https://deepu.tech/deno-runtime-for-typescript/)
-
----
+> 转载：[Forget NodeJS! Build native TypeScript applications with Deno 🦖 | Technorage](https://deepu.tech/deno-runtime-for-typescript/)
 
 Have you heard of [Deno](https://deno.land/)? If not you should check it out. Deno is a modern JavaScript/TypeScript runtime & scripting environment. Deno is what NodeJS should have been according to Ryan Dahl who created NodeJS. Deno was also created by Ryan Dahl in 2018 and is built with [V8](https://v8.dev/), [Rust](https://www.rust-lang.org/) and [Tokio](https://github.com/tokio-rs/tokio) with a focus on security, performance, and ease of use. Deno takes many inspirations from Go and Rust.
 

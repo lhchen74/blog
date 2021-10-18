@@ -1,6 +1,6 @@
 ---
 title: C# Action 和 Func 的使用
-tags: c#
+tags: csharp
 date: 2019-11-2
 ---
 

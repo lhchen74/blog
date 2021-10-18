@@ -586,7 +586,7 @@ Indices and tables
 
 在文档根目录执行 `make html`，点击 build 下的 index.html 可以查看生成文档效果
 
-![1572485387672](python-sphinx/1572485387672.png)
+![](python-sphinx/1572485387672.png)
 
 ### 上传文档到 github
 

@@ -1,6 +1,7 @@
 ---
 title: javascript prototype
 tags: js
+date: 2019-07-11
 ---
 
 ```js

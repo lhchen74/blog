@@ -4,7 +4,7 @@ tags: db
 date: 2020-01-21
 ---
 
-> reproduced: [ORACLE-BASE - WITH Clause : Subquery Factoring in Oracle](https://oracle-base.com/articles/misc/with-clause)
+> 转载: [ORACLE-BASE - WITH Clause : Subquery Factoring in Oracle](https://oracle-base.com/articles/misc/with-clause)
 
 ## Setup
 

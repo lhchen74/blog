@@ -1,10 +1,9 @@
 ---
-title: bat
-tags: shell
+title: Window Bat
+tags: window
+categories: manual
 date: 2019-06-06
 ---
-
-> You can't kill a nightmare, but you can scare it. And there's nothing so feared by nightmares as milk and cookies. - My Grandmother Asked Me to Tell You She's Sorry
 
 ### help
 
@@ -546,7 +545,7 @@ RD [/S] [/Q] [drive:]path
 
 建立映射网络驱动器` Z:` 连接到` \\11435-NB1\netdisk` （netdisk 是一个共享文件夹）
 
-![1592543073752](bat/1592543073752.png)
+![](bat/1592543073752.png)
 
 移动映射网络驱动器` Z:`中的文件到 `D:\program\filepool`
 
@@ -559,4 +558,3 @@ SET dst-path=D:\program\filepool
 
 forfiles /p %netdisk-path% /m *.* /c "cmd /c move /y @FILE %dst-path%@FILE || echo move @FILE failed >> %logfile%"  || echo netdisk "%netdisk-path%" disconnected >> %logfile%
 ```
-

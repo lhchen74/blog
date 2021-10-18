@@ -1,7 +1,7 @@
 ---
 title: json
 tags: json
-date: 20200718
+date: 2020-07-18
 ---
 
 ### GeoJSON

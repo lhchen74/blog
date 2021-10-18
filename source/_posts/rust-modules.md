@@ -1,10 +1,10 @@
 ---
 title: Clear explanation of Rust’s module system
 tags: rust
-date: 2020-09-07
+date: 2020-07-14
 ---
 
-> [Clear explanation of Rust’s module system](http://www.sheshbabu.com/posts/rust-module-system/)
+> 转载: [Clear explanation of Rust’s module system](http://www.sheshbabu.com/posts/rust-module-system/)
 
 Rust’s module system is surprisingly confusing and causes a lot of frustration for beginners.
 
@@ -29,7 +29,7 @@ my_project
 
 These are the different ways we should be able to consume our modules:
 
-![img](rust-modules/rust-module-system-1.png)
+![](rust-modules/rust-module-system-1.png)
 
 These 3 examples should be sufficient to explain how Rust’s module system works.
 
@@ -52,7 +52,7 @@ The first mistake that everyone makes is just because we have files like `config
 
 Here’s what we see (file system tree) and what the compiler sees (module tree):
 
-![img](rust-modules/rust-module-system-2.png)
+![](rust-modules/rust-module-system-2.png)
 
 Surprisingly, the compiler only sees the `crate` module which is our `main.rs` file. This is because we need to explicitly build the module tree in Rust - there’s no implicit mapping between file system tree to module tree.
 
@@ -107,7 +107,7 @@ We’re accessing the `print_config` function using the `::` syntax.
 
 Here’s how the module tree looks like:
 
-![img](rust-modules/rust-module-system-3.png)
+![](rust-modules/rust-module-system-3.png)
 
 We’ve successfully declared the `config` module! But this is not sufficient to be able to call the `print_config` function inside `config.rs`. Almost everything in Rust is private by default, we need to make the function public using the `pub` keyword:
 
@@ -188,7 +188,7 @@ fn main() {
 
 Here’s how the module tree looks like:
 
-![img](rust-modules/rust-module-system-4.png)
+![](rust-modules/rust-module-system-4.png)
 
 We can now call a function defined in a file inside a folder.
 
@@ -263,7 +263,7 @@ pub mod health_route;
 
 Here’s how the module tree looks like:
 
-![img](rust-modules/rust-module-system-5.png)
+![](rust-modules/rust-module-system-5.png)
 
 Wait, we haven’t actually called `print_user_model` from `print_user_route`! So far, we’ve only called the functions defined in other modules from `main.rs`, how do we do that from other files?
 

@@ -1,10 +1,10 @@
 ---
-title: ruby homework
+title: Ruby Homework
 tags: ruby
 date: 2020-11-29
 ---
 
-> 最远的旅行，是从自己的身体到自己的心，是从一个人的心到另一个人的心。坚强不是面对悲伤不流一滴泪，而是擦干眼泪后微笑面对以后的生活。—宫崎骏 《风之谷》
+> 最远的旅行，是从自己的身体到自己的心，是从一个人的心到另一个人的心。坚强不是面对悲伤不流一滴泪，而是擦干眼泪后微笑面对以后的生活。-宫崎骏 《风之谷》
 
 ### number and text
 
@@ -90,6 +90,51 @@ each_starts_with(["abcd", "axyz", "able", "xyzab"], "ab") { |s| puts s   }
 
 How to solve the problem that switch symbol and string key of hash?
 
+```ruby
+class ::Hash
+  # via https://stackoverflow.com/a/25835016/2257038
+  def stringify_keys
+    h = self.map do |k,v|
+      v_str = if v.instance_of? Hash
+                v.stringify_keys
+              else
+                v
+              end
+
+      [k.to_s, v_str]
+    end
+    Hash[h]
+  end
+
+  # via https://stackoverflow.com/a/25835016/2257038
+  def symbol_keys
+    h = self.map do |k,v|
+      v_sym = if v.instance_of? Hash
+                v.symbol_keys
+              else
+                v
+              end
+
+      [k.to_sym, v_sym]
+    end
+    Hash[h]
+  end
+end
+
+
+hash_str = {
+  'key' => true
+}
+hash_sym = {
+  key: true
+}
+
+p hash_sym.stringify_keys
+# {"key"=>true}
+p hash_str.symbol_keys
+# {:key=>true}
+```
+
 ### method
 
 Use singleton method transfer [1, 2, 3] it self to [2, 4, 6]
@@ -113,7 +158,7 @@ def sum_pair(arr)
         begin
             puts pair[0] + pair[1]
         rescue TypeError => e
-            puts "Invalid sumation of #{ pair[0].class   } + #{ pair[1].class   }"
+            puts "Invalid sumation of #{ pair[0].class } + #{ pair[1].class }"
         else
             sum += 1
         ensure
@@ -121,7 +166,7 @@ def sum_pair(arr)
         end
     end
 
-    puts '**! Altogether there are #{ sum   } pairs processed !**'
+    puts '**! Altogether there are #{ sum } pairs processed !**'
 end
 
 sum_pair(arr)

@@ -6,7 +6,7 @@ date: 2019-10-29
 
 > 转载：[Java 中的 PO、VO、DTO、BO、POJO、BO/DO、DAO - 简书](https://www.jianshu.com/p/d9cfd1a85068)
 
-![img](java-pojo/pojo.png)
+![](java-pojo/pojo.png)
 
 ## 简单 Java 对象
 

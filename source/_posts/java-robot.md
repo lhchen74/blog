@@ -1,8 +1,10 @@
 ---
-title: java robot
-tags: java
+title: Robot Automation
+tags: [java, python]
 date: 2020-07-09
 ---
+
+## Java Robot
 
 可以使用 java 的 robot 操纵鼠标，键盘做一些重复机械的工作
 
@@ -113,5 +115,57 @@ public class RobotTest
         // ....
     }
 }
+```
+
+## Python keyboard & mouse
+
+> [keyboard · PyPI](https://pypi.org/project/keyboard/)
+
+> [mouse · PyPI](https://pypi.org/project/mouse/)
+
+**Login ERP**
+
+```python
+import time
+import webbrowser
+import keyboard
+import mouse
+
+ie = webbrowser.get(webbrowser.iexplore)
+ie.open('http://erpdev.sercomm.com:8002')
+
+time.sleep(5)
+
+keyboard.write("11435", delay=0.1)
+keyboard.send("tab")
+keyboard.send("tab")
+keyboard.send("enter")
+
+
+time.sleep(2)
+mouse.move(100, 535, absolute=True, duration=0.2)
+mouse.click("left")
+time.sleep(2)
+mouse.move(0, 20, absolute=False, duration=0.1)
+mouse.click("left")
+
+time.sleep(10)
+
+for _ in range(5):
+    keyboard.send("down")  # down arrow
+
+keyboard.send("enter")
+```
+
+**Get keyboard name**
+
+```python
+import keyboard
+
+def onkeypress(event):
+    print(event.name)
+
+keyboard.on_press(onkeypress)
+keyboard.wait()
 ```
 

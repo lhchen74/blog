@@ -1,6 +1,6 @@
 ---
 title: C#中 Thread，Task，Async/Await，IAsyncResult 的那些事儿！
-tags: c#
+tags: csharp
 date: 2019-10-28
 ---
 
@@ -35,7 +35,7 @@ static void Run()
 
 执行结果如下图，
 
-![img](csharp-async/961949-20170117195306349-1589524780.png)
+![](csharp-async/961949-20170117195306349-1589524780.png)
 
 可以看到在启动后台线程之后，主线程继续往下执行了，并没有等到后台线程执行完之后。
 
@@ -58,7 +58,7 @@ Console.Read();
 
 运行结果：
 
-![img](csharp-async/961949-20170117201545927-996676824.png)
+![](csharp-async/961949-20170117201545927-996676824.png)
 
 可以看到，虽然执行了 10 次，但并没有创建 10 个线程。
 
@@ -90,7 +90,7 @@ static void SemaphoreTest()
 
 执行结果如下：
 
-![img](csharp-async/961949-20170117203646958-1977296136.png)![img](csharp-async/961949-20170117203659896-1181181789.png)
+![](csharp-async/961949-20170117203646958-1977296136.png)![](csharp-async/961949-20170117203659896-1181181789.png)
 
 可以看到，刚开始只有三个线程在执行，当一个线程执行完毕并释放之后，才会有新的线程来执行方法！
 
@@ -116,7 +116,7 @@ Console.WriteLine("主线程结束");
 
 执行结果如下：
 
-![img](csharp-async/961949-20170118085009734-1482384411.png)
+![](csharp-async/961949-20170118085009734-1482384411.png)
 
 开启新任务的方法：Task.Run()或者 Task.Factory.StartNew()，开启的是后台线程
 
@@ -148,7 +148,7 @@ static void Run2()
 
 执行结果：
 
-![img](csharp-async/961949-20170118090705000-522306854.png)
+![](csharp-async/961949-20170118090705000-522306854.png)
 
 可以看出来，直接用 Thread 会开启 5 个线程，用 Task(用了线程池)开启了 3 个！
 
@@ -170,7 +170,7 @@ Console.WriteLine("主线程结束");
 
 运行结果：
 
-![img](csharp-async/961949-20170118091731015-299922614.png)
+![](csharp-async/961949-20170118091731015-299922614.png)
 
 通过 task.Result 可以取到返回值，若取值的时候，后台线程还没执行完，则会等待其执行完毕！
 
@@ -217,7 +217,7 @@ await 必须用来修饰 Task 或 Task<TResult>，而且只能出现在已经用
 
 看看运行结果：
 
-![img](csharp-async/961949-20170118105225406-295296622.png)
+![](csharp-async/961949-20170118105225406-295296622.png)
 
 可以看出来，main 函数调用 GetStrLengthAsync 方法后，在 await 之前，都是同步执行的，直到遇到 await 关键字，main 函数才返回继续执行。
 
@@ -225,7 +225,7 @@ await 必须用来修饰 Task 或 Task<TResult>，而且只能出现在已经用
 
 现在把 GetString 方法中的那行注释加上，运行的结果是：
 
-![img](csharp-async/961949-20170118154317578-1834160773.png)
+![](csharp-async/961949-20170118154317578-1834160773.png)
 
 大家可以看到，在遇到 await 关键字后，没有继续执行 GetStrLengthAsync 方法后面的操作，也没有马上反回到 main 函数中，而是执行了 GetString 的第一行，以此可以判断 await 这里并没有开启新的线程去执行 GetString 方法，而是以同步的方式让 GetString 方法执行，等到执行到 GetString 方法中的 Task<string>.Run()的时候才由 Task 开启了后台线程！
 
@@ -235,7 +235,7 @@ await 必须用来修饰 Task 或 Task<TResult>，而且只能出现在已经用
 
 那么 await 是怎么做到的呢？有没有开启新线程去等待？
 
-![img](csharp-async/961949-20170118110648281-1989485250.png)
+![](csharp-async/961949-20170118110648281-1989485250.png)
 
 只有两个线程(主线程和 Task 开启的线程)！至于怎么做到的(我也不知道......>\_<)，大家有兴趣的话研究下吧！
 
@@ -243,7 +243,7 @@ await 必须用来修饰 Task 或 Task<TResult>，而且只能出现在已经用
 
 IAsyncResult 自.NET1.1 起就有了，包含可异步操作的方法的类需要实现它，Task 类就实现了该接口
 
-![img](csharp-async/961949-20170118112245406-1795624419.png)
+![](csharp-async/961949-20170118112245406-1795624419.png)
 
 在不借助于 Task 的情况下怎么实现异步呢？
 
@@ -287,7 +287,7 @@ public delegate string AsyncMethodCaller(int callDuration, out int threadId);
 
 关键步骤就是红色字体的部分，运行结果：
 
-![img](csharp-async/961949-20170118113612765-2137493432.png)
+![](csharp-async/961949-20170118113612765-2137493432.png)
 
 和 Task 的用法差异不是很大！result.AsyncWaitHandle.WaitOne()就类似 Task 的 Wait。
 
@@ -321,7 +321,7 @@ Console.WriteLine(watch2.Elapsed);
 
 运行结果：
 
-![img](csharp-async/961949-20170118120638546-1060840155.png)
+![](csharp-async/961949-20170118120638546-1060840155.png)
 
 循环 List<T>：
 
@@ -368,7 +368,7 @@ Console.Read();
 
 执行结果：
 
-![img](csharp-async/961949-20170118161613750-1153439412.png)
+![](csharp-async/961949-20170118161613750-1153439412.png)
 
 OnCompleted 中的代码会在任务执行完成之后执行！
 
@@ -392,7 +392,7 @@ Console.Read();
 
 执行结果：
 
-![img](csharp-async/961949-20170118162851046-569728154.png)
+![](csharp-async/961949-20170118162851046-569728154.png)
 
 ContinueWith()方法可以让该后台线程继续执行新的任务。
 

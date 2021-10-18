@@ -6,7 +6,7 @@ date: 2019-07-10
 
 ### IIFE
 
-Immediately Invoked Function Expression, 立即执行函数表达式
+Immediately Invoked Function Expression, 立即执行函数表达式。
 
 ```js
 ;(function() {
@@ -14,9 +14,9 @@ Immediately Invoked Function Expression, 立即执行函数表达式
 })()
 ```
 
-### Closure
+### closure
 
-闭包: 外部函数返回后，内部函数仍然可以访问外部函数变量
+闭包: 外部函数返回后，内部函数仍然可以访问外部函数变量。
 
 ```js
 function outer() {
@@ -36,7 +36,7 @@ f()
 f()
 ```
 
-### 使用闭包定义私有变量
+使用闭包定义私有变量。
 
 ```js
 function Product() {
@@ -78,9 +78,9 @@ r2 = new Rectangle(2, 2)
 console.log(r1.getDimensions(), r2.getDimensions())
 ```
 
-### 模块化
+### module
 
-```
+```javascript
 const myModule = (function () {
     let n = 5
 
@@ -103,7 +103,7 @@ console.log(myModule.description)
 myModule.add(5)
 ```
 
-### 变量提升
+### variable hoisting
 
 ```js
 // in browser
@@ -115,7 +115,7 @@ y = 2
 // ReferenceError: y is not defined
 ```
 
-### Currying
+### currying
 
 ```js
 const add = x => y => x + y
@@ -127,7 +127,7 @@ console.log(add1(2))
 
 ### apply, call, bind
 
-call, apply 指定 this 值调用函数, bind 为函数绑定 this 值，然后作为一个新的函数返回
+call, apply 指定 this 值调用函数, apply 第二个参数需要传递数组， bind 为函数绑定 this 值，然后作为一个新的函数返回。
 
 ```js
 // const user = {

@@ -4,7 +4,7 @@ tags: rust
 date: 2020-08-04
 ---
 
-> reproduced: [Rust: Raw string literals - rahul thakoor](https://rahul-thakoor.github.io/rust-raw-string-literals/)
+> 转载: [Rust: Raw string literals - rahul thakoor](https://rahul-thakoor.github.io/rust-raw-string-literals/)
 
 ## r#"What is this?"#
 

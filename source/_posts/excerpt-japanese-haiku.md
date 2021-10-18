@@ -2,6 +2,7 @@
 title: 日本俳句
 tags: excerpt
 date: 2020-05-23
+categories: excerpt
 ---
 
 > 我知这世界，本如露水般短暂，然而，然而。——小林一茶

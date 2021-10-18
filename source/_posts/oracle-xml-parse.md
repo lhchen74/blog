@@ -4,7 +4,7 @@ tags: db
 date: 2020-3-17
 ---
 
-> reproduced: [ORACLE-BASE - XMLTABLE : Convert XML Data into Rows and Columns using SQL](https://oracle-base.com/articles/misc/xmltable-convert-xml-data-into-rows-and-columns-using-sql)
+> 转载: [ORACLE-BASE - XMLTABLE : Convert XML Data into Rows and Columns using SQL](https://oracle-base.com/articles/misc/xmltable-convert-xml-data-into-rows-and-columns-using-sql)
 
 ## Tag-Based XML
 

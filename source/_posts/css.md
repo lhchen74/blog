@@ -1,15 +1,15 @@
 ---
 title: css
 tags: css
-date: 2020-04-18
+date: 2020-04-18Un
 ---
 
-### css 常用单位
+### Unit
 
 | 单位      | 含义                                                       |
 | --------- | ---------------------------------------------------------- |
 | px        | 一个像素点，1920 x 1080                                    |
-| em        | 相对父容器的 font-size  的倍数                             |
+| em        | 相对父容器的 font-size 的倍数                              |
 | rem       | 相对根元素(html) font-size 的倍数                          |
 | vw/vh     | 相对 viewport width/height 的百分比，100vw， 100% 视口宽度 |
 | vmin/vmax | 相对荧幕较短的一边/较长的一边(一般用于手机横竖屏)          |
@@ -44,9 +44,7 @@ em，第一层 div 的 font-size 是 body font-size 的两倍，即 20px，第�
             Coding
             <div>
                 Coding
-                <div>
-                    Coding
-                </div>
+                <div>Coding</div>
             </div>
         </div>
     </body>
@@ -91,16 +89,15 @@ vw，vh， 100vw，100vh 可以全屏显示
         </div>
     </body>
 </html>
-
 ```
 
 vw 和 % 区别是，vw 始终相对于视口，% 相对于父元素，将 div.son 中的 width: 100vw 替换为 width: 100%, 此时只会显示屏幕宽度的一半，因为 div.son 的父元素 div.box width: 50%.
 
-![1587174620632](css/c03.jpg)
+![](css/c03.jpg)
 
-### shadow
+### Shadow
 
-css 中 shadow 包括 text-shaow 和 box-shadow, 常用形式分别为 `h-offset v-offset blur color` 和 `h-offset v-offset blur spread color`  其中 text-shadow 没有 spread 属性。
+css 中 shadow 包括 text-shaow 和 box-shadow, 常用形式分别为 `h-offset v-offset blur color` 和 `h-offset v-offset blur spread color` 其中 text-shadow 没有 spread 属性。
 
 ```html
 <!DOCTYPE html>
@@ -132,12 +129,11 @@ css 中 shadow 包括 text-shaow 和 box-shadow, 常用形式分别为 `h-offset
         <h1>Hello</h1>
     </body>
 </html>
-
 ```
 
-![1587175026608](css/c04.jpg)
+![](css/c04.jpg)
 
-### 居中对齐
+### Center Layout
 
 position + transform, 设置需要居中的原素 position: absolute, 然后 top: 50%, left: 50%, 此时元素的顶端距离浏览器顶端为浏览器高度的一边，左端离浏览器左端的距离为浏览器宽度的一半，最后 transform: translate(-50%, -50%); 将元素向左移动自身宽度的一半，向上移动自身高度的一半，即元素中心点距离浏览器顶端为浏览器高度的一边，离浏览器左端的距离为浏览器宽度的一半
 
@@ -192,8 +188,7 @@ flex
                 width: 100px;
                 height: 100px;
                 background-color: pink;
-            } 
-
+            }
         </style>
     </head>
     <body>
@@ -240,7 +235,7 @@ table
 </html>
 ```
 
-### table
+### Table
 
 ```html
 <!DOCTYPE html>
@@ -340,9 +335,9 @@ table
 </html>
 ```
 
-![1587176267240](css/c05.jpg)
+![](css/c05.jpg)
 
-### float + overflow
+### Float and Overflow
 
 float 元素父容器未设定高度
 
@@ -370,18 +365,17 @@ float 元素父容器未设定高度
         </div>
     </body>
 </html>
-
 ```
 
-![1587176579947](css/c06.jpg)
+![](css/c06.jpg)
 
 div.container 设定 height: 200px
 
-![1587176877122](css/c07.jpg)
+![](css/c07.jpg)
 
-div.container 设定 overflow: hidden, 删除 height: 200px, 在不给元素设置高度的情况下，将overflow设置为hidden时，它会显示内部元素的高度。
+div.container 设定 overflow: hidden, 删除 height: 200px, 在不给元素设置高度的情况下，将 overflow 设置为 hidden 时，它会显示内部元素的高度。
 
-![1587176947134](css/c08.jpg)
+![](css/c08.jpg)
 
 float + overflow 实现 navbar
 
@@ -445,14 +439,13 @@ float + overflow 实现 navbar
         </ul>
     </body>
 </html>
-
 ```
 
-![1587177379142](css/c09.jpg)
+![](css/c09.jpg)
 
-### css 选择器优先级
+### Selector Specificity
 
-  (A, B, C, D) 前面的越大优先级越高
+(A, B, C, D) 前面的越大优先级越高
 
 A: 行内样式 (可以被 !important 覆盖, !important 可以用来覆盖 bootstrap 等的行内样式 )
 
@@ -506,12 +499,11 @@ D: 类型和伪元素择器 div, ::before
         </div>
     </body>
 </html>
-
 ```
 
-![1587177824014](css/c10.jpg)
+![](css/c10.jpg)
 
-### inline, block, inline-block
+### Inline、Block and  Inline-block
 
 block 元素不设定宽度默认会占据一整行，inline, inline-block 会占据内容的宽度
 
@@ -567,7 +559,7 @@ block, inline-block 元素可以设置宽度高度，inline 元素宽度高度�
 </html>
 ```
 
-![1587178641308](css/c11.jpg)
+![](css/c11.jpg)
 
 inline 元素的上下外边距无效，如果需要为 inline 元素设置上下外边距，需要将 dispaly 设置为 inline-block
 
@@ -602,36 +594,205 @@ inline 元素的上下外边距无效，如果需要为 inline 元素设置上�
 </html>
 ```
 
-![1587179002676](css/c12.jpg)
+![](css/c12.jpg)
 
 为 strong 添加 disply: inline-block
 
-![1587179070716](css/c13.jpg)
+![](css/c13.jpg)
+
+### Grayscale
+
+设置网页灰度
+
+```html
+<!DOCTYPE html>
+<html lang="en" class="gray">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>grayscale</title>
+        <style>
+            html {
+                filter: grayscale(100%);
+            }
+        </style>
+    </head>
+    <body>
+        <img src="./grayscale.jpg" />
+    </body>
+</html>
+```
+
+![](css/c14.jpg)
+
+### CSS image resize percentage of itself
+
+> 引用：[html - CSS image resize percentage of itself? - Stack Overflow](https://stackoverflow.com/questions/8397049/css-image-resize-percentage-of-itself)
+
+I am trying to resize an img with a percentage of itself. For example, I just want to shrink the image by half by resizing it to 50%. But applying `width: 50%;` will resize the image to be 50% of the container element (the parent element which maybe the `<body>` for example).
+
+Question is, can I resize the image with a percentage of itself without using javascript or server side? (I have no direct information of the image size)
+
+1. This method resize image only visual not it actual dimensions in DOM, and visual state after resize centered in middle of original size. you can use `transform-origin: top left` adjust scale origin.
+
+   **html:**
+
+   ```html
+   <img src="example.png" />
+   ```
+
+   **css:**
+
+   ```css
+   .fake {
+      transform-origin: top left;
+     -webkit-transform: scale(0.5); /* Saf3.1+, Chrome */
+        -moz-transform: scale(0.5); /* FF3.5+ */
+         -ms-transform: scale(0.5); /* IE9 */
+          -o-transform: scale(0.5); /* Opera 10.5+ */
+             transform: scale(0.5);
+               /* IE6–IE9 */
+               filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9999619230641713, M12=-0.008726535498373935, M21=0.008726535498373935, M22=0.9999619230641713,SizingMethod='auto expand');
+   }
+   ```
+
+2. The trick is to let the container element shrinkwrap the child image, so it will have a size equal to that of the unsized image. Thus, when setting `width` property of the image as a percentage value, the image is scaled relative to its original scale.
+
+   **html:**
+
+   ```html
+   <span>
+       <img src="example.png"/>
+   </span>
+   ```
+
+   **css:**
+
+   ```css
+   span {
+       display: inline-block;
+   }
+   img {
+       width: 50%;
+       height: 50%;
+   }
+   ```
+
+3. you can also take advantage of the newly introduced CSS3 `fit-content`. However, not all popular browser versions support it at the time of writing.
+
+   **html:**
+
+   ```html
+   <figure>
+       <img src="example.png"/>
+   </figure>
+   ```
+
+   **css:**
+
+   ```css
+   figure {
+       height: fit-content;
+       width: fit-content;
+   }
+   
+   img {
+       height: 50%;
+       width: 50%;
+   }
+   ```
+
+### Select not first child
+
+   - 使用 `not` 伪类选择器。
+   
+     ```css
+     p:not(:first-child) {
+        color: red;
+     }
+     ```
+   
+   - 使用 `nth-child` 选择器，`nth-child(n + 2)` 中的 n 代表从 0 开始的自然数，n + 2 表示 `>= 2`的自然数。
+   
+     ```css
+     p:nth-child(n + 2) {
+        color: red;
+     }
+     ```
+   
+   - 使用 `+ ` 选择器，表示选择紧跟着的兄弟元素。`p + p` 表示 p 元素相邻后面的 p 元素, 第一个 p 元素不会选中。`~` 表示选择所有后面所有的兄弟元素。
+
+   ```css
+   <!DOCTYPE html>
+   <html lang="en">
+       <head>
+           <title>CSS Not First Child</title>
+           <style>
+               p + p {
+                   color: red;
+               }
+           </style>
+       </head>
+       <body>
+           <p>1</p>
+           <p>2</p>
+           <p>3</p>
+           <p>4</p>
+       </body>
+   </html>
+   ```
+
+   Result: 
+
+![1629868296182](css/1629868296182.png)
+
+### Tooltip by title attribute
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            div {
+                width: 100px;
+                height: 100px;
+                background-color: violet;
+            }
+        </style>
+    </head>
+    <body>
+        <div title="This is a violet div"></div>
+    </body>
+</html>
+```
+
+![1629869873425](css/1629869873425.png)
 
 ### offsetWidth, clientWidth, scrollWidth
 
-offsetWidth: 包括所有边框的大小。如果元素有display: block，则可以通过 width/height 和 padding 和 border 的和来计算
+offsetWidth: 包括所有边框的大小。如果元素有 display: block，则可以通过 width/height 和 padding 和 border 的和来计算
 
-width(130px) + padding(10px * 2) + border(5px * 2)  = 160px
+width(130px) + padding(10px _ 2) + border(5px _ 2) = 160px
 
-clientWidth: 框内容的可视部分，不包括边框或滚动条，但包括填充。不能直接从CSS中计算，取决于系统的滚动条大小。
+clientWidth: 框内容的可视部分，不包括边框或滚动条，但包括填充。不能直接从 CSS 中计算，取决于系统的滚动条大小。
 
-width(130px) + padding(10px * 2)  - scrollBarWidth(17px) = 133px
+width(130px) + padding(10px \* 2) - scrollBarWidth(17px) = 133px
 
 ```js
- const scrollbarWidth = ele.offsetWidth - ele.clientWidth - 
-	parseInt(getComputedStyle(ele).borderLeftWidth.replace("px", "")) -
-	parseInt(getComputedStyle(ele).borderRightWidth.replace("px", ""));
+const scrollbarWidth =
+    ele.offsetWidth -
+    ele.clientWidth -
+    parseInt(getComputedStyle(ele).borderLeftWidth.replace("px", "")) -
+    parseInt(getComputedStyle(ele).borderRightWidth.replace("px", ""));
 ```
-scrollWidth: 框中所有内容的大小，包括当前隐藏在滚动区域之外的部分。不能直接从CSS计算，取决于内容。
+
+scrollWidth: 框中所有内容的大小，包括当前隐藏在滚动区域之外的部分。不能直接从 CSS 计算，取决于内容。
 
 ```html
 <!DOCTYPE html>
 <html>
     <head>
-        <title>
-            Use of offsetWidth, clientWidth and scrollWidth property
-        </title>
+        <title>Use of offsetWidth, clientWidth and scrollWidth property</title>
 
         <style>
             #box {
@@ -656,9 +817,7 @@ scrollWidth: 框中所有内容的大小，包括当前隐藏在滚动区域之�
 
         <p>Click on button to get result</p>
 
-        <button onClick="display()">
-            Click Here!
-        </button>
+        <button onClick="display()">Click Here!</button>
 
         <div id="result"></div>
 
@@ -681,50 +840,25 @@ scrollWidth: 框中所有内容的大小，包括当前隐藏在滚动区域之�
                 const scrollbarWidth =
                     ele.offsetWidth -
                     ele.clientWidth -
-                    parseInt(getComputedStyle(ele).borderLeftWidth.replace("px", "")) -
-                    parseInt(getComputedStyle(ele).borderRightWidth.replace("px", ""));
+                    parseInt(
+                        getComputedStyle(ele).borderLeftWidth.replace("px", "")
+                    ) -
+                    parseInt(
+                        getComputedStyle(ele).borderRightWidth.replace("px", "")
+                    );
 
                 console.log(scrollbarWidth);
             }
         </script>
     </body>
 </html>
-
 ```
 
-![1593320832845](css/c16.jpg)
-
-
-
-### grayscale
-
-设置网页灰度
-
-```html
-<!DOCTYPE html>
-<html lang="en" class="gray">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>grayscale</title>
-        <style> 
-			html {
-			  filter: grayscale(100%);
-			}
-		</style>
-    </head>
-    <body>
-        <img src="./grayscale.jpg" />
-    </body>
-</html>
-
-```
-
-![1587180324652](css/c14.jpg)
+![](css/c16.jpg)
 
 ### getComputedStyle
 
-getcomputedstyle()方法在应用活动样式表并解决这些值可能包含的任何基本计算之后，返回一个对象，其中包含元素的所有CSS属性的值。单个CSS属性值可以通过对象提供的api访问，或者通过对CSS属性名称进行索引访问。
+getcomputedstyle()方法在应用活动样式表并解决这些值可能包含的任何基本计算之后，返回一个对象，其中包含元素的所有 CSS 属性的值。单个 CSS 属性值可以通过对象提供的 api 访问，或者通过对 CSS 属性名称进行索引访问。
 
 ```
 const style = window.getComputedStyle(element [, pseudoElt]);
@@ -773,16 +907,15 @@ const style = window.getComputedStyle(element [, pseudoElt]);
         </script>
     </body>
 </html>
-
 ```
 
-![1593320025061](css/c15.jpg)
+![](css/c15.jpg)
 
 ### requestAnimationFrame
 
 **window.requestAnimationFrame()** 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行
 
-**注意：若你想在浏览器下次重绘之前继续更新下一帧动画，那么回调函数自身必须再次调用window.requestAnimationFrame()**
+**注意：若你想在浏览器下次重绘之前继续更新下一帧动画，那么回调函数自身必须再次调用 window.requestAnimationFrame()**
 
 ```
 window.requestAnimationFrame(callback);
@@ -835,3 +968,27 @@ window.requestAnimationFrame(callback);
 </html>
 ```
 
+### Change Theme Schema
+
+反转网站主题色
+
+1 将背景设置为与原来相反的黑色，使用滤镜反转整个网页中的元素
+
+```css
+ {
+    background: black;
+    filter: invert(1) hue-rotate(180deg);
+}
+```
+
+![](css/1593832966231.png)
+
+2 图片需要保持原来的模样
+
+```js
+document.querySelectorAll("img").forEach((item) => {
+    item.style.filter = "invert(1) hue-rotate(189deg)";
+});
+```
+
+![](css/1593833238141.png)

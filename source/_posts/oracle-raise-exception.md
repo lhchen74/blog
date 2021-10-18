@@ -4,7 +4,7 @@ tags: db
 date: 2020-01-20
 ---
 
-> reproduced: [PL/SQL RAISE Exceptions By Practical Examples](https://www.oracletutorial.com/plsql-tutorial/plsql-raise/)
+> 转载: [PL/SQL RAISE Exceptions By Practical Examples](https://www.oracletutorial.com/plsql-tutorial/plsql-raise/)
 
 **Summary**: in this tutorial, you will learn how to use the PL/SQL `RAISE` statement to raise a user-defined exception, internally defined exception, and reraising an exception.
 

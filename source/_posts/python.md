@@ -1,10 +1,9 @@
 ---
 title: python
 tags: python
+categories: manual
 date: 2019-06-06
 ---
-
-> Thoughts - even fears - were airy things, formless until you made them solid with your voice and once given that weight, they could crush you. - Firefly Lane
 
 ## IO
 
@@ -29,6 +28,20 @@ f = open(filename, 'r')
 print(next(f))
 print(next(f))
 f.close()
+```
+
+### 计算文件行数
+
+```python
+# 計算行數
+k = 0
+with open('1.tsv') as fid:
+for line in fid:
+k = k + 1
+print(k)
+
+# 或简写为:
+print(len([ line for line in open('test.txt')]))
 ```
 
 ### file state
@@ -56,6 +69,60 @@ print(os.path.exists(path)
      ,datetime.datetime.fromtimestamp(os.path.getmtime(path)) # 获取文件修改时间,并转换为日期
      ,os.path.getctime(path))
 # True True False 1740 1536125104.7735167 2018-09-05 16:59:29.086361 1536125104.7735167
+```
+
+
+### os.walk
+
+remove node_modules
+
+```python
+import os
+import shutil
+
+node_modules_dirs = []
+node_modules = 'node_modules'
+
+for root, dirs, files in os.walk(r'D:\study\node'):
+    for dir in dirs:
+        if dir == node_modules:
+            path = os.path.join(root, dir)
+            # exclude sub module node_modules
+            if node_modules not in path[0:-len(node_modules)]:
+                node_modules_dirs.append(path)
+                print(path)
+print(len(node_modules_dirs), node_modules_dirs)
+
+for dir in node_modules_dirs:
+    shutil.rmtree(dir)
+    print(f"Remove {dir} success!")
+```
+
+上述方法缺点是遍历目录文件过多时，性能较差，比如实际找到项目目录的 node_modules 时不需要再向下遍历安装的模块中不符合条件的 node_modules, 这时可以使用如下方式。
+
+```python
+import os
+import shutil
+
+node_modules_dirs = []
+
+def walk(dir):
+    for subpath in os.listdir(dir):
+        path = os.path.join(dir, subpath)
+
+        if os.path.isdir(path):
+            if path.endswith('node_modules'):
+                node_modules_dirs.append(path)
+            else:
+                walk(path)
+
+walk(r'D:\study\node')
+
+print(len(node_modules_dirs), node_modules_dirs)
+
+for dir in node_modules_dirs:
+    shutil.rmtree(dir)
+    print(f"Remove {dir} success!")
 ```
 
 ### StringIO
@@ -904,11 +971,120 @@ print(len(receiver), boolen(receiver)) # 0 False
     <Notification>
         <SMTP Server="xxx.xxx" />
 
-        <Appender Name="MailCharter">
-            <Receiver value="BU3_CHARTER@sercomm.com"/>
+        <Appender Name="MailTest">
+            <Receiver value="test@example.com"/>
         </Appender>
     </Notification>
 </Config>
+```
+
+### timeit
+
+```python
+import timeit
+
+TIMES = 10000
+
+SETUP = """
+symbols = '$¢£¥€¤'
+def non_ascii(c):
+    return c > 127
+"""
+
+# Signature: repeat(stmt='pass', setup='pass', timer=<built-in function perf_counter>, repeat=3, number=1000000, globals=None)
+def clock(label, cmd):
+    res = timeit.repeat(cmd, setup=SETUP, number=TIMES)
+    print(label, *('{:.3f}'.format(x) for x in res))
+
+clock('listcomp        :', '[ord(s) for s in symbols if ord(s) > 127]')
+clock('listcomp + func :', '[ord(s) for s in symbols if non_ascii(ord(s))]')
+clock('filter + lambda :', 'list(filter(lambda c: c > 127, map(ord, symbols)))')
+clock('filter + func   :', 'list(filter(non_ascii, map(ord, symbols)))')
+```
+
+### eval
+
+功能：将字符串 str 当成有效的表达式来求值并返回计算结果。
+
+语法： eval(source[, globals[, locals]]) -> value
+
+参数：
+
+source：一个 Python 表达式或函数 compile() 返回的代码对象
+
+globals：可选。必须是 dictionary
+
+locals：可选。任意 map 对象
+
+可以把 list,tuple,dict 和 string 相互转化。
+
+```python
+a = "[[1,2], [3,4], [5,6], [7,8], [9,0]]"
+print (type(a)) # str
+b = eval(a)
+print(type(b))  # list
+```
+
+### uuid
+
+uuid: 通用唯一标识符（Universally Unique ID，UUID）
+
+```python
+import uuid
+user_id = uuid.uuid4()
+print(user_id)
+# cb79af9a-b05f-49a7-acd2-2675852e12f9
+
+from datetime import datetime
+
+def next_id():
+    return '%015d%s000' % (int(time.time() * 1000), uuid.uuid4().hex)
+print(next_id())  # 001583823607352451339f583754d75b479e67714a227ea000
+print('%015d' % 10) # '000000000000010'
+```
+
+### partial
+
+```python
+from functools import partial
+
+# 默认按十进制转换
+r1 = int("12")
+print(r1, type(r1))
+# 12 <class 'int'>
+
+# 按二进制转换
+r2 = int("0101", base=2)
+print(r2, type(r2))
+# 5 <class 'int'>
+
+# 使用偏函数, 改造原有的int函数
+int2 = partial(int, base=2)
+r3 = int2("0101")
+print(r3, type(r3))
+# 5 <class 'int'>
+```
+
+### base64
+
+```python
+import base64
+s = 'hello'
+# b64encode: Encode the bytes-like object s using Base64 and return a bytes object.
+a = base64.b64encode(s.encode())
+print(a) # b'aGVsbG8='
+
+# encode: Encode a file; input and output are binary files.
+with open('01.png', 'rb') as r, open('01.txt', 'wb') as w:
+    base64.encode(r, w)
+```
+
+### sqrt
+
+```python
+import math
+
+print(math.sqrt(25) == 25 ** 0.5) # True
 ```
 
 ## Regex
@@ -1031,6 +1207,38 @@ def decode_html(input):
 print(decode_html('&#38451;&#38175;&#12345;&lt;&sect;')) # 阳锟〹<§
 ```
 
+### pyppeteer
+
+```python
+import asyncio
+from pyppeteer import launch
+
+
+async def main():
+    browser = await launch()
+    page = await browser.newPage()
+    await page.goto('http://example.com')
+    await page.screenshot({'path': 'example.png'})
+    await browser.close()
+
+# AttributeError: module 'asyncio' has no attribute 'run'
+# use python 3.7
+# asyncio.run(main())
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(asyncio.wait([main()]))
+loop.close()
+```
+
+### flask index page
+
+```python
+@app.route('/', methods = ['GET', 'POST'])
+@app.route('/page=<page>', methods = ['GET', 'POST'])
+def index(page=1):
+    pass
+```
+
 ## Other
 
 ### freevars
@@ -1080,107 +1288,6 @@ def make_averager_nonlocal():
 
 print(make_averager_nonlocal().__code__.co_freevars)
 # ('count', 'sum')
-```
-
-### timeit
-
-```python
-import timeit
-
-TIMES = 10000
-
-SETUP = """
-symbols = '$¢£¥€¤'
-def non_ascii(c):
-    return c > 127
-"""
-
-# Signature: repeat(stmt='pass', setup='pass', timer=<built-in function perf_counter>, repeat=3, number=1000000, globals=None)
-def clock(label, cmd):
-    res = timeit.repeat(cmd, setup=SETUP, number=TIMES)
-    print(label, *('{:.3f}'.format(x) for x in res))
-
-clock('listcomp        :', '[ord(s) for s in symbols if ord(s) > 127]')
-clock('listcomp + func :', '[ord(s) for s in symbols if non_ascii(ord(s))]')
-clock('filter + lambda :', 'list(filter(lambda c: c > 127, map(ord, symbols)))')
-clock('filter + func   :', 'list(filter(non_ascii, map(ord, symbols)))')
-```
-
-### eval
-
-功能：将字符串 str 当成有效的表达式来求值并返回计算结果。
-
-语法： eval(source[, globals[, locals]]) -> value
-
-参数：
-
-source：一个 Python 表达式或函数 compile() 返回的代码对象
-
-globals：可选。必须是 dictionary
-
-locals：可选。任意 map 对象
-
-可以把 list,tuple,dict 和 string 相互转化。
-
-```python
-a = "[[1,2], [3,4], [5,6], [7,8], [9,0]]"
-print (type(a)) # str
-b = eval(a)
-print(type(b))  # list
-```
-
-### uuid
-
-uuid: 通用唯一标识符（Universally Unique ID，UUID）
-
-```python
-import uuid
-user_id = uuid.uuid4()
-print(user_id)
-# cb79af9a-b05f-49a7-acd2-2675852e12f9
-
-from datetime import datetime
-
-def next_id():
-    return '%015d%s000' % (int(time.time() * 1000), uuid.uuid4().hex)
-print(next_id())  # 001583823607352451339f583754d75b479e67714a227ea000
-print('%015d' % 10) # '000000000000010'
-```
-
-### partial
-
-```python
-from functools import partial
-
-# 默认按十进制转换
-r1 = int("12")
-print(r1, type(r1))
-# 12 <class 'int'>
-
-# 按二进制转换
-r2 = int("0101", base=2)
-print(r2, type(r2))
-# 5 <class 'int'>
-
-# 使用偏函数, 改造原有的int函数
-int2 = partial(int, base=2)
-r3 = int2("0101")
-print(r3, type(r3))
-# 5 <class 'int'>
-```
-
-### base64
-
-```python
-import base64
-s = 'hello'
-# b64encode: Encode the bytes-like object s using Base64 and return a bytes object.
-a = base64.b64encode(s.encode())
-print(a) # b'aGVsbG8='
-
-# encode: Encode a file; input and output are binary files.
-with open('01.png', 'rb') as r, open('01.txt', 'wb') as w:
-    base64.encode(r, w)
 ```
 
 ### venv
@@ -1263,15 +1370,16 @@ PermissionError: [WinError 5] 拒绝访问。
 
 如果没有设置 python 环境变量可以在开始位置写入 python.exe 的路径，如 `C:\Program Files\Python36`
 
-![1572255258767](python/1572255258767.png)
+![](python/1572255258767.png)
 
-### flask index page
+### run daemon on window
 
 ```python
-@app.route('/', methods = ['GET', 'POST'])
-@app.route('/page=<page>', methods = ['GET', 'POST'])
-def index(page=1):
-    pass
+"C:\Program Files\Python36\pythonw.exe" test.py
+# OR
+"C:\Program Files\Python36\pythonw.exe" test.py >log.txt 2>&1
+# OR
+"C:\Program Files\Python36\pythonw.exe" test.py 1>stdout.txt 2>stderr.txt
 ```
 
 ### python mod
@@ -1357,29 +1465,6 @@ while True:
         break
 ```
 
-### pyppeteer
-
-```python
-import asyncio
-from pyppeteer import launch
-
-
-async def main():
-    browser = await launch()
-    page = await browser.newPage()
-    await page.goto('http://example.com')
-    await page.screenshot({'path': 'example.png'})
-    await browser.close()
-
-# AttributeError: module 'asyncio' has no attribute 'run'
-# use python 3.7
-# asyncio.run(main())
-
-loop = asyncio.get_event_loop()
-loop.run_until_complete(asyncio.wait([main()]))
-loop.close()
-```
-
 ### douban pypi
 
 ```python
@@ -1403,5 +1488,19 @@ work_dir = r'C:\Users\11435\Desktop\practice\python\formatxml\xmlfiles'
 paths = Path(work_dir).glob('**/*.xml')
 for path in paths:
     prettied = xdom.parseString(path.read_text()).toprettyxml()
-    path.write_text(prettied)
+    path.write_text(pettied)
 ```
+
+### string index
+
+```python
+s = 'hello'
+# for(int i=len(s) -1 ; i > 0; i--)
+print(s[::-1])  # olleh
+
+# palindrome
+s = 'PHP'
+print(s == s[::-1]) # True
+```
+
+

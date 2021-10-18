@@ -1,8 +1,7 @@
 ---
-title: node record
+title: node example record
 tags: node
 date: 2019-07-15
-description: 记录一些有意思的程式
 ---
 
 ### random story

@@ -15,6 +15,7 @@ description: node 和 js 中的一些比较疑惑的问题
 fetch('https://jsonplaceholder.typicode.com/users')
   .then(res => res.json())
   .then(data => console.log(data))
+
 // chrome/node
 const axios = require('axios')
 

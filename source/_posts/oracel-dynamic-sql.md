@@ -4,7 +4,7 @@ tags: db
 date: 2020-08-13
 ---
 
-> reproduced:[Performing SQL Operations with Native Dynamic SQL](https://docs.oracle.com/cd/B12037_01/appdev.101/b10807/11_dynam.htm#i14500)
+> 转载:[Performing SQL Operations with Native Dynamic SQL](https://docs.oracle.com/cd/B12037_01/appdev.101/b10807/11_dynam.htm#i14500)
 
 # Performing SQL Operations with Native Dynamic SQL
 

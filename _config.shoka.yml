@@ -1,17 +1,31 @@
 widgets:
-  # if true, will show random posts
-  random_posts: false
-  # if true, will show recent comments
-  recent_comments: false
-
+    # if true, will show random posts
+    random_posts: false
+    # if true, will show recent comments
+    recent_comments: false
 
 menu:
-  home: / || home
-  about: /about/ || user
-  posts:
-    default: / || feather
-    archives: /archives/ || list-alt
-    categories: /categories/ || th
-    tags: /tags/ || tags
-  friends: /friends/ || heart
-  links: /links/ || magic
+    home: / || home
+    about: /about/ || user
+    posts:
+        default: / || feather
+        archives: /archives/ || list-alt
+        categories: /categories/ || th
+        tags: /tags/ || tags
+    Friends: /friends/ || heart
+# links: /links/ || magic
+
+algolia:
+    appId: KZFJ2FBGOI #Your appId
+    apiKey: fe0a41b9c981e322b9081d629da16708 #Your apiKey
+    adminApiKey: 048cb4b38ebf24afa27e0bef0604cf8c #Your adminApiKey
+    chunkSize: 5000
+    indexName: dew #"shoka"
+    fields:
+        - title #必须配置
+        - path #必须配置
+        - categories #推荐配置
+        - content:strip:truncate,0,2000
+        - gallery
+        - photos
+        - tags

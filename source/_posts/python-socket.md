@@ -6,7 +6,7 @@ date: 2019-02-28
 
 ### socket flow
 
-![socket](python/socket.png)
+![socket](python-socket/socket.png)
 
 ### socket server
 

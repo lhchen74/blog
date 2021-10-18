@@ -4,7 +4,7 @@ tags: css
 date: 2020-04-18
 ---
 
-### caculator
+## Caculator
 
 ```html
 <!DOCTYPE html>
@@ -65,7 +65,6 @@ date: 2020-04-18
         </script>
     </body>
 </html>
-
 ```
 
 style.css
@@ -118,12 +117,11 @@ body {
 .keybord p:hover {
     background-color: rgba(0, 0, 0, 0.2);
 }
-
 ```
 
-![1587180993789](css-example/c01.png)
+![](css-example/caculator.png)
 
-### loading
+## Load Animation
 
 sprite.jpg
 
@@ -134,18 +132,17 @@ index.html
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Transation</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="box"></div>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Animation</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="box"></div>
+    </body>
 </html>
-
 ```
 
 style.css
@@ -166,29 +163,4 @@ style.css
 }
 ```
 
-![1587379124045](css-example/loading.png)
-
-### change theme schema
-
-反转网站主题色
-
-1 将背景设置为与原来相反的黑色，使用滤镜反转整个网页中的元素
-
-```css
-{
-    background: black;
-    filter: invert(1) hue-rotate(180deg);
-}
-```
-
-![1593832966231](css-example/1593832966231.png)
-
-2 图片需要保持原来的模样
-
-```js
-document.querySelectorAll('img').forEach(item => {
-    item.style.filter='invert(1) hue-rotate(189deg)'
-});
-```
-
-![1593833238141](css-example/1593833238141.png)
+![](css-example/loading.png)

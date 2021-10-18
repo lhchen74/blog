@@ -800,3 +800,24 @@ console.log(obj.extensions);
 Node will try to load module located in the folder you pass (. - just bash variant of current folder), and start whatever is written in "main" section of package.json.
 
 if no package.json found in the folder, node will still try to run index.js file.
+
+### JS trap
+
+#### 1 / 0
+
+在 node 中除以 0 不会产生异常
+
+```js
+console.log(0 / 0, 1 / 0, -1 / 0)
+// NaN Infinity -Infinity
+```
+
+#### undefined compare
+
+undefined 可以和其它类型比较
+
+```js
+console.log(undefined < 1, undefined > 1, undefined < '1')
+// false false false
+```
+

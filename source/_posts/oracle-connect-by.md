@@ -4,7 +4,7 @@ tags: db
 date: 2020-07-24
 ---
 
-> reproduced: [ORACLE-BASE - Hierarchical Queries in Oracle](https://oracle-base.com/articles/misc/hierarchical-queries)
+> 转载: [ORACLE-BASE - Hierarchical Queries in Oracle](https://oracle-base.com/articles/misc/hierarchical-queries)
 
 ### Setup
 

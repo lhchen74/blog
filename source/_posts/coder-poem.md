@@ -1,12 +1,12 @@
 ---
-title: coder poem
+title: Coder Poem
 tags: other
 date: 2019-10-29
 ---
 
 > 转载: [程序员代码情诗收录 - 简书](https://www.jianshu.com/p/76953113cf1b)
 
-### 1.先向大佬低头
+## 先向大佬低头
 
 ```php
 /**
@@ -28,7 +28,7 @@ class LoveThreeThings extends Me
 
 作者链接：[http://www.jianshu.com/p/b226df2550f6](https://www.jianshu.com/p/b226df2550f6)
 
-### 2.百年好合
+## 百年好合
 
 ```python
 while('ILoveyou'):
@@ -42,7 +42,7 @@ while('ILoveyou'):
 
 作者链接：[http://www.jianshu.com/p/f1c874b0731f](https://www.jianshu.com/p/f1c874b0731f)
 
-### 3.古语代码你怕不怕
+## 古语代码你怕不怕
 
 ```cpp
 girl.collectWormwood(true);
@@ -53,7 +53,7 @@ oneDay = oneAutumn *3;
 
 作者链接：[http://www.jianshu.com/p/198b8e2d6820](https://www.jianshu.com/p/198b8e2d6820)
 
-### 4.我特么怕
+## 我特么怕
 
 ```python
 for live in [生，死]：
@@ -66,7 +66,7 @@ myhand.have(youhand).goto(old).
 
 作者链接：[http://www.jianshu.com/p/325ebcbadcdb](https://www.jianshu.com/p/325ebcbadcdb)
 
-### 5.你这该死的温柔
+## 你这该死的温柔
 
 ```c#
 world.controlledBy(NoOne)
@@ -78,7 +78,7 @@ withMyGentle() {
 
 作者链接：[http://www.jianshu.com/p/5c845090d0a6](https://www.jianshu.com/p/5c845090d0a6)
 
-### 6.同行的代码可以说是很认真啦
+## 同行的代码可以说是很认真啦
 
 ```c#
 I *i = [I new];
@@ -88,7 +88,7 @@ I *i = [I new];
 
 作者链接：[http://www.jianshu.com/p/7163ea70c238](https://www.jianshu.com/p/7163ea70c238)
 
-### 7.若爱,请深爱, 如弃,请彻底, 不要暧昧,伤人伤己
+## 若爱,请深爱, 如弃,请彻底, 不要暧昧,伤人伤己
 
 ```cpp
 if(love==1)  {
@@ -99,15 +99,15 @@ if(love==1)  {
 
 作者链接：[http://www.jianshu.com/p/f2b80291c751](https://www.jianshu.com/p/f2b80291c751)
 
-### 8.没错，凑了个整
+## 没错，凑了个整
 
-![img](coder-poem/poem1.png)
+![](coder-poem/poem1.png)
 
 注释不算，代码三行
 
 作者链接：[http://www.jianshu.com/p/afe9eb48e301](https://www.jianshu.com/p/afe9eb48e301)
 
-### 9. 这就是你冬天把你冰冷的手放在我脸上取暖的理由？
+##  这就是你冬天把你冰冷的手放在我脸上取暖的理由？
 
 ```kotlin
 if(you.hand==cold&&weather==winter)    //如果冬天里你的手是冰冷的
@@ -119,7 +119,7 @@ return you.happyface;     //换取你幸福的脸庞
 
 作者链接：[http://www.jianshu.com/p/5fac1053c0dc](https://www.jianshu.com/p/5fac1053c0dc)
 
-### 10.我觉得你差不多找到了
+## 我觉得你差不多找到了
 
 ```dart
 /**
@@ -136,7 +136,7 @@ while (i.findYou()) {
 
 作者链接：[http://www.jianshu.com/p/3c4bd6eb4bfa](https://www.jianshu.com/p/3c4bd6eb4bfa)
 
-### 11.你已经找到了
+## 你已经找到了
 
 ```php
 <?php
@@ -158,7 +158,7 @@ while (me->find()) {
 
 作者链接：[http://www.jianshu.com/p/a95d4efc8cce](https://www.jianshu.com/p/a95d4efc8cce)
 
-### 12.是一个小姐姐哦
+## 是一个小姐姐哦
 
 ```c#
 BoyFriend 小哥哥  =  new BoyFriend（）;
@@ -170,13 +170,13 @@ BoyFriend 小哥哥  =  new BoyFriend（）;
 
 小姐姐链接：[http://www.jianshu.com/p/02bac047b6fe](https://www.jianshu.com/p/02bac047b6fe)
 
-### 13.emmmm...
+## emmmm...
 
-![img](coder-poem/poem2.png)
+![](coder-poem/poem2.png)
 
 作者链接：[http://www.jianshu.com/p/79eb8b7e5eaf](https://www.jianshu.com/p/79eb8b7e5eaf)
 
-### 14.这么简单的代码，打出这么牛逼的注释也是没谁了
+## 这么简单的代码，打出这么牛逼的注释也是没谁了
 
 ```java
 /**
@@ -195,7 +195,7 @@ private void love(int you) {
 
 作者链接：[http://www.jianshu.com/p/fd099f1a33f2](https://www.jianshu.com/p/fd099f1a33f2)
 
-### 15.best wishes for everyOne
+## best wishes for everyOne
 
 ```kotlin
 if(you love me && I love you){ // 如果彼此相爱
@@ -207,13 +207,13 @@ if(you love me && I love you){ // 如果彼此相爱
 
 作者链接：[http://www.jianshu.com/p/a570de564385](https://www.jianshu.com/p/a570de564385)
 
-### 16.最烦的就是这种人，代码情诗，一句有用代码都没有，哇啦哇啦写一堆注释，看的老子眼泪都止不住
+## 最烦的就是这种人，代码情诗，一句有用代码都没有，哇啦哇啦写一堆注释，看的老子眼泪都止不住
 
-![img](coder-poem/poem3.png)
+![](coder-poem/poem3.png)
 
 作者链接：
 
-### 17.我敢打赌，你们肯定毫不犹豫的马上会点击以下小姐姐的传送门
+## 我敢打赌，你们肯定毫不犹豫的马上会点击以下小姐姐的传送门
 
 ```c#
 [Mountains delete edges];
@@ -227,7 +227,7 @@ if(you love me && I love you){ // 如果彼此相爱
 
 小姐姐传送门：[http://www.jianshu.com/p/a1fc757ea975](https://www.jianshu.com/p/a1fc757ea975)
 
-### 18.小姐姐最浪漫的承诺
+## 小姐姐最浪漫的承诺
 
 ```go
 StringBuilder love=newStringBuilder("");
@@ -243,7 +243,7 @@ love.append(Math.random()>0.5?1:0);
 
 小姐姐传送门：[http://www.jianshu.com/p/3462e717762f](https://www.jianshu.com/p/3462e717762f)
 
-### 19.这个纹身就很有灵性了
+## 这个纹身就很有灵性了
 
 ```cpp
 while(mylife.find(you) == mylife.end())
@@ -251,4 +251,4 @@ while(mylife.find(you) == mylife.end())
 cout<< "Hello world"
 ```
 
-![img](coder-poem/poem4.png)
+![](coder-poem/poem4.png)

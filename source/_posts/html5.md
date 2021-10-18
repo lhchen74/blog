@@ -90,7 +90,7 @@ IE8 以下(包含 IE8)以下版本浏览器兼容 HTML5 的方法，我们必须
 </nav>
 ```
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190702121619942.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190702121619942.png)
 
 ##### 2.header 标签
 
@@ -98,13 +98,13 @@ IE8 以下(包含 IE8)以下版本浏览器兼容 HTML5 的方法，我们必须
 
 > 注意：header 标签不能被放在`footer`、`address`或者另一个`header`元素内部
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190702121522178.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190702121522178.png)
 
 ##### 3.main 标签
 
 标签规定文档的主要内容。一个文档中只有一个 main 元素。
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190702122038020.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190702122038020.png)
 
 你会发现，把整个文档作为了主要内容。
 
@@ -114,7 +114,7 @@ IE8 以下(包含 IE8)以下版本浏览器兼容 HTML5 的方法，我们必须
 
 比如像稀土掘金网站上
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190702121436193.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190702121436193.png)
 
 ##### 5.section 标签
 
@@ -130,7 +130,7 @@ section 标签定义了文档的某个区域。比如章节、头部、顶部或
 ```
 
 比如这个网站 aside 侧边栏中定制了三个 section
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190702122333918.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190702122333918.png)
 
 ##### 6.article 标签
 
@@ -162,7 +162,7 @@ article 通常都应用在：
 
 比如小猿圈的底部就是用 footer
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190702141520625.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190702141520625.png)
 
 #### 其它的新语义化标签
 
@@ -278,7 +278,7 @@ HTML5 新增了新的表单元素
 
 如果给 input 的 type 改成 email。则我们在输入邮箱时通常自动验证。如图所示
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190702154639700.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190702154639700.png)
 
 如果将 form 设置此属性，则可以直接提交。
 
@@ -300,7 +300,7 @@ HTML5 新增了新的表单元素
 用户名: <input type="text" name="usr_name" autofocus>
 ```
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190702155007003.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190702155007003.png)
 
 **formaction 属性**
 
@@ -385,7 +385,7 @@ formtarget 属性指定一个名称或一个关键字来指明表单提交数据
 <input type="image" src="img_submit.gif" width="30" height="30" />
 ```
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190702160933241.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190702160933241.png)
 
 **list 属性**
 
@@ -419,7 +419,7 @@ formtarget 属性指定一个名称或一个关键字来指明表单提交数据
 </form>
 ```
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190702162408170.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190702162408170.png)
 
 **required 属性**
 
@@ -675,13 +675,13 @@ if(navigator.geolocation){
 
 效果显示:
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190704114429773.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190704114429773.png)
 
 > 注意：一定要去申请自己的密钥。
 
 注册该网站完成之后，去这[申请密钥](http://lbsyun.baidu.com/apiconsole/key/create)
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190704114633680.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190704114633680.png)
 
 在这提供了大量的[Web 服务 API](http://lbsyun.baidu.com/index.php?title=webapi)
 
@@ -689,7 +689,7 @@ if(navigator.geolocation){
 
 不过下面的服务都是一些接口。目前我们没有学习 Ajax 技术。大家可以关注一下这个技术。非常重要的。等咱们学到 Ajax 技术之后我们就可以使用此些服务。
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190704114838543.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190704114838543.png)
 
 #### 本地存储
 
@@ -741,7 +741,7 @@ HTML5 提供了播放音频文件的标准。直到现在，仍然不存在在�
 </audio>
 ```
 
-![img](https://book.apeland.cn/media/images/2019/07/17/image-20190702171528902.png)
+![](https://book.apeland.cn/media/images/2019/07/17/image-20190702171528902.png)
 
 -   controls 属性添加音频的控件，播放、暂停和音量控件
 -   autoplay:使音频自动播放
@@ -889,7 +889,7 @@ oPlay.onclick = function () {
 </video>
 ```
 
-![img](https://book.apeland.cn/media/images/2019/07/17/image-20190702174917166.png)
+![](https://book.apeland.cn/media/images/2019/07/17/image-20190702174917166.png)
 
 <video>  元素提供了 播放、暂停和音量控件来控制视频。
 
@@ -1029,7 +1029,7 @@ canvas.getContext('2d');
 
 打印结果：
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190703092814320.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190703092814320.png)
 
 #### 绘制形状
 
@@ -1037,7 +1037,7 @@ canvas.getContext('2d');
 
 ##### 栅格(了解)
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190703093242883_85zZ35d.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190703093242883_85zZ35d.png)
 
 ##### 绘制矩形常用 API
 
@@ -1088,7 +1088,7 @@ clearRect(x, y, width, height)
 
 效果显示:
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190703094320517.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190703094320517.png)
 
 ##### 填充颜色和描边颜色设置
 
@@ -1183,7 +1183,7 @@ ctx.strokeStyle = 'green';//描边颜色
 ```
 
 效果展示：
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190703103427898.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190703103427898.png)
 
 ###### arc()
 
@@ -1227,7 +1227,7 @@ anticlockwise:可选的，布尔值，如果为 true，逆时针绘制圆弧，�
 
 效果展示：
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190703104809071.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190703104809071.png)
 
 ###### quadraticCurveTo(cp1x,cp1y,x,y)
 
@@ -1242,7 +1242,7 @@ anticlockwise:可选的，布尔值，如果为 true，逆时针绘制圆弧，�
 ```
 
 看图：
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190703102603167.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190703102603167.png)
 
 参数 x、y 在两个方法中都是结束点坐标。cp1x,cp1y 为坐标的第一个控制点(上图中的红色点)，cp2x,cp2y 为坐标中的第二个控制点
 
@@ -1281,7 +1281,7 @@ anticlockwise:可选的，布尔值，如果为 true，逆时针绘制圆弧，�
 
 效果展示:
 
-![img](https://book.apeland.cn/media/images/2019/07/15/image-20190703103214627.png)
+![](https://book.apeland.cn/media/images/2019/07/15/image-20190703103214627.png)
 
 三次贝塞尔曲线绘制
 
@@ -1291,7 +1291,7 @@ anticlockwise:可选的，布尔值，如果为 true，逆时针绘制圆弧，�
 
 效果展示:
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703105124830.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703105124830.png)
 
 ###### rect(x,y,width,height)
 
@@ -1351,7 +1351,7 @@ canvas 提供了两种方法来渲染文本
 
 效果：
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703111440124.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703111440124.png)
 
 ##### 有样式的文本
 
@@ -1388,7 +1388,7 @@ canvas 更有意思的一项特性就是图像操作能力。可以用于动态�
 
 如果是 8 个参数，用来控制做切片显示，前四个参数是定义图像源后的切片位置和大小，后四个参数是定义切片的目标显示的位置和大小
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703121156876.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703121156876.png)
 
 **例子：一个简单的线图**
 
@@ -1421,7 +1421,7 @@ canvas 更有意思的一项特性就是图像操作能力。可以用于动态�
 
 效果展示：
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703114728769.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703114728769.png)
 
 #### 状态的保存和恢复
 
@@ -1468,7 +1468,7 @@ save 和 restore 方法是用来保存和恢复 canvas 状态的。都没有参�
 
 效果展示：
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703141914667.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703141914667.png)
 
 ##### 移动 translate
 
@@ -1495,7 +1495,7 @@ function draw() {
 
 效果：
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703143629007.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703143629007.png)
 
 ##### 旋转
 
@@ -1605,7 +1605,7 @@ function draw() {
 
 效果展示：
 
-![img](https://book.apeland.cn/media/images/2019/07/18/3.gif)
+![](https://book.apeland.cn/media/images/2019/07/18/3.gif)
 
 #### 高级动画
 
@@ -1691,13 +1691,13 @@ function draw() {
 
 效果显示:
 
-![img](https://book.apeland.cn/media/images/2019/07/18/4.gif)
+![](https://book.apeland.cn/media/images/2019/07/18/4.gif)
 
 ### SVG
 
 SVG 是一种基于 XML 语法的图像格式，全称是可缩放矢量图（Scalable Vector Graphics）。其他图像格式都是基于像素处理的，SVG 则是属于对图像的形状描述，所以它本质上是文本文件，体积较小，且不管放大多少倍都不会失真。
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703180548964.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703180548964.png)
 
 #### 语法以及常用标签
 
@@ -1727,7 +1727,7 @@ SVG 代码都放在顶层标签`SVG`之中
 
 上面代码定义了三个圆。`circle`标签`cx`,`cy`,`r`属性分别为横坐标、纵坐标和半径，单位为像素。坐标都是相对于`svg`画布的左上角原点。
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703184136878.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703184136878.png)
 
 `class`属性用来指定对应的 css 类
 
@@ -1741,7 +1741,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 -   stroke：描边色
 -   stroke-width：边框宽度
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703184122130.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703184122130.png)
 
 ##### 3.line 标签
 
@@ -1757,7 +1757,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 -   y2：终点的纵坐标
 -   style：线段的样式
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703184106728.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703184106728.png)
 
 ##### 4.polyline 标签
 
@@ -1769,7 +1769,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 
 `<polyline>`的`points`属性指定了每个端点的坐标，横坐标与纵坐标之间与逗号分隔，点与点之间用空格分隔。
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703184032294.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703184032294.png)
 
 ##### 5.rect 标签
 
@@ -1781,7 +1781,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 
 `<rect>`的`x`属性和`y`属性，指定了矩形左上角端点的横坐标和纵坐标；`width`属性和`height`属性指定了矩形的宽度和高度（单位像素）。
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703184018489.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703184018489.png)
 
 ##### 6.ellipse 标签
 
@@ -1801,7 +1801,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 
 `<ellipse>`的`cx`属性和`cy`属性，指定了椭圆中心的横坐标和纵坐标（单位像素）；`rx`属性和`ry`属性，指定了椭圆横向轴和纵向轴的半径（单位像素）。
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703184003935.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703184003935.png)
 
 ##### 7.polygon 标签
 
@@ -1818,7 +1818,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 
 `<polygon>`的`points`属性指定了每个端点的坐标，横坐标与纵坐标之间与逗号分隔，点与点之间用空格分隔。
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703183951130.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703183951130.png)
 
 ##### 8.path 标签
 
@@ -1836,7 +1836,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 -   L：画直线到（lineto）
 -   Z：闭合路径
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703183915762.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703183915762.png)
 
 ##### 9.text 标签
 
@@ -1848,7 +1848,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 
 `<text>`的`x`属性和`y`属性，表示文本区块基线（baseline）起点的横坐标和纵坐标。文字的样式可以用`class`或`style`属性指定。
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703183854326.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703183854326.png)
 
 ##### 10.use 标签
 
@@ -1865,7 +1865,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 
 `<use>`的`href`属性指定所要复制的节点，`x`属性和`y`属性是`<use>`左上角的坐标。另外，还可以指定`width`和`height`坐标。
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703183805232.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703183805232.png)
 
 ##### 11.g 标签
 
@@ -1883,7 +1883,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 />
 ```
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703183727008.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703183727008.png)
 
 ##### 12.defs 标签
 
@@ -1899,7 +1899,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 
 `<image>`的`xlink:href`属性表示图像的来源。
 
-![img](https://book.apeland.cn/media/images/2019/07/18/image-20190703184914061.png)
+![](https://book.apeland.cn/media/images/2019/07/18/image-20190703184914061.png)
 
 ##### 14.animate 标签
 
@@ -1924,7 +1924,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 -   dur：单次动画的持续时间。
 -   repeatCount：动画的循环模式。
 
-![img](https://book.apeland.cn/media/images/2019/07/18/5.gif)
+![](https://book.apeland.cn/media/images/2019/07/18/5.gif)
 
 定制多个 animate
 
@@ -1938,7 +1938,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 /><animate attributeName="height" to="500" dur="2s" repeatCount="indefinite" />
 ```
 
-![img](https://book.apeland.cn/media/images/2019/07/18/6.gif)
+![](https://book.apeland.cn/media/images/2019/07/18/6.gif)
 
 ##### 15.animateTransform 标签
 
@@ -1957,7 +1957,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 
 `<animateTransform>`的效果为旋转（`rotate`），这时`from`和`to`属性值有三个数字，第一个数字是角度值，第二个值和第三个值是旋转中心的坐标。`from="0 200 200"`表示开始时，角度为 0，围绕`(200, 200)`开始旋转；`to="360 400 400"`表示结束时，角度为 360，围绕`(400, 400)`旋转。
 
-![img](https://book.apeland.cn/media/images/2019/07/18/7.gif)
+![](https://book.apeland.cn/media/images/2019/07/18/7.gif)
 
 关于 SVG 其实跟 canvas 差不了多少，都是可以做一下复杂的图形和动画效果。SVG 的入门教学先写到这里。如果有同学在公司用到了 SVG 的高级特效，可以参考 MDN[SVG](https://developer.mozilla.org/zh-CN/docs/Web/SVG)。
 
@@ -2089,7 +2089,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 
 效果展示:
 
-![img](https://book.apeland.cn/media/images/2019/07/18/8.gif)
+![](https://book.apeland.cn/media/images/2019/07/18/8.gif)
 
 由上个例子我们可以看出我们确实实现了拖放的功能，猜想：能否让我们拖拽的元素放到指定的目标对象上呢？答案是可以的，如果想实现该功能，就要学一下`DataTransfer`对象了
 
@@ -2250,7 +2250,7 @@ DataTransfer.setDragImage(img,xOffset,yOffset)
 
 效果展示：
 
-![img](https://book.apeland.cn/media/images/2019/07/18/9.gif)
+![](https://book.apeland.cn/media/images/2019/07/18/9.gif)
 
 #### 例子:实现简单拖拽购物车功能
 

@@ -19,11 +19,11 @@ date: 2019-10-31
 - **非线性时间比较类排序：**通过比较来决定元素间的相对次序，由于其时间复杂度不能突破 O(nlogn)，因此称为非线性时间比较类排序。
 - **线性时间非比较类排序：**不通过比较来决定元素间的相对次序，它可以突破基于比较排序的时间下界，以线性时间运行，因此称为线性时间非比较类排序。
 
-![img](java-sort/1.jpg)
+![](java-sort/1.jpg)
 
 ### 3、比较
 
-![img](java-sort/2.jpg)
+![](java-sort/2.jpg)
 
 ### 4、相关概念
 
@@ -56,7 +56,7 @@ date: 2019-10-31
 
 **③ 动图演示**
 
-![img](java-sort/3.gif)
+![](java-sort/3.gif)
 
 **④ 代码实现**
 
@@ -98,7 +98,7 @@ date: 2019-10-31
 
 动图如下：
 
-![img](java-sort/4.jpg)
+![](java-sort/4.jpg)
 
 代码如下：
 
@@ -133,7 +133,7 @@ n 个记录的简单选择排序可经过(n-1)趟简单选择排序得到有序�
 
 **③ 动图演示**
 
-![img](java-sort/5.gif)
+![](java-sort/5.gif)
 
 **④ 代码实现**
 
@@ -183,7 +183,7 @@ public static int[] selectionSort(int[] array) {
 
 **③ 动图演示**
 
-![img](java-sort/6.gif)
+![](java-sort/6.gif)
 
 **④ 代码实现**
 
@@ -259,7 +259,7 @@ public static int[] insertionSort(int[] array) {
 
 **③ 动图演示**
 
-![img](java-sort/7.gif)
+![](java-sort/7.gif)
 
 **④ 代码实现**
 
@@ -306,7 +306,7 @@ public static int[] insertionSort(int[] array) {
 
 **③ 动图演示**
 
-![img](java-sort/8.gif)
+![](java-sort/8.gif)
 
 **④ 代码实现**
 
@@ -430,7 +430,7 @@ public class Solution {
 
 **③ 动图演示**
 
-![img](java-sort/9.gif)
+![](java-sort/9.gif)
 
 **④ 代码实现**
 **快速排序最核心的步骤就是 partition 操作**，即从待排序的数列中选出一个数作为基准，将所有比基准值小的元素放在基准前面，所有比基准值大的元素放在基准的后面（相同的数可以到任一边），该基准就处于数列的中间位置。partition 函数返回基准的位置，然后就可以对基准位置的左右子序列递归地进行同样的快排操作，从而使整个序列有序。
@@ -443,7 +443,7 @@ public class Solution {
 2．分区过程：从数组的首元素 begin 开始向后找比 key 大的数（begin 找大）；end 开始向前找比 key 小的数（end 找小）；找到后交换两者（swap），直到 begin >= end 终止遍历。最后将 begin（此时 begin == end）和最后一个数交换（ 这个时候 end 不是最后一个位置），即 key 作为中间数（左区间都是比 key 小的数，右区间都是比 key 大的数）
 3．再对左右区间重复第二步，直到各区间只有一个数。
 
-![img](java-sort/10.jpg)
+![](java-sort/10.jpg)
 
 ```java
 /**
@@ -488,7 +488,7 @@ public static void swap(int[] array, int i, int j) {
 **基本思路：** 1.定义两个指针 left 指向起始位置，right 指向最后一个元素的位置，然后指定一个基准 key（right），作为坑。
 2.left 寻找比基准（key）大的数字，找到后将 left 的数据赋给 right，left 成为一个坑，然后 right 寻找比基数（key）小的数字，找到将 right 的数据赋给 left，right 成为一个新坑，循环这个过程，直到 begin 指针与 end 指针相遇，然后将 key 填入那个坑（最终：key 的左边都是比 key 小的数，key 的右边都是比 key 大的数），然后进行递归操作。
 
-![img](java-sort/11.jpg)
+![](java-sort/11.jpg)
 
 ```java
 /**
@@ -603,15 +603,15 @@ public static void Quicksort(int array[], int left, int right) {
 **这种优化非常实用。**
 实测发现当待排序列为 [100000,99999,99998,...,3,2,1] 时，不加插入优化的快排由于递归次数过多甚至抛出了 java.lang.StackOverflowError！
 
-![img](java-sort/12.jpg)
+![](java-sort/12.jpg)
 
 而加入了插入优化并选择阈值为 12500 时，排序用时如下：
 
-![img](java-sort/13.jpg)
+![](java-sort/13.jpg)
 
 实验发现阈值的选择也很关键，选择阈值为 5 ，排序用时如下：
 
-![img](java-sort/14.jpg)
+![](java-sort/14.jpg)
 
 **优化四：三路划分**
 如果待排序列中重复元素过多，也会大大影响排序的性能，这是因为大量相同元素参与快排时，左右序列规模相差极大，快排将退化为冒泡排序，时间复杂度接近 O(n2)。这时候，如果采用三路划分，则会很好的避免这个问题。
@@ -619,7 +619,7 @@ public static void Quicksort(int array[], int left, int right) {
 
 来看下面的三路划分示意图：
 
-![img](java-sort/15.jpg)
+![](java-sort/15.jpg)
 
 **说明：**红色部分为小于基准 v 的序列，绿色部分为等于基准 v 的序列，白色部分由于还未被 cur 指针遍历到，属于大小未知的部分，蓝色部分为大于基准 v 的序列。
 left 指针为整个待排区间的左边界，right 指针为整个待排区间的右边界。less 指针指向红色部分的最后一个数（即小于 v 的最右位置），more 指针指向蓝色部分的第一个数（即大于 v 的最左位置）。cur 指针指向白色部分（未知部分）的第一个数，即下一个要判断大小的位置。
@@ -812,7 +812,7 @@ public:
 
 **④ 动图演示**
 
-![img](java-sort/16.gif)
+![](java-sort/16.gif)
 
 **⑤ 代码实现**
 
@@ -897,7 +897,7 @@ public static void adjustHeap(int[] array, int i) {
 
 **③ 动图演示**
 
-![img](java-sort/17.gif)
+![](java-sort/17.gif)
 
 **④ 代码实现**
 
@@ -957,7 +957,7 @@ public static void adjustHeap(int[] array, int i) {
 
 **③ 动图演示**
 
-![img](java-sort/18.gif)
+![](java-sort/18.gif)
 
 **④ 代码实现**
 
@@ -1021,7 +1021,7 @@ public static int[] bucketSort(int[] array){
 
 **③ 动图演示**
 
-![img](java-sort/19.gif)
+![](java-sort/19.gif)
 
 **④ 代码实现**
 

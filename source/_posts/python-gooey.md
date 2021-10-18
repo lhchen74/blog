@@ -112,4 +112,4 @@ def main():
 
 | Flat Layout                         | Column Layout                          |
 | ----------------------------------- | -------------------------------------- |
-| ![img](python-gooey/layut-flat.jpg) | ![img](python-gooey/layout-column.jpg) |
+| ![](python-gooey/layut-flat.jpg) | ![](python-gooey/layout-column.jpg) |

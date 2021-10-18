@@ -1,6 +1,6 @@
 ---
 title: C# NLog
-tags: c#
+tags: csharp
 date: 2019-10-29
 ---
 
@@ -8,12 +8,12 @@ date: 2019-10-29
 
 ### 前言
 
-每个项目都会需要使用到日志功能，这对于项目上线后 出现的 bug 异常，能及时定位和便于后期错误分析。那我们今天来看看在.NET Core 中如何使用 NLog 日志。
+每个项目都会需要使用到日志功能，这对于项目上线后出现的 bug 异常，能及时定位和便于后期错误分析。那我们今天来看看在 .NET Core 中如何使用 NLog 日志。
 
 ### NLog
 
 NLog 是一个基于.NET 平台编写的类库，我们可以使用 NLog 在应用程序中添加极为完善的跟踪调试代码。
-NLog 是一个简单灵活的.NET 日志记录类库。通过使用 NLog，我们可以在任何一种.NET 语言中输出带有上下文的（contextual information）调试诊断信息，根据喜好配置其表现样式之后发送到一个或多个输出目标（target）中。
+NLog 是一个简单灵活的.NET 日志记录类库。通过使用 NLog，我们可以在任何一种 .NET 语言中输出带有上下文的（contextual information）调试诊断信息，根据喜好配置其表现样式之后发送到一个或多个输出目标（target）中。
 NLog 的 API 非常类似于 log4net，且配置方式非常简单。NLog 使用路由表（routing table）进行配置，这样就让 NLog 的配置文件非常容易阅读，并便于今后维护。
 NLog 遵从 BSD license，即允许商业应用且完全开放源代码。任何人都可以免费使用并对其进行测试，然后通过邮件列表反馈问题以及建议。
 NLog 支持.NET、C/C++以及 COM interop API，因此我们的程序、组件、包括用 C++/COM 编写的遗留模块都可以通过同一个路由引擎将信息发送至 NLog 中。
@@ -30,7 +30,8 @@ NLog 支持.NET、C/C++以及 COM interop API，因此我们的程序、组件�
 ```c#
 public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 {
-     loggerFactory.AddNLog();//添加NLog            //引入Nlog配置文件        env.ConfigureNLog("nlog.config");
+     loggerFactory.AddNLog();//添加NLog
+     env.ConfigureNLog("nlog.config");  //引入Nlog配置文件
 }
 ```
 
@@ -84,7 +85,7 @@ _logger.LogInformation("我是提示信息");
 
 执行后，查看 bin/debug/netcoreapp2.0 下面的 nlog-my-2018-08-12.log 文件即可看到输出日志：
 
-![img](csharp-nlog/762349-20180812175110446-1765871307.png)
+![](csharp-nlog/762349-20180812175110446-1765871307.png)
 
 ### 日志文件生成在指定目录下
 
@@ -114,7 +115,7 @@ _logger.LogInformation("我是提示信息");
 
 ② 在此文件夹中新建一个 ErrorHandlingMiddleware 类如下
 
-![img](csharp-nlog/762349-20180814083725693-131166542.png)
+![](csharp-nlog/762349-20180814083725693-131166542.png)
 
 ```c#
 public class ErrorHandlingMiddleware

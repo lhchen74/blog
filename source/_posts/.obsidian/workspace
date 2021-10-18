@@ -1,0 +1,95 @@
+{
+  "main": {
+    "id": "f68aaa5c8c834c25",
+    "type": "split",
+    "children": [
+      {
+        "id": "e8d1c79701cf717d",
+        "type": "leaf",
+        "state": {
+          "type": "empty",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b0508b029ec49f69",
+    "type": "split",
+    "children": [
+      {
+        "id": "22b55124c2f567af",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d959ba31a366497d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "b7e20363c7c78c0f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "file: index.md",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "df1af8f7ad39f1d5",
+    "type": "split",
+    "children": [
+      {
+        "id": "887526ad45e0751e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "adaa1d409a53d634",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": true,
+                "searchQuery": "xml",
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "active": "e8d1c79701cf717d",
+  "lastOpenFiles": [
+    "xml.md",
+    "index.md",
+    "Untitled.md",
+    "xml-namespace.md",
+    "rust-modules.md",
+    "csharp-async.md",
+    "csharp-action.md",
+    "cpp-core.md"
+  ]
+}

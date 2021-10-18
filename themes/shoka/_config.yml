@@ -1,5 +1,5 @@
 # Alternate site name
-alternate: Dew's World
+alternate: 露の世
 
 open_graph:
   #twitter_id:
@@ -106,19 +106,20 @@ menu:
 # secend value is the name of Font icon.
 social:
   github: https://github.com/lhchen74 || github || "#191717"
-  #google: https://plus.google.com/yourname || google
-  twitter: https://twitter.com/yourname || twitter || "#00aff0"
-  zhihu: https://www.zhihu.com/people/yourname || zhihu || "#1e88e5"
-  music: https://music.163.com/#/user/home?id=yourid || cloud-music || "#e60026"
-  weibo: https://weibo.com/yourname || weibo || "#ea716e"
-  about: https://about.me/yourname || address-card || "#3b5998"
-  #email: mailto:yourname@mail.com || envelope || "#55acd5"
-  #facebook: https://www.facebook.com/yourname || facebook
-  #stackoverflow: https://stackoverflow.com/yourname || stack-overflow
-  #youtube: https://youtube.com/yourname || youtube
-  #instagram: https://instagram.com/yourname || instagram
-  #skype: skype:yourname?call|chat || skype
-  #douban: https://www.douban.com/people/yourname/ || douban
+  # google: https://plus.google.com/yourname || google
+  # twitter: https://twitter.com/yourname || twitter || "#00aff0"
+  # zhihu: https://www.zhihu.com/people/yourname || zhihu || "#1e88e5"
+  music: https://music.163.com/ || cloud-music || "#e60026"
+  # weibo: https://weibo.com/yourname || weibo || "#ea716e"
+  # about: https://about.me/yourname || address-card || "#3b5998"
+  # email: mailto:yourname@mail.com || envelope || "#55acd5"
+  # facebook: https://www.facebook.com/yourname || facebook
+  # stackoverflow: https://stackoverflow.com/yourname || stack-overflow
+  # youtube: https://youtube.com/yourname || youtube
+  # instagram: https://instagram.com/yourname || instagram
+  # skype: skype:yourname?call|chat || skype
+  # douban: https://www.douban.com/people/yourname/ || douban
+  
 
 sidebar:
   # Sidebar Position.
@@ -183,45 +184,53 @@ creative_commons:
 # Comments
 # Valine
 # For more information: https://github.com/amehime/MiniValine
-valine:
-  appId: #Your_appId
-  appKey: #Your_appkey
-  placeholder: ヽ(○´∀`)ﾉ♪ # Comment box placeholder
-  avatar: mp # Gravatar style : mp, identicon, monsterid, wavatar, robohash, retro
-  pageSize: 10 # Pagination size
-  lang: en
-  visitor: true # Article reading statistic
-  NoRecordIP: false # Whether to record the commenter IP
-  serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
-  powerMode: true
-  tagMeta:
-    visitor: 新朋友
-    master: 主人
-    friend: 小伙伴
-    investor: 金主粑粑
-  tagColor:
-    master: "var(--color-orange)"
-    friend: "var(--color-aqua)"
-    investor: "var(--color-pink)"
-  tagMember:
-    master:
-      # - hash of master@email.com
-      # - hash of master2@email.com
-    friend:
-      # - hash of friend@email.com
-      # - hash of friend2@email.com
-    investor:
-      # - hash of investor1@email.com
+# valine:
+#   appId: #Your_appId
+#   appKey: #Your_appkey
+#   placeholder: ヽ(○´∀`)ﾉ♪ # Comment box placeholder
+#   avatar: mp # Gravatar style : mp, identicon, monsterid, wavatar, robohash, retro
+#   pageSize: 10 # Pagination size
+#   lang: en
+#   visitor: true # Article reading statistic
+#   NoRecordIP: false # Whether to record the commenter IP
+#   serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
+#   powerMode: true
+#   tagMeta:
+#     visitor: 新朋友
+#     master: 主人
+#     friend: 小伙伴
+#     investor: 金主粑粑
+#   tagColor:
+#     master: "var(--color-orange)"
+#     friend: "var(--color-aqua)"
+#     investor: "var(--color-pink)"
+#   tagMember:
+#     master:
+#       # - hash of master@email.com
+#       # - hash of master2@email.com
+#     friend:
+#       # - hash of friend@email.com
+#       # - hash of friend2@email.com
+#     investor:
+#       # - hash of investor1@email.com
 
 # bgm
 audio:
-  # - title: 列表1
-  #   list:
-  #    - https://music.163.com/#/playlist?id=2943811283
-  #    - https://music.163.com/#/playlist?id=2297706586
-  # - title: 列表2
-  #   list:
-  #    - https://music.163.com/#/playlist?id=2031842656
+  - title: 纯音乐
+    list:
+     - https://music.163.com/#/playlist?id=2153740332
+  - title: 华语
+    list:
+     - https://music.163.com/#/playlist?id=3082898405
+  - title: 英语
+    list:
+     - https://music.163.com/#/playlist?id=2300591867
+  - title: 日语
+    list:
+     - https://music.163.com/#/playlist?id=2156138863
+  - title: 动漫
+    list:
+     - https://music.163.com/#/playlist?id=2096019982
 
 # random image api
 image_server: # "https://acg.xydwz.cn/api/api.php"

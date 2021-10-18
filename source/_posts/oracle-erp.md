@@ -1,7 +1,7 @@
 ---
 title: oracle erp
 date: 2018-10-17
-tags: db
+tags: erp
 ---
 
 记录 oracle erp 报错处理，错误描述：在做 Transact Move Orders 时弹出错误：`累计拣货数量超过报关数量`

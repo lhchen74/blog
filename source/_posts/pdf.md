@@ -1,0 +1,68 @@
+---
+title: PDF Book of EDI
+tag: pdf
+date: 2021-06-13
+---
+
+## Beginners Guide to EDI X12
+
+{% pdf ./edi-x12.pdf %}
+
+## ANSI 997 - Functional Acknowledgement
+
+{% pdf ./edi-997.pdf %}
+
+**Accepted Transaction Set**
+
+```edi
+ISA*00* *00* *30*560891234 *30*566012345*020813*1505*U*00401*000000007*1*P*:~
+GS*FA*560891234*566012345*20020813*1505*4*X*004010X098~
+ST*997*0004~
+AK1*HC*5~
+AK2*837*0008~
+AK5*A~
+AK9*A*1*1*1~
+SE*6*0004~
+GE*1*4~IEA*1*000000007~
+```
+
+**Rejected Transaction Set**
+
+```
+ISA*00* *00* *30*560891234 *30*566012345*020813*1505*U*00401*000000007*1*P*:~
+GS*FA*560891234*566012345*20020813*1505*4*X*004010X098A1~
+ST*997*0004~
+AK1*HC*5~
+AK2*837*0008~
+AK3* CLM*40*2300*8~
+AK4*5*2*1332*7~
+AK5*R*5~
+AK9*R*1*0~
+SE*6*0004~
+GE*1*4~
+IEA*1*000000007~
+```
+
+**Accepted and Rejected Transaction Sets - Same Functional Group**
+
+The AK9 returns a value of “P”, indicating that at least one Transaction Set was rejected from the ISA/IEA Envelope.
+
+```
+ISA*00* *00* *30*560891234 *30*566012345
+*030304*1647*U*00401*000001324*1*P*:~
+GS*FA*560891234*566012345*20030304*1647*633*X*004010X096A1~
+ST*997*0633~
+AK1*HC*444~
+AK2*837*277336~
+AK5*A~
+AK2*837*277337~
+AK3*LX*40*2400*8~
+AK4*1*554*7~
+AK3*LX*43*2400*8~
+AK4*1*554*7~
+AK5*R*5~
+AK9*P*3*3*1~
+SE*12*0633~
+GE*1*633~
+IEA*1*000001324~
+```

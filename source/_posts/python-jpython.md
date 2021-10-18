@@ -16,13 +16,13 @@ date: 2019-10-29
 
 1.建立一个 java project，然后将 jython.jar 文件放到目录下，然后选择 Build Path，将 jython.jar Add to Build Path 这样 就能使用 jython 的 API 了
 
-![img](python-jpython/932587-20171215204221418-2024702354.png)
+![](python-jpython/932587-20171215204221418-2024702354.png)
 
 2.在上面的图片中，已经显示了我的 project 的目录，其中 src 主要放测试代码，lib 放 jar 包，images 里面可以放一下后期要用到的图片，pythonfile 里面存放 python 脚本
 
 3.建立相关文件后
 
-![img](python-jpython/932587-20171215204529386-1579457371.png)
+![](python-jpython/932587-20171215204529386-1579457371.png)
 
 其中 my_utils.py 中，我就简单的放了一个函数，主要是演示一下，java 调用 python 文件的方法；Test.java 里面是 java 的测试函数入口
 

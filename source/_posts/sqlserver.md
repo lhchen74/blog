@@ -1,5 +1,5 @@
 ---
-title: sqlserver
+title: SQLServer
 tags: db
 date: 2019-12-19
 ---
@@ -18,7 +18,7 @@ select * from #edi_temp;
 ### 批量插入数据
 
 ```sql
-insert into #edi_temp values 
+insert into #edi_temp values
 ('H00039827', '2019/3/27 14:15:13'),
 ('H00039871', '2019/5/13 13:10:49'),
 ('H00039872', '2019/5/13 13:10:49'),
@@ -50,6 +50,3 @@ select isnull('R', 'S');  --R
 --如下类似于 Oracle: select sysdate from dual;
 select getdate();
 ```
-
-
-

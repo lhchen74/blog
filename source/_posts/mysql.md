@@ -4,7 +4,7 @@ tags: db
 date: 2019-11-08
 ---
 
-### 常用参数
+### mysql 命令常用参数
 
 | 参数            | 含义                               |
 | --------------- | ---------------------------------- |
@@ -30,22 +30,26 @@ Enter password: ****
 
 ### 常用命令
 
-显示当前服务器版本
+
 
 ```mysql
-SELECT VERSION();
-```
+-- 显示当前服务器版本
+SELECT VERSION(); /  mysql --version 
 
-显示当前日期时间
-
-```mysql
+-- 显示当前日期时间
 SELECT NOW();
-```
 
-显示当前用户
-
-```mysql
+-- 显示当前用户
 SELECT USER();
+
+-- 当前数据库
+select database();
+
+-- 查看其它数据库中的表
+show tables from test;
+
+-- 查看表结构
+desc student;
 ```
 
 ### 创建数据库
@@ -217,7 +221,7 @@ ON a.table_schema =b.table_schema AND a.table_name =b.table_name
 WHERE a.table_name='pets';
 ```
 
-![1573725822157](mysql/1573725822157.png)
+![](mysql/1573725822157.png)
 
 ### dual
 
@@ -254,6 +258,145 @@ select @test;
 
 ```sql
 insert into some_table (col1, col2) values (val1, val2), (val3, val4), (val5, val6)
+```
+
+### +
+
+mysql 中的 `+` 只有作为运算符，没有作为连接符的功能, 连接字符使用 `concat` 。+  运算如果是字符型，会试图将字符转换为数字，转换成功做加法运算，转换失败将字符转换为 0 做加法运算
+
+```mysql
+select 1 + 1; --2
+select '1' + 1; --2 
+select '1' + '1'; --2
+select 'a' + 1; --1
+select 'a' + 'a'; --0
+select null + 1; -- NULL
+select concat(1, 1); --11
+```
+
+### <=> 
+
+`<=>`  安全等于可以用来判断是否等于 null.
+
+```mysql
+select * from employees where commission_pct is null; 
+select * from employees where commission_pct <=> null;
+select * from employees where commission_pct <=> 100;
+```
+
+### like null
+
+`select * from employees`  和 `select * from employees where commission_pct like '%%' and last_name like '%%'`  结果是否一样？
+
+不一定，因为 commission_pct 和 last_name 中可能存在 `null`
+
+### mod or %
+
+`mod or %`  取余数 `mod(a, b) ⇒ a - a / b * b`  其中 `a / b`  是取整运算 `10 / 3 = 3`
+
+
+```mysql
+select mod(10, 3), mod(10, -3), -10 % -3, -10 % 3; --1, 1, -1, -1
+```
+
+### 逻辑运算符 xor
+
+mysql 可以使用逻辑运算符 xor
+
+```mysql
+mysql> select 1 from dual where 1=1 xor 1=0;
++---+
+| 1 |
++---+
+| 1 |
++---+
+1 row in set (0.01 sec)
+
+mysql> select 1 from dual where 1=1 xor 1=1;
+Empty set (0.00 sec)
+
+mysql> select 1 from dual where 0=0 xor 0=0;
+Empty set (0.00 sec)
+```
+
+位运算符
+
+```mysql
+mysql> select 1&0;
++-----+
+| 1&0 |
++-----+
+|   0 |
++-----+
+1 row in set (0.00 sec)
+
+mysql> select 1|0;
++-----+
+| 1|0 |
++-----+
+|   1 |
++-----+
+1 row in set (0.00 sec)
+
+mysql> select ~1;
++----------------------+
+| ~1                   |
++----------------------+
+| 18446744073709551614 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select 1^0;
++-----+
+| 1^0 |
++-----+
+|   1 |
++-----+
+1 row in set (0.01 sec)
+
+mysql> select 1>>1;
++------+
+| 1>>1 |
++------+
+|    0 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select 1<<1;
++------+
+| 1<<1 |
++------+
+|    2 |
++------+
+1 row in set (0.00 sec)
+```
+
+### GROUP_CONCAT
+
+```mysql
+CREATE TEMPORARY TABLE emp(
+   empno  varchar(10),
+   ename  varchar(100),
+   deptno varchar(10)
+);
+
+insert into emp values ('10', 'Babb', '10');
+insert into emp values ('20', 'Julian', '10');
+insert into emp values ('30', 'Owen', '10');
+insert into emp values ('40', 'Yoyo', '20');
+insert into emp values ('50', 'Sunny', '20');
+
+select deptno, group_concat(ename), count(*)
+  from emp
+ group by deptno;
+
++--------+---------------------+----------+
+| deptno | group_concat(ename) | count(*) |
++--------+---------------------+----------+
+| 10     | Babb,Julian,Owen    |        3 |
+| 20     | Yoyo,Sunny          |        2 |
++--------+---------------------+----------+
+2 rows in set (0.00 sec)
 ```
 
 ### CTE Common Table Expression
@@ -360,6 +503,4 @@ with recursive employee_paths (id, name, path)  as
     on ep.id = e.manager_id
 )
 select * from employee_paths order by path;
-
-
 ```

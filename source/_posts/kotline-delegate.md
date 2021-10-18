@@ -1,10 +1,10 @@
 ---
-title: kotlin delegate
+title: Kotlin Delegate
 tags: kotlin
 date: 2019-10-25
 ---
 
-> Kotlin代理 | Sunmoon的博客
+> 转载: Kotlin 代理 | Sunmoon 的博客
 
 # Kotlin 代理
 
@@ -14,16 +14,16 @@ Java 中的代理很烦很繁，而 Kotlin 中的代理却看起来很简单。�
 
 有些通用类型的属性，尽管我们可以在需要每次都自己实现对于某些常用类型的属性，尽管我们可以在需要用于这些属性时每次都自行实现，但如果能一次性实现所有这些属性，并将其封装到库中可能是更好的方式。比如：
 
-- 懒加载属性： 这些属性的值在首次使用时才生成
-- observable 属性：每当属性值发生变化时监听器会收到通知
-- 将属性值保存到 map，而不是为每个属性定义一个单独的字段
+-   懒加载属性： 这些属性的值在首次使用时才生成
+-   observable 属性：每当属性值发生变化时监听器会收到通知
+-   将属性值保存到 map，而不是为每个属性定义一个单独的字段
 
 # 代理
 
 针对这类情形 Kotlin 提供了*代理属性* ，语法是`val/var <property name>: <Type> by <expression>`。 `by`关键字后面的表达式即*代理* 。 属性对应的`get()`和`set()`方法会被代理到`<expression>`对应对象的`getValue()`和`setValue()`方法。属性代理不必实现任何接口，但必须满足以下条件：
 
-- 为`val`属性提供`getValue()`方法
-- 为`var`性提供`getValue()`和`setValue()`方法
+-   为`val`属性提供`getValue()`方法
+-   为`var`性提供`getValue()`和`setValue()`方法
 
 当然，Kotlin 标准库中提供了`ReadOnlyProperty`和`ReadOnlyProperty`接口包含这里提到的方法。`Delegate`可以实现这两个接口。
 
@@ -58,10 +58,10 @@ class Example {
 
 注意：
 
-- `getValue()`方法参数的必须是`thisRef: Example?, property: KProperty<*>` 。 `thisRef`的类型必须跟属性的类型相同，或者是属性类型的父类。也可以放宽为`Any?` ，这样能让 `Delegate` 更加通用。`property`必须为`KProperty<*>`或其父类
-- `getValue()`方法的返回值必须跟属性类型相同，或者是属性类型的父类
-- `setValue()`方法的第三个参数 new value，必须跟属性类型相同或是其父类
-- `getValue()`和`setValue()`可以是 Delegate 的成员方法，也可是其扩展方法。对于原先并没有定义这些方法的对象而言，扩展方法更为方便。但无论是作为成员方法还是扩展方法，都需要添加`operator`修饰符
+-   `getValue()`方法参数的必须是`thisRef: Example?, property: KProperty<*>` 。 `thisRef`的类型必须跟属性的类型相同，或者是属性类型的父类。也可以放宽为`Any?` ，这样能让 `Delegate` 更加通用。`property`必须为`KProperty<*>`或其父类
+-   `getValue()`方法的返回值必须跟属性类型相同，或者是属性类型的父类
+-   `setValue()`方法的第三个参数 new value，必须跟属性类型相同或是其父类
+-   `getValue()`和`setValue()`可以是 Delegate 的成员方法，也可是其扩展方法。对于原先并没有定义这些方法的对象而言，扩展方法更为方便。但无论是作为成员方法还是扩展方法，都需要添加`operator`修饰符
 
 为什么对`getValue()`和`setValue()`方法有上述规定呢，我们看看 Kotlin 编译器是如何处理 Delegate 的。实际上，对于每个代理属性，Kotlin 编译器都会生成一个辅助的属性。比如，对于`prop`属性，会生成一个隐藏的`prop$delegate`属性，而`get()`和`set()`方法最后只是简单地代理到这个辅助属性。
 
@@ -87,9 +87,9 @@ class C {
 
 lazy()是一个可接收 lambda 表达式作为参数的方法，它返回一个`Lazy<T>`实例，该实例作为代理来实现懒加载功能。第一次调用`get()`时会执行传给`lazy()`方法的 lambda 并且保留其结果，之后再调用`get()`时会直接返回该结果。缺省情况下对懒加载属性的计算是同步的
 
-- LazyThreadSafetyMode.SYNCHRONIZED - 默认的懒加载方式，会锁定当前属性以保证仅在一个线程中对其初始化
-- LazyThreadSafetyMode.PUBLICATION - 初始化方法在并发访问未被初始化的属性时可多次被调用，但仅最先被返回的值作为属性的值
-- LazyThreadSafetyMode.NONE - 对属性的访问不加任何锁。如果当前对象在多个线程中被访问，则属性的值不确定
+-   LazyThreadSafetyMode.SYNCHRONIZED - 默认的懒加载方式，会锁定当前属性以保证仅在一个线程中对其初始化
+-   LazyThreadSafetyMode.PUBLICATION - 初始化方法在并发访问未被初始化的属性时可多次被调用，但仅最先被返回的值作为属性的值
+-   LazyThreadSafetyMode.NONE - 对属性的访问不加任何锁。如果当前对象在多个线程中被访问，则属性的值不确定
 
 ## Observable 代理
 

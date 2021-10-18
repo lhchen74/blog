@@ -1,10 +1,10 @@
 ---
-title: SqlServer 基本语法
+title: SQLServer 基本语法
 tags: db
 date: 2019-11-2
 ---
 
-> 转载：[sql(SqlServer)编程基本语法- lipan -博客园](https://www.cnblogs.com/lipan/archive/2010/12/09/1892516.html)
+> 转载：[SqlServer 编程基本语法- lipan](https://www.cnblogs.com/lipan/archive/2010/12/09/1892516.html)
 
 ### 一、定义变量
 
@@ -180,9 +180,9 @@ deallocate user_cur
 触发器中的临时表：
 
 Inserted
-　　存放进行 insert 和 update 操作后的数据
-　　 Deleted
-　　存放进行 delete 和 update 操作前的数据
+存放进行 insert 和 update 操作后的数据
+Deleted
+存放进行 delete 和 update 操作前的数据
 
 ```mssql
 --创建触发器
@@ -309,15 +309,15 @@ drop function FUNC_Sum1
 
 2. 限制颇多，包括
 
-   不能使用 output 参数；
+    不能使用 output 参数；
 
-   不能用临时表；
+    不能用临时表；
 
-   函数内部的操作不能影响到外部环境；
+    函数内部的操作不能影响到外部环境；
 
-   不能通过 select 返回结果集；
+    不能通过 select 返回结果集；
 
-   不能 update，delete，数据库表；
+    不能 update，delete，数据库表；
 
 3. 必须 return 一个标量值或表变量
 

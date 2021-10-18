@@ -1,7 +1,7 @@
 ---
 title: Rust Question
 tags: rust
-date: 2020-08-13
+date: 2020-09-10
 ---
 
 ### What is the syntax: `instance.method::<SomeThing>()`?
@@ -25,7 +25,7 @@ a does not work because it cannot deduce the variable type.
 b does work because we specify the type parameter directly with the turbofish syntax.
 c does work because we specify the type of c directly.
 
-### the size for values of type `[u8]` cannot be known at compilation time?
+### Why the size for values of type `[u8]` cannot be known at compilation time?
 
 ```rust
 // @ the size for values of type `[u8]` cannot be known at compilation time, the trait `std::marker::Sized` is not implemented for `[u8]`
@@ -58,7 +58,7 @@ let buf = b"hello";
 f.write(buf).expect("Couldn’t write to foo.txt");
 ```
 
-### what mean of ref & ref mut below?
+### What mean of ref & ref mut below?
 
 ```rust
 let mut x = 5;
@@ -140,24 +140,15 @@ Note that despite mut being used because the concept of mutability is well-known
 
 Most notably, some types feature interior mutability and can be mutated via &T (shared references): Cell, RefCell, Mutex, etc.
 
-### Stack & Heap
+### What is the different Stack and Heap in Rust?
 
--   栈 stack
+-   Stack
 
-栈 stack 是一种 后进先出 容器。就像我们的存储罐子，后面放进去的只能先拿出来（后面放进去的会放在上面）。
+    栈 stack 是一种后进先出容器。就像我们的存储罐子，后面放进去的只能先拿出来。
+    栈 stack 上存储的元素大小必须是已知的，也就是说如果一个变量或数据要放到栈上，那么它的大小在编译是就必须是明确的。例如，对于一个数据类型为 i32 的变量，它的大小是可预知的，只占用 4 个字节。
+    Rust 语言中所有的标量类型都可以存储到栈上，因为它们的大小都是固定的。而对于字符串这种复合类型，它们在运行时才会赋值，那么在编译时的大小就是未知的。那么它们就不能存储在栈上，而只能存储在堆上。
 
-栈 stack 上存储的元素大小必须是已知的，也就是说如果一个变量或数据要放到栈上，那么它的大小在编译是就必须是明确的。
+-   Heap
 
-例如，对于一个数据类型为 i32 的变量，它的大小是可预知的，只占用 4 个字节。
-
-Rust 语言中所有的标量类型都可以存储到栈上，因为它们的大小都是固定的。
-
-而对于字符串这种复合类型，它们在运行时才会赋值，那么在编译时的大小就是未知的。那么它们就不能存储在栈上，而只能存储在 堆 上。
-
--   堆 heap
-
-堆 heap 用于存储那些在编译时大小未知的数据，也就是那些只有在运行时才能确定大小的数据。
-
-我们一般在堆 heap 上存储那些动态类型的数据。简而言之，我们一般在堆上存储那些可能在程序的整个生命周期中发生变化的数据。
-
-堆 是不受系统管理的，由用户自己管理，因此，使用不当，内存溢出的可能性就大大增加了。
+    堆 heap 用于存储那些在编译时大小未知的数据，也就是那些只有在运行时才能确定大小的数据。
+    我们一般在堆 heap 上存储那些动态类型的数据。简而言之，我们一般在堆上存储那些可能在程序的整个生命周期中发生变化的数据。堆是不受系统管理的，由用户自己管理，因此，使用不当，内存溢出的可能性就大大增加了。

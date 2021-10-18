@@ -4,8 +4,6 @@ tags: js
 date: 2019-10-25
 ---
 
-# Promise 对象
-
 来自[《JavaScript 标准参考教程（alpha）》](http://javascript.ruanyifeng.com/)，by 阮一峰
 
 ## 概述

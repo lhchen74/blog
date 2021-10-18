@@ -1,10 +1,10 @@
 ---
 title: Colors In Terminal
-tags: other
+tags: miscellaneous
 date: 2019-10-10
 ---
 
-> reproduced: [Jafrog's dev blog](http://jafrog.com/2013/11/23/colors-in-terminal.html)
+> 转载: [Jafrog's dev blog](http://jafrog.com/2013/11/23/colors-in-terminal.html)
 
 ## Colors In Terminal
 
