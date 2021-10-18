@@ -1,6 +1,7 @@
 ---
-title: python test
+title: Python Test
 tags: python
+date: 2020-10-30
 ---
 
 > As for those people, the truth doesn't count, what they only care is that the accepted truth must be advantageous to them - Strive to live in this world

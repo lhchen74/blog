@@ -1,5 +1,5 @@
 ---
-title: python socket
+title: Python Socket
 tags: python
 date: 2019-02-28
 ---

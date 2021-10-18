@@ -1,5 +1,5 @@
 ---
-title: java
+title: Java
 tags: java
 date: 2019-10-19
 ---

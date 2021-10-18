@@ -1,5 +1,5 @@
 ---
-title: python sphinx
+title: Python Sphinx
 tags: python
 date: 2019-10-31
 ---

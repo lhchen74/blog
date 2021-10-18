@@ -1,8 +1,9 @@
 ---
-title: python and java calculate memory
+title: Python And Java Calculate Memory
+date: 2020-09-30
 tags:
-  - python
-  - java
+    - python
+    - java
 ---
 
 ## python 和 java 计算程序占用内存

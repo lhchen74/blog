@@ -1,5 +1,5 @@
 ---
-title: oracle error
+title: Oracle Error
 tags: db
 date: 2019-03-22
 ---

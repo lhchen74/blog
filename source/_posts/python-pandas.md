@@ -1,6 +1,7 @@
 ---
-title: python pandas
+title: Python Pandas
 tags: python
+date: 2020-10-30
 ---
 
 ### 创建对象
@@ -516,11 +517,11 @@ result = df.append(s,ignore_index=True)
 
 对于”group by”操作，我们通常是指以下一个或多个操作步骤：
 
-- （Splitting）按照一些规则将数据分为不同的组；
+-   （Splitting）按照一些规则将数据分为不同的组；
 
-- （Applying）对于每组数据分别执行一个函数；
+-   （Applying）对于每组数据分别执行一个函数；
 
-- （Combining）将结果组合到一个数据结构中。
+-   （Combining）将结果组合到一个数据结构中。
 
 ```python
 import pandas as pd

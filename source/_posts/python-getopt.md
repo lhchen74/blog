@@ -1,15 +1,16 @@
 ---
-title: python getopt
+title: Python Getopt
 tags: python
+date: 2020-09-30
 ---
 
 ### 参数说明
 
 `getopt.getopt(args, shortopts, longopts=[])`
 
-- args 指的是当前脚本接收的参数，它是一个列表，可以通过 sys.argv 获得
-- shortopts 是短参数，例如 python test.py -h
-- longopts 是长参数，例如 python test.py --help
+-   args 指的是当前脚本接收的参数，它是一个列表，可以通过 sys.argv 获得
+-   shortopts 是短参数，例如 python test.py -h
+-   longopts 是长参数，例如 python test.py --help
 
 ### 测试一
 

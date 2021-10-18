@@ -1,5 +1,5 @@
 ---
-title: python fire
+title: Python Fire
 tags: python
 date: 2019-06-06
 ---

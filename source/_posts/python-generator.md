@@ -1,5 +1,5 @@
 ---
-title: python yield
+title: Python Yield
 tags: python
 date: 2019-02-28
 ---

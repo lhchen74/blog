@@ -1,5 +1,5 @@
 ---
-title: python flask restful
+title: Python Flask Restful
 tags: python
 date: 2019-02-28
 ---

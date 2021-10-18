@@ -1,6 +1,7 @@
 ---
-title: html content type
+title: HTML Content Type
 tags: html
+date: 2019-04-30
 ---
 
 ### application/x-www-form-urlencoded

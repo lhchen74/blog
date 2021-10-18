@@ -1,5 +1,5 @@
 ---
-title: go question
+title: Go Question
 tags: go
 date: 2020-03-17
 ---

@@ -1,5 +1,5 @@
 ---
-title: python pandas load excel to oracle
+title: Python Pandas Load Excel To Oracle
 tags: python
 date: 2020-01-20
 ---

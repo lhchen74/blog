@@ -1,5 +1,5 @@
 ---
-title: python pipenv
+title: Python Pipenv
 tags: python
 date: 2019-10-28
 ---

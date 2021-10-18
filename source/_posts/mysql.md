@@ -1,5 +1,5 @@
 ---
-title: mysql basic
+title: Mysql Basic
 tags: db
 date: 2019-11-08
 ---

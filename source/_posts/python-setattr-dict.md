@@ -1,5 +1,5 @@
 ---
-title: python setattr and dict update
+title: Python Setattr And Dict Update
 tags: python
 date: 2020-08-17
 ---

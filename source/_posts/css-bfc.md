@@ -1,5 +1,5 @@
 ---
-title: css bfc
+title: CSS BFC
 tags: css
 date: 2020-04-22
 ---
@@ -22,9 +22,7 @@ date: 2020-04-22
 HTML 代码如下：
 
 ```html
-<div class="container">
-    Some Content here
-</div>
+<div class="container">Some Content here</div>
 ```
 
 我们可以用 CSS 为 container 容器附加上述条件,如`overflow: scroll, overflow: hidden, display: flex, float: left, or display: table.`尽管这些条件都能形成一个 BFC，但是它们各自却有着不一样的表现：

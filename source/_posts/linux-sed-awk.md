@@ -1,5 +1,5 @@
 ---
-title: linux grep sed and awk
+title: Linux Grep Sed And Awk
 tags: linux
 date: 2021-03-14
 ---

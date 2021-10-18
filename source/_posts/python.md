@@ -1,5 +1,5 @@
 ---
-title: python
+title: Python
 tags: python
 categories: manual
 date: 2019-06-06

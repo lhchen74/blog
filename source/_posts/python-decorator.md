@@ -1,5 +1,5 @@
 ---
-title: python decorator
+title: Python Decorator
 tags: python
 date: 2019-10-30
 ---

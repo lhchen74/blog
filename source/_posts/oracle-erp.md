@@ -1,5 +1,5 @@
 ---
-title: oracle erp
+title: Oracle Erp
 date: 2018-10-17
 tags: erp
 ---

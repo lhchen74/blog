@@ -1,5 +1,5 @@
 ---
-title: javascript apply
+title: Javascript Apply
 tags: js
 date: 2019-07-15
 ---

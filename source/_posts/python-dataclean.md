@@ -1,5 +1,5 @@
 ---
-title: python data clean
+title: Python Data Clean
 tags: python
 date: 2019-07-15
 description: python 简单数据清理

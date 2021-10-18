@@ -1,6 +1,7 @@
 ---
-title: python inspect
+title: Python Inspect
 tags: python
+date: 2020-10-31
 ---
 
 ### 测试
@@ -115,11 +116,11 @@ inspect.Parameter.KEYWORD_ONLY 的类型是: <enum '\_ParameterKind'>
 
 3. inspect.Parameter 对象的 kind 属性是一个\_ParameterKind 枚举类型的对象，值为这个参数的类型（可变参数，关键词参数，etc）
 
-- a: POSITIONAL_OR_KEYWORD
-- b: POSITIONAL_OR_KEYWORD
-- c: VAR_POSITIONAL
-- d: KEYWORD_ONLY 在可变参数(包裹位置)后面的只能是仅限关键字参数和可变参数(包裹关键字)
-- e: KEYWORD_ONLY
-- f: VAR_KEYWORD
+-   a: POSITIONAL_OR_KEYWORD
+-   b: POSITIONAL_OR_KEYWORD
+-   c: VAR_POSITIONAL
+-   d: KEYWORD_ONLY 在可变参数(包裹位置)后面的只能是仅限关键字参数和可变参数(包裹关键字)
+-   e: KEYWORD_ONLY
+-   f: VAR_KEYWORD
 
 4. inspect.Parameter 对象的 default 属性：如果这个参数有默认值，即返回这个默认值，如果没有，返回一个 inspect.\_empty 类。

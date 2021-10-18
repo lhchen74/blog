@@ -1,5 +1,5 @@
 ---
-title: node pm2
+title: Node Pm2
 tags: node
 date: 2020-06-28
 ---

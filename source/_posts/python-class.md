@@ -1,5 +1,5 @@
 ---
-title: python class
+title: Python Class
 tags: python
 date: 2019-02-28
 ---

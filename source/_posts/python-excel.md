@@ -1,5 +1,5 @@
 ---
-title: python excel
+title: Python Excel
 tags: python
 date: 2020-03-05
 ---

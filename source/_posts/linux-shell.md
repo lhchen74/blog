@@ -1,5 +1,5 @@
 ---
-title: shell
+title: Shell
 tags: linux
 date: 2019-10-29
 ---

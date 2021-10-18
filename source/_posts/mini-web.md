@@ -1,5 +1,5 @@
 ---
-title: mini web
+title: Mini Web
 tags:
   - node
   - python

@@ -1,5 +1,5 @@
 ---
-title: json-server 详解
+title: Json-Server 详解
 tags: node
 date: 2019-10-26
 description: JSON-Server 是一个 Node 模块，运行 Express 服务器，你可以指定一个 json 文件作为 api 的数据源。

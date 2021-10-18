@@ -1,5 +1,5 @@
 ---
-title: db dialect
+title: Db Dialect
 tags: db
 date: 2019-10-11
 ---

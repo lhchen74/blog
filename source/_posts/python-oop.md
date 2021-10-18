@@ -1,5 +1,5 @@
 ---
-title: python oop
+title: Python Oop
 tags: python
 date: 2019-10-30
 ---

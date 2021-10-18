@@ -1,6 +1,7 @@
 ---
-title: python trap
+title: Python Trap
 tags: python
+date: 2020-10-30
 ---
 
 #### UnboundLocalError

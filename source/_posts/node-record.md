@@ -1,5 +1,5 @@
 ---
-title: node example record
+title: Node Example Record
 tags: node
 date: 2019-07-15
 ---

@@ -1,5 +1,5 @@
 ---
-title: oracle over
+title: Oracle Over
 date: 2018-08-08
 tags: db
 ---

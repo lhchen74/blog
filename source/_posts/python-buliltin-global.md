@@ -1,5 +1,5 @@
 ---
-title: python内置全局变量
+title: Python内置全局变量
 tags: python
 date: 2019-10-29
 ---

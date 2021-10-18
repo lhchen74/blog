@@ -1,5 +1,5 @@
 ---
-title: python uncompress compressed file
+title: Python Uncompress Compressed File
 tags: python
 date: 2019-10-25
 ---

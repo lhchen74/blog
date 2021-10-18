@@ -1,6 +1,7 @@
 ---
-title: css layout
+title: CSS Layout
 tags: css
+date: 2019-04-30
 ---
 
 ### 水平居中布局
@@ -28,7 +29,6 @@ tags: css
 优点：父级元素是否脱离文档流，不影响子级元素居中效果
 
 缺点：transform 是 css3 中新增属性，浏览器支持情况不好
-
 
 ```html
 <!DOCTYPE html>
@@ -86,7 +86,6 @@ tags: css
 
 缺点：vertical-align 会导致父级元素中的文本也会垂直居中对齐
 
-
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -131,11 +130,9 @@ tags: css
 
 **方式二**
 
-
 优点：父级元素是否脱离文档流，不影响子级元素居中效果
 
 缺点：transform 是 css3 中新增属性，浏览器支持情况不好
-
 
 ```html
 <!DOCTYPE html>
@@ -174,11 +171,9 @@ tags: css
 
 **方式一**
 
-
 优点：浏览器兼容性好
 
 缺点：需要在父级元素和子级元素同时设置样式,语义差
-
 
 ```html
 <!DOCTYPE html>
@@ -215,11 +210,9 @@ tags: css
 
 **方式二**
 
-
 优点：语义好
 
 缺点：需要在父级元素和子级元素同时设置样式, 浏览器兼容性不好
-
 
 ```html
 <!DOCTYPE html>
@@ -264,7 +257,6 @@ tags: css
 
 **方式一**
 
-
 优点：实现方式简单
 
 缺点：
@@ -274,7 +266,6 @@ tags: css
 定宽元素浮动但是自适应元素不浮动会导致浏览器兼容性问题 ???
 
 自适应元素的子元素不能使用 clear: both ???
-
 
 ```html
 <!DOCTYPE html>
@@ -332,7 +323,6 @@ tags: css
 自适应元素的 margin 属性元素需要与定宽元素的宽度保持一致
 
 实现复杂
-
 
 ```html
 <!DOCTYPE html>
@@ -440,7 +430,6 @@ without .left { position: relative} and inner
 
 **方式二**
 
-
 优点：
 
 实现方式简单
@@ -452,7 +441,6 @@ without .left { position: relative} and inner
 缺点：overflow 属性不仅解决了两列布局问题，同时设置了内容溢出
 
 实现复杂
-
 
 ```html
 <!DOCTYPE html>
@@ -487,11 +475,9 @@ without .left { position: relative} and inner
 
 **方式三**
 
-
 优点：浏览器兼容性好
 
 缺点：会存在表格的一些问题
-
 
 ```html
 <!DOCTYPE html>
@@ -535,7 +521,6 @@ without .left { position: relative} and inner
 ### 三列布局
 
 #### 定宽 + 定宽 + 自适应
-
 
 ```html
 <!DOCTYPE html>
@@ -582,7 +567,6 @@ without .left { position: relative} and inner
 #### 定宽 + 自适应 + 定宽(圣杯布局)
 
 **方式一**
-
 
 缺点: center 页面核心元素放在最下面，不利于搜索引擎搜索，搜索引擎按照页面顺序搜索
 

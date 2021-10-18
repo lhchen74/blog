@@ -1,5 +1,5 @@
 ---
-title: python __new__, __init__, __call__
+title: Python __New__, __Init__, __Call__
 tags: python
 date: 2019-10-10
 ---

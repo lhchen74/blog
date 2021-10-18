@@ -1,6 +1,7 @@
 ---
-title: python call c
+title: Python Call C
 tags: python
+date: 2019-04-30
 ---
 
 > 将`.c`后缀的文件编译为动态库文件(`.so`结尾)

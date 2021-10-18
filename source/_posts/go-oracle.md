@@ -1,5 +1,5 @@
 ---
-title: go oracle
+title: Go Oracle
 tags: go
 date: 2019-09-30
 ---

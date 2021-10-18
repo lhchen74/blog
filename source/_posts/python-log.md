@@ -1,5 +1,5 @@
 ---
-title: python logging
+title: Python Logging
 tags: python
 date: 2019-02-28
 ---

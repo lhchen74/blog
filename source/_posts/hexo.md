@@ -1,5 +1,5 @@
 ---
-title: hexo
+title: Hexo
 tag: miscellaneous
 date: 2018-01-01
 ---

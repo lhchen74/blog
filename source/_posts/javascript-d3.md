@@ -1,5 +1,5 @@
 ---
-title: d3
+title: D3
 tags: js
 date: 2019-03-01
 ---

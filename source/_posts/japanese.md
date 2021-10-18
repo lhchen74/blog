@@ -1,5 +1,5 @@
 ---
-title: japanese
+title: Japanese
 tags: japanese
 categories: manual
 date: 2021-04-06

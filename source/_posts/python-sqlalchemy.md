@@ -1,5 +1,5 @@
 ---
-title: python sqlalchemy
+title: Python Sqlalchemy
 tags: python
 date: 2019-10-30
 ---
@@ -158,7 +158,7 @@ Base.metadata.create_all(engine)
 SessionClass = sessionmaker(bind=engine)
 session = SessionClass()
 
-student = Student(name="babb", register_date=date.today()) 
+student = Student(name="babb", register_date=date.today())
 study_record = StudyRecord(day=10, status="Good", student=student)
 
 session.add(student)
@@ -359,8 +359,6 @@ a6 = session.query(orm_m2m_api.Author).filter(
 session.delete(a6)
 session.commit()
 ```
-
-
 
 ————————————————
 版权声明：本文为 CSDN 博主「彭世瑜」的原创文章，遵循 CC . BY-SA 版权协议，转载请附上原文出处链接及本声明。

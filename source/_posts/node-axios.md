@@ -1,5 +1,5 @@
 ---
-title: jquery fetch axios
+title: Jquery Fetch Axios
 tags: node
 date: 2019-07-10
 ---

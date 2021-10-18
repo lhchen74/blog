@@ -1,5 +1,5 @@
 ---
-title: oracle raise exception
+title: Oracle Raise Exception
 tags: db
 date: 2020-01-20
 ---

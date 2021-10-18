@@ -1,5 +1,5 @@
 ---
-title: python opencv
+title: Python Opencv
 tags: python
 date: 2019-07-16
 ---

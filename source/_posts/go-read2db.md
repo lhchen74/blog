@@ -1,5 +1,5 @@
 ---
-title: go read file to mysql
+title: Go Read File To Mysql
 tags: go
 date: 2020-03-17
 ---

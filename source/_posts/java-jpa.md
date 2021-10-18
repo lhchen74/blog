@@ -1,5 +1,5 @@
 ---
-title: java jpa
+title: Java Jpa
 tags: java
 date: 2019-11-2
 ---

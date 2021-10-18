@@ -1,5 +1,5 @@
 ---
-title: python property descriptor
+title: Python Property Descriptor
 tags: python
 date: 2019-07-18
 ---

@@ -1,5 +1,5 @@
 ---
-title: python wraps
+title: Python Wraps
 tags: python
 date: 2019-10-29
 ---

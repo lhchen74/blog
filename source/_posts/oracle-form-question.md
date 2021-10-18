@@ -1,5 +1,5 @@
 ---
-title: oracle form
+title: Oracle Form
 tags: erp
 date: 2018-08-08
 ---

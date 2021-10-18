@@ -1,5 +1,5 @@
 ---
-title: typescript sample
+title: Typescript Sample
 tags: js
 date: 2019-02-28
 ---

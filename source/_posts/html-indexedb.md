@@ -1,6 +1,7 @@
 ---
 title: html IndexedDB
 tags: html
+date: 2019-04-30
 ---
 
 ```html

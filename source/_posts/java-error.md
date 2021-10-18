@@ -1,5 +1,5 @@
 ---
-title: java error
+title: Java Error
 tags: java
 date: 2020-11-23
 ---

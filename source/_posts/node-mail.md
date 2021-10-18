@@ -1,5 +1,5 @@
 ---
-title: node mail
+title: Node Mail
 tags: node
 date: 2020-06-28
 ---

@@ -1,5 +1,5 @@
 ---
-title: css example
+title: CSS Example
 tags: css
 date: 2020-04-18
 ---

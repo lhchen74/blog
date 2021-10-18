@@ -1,5 +1,5 @@
 ---
-title: oracle common
+title: Oracle Common
 date: 2018-08-08
 tags: db
 ---

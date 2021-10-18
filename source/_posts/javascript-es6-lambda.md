@@ -1,5 +1,5 @@
 ---
-title: es6 lambda
+title: Es6 Lambda
 tags: js
 date: 2019-10-29
 ---

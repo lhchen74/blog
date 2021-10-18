@@ -1,5 +1,5 @@
 ---
-title: node cors
+title: Node Cors
 tags: node
 date: 2019-07-10
 ---

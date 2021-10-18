@@ -1,5 +1,5 @@
 ---
-title: es6
+title: Es6
 tags: js
 date: 2019-10-29
 ---

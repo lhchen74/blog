@@ -1,5 +1,5 @@
 ---
-title: oracle kill session
+title: Oracle Kill Session
 date: 2018-08-08 11:21:06
 tags: db
 ---

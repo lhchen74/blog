@@ -1,5 +1,5 @@
 ---
-title: oracle erp om
+title: Oracle Erp Om
 date: 2018-10-18
 tags: db
 ---

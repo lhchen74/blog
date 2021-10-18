@@ -1,5 +1,5 @@
 ---
-title: python quickstart
+title: Python Quickstart
 tags: python
 date: 2019-10-29
 ---

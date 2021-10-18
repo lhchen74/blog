@@ -1,5 +1,5 @@
 ---
-title: python binary
+title: Python Binary
 tags: python
 date: 2019-07-15
 description: python 处理二进制 wav 文件

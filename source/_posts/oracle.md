@@ -1,5 +1,5 @@
 ---
-title: oracle
+title: Oracle
 tags: db
 categories: manual
 date: 2019-06-06

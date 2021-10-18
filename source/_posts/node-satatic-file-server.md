@@ -1,5 +1,5 @@
 ---
-title: node static file server
+title: Node Static File Server
 tags: node
 date: 2019-07-15
 ---

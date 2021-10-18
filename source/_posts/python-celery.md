@@ -1,5 +1,5 @@
 ---
-title: python celery
+title: Python Celery
 tags: python
 date: 2019-10-11
 ---

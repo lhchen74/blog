@@ -1,5 +1,5 @@
 ---
-title: python iterable
+title: Python Iterable
 tags: python
 date: 2019-02-28
 ---

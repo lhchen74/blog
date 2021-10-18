@@ -1,5 +1,5 @@
 ---
-title: python pymysql
+title: Python Pymysql
 tags: python
 date: 2019-07-15
 description: python 使用 pymysql 操作 mysql 数据库

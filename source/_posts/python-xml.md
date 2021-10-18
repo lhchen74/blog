@@ -1,5 +1,5 @@
 ---
-title: python xml parsing
+title: Python Xml Parsing
 tags: python
 date: 2019-07-15
 ---

@@ -1,5 +1,5 @@
 ---
-title: python thread
+title: Python Thread
 tags: python
 date: 2019-07-15
 ---

@@ -1,5 +1,5 @@
 ---
-title: oracle join
+title: Oracle Join
 date: 2018-08-08
 tags: db
 ---

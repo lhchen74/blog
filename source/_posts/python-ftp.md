@@ -1,5 +1,5 @@
 ---
-title: python ftp sftp
+title: Python FTP and SFTP Connect
 tags: python
 date: 2019-02-28
 ---

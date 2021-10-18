@@ -1,6 +1,7 @@
 ---
-title: oracle data import
+title: Oracle Data Import
 tags: db
+date: 2019-04-30
 ---
 
 ### 使用 for update

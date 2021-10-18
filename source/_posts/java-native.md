@@ -1,5 +1,5 @@
 ---
-title: java native
+title: Java Native
 tags: java
 date: 2019-10-30
 ---

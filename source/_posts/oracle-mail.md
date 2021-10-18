@@ -1,5 +1,5 @@
 ---
-title: oracle plsql mail
+title: Oracle Plsql Mail
 date: 2018-10-25
 tags: db
 ---

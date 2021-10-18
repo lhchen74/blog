@@ -1,5 +1,5 @@
 ---
-title: english word
+title: English Word
 tags: english
 date: 2020-08-13
 ---

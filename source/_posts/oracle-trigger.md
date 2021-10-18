@@ -1,5 +1,5 @@
 ---
-title: oracle trigger
+title: Oracle Trigger
 tags: db
 date: 2019-06-06
 ---

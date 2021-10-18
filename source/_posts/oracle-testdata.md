@@ -1,5 +1,5 @@
 ---
-title: oracle test data generate
+title: Oracle Test Data Generate
 tags: db
 date: 2019-12-11
 ---

@@ -1,6 +1,7 @@
 ---
-title: python pandas load data
+title: Python Pandas Load Data
 tags: python
+date: 2020-10-30
 ---
 
 ### load csv
@@ -49,7 +50,7 @@ plt.show()
 
 ![plot](python-read/plot.png)
 
-#### 读取txt文件，自己指定分隔符、列名
+#### 读取 txt 文件，自己指定分隔符、列名
 
 ```python
 import pandas as pd
@@ -176,4 +177,3 @@ conn = pymysql.connect(
     )
 df = pd.read_sql("select * from test", con=conn)
 ```
-

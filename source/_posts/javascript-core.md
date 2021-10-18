@@ -1,5 +1,5 @@
 ---
-title: javascript core
+title: Javascript Core
 tags: js
 date: 2019-07-10
 ---

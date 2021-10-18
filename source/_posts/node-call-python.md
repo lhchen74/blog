@@ -1,5 +1,5 @@
 ---
-title: node call python
+title: Node Call Python
 tags: node
 date: 2019-07-15
 ---

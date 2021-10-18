@@ -1,5 +1,5 @@
 ---
-title: javascript create object
+title: Javascript Create Object
 tags: js
 date: 2019-07-10
 ---

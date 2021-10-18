@@ -1,5 +1,5 @@
 ---
-title: 正则表达式的先行断言(lookahead)和后行断言(lookbehind)
+title: 正则表达式的先行断言(Lookahead)和后行断言(Lookbehind)
 tags: regex
 date: 2021-08-03
 ---

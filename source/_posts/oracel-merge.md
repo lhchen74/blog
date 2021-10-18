@@ -1,5 +1,5 @@
 ---
-title: oracle merge
+title: Oracle Merge
 tags: db
 date: 2020-07-24
 ---

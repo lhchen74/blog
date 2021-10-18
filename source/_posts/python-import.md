@@ -1,5 +1,5 @@
 ---
-title: python import
+title: Python Import
 tags: python
 date: 2019-07-16
 description: python import and from import

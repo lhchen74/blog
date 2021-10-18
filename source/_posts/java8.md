@@ -1,5 +1,5 @@
 ---
-title: java8
+title: Java8
 tags: java
 date: 2019-10-29
 ---

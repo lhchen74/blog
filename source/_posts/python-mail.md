@@ -1,5 +1,5 @@
 ---
-title: python send mail
+title: Python Send Mail
 tags: python
 date: 2019-02-28
 ---

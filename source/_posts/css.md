@@ -1,7 +1,7 @@
 ---
-title: css
+title: CSS
 tags: css
-date: 2020-04-18Un
+date: 2020-04-18
 ---
 
 ### Unit
@@ -503,7 +503,7 @@ D: 类型和伪元素择器 div, ::before
 
 ![](css/c10.jpg)
 
-### Inline、Block and  Inline-block
+### Inline、Block and Inline-block
 
 block 元素不设定宽度默认会占据一整行，inline, inline-block 会占据内容的宽度
 
@@ -635,114 +635,114 @@ Question is, can I resize the image with a percentage of itself without using ja
 
 1. This method resize image only visual not it actual dimensions in DOM, and visual state after resize centered in middle of original size. you can use `transform-origin: top left` adjust scale origin.
 
-   **html:**
+    **html:**
 
-   ```html
-   <img src="example.png" />
-   ```
+    ```html
+    <img src="example.png" />
+    ```
 
-   **css:**
+    **css:**
 
-   ```css
-   .fake {
-      transform-origin: top left;
-     -webkit-transform: scale(0.5); /* Saf3.1+, Chrome */
+    ```css
+    .fake {
+        transform-origin: top left;
+        -webkit-transform: scale(0.5); /* Saf3.1+, Chrome */
         -moz-transform: scale(0.5); /* FF3.5+ */
-         -ms-transform: scale(0.5); /* IE9 */
-          -o-transform: scale(0.5); /* Opera 10.5+ */
-             transform: scale(0.5);
-               /* IE6–IE9 */
-               filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9999619230641713, M12=-0.008726535498373935, M21=0.008726535498373935, M22=0.9999619230641713,SizingMethod='auto expand');
-   }
-   ```
+        -ms-transform: scale(0.5); /* IE9 */
+        -o-transform: scale(0.5); /* Opera 10.5+ */
+        transform: scale(0.5);
+        /* IE6–IE9 */
+        filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9999619230641713, M12=-0.008726535498373935, M21=0.008726535498373935, M22=0.9999619230641713,SizingMethod='auto expand');
+    }
+    ```
 
 2. The trick is to let the container element shrinkwrap the child image, so it will have a size equal to that of the unsized image. Thus, when setting `width` property of the image as a percentage value, the image is scaled relative to its original scale.
 
-   **html:**
+    **html:**
 
-   ```html
-   <span>
-       <img src="example.png"/>
-   </span>
-   ```
+    ```html
+    <span>
+        <img src="example.png" />
+    </span>
+    ```
 
-   **css:**
+    **css:**
 
-   ```css
-   span {
-       display: inline-block;
-   }
-   img {
-       width: 50%;
-       height: 50%;
-   }
-   ```
+    ```css
+    span {
+        display: inline-block;
+    }
+    img {
+        width: 50%;
+        height: 50%;
+    }
+    ```
 
 3. you can also take advantage of the newly introduced CSS3 `fit-content`. However, not all popular browser versions support it at the time of writing.
 
-   **html:**
+    **html:**
 
-   ```html
-   <figure>
-       <img src="example.png"/>
-   </figure>
-   ```
+    ```html
+    <figure>
+        <img src="example.png" />
+    </figure>
+    ```
 
-   **css:**
+    **css:**
 
-   ```css
-   figure {
-       height: fit-content;
-       width: fit-content;
-   }
-   
-   img {
-       height: 50%;
-       width: 50%;
-   }
-   ```
+    ```css
+    figure {
+        height: fit-content;
+        width: fit-content;
+    }
+
+    img {
+        height: 50%;
+        width: 50%;
+    }
+    ```
 
 ### Select not first child
 
-   - 使用 `not` 伪类选择器。
-   
-     ```css
-     p:not(:first-child) {
-        color: red;
-     }
-     ```
-   
-   - 使用 `nth-child` 选择器，`nth-child(n + 2)` 中的 n 代表从 0 开始的自然数，n + 2 表示 `>= 2`的自然数。
-   
-     ```css
-     p:nth-child(n + 2) {
-        color: red;
-     }
-     ```
-   
-   - 使用 `+ ` 选择器，表示选择紧跟着的兄弟元素。`p + p` 表示 p 元素相邻后面的 p 元素, 第一个 p 元素不会选中。`~` 表示选择所有后面所有的兄弟元素。
+-   使用 `not` 伪类选择器。
 
-   ```css
-   <!DOCTYPE html>
-   <html lang="en">
-       <head>
-           <title>CSS Not First Child</title>
-           <style>
-               p + p {
-                   color: red;
-               }
-           </style>
-       </head>
-       <body>
-           <p>1</p>
-           <p>2</p>
-           <p>3</p>
-           <p>4</p>
-       </body>
-   </html>
-   ```
+    ```css
+    p:not(:first-child) {
+        color: red;
+    }
+    ```
 
-   Result: 
+-   使用 `nth-child` 选择器，`nth-child(n + 2)` 中的 n 代表从 0 开始的自然数，n + 2 表示 `>= 2`的自然数。
+
+    ```css
+    p:nth-child(n + 2) {
+        color: red;
+    }
+    ```
+
+-   使用 `+ ` 选择器，表示选择紧跟着的兄弟元素。`p + p` 表示 p 元素相邻后面的 p 元素, 第一个 p 元素不会选中。`~` 表示选择所有后面所有的兄弟元素。
+
+```css
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CSS Not First Child</title>
+        <style>
+            p + p {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+    </body>
+</html>
+```
+
+Result:
 
 ![1629868296182](css/1629868296182.png)
 
@@ -921,13 +921,13 @@ const style = window.getComputedStyle(element [, pseudoElt]);
 window.requestAnimationFrame(callback);
 ```
 
-- `callback`
+-   `callback`
 
-  下一次重绘之前更新动画帧所调用的函数(即上面所说的回调函数)。该回调函数会被传入[`DOMHighResTimeStamp`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMHighResTimeStamp)参数，该参数与[`performance.now()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Performance/now)的返回值相同，它表示`requestAnimationFrame()` 开始去执行回调函数的时刻。
+    下一次重绘之前更新动画帧所调用的函数(即上面所说的回调函数)。该回调函数会被传入[`DOMHighResTimeStamp`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMHighResTimeStamp)参数，该参数与[`performance.now()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Performance/now)的返回值相同，它表示`requestAnimationFrame()` 开始去执行回调函数的时刻。
 
-- 返回值
+-   返回值
 
-  一个 `long` 整数，请求 ID ，是回调列表中唯一的标识。是个非零值，没别的意义。你可以传这个值给 [`window.cancelAnimationFrame()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/cancelAnimationFrame) 以取消回调函数。
+    一个 `long` 整数，请求 ID ，是回调列表中唯一的标识。是个非零值，没别的意义。你可以传这个值给 [`window.cancelAnimationFrame()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/cancelAnimationFrame) 以取消回调函数。
 
 ```html
 <!DOCTYPE html>

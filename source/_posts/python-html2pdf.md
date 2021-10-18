@@ -1,6 +1,7 @@
 ---
-title: python html2pdf
+title: Python HTML2PDF
 tags: python
+date: 2020-11-01
 ---
 
 > I can't be a savior. If I save one's life, i am required to save others. Once I fail to save everyone, the world will call me hypocritical. - Strive to live in this world

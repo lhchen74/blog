@@ -1,5 +1,5 @@
 ---
-title: html emmet
+title: HTML Emmet
 tags: html
 date: 2019-10-28
 ---

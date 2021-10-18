@@ -1,5 +1,5 @@
 ---
-title: python faker
+title: Python Faker
 tags: python
 date: 2020-06-10
 ---
