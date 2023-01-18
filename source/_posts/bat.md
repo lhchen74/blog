@@ -1,6 +1,6 @@
 ---
 title: Window Bat
-tags: window
+tags: shell
 categories: manual
 date: 2019-06-06
 ---
@@ -111,7 +111,7 @@ for %%i in (%str%) do if exist %%i: echo %%i
 
 for %%i in (*.bat) do echo "%%i"
 
-:: ? 0个或一个字符
+:: ? 0 个或一个字符
 for %%i in (???.bat) do echo "%%i"
 ```
 

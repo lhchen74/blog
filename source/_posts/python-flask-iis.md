@@ -120,5 +120,3 @@ CGI 如果沒有安裝 CGI, **後續處理常式對應 會找不到 FastCgiModul
 ![](python-flask-iis/1565157431919.png)
 
 ![](python-flask-iis/1565157521446.png)
-
-> 引用: [https://gelomen.github.io/Flask/%E4%BD%BF%E7%94%A8-IIS-%E5%9C%A8-Windows-%E9%83%A8%E7%BD%B2-Flask-%E7%BD%91%E7%AB%99.html](https://gelomen.github.io/Flask/使用-IIS-在-Windows-部署-Flask-网站.html)

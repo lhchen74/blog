@@ -15,6 +15,11 @@ code,
   font-size: $font-size-medium;
 }
 
+// remove pre, code indent - added by babb 20220808
+code {
+  white-space: pre-line;
+}
+
 
 :not(td)>pre {
   background: var(--grey-1);
@@ -64,6 +69,10 @@ code,
     left: .75rem;
     top: .8125rem;
     box-shadow: 1.25rem 0 #fdbc40, 2.5rem 0 #35cd4b;
+
+    // added by babb 20220808
+    top: 5px;
+    left: 3rem;
   }
 
   figcaption {
@@ -167,9 +176,10 @@ code,
     vertical-align: unset;
     border: unset;
     the-transition();
-    pre::before {
-      content: " ";
-    }
+    // remove content - added by babb 20220808
+    // pre::before {
+    //   content: " ";
+    // }
   }
 
   td:first-child {
@@ -183,10 +193,13 @@ code,
     padding-right: .9375rem;
     color: var(--color-grey);
     z-index: $zindex-1;
+
+    padding-top: 1rem; // added by babb 20220808
   }
 
   td:nth-child(2) {
     padding-left: 3rem;
+    padding-top: 1rem;  // added by babb 20220808
   }
 
   td:last-child {
@@ -347,11 +360,28 @@ code,
 }
 
 
-// Remove plain code lineno - babb add 2021/07/14
-// figure.plain {
-//  .code-container {
-//    .gutter {
-//      display: none;
-//    }
-//  }
-//} 
+// remove plain code style - added by babb 20220808
+.highlight.plain {
+  font-family: 'Mulish', -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+
+  &::before {
+    content: none;
+  }
+
+  .code-container td:nth-child(2) {
+    padding-left: 1rem;
+    padding-top: 1rem;
+  }
+
+  pre {
+    white-space: pre-line;
+  }
+
+  .gutter {
+    display: none;  
+  }
+
+  // .operation {
+  //   display: none;  
+  // }
+}

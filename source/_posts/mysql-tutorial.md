@@ -4,29 +4,33 @@ tags: db
 date: 2020-09-16
 ---
 
-### ER Digram
+## ER Digram
 
-MySQL Workbench 菜单 Database -> Reverse Engineer 选择相关 Database 生成 Model Digram
+MySQL Workbench 可以生成数据表的 Entity RelationShip Digram. Menu Path: Database -> Reverse Engineer -> 选择相关 Database 生成 Model Digram.
 
-![](mysql-tutorial/1599881828375.png)
+![ER Diagram Path](mysql-tutorial/er_diagram01.png)
 
-如下是 sql_store 的 ER Digram(Entity RelationShip)
+如下是 sql_store 的 ER Digram.
 
-![](mysql-tutorial/1599881916173.png)
+![ER Diagram](mysql-tutorial/er_diagram02.png)
 
-Identifying relationships exist when the primary key of the parent entity is included in the primary key of the child entity. On the other hand, a non-identifying relationship exists when the primary key of the parent entity is included in the child entity but not as part of the child entity’s primary key.
+notes: Identifying relationships exist when the primary key of the parent entity is included in the primary key of the child entity. On the other hand, a non-identifying relationship exists when the primary key of the parent entity is included in the child entity but not as part of the child entity’s primary key.
 
 当父实体的主键包含在子实体的主键中时，存在标识关系。另一方面，如果父实体的主键包含在子实体中，但不作为子实体的主键的一部分，则存在非标识关系。
 
-### Notes
+## Notes
 
-**mysql 除了 select 以外的子句都是可选的**
+### All clauses other than Select are optional
+
+Select 以外的子句都是可选的
 
 ```sql
 select 1, 2;
 ```
 
-**mysql 栏位值不区分大小写**
+### Field values are case insensitive by default
+
+栏位值默认不区分大小写
 
 ```sql
 select * from customers where state = 'va';
@@ -36,30 +40,36 @@ select * from customers where state = 'va';
 | ----------- | ---------- | ---------- | ---------- | ------------ | ---------------------- | ------- | ----- | ------ |
 | 2           | Ines       | Brushfield | 1986-04-13 | 804-427-9456 | 14187 Commercial Trail | Hampton | VA    | 947    |
 
-\*\*mysql 默认日期格式是 `%Y-%m-%d`
+### Default Date Format `%Y-%m-%d`
 
-```mysql
-select * from customers where birth_date > '1990-01-01';
+```sql
+select *
+  from customers
+ where birth_date > '1990-01-01';
 ```
 
-**varchar 和 char**
+### Varchar vs Char
 
 name varchar(50) 如果 name 只有 5 个字符那么 varchar(50) 只使用 5 个字符，不会浪费空间；
 
 name char(50) 如果 name 只有 5 个字符会插入 45 个空白字符填满到 50 个字符。
 
-**default**
+### Default
 
 default 表示让 mysql 生成这个值，可以用于主键自增栏位和有默认值的栏位
 
-```mysql
-insert into customers values(default, 'babb', 'chen', default, default, '18896763538', 'henan', 'xy', default);
-update customers set points = default where customer_id = 1;
+```sql
+insert into customers
+values (default, 'babb', 'chen', default, default, '18896763538', 'henan', 'xy', default);
+
+update customers
+  set points = default
+where customer_id = 1;
 ```
 
-![](mysql-tutorial/1599879896052.png)
+![Default](mysql-tutorial/default.png)
 
-**insert multi row**
+### Insert Multi Rows
 
 ```sql
 insert into shippers (name)
@@ -68,47 +78,56 @@ values ('Shipper1'),
        ('Shipper3');
 ```
 
-**insert multi table**
+### Insert Multi Tables
 
 ```sql
-insert into orders (customer_id, order_date, status) values (1, '2010-02-02', 1);
+insert into orders (customer_id, order_date, status)
+values (1, '2010-02-02', 1);
 
 insert into order_items
 values (last_insert_id(), 1, 1, 2.95), -- last_insert_id() 插入 orders 中的 order_id
        (last_insert_id(), 2, 1, 3.95);
 ```
 
-### Regexp
+## Regexp
 
 查询 last_name 包含 field|mac|rose 的数据
 
 ```sql
-select * from customers where last_name regexp 'field|mac|rose';
+select *
+  from customers
+ where last_name regexp 'field|mac|rose';
 ```
 
 查询 last_name 包含 ge|ie|me 的数据
 
 ```sql
-select * from customers where last_name regexp '[gim]e';
+select *
+  from customers
+ where last_name regexp '[gim]e';
 ```
 
 查询 last_name 以 b 开头且包含 ge|ie|me 的数据
 
 ```sql
-select * from customers where last_name regexp '^b.*?[gim]e';
+select *
+  from customers
+ where last_name regexp '^b.*?[gim]e';
 ```
 
-### Limit
+## Limit
 
 跳过前 6 条记录，然后获取 3 条记录
 
 ```sql
-select * from customers limit 6, 3;
+select *
+  from customers
+ limit 6, 3;
 ```
 
-### Order
+## Order
 
-默认状态下 group by 会按照 group by 子句中指定的列排序会影响性能, 所以查询或 view 中应尽量避免使用 group by
+默认状态下 group by 会按照其指定的列排序会影响性能, 所以查询或 view 中应尽量避免使用 group by
 
 ```sql
 select client_id, sum(invoice_total) as total_sales
@@ -123,11 +142,13 @@ select client_id, sum(invoice_total) as total_sales
 | 3         | 705.90      |
 | 5         | 980.02      |
 
-### Aggregate Function
+## Aggregate Function
 
 ```sql
 use sql_invoicing;
-select * from sql_invoicing.invoices;
+
+select *
+  from sql_invoicing.invoices;
 ```
 
 | invoice_id | number      | client_id | invoice_total | payment_total | invoice_date | due_date   | payment_date |
@@ -150,21 +171,20 @@ select * from sql_invoicing.invoices;
 | 18         | 52-269-9803 | 5         | 180.17        | 42.77         | 2019-05-23   | 2019-06-12 | 2019-01-08   |
 | 19         | 83-559-4105 | 1         | 134.47        | 0.00          | 2019-11-23   | 2019-12-13 |              |
 
-#### max, avg, sum, count
+### max, avg, sum, count
 
 max, min, avg, sum, count 等聚合函数会忽略 null 的记录, 聚合栏位前添加 distinct 可以排除重复记录
 
 ```sql
-select
-	max(invoice_total) as highest,
-    min(invoice_total) as lowest,
-    avg(invoice_total) as average,
-    sum(invoice_total) as total,
-    count(invoice_total) as number_of_invoices,
-	count(payment_date) as number_of_payments,
-    count(*) as total_records,
-    count(client_id) as number_of_clients,
-    count(distinct client_id) as number_of_distinct_clients
+select max(invoice_total) as highest,
+       min(invoice_total) as lowest,
+       avg(invoice_total) as average,
+       sum(invoice_total) as total,
+       count(invoice_total) as number_of_invoices,
+       count(payment_date) as number_of_payments,
+       count(*) as total_records,
+       count(client_id) as number_of_clients,
+       count(distinct client_id) as number_of_distinct_clients
 from invoices;
 ```
 
@@ -172,7 +192,7 @@ from invoices;
 | ------- | ------ | ---------- | ------- | ------------------ | ------------------ | ------------- | ----------------- | -------------------------- |
 | 189.12  | 101.79 | 152.388235 | 2590.60 | 17                 | 7                  | 17            | 17                | 4                          |
 
-#### rollup
+### rollup
 
 根据 group by 栏位分层归纳汇总
 
@@ -193,7 +213,7 @@ select client_id,
 
 ```sql
 select state,
-	   city,
+       city,
        sum(invoice_total) as total_sales
   from invoices i
   join clients using (client_id)    --using (client_id) <=> invoices.client_id = clients.client_id
@@ -212,9 +232,9 @@ select state,
 | WV    |               | 101.79      |
 |       |               | 2590.60     |
 
-### Common Use Function
+## Common Use Function
 
-#### numeric
+### numeric
 
 rand() 返回 0 - 1 之间的随机数
 
@@ -232,7 +252,7 @@ SELECT
 | ----------- | -------------- | ----------------- | ------------- | ----------- | ------------------- |
 | 6           | 5.7            | 5.7               | 6             | 5           | 0.27181225481611887 |
 
-#### string
+### string
 
 ```sql
 select upper('sky') a, lower('Sky') b,
@@ -248,7 +268,7 @@ select upper('sky') a, lower('Sky') b,
 | --- | --- | --- | --- | --- | ---- | ---- | ---- | --- | --- | -------- | -------- |
 | SKY | sky | sky | sky | sky | babb | chen | chen | 6   | 6   | bob chen | babbchen |
 
-#### date
+### date
 
 ```sql
 select now(), curdate(), curtime();
@@ -270,8 +290,8 @@ extract 也可 b 以用来提取日期的一部分，并且 extract 是 sql 标�
 
 ```sql
 select extract(year from now()) as year,
-	   extract(month from now()) as month,
-	   extract(day from now()) as day,
+       extract(month from now()) as month,
+       extract(day from now()) as day,
        extract(hour from now()) as hour,
        extract(minute from now()) as minute,
        extract(second from now()) as second;
@@ -291,33 +311,35 @@ date
 
 日期的相关计算
 
-msyql 在执行查询语句时，会先对 SELECT 子句里的列表进行扫描，并对列进行计算, 所以 (select datediff(tomorrow, yesterday)) as datediff 可以正确运行
+MySQL 在执行查询语句时，会先对 SELECT 子句里的列表进行扫描，并对列进行计算, 所以 (select datediff(tomorrow, yesterday)) as datediff 可以正确运行
 
 ```sql
 select date_add(now(), interval 1 day) as tomorrow,
        date_sub(now(), interval 1 day) as yesterday,
        (select datediff(tomorrow, yesterday)) as datediff,
-        time_to_sec('09:00') - time_to_sec('09:02') as secdiff;
+       time_to_sec('09:00') - time_to_sec('09:02') as secdiff;
 ```
 
 | tomorrow            | yesterday           | datediff | secdiff |
 | ------------------- | ------------------- | -------- | ------- |
 | 2020-09-13 16:35:38 | 2020-09-11 16:35:38 | 2        | -120    |
 
-#### null
+### null
 
 coalesce 返回多个值中的第一个非 null 值
 
 ```sql
-select ifnull(null, 'unknown') column_a, ifnull('a', 'unknown') column_b,
-       coalesce(null, null, null, 'b') column_c, coalesce(null, 'a', 'b') column_d;
+select ifnull(null, 'unknown') column_a,
+       ifnull('a', 'unknown') column_b,
+       coalesce(null, null, null, 'b') column_c,
+       coalesce(null, 'a', 'b') column_d;
 
-column_a	column_b	column_c	column_d
+column_a    column_b    column_c    column_d
 -------     --------    -------     --------
-unknown	    a	        b	        a
+unknown        a            b            a
 ```
 
-#### case
+### case
 
 ```sql
 select order_id,
@@ -328,15 +350,15 @@ select order_id,
 
 select order_id,
        case
-		  when year(order_date) = year(now()) then 'Active'
+          when year(order_date) = year(now()) then 'Active'
           when year(order_date) = year(now()) - 1 then 'Last Year'
           when year(order_date) < year(now()) - 1 then 'Archived'
           else 'Future'
-	   end as category
+       end as category
   from orders;
 ```
 
-### View
+## View
 
 updateable view
 
@@ -374,23 +396,23 @@ update invices_with_balance
  where invoice_id = 1;
 ```
 
-### Procedure
+## Procedure
 
 ```sql
 delimiter $$
 
 drop procedure if exists get_unpaid_invoices_for_client;
 
-create  procedure get_unpaid_invoices_for_client(
-	client_id int,
+create procedure get_unpaid_invoices_for_client(
+    client_id int,
     out invoices_count int,
     out invoices_total decimal
 )
 begin
-	select count(*), sum(invoice_total)
+    select count(*), sum(invoice_total)
       into invoices_count, invoices_total
       from invoices i
-	 where i.client_id = client_id
+     where i.client_id = client_id
        and i.payment_total = 0;
 end $$
 
@@ -401,12 +423,12 @@ set @invoices_total = 0;
 call get_unpaid_invoices_for_client(5, @invoices_count,  @invoices_total);
 select @invoices_count,  @invoices_total;
 
-@invoices_count	 @invoices_total
+@invoices_count   @invoices_total
 ---------------  ----------------
-3	             490
+3                 490
 ```
 
-### Function
+## Function
 
 ```sql
 delimiter $$
@@ -419,16 +441,16 @@ returns integer
 -- modifies sql data -- 修改 sql 数据
 reads sql data -- 读取 sql 数据
 begin
-	declare risk_factor decimal(9, 2) default 0;
+    declare risk_factor decimal(9, 2) default 0;
     declare invoices_total decimal(9, 2);
     declare invoices_count int;
 
     select count(*), sum(invoice_total)
       into invoices_count, invoices_total
       from invoices
-	 where client_id = client_id;
+     where client_id = client_id;
 
-	set risk_factor = invoices_total / invoices_count * 5;
+    set risk_factor = invoices_total / invoices_count * 5;
 
     return ifnull(risk_factor, 0);
 
@@ -444,7 +466,7 @@ select
  from clients;
 ```
 
-### Event
+## Event
 
 开启 event_scheduler
 
@@ -463,10 +485,10 @@ drop event if exists yearly_delete_stale_audit_rows;
 create event yearly_delete_stale_audit_rows
 on schedule
     -- at '2019-05-01'
-	every 1 year starts '2019-01-01' ends '2029-01-01'
+    every 1 year starts '2019-01-01' ends '2029-01-01'
 do
 begin
-	delete from payment_audit
+    delete from payment_audit
     where action_date < now() - interval 1 year;  -- <=> datesub(now(), interval 1 year)
 end $$
 
@@ -480,7 +502,7 @@ show events;
 show events like 'yearly%';
 ```
 
-| Db            | Name                           | Definer        | Time zone | Type      | Execute at | Interval value | Interval field | Starts              | Ends                | Status  | Originator | character_set_client | collation_connection | Database Collation |
+| DB            | Name                           | Definer        | Time zone | Type      | Execute at | Interval value | Interval field | Starts              | Ends                | Status  | Originator | character_set_client | collation_connection | Database Collation |
 | ------------- | ------------------------------ | -------------- | --------- | --------- | ---------- | -------------- | -------------- | ------------------- | ------------------- | ------- | ---------- | -------------------- | -------------------- | ------------------ |
 | sql_invoicing | yearly_delete_stale_audit_rows | root@localhost | SYSTEM    | RECURRING |            | 1              | YEAR           | 2019-01-01 00:00:00 | 2029-01-01 00:00:00 | ENABLED | 1          | utf8mb4              | utf8mb4_0900_ai_ci   | utf8_general_ci    |
 
@@ -491,7 +513,7 @@ alter event yearly_delete_stale_audit_rows disable;
 alter event yearly_delete_stale_audit_rows enable;
 ```
 
-### Transactions
+## Transactions
 
 **autocommit**
 
@@ -500,9 +522,9 @@ alter event yearly_delete_stale_audit_rows enable;
 ```sql
 show variables like 'autocommit';
 
-Variable_name	Value
+Variable_name    Value
 ------------    -----
-autocommit	    ON
+autocommit        ON
 ```
 
 **创建 transaction**
@@ -519,13 +541,13 @@ values (last_insert_id(), 1, 1, 1); -- 3
 commit;
 ```
 
-模拟执行到 insert into order_items 时断开 server 连接
+模拟执行到 insert into order_items 时断开 server 连接。
 
-Workbench 菜单 Query -> Excute Current Statement (Ctrl + Enter) 执行 1， 2， 关闭连接，重新连接查询 orders 数据没有被插入
+Workbench 菜单 Query -> Excute Current Statement (Ctrl + Enter) 执行 1， 2， 关闭连接，重新连接查询 orders 数据没有被插入。
 
-![](mysql-tutorial/1599966590930.png)
+![](mysql-tutorial/concurrent.png)
 
-**concurrency and locking**
+### Concurrency and Locking
 
 ```sql
 select * from customers where customer_id = 1;
@@ -535,9 +557,11 @@ select * from customers where customer_id = 1;
 | ----------- | ---------- | ---------- | ---------- | ------------ | -------------- | ------- | ----- | ------ |
 | 1           | Babara     | MacCaffrey | 1986-03-28 | 781-932-9754 | 0 Sage Terrace | Waltham | MA    | 2303   |
 
-如下在第一个连接中将客户的积分加 10 但是没有提交。在第二个连接中同样执行将客户的积分加 10 的操作，此时会等待第一个连接操作的 commit 或 rollback
+如下在第一个连接中将客户的积分加 10 但是没有提交。在第二个连接中同样执行将客户的积分加 10 的操作，此时会等待第一个连接操作的 commit 或 rollback.
 
-![](mysql-tutorial/1599968017795.png)![](mysql-tutorial/1599968189973.png)
+| Connection One                                 | Connection Two                                 |
+| ---------------------------------------------- | ---------------------------------------------- |
+| ![](mysql-tutorial/concurrency_locking_01.png) | ![](mysql-tutorial/concurrency_locking_02.png) |
 
 将第一个操作 commit 之后，第二个也进行 commit, 如下客户 customer_id 为 1 的积分会增加 20。
 
@@ -545,51 +569,62 @@ select * from customers where customer_id = 1;
 | ----------- | ---------- | ---------- | ---------- | ------------ | -------------- | ------- | ----- | ------ |
 | 1           | Babara     | MacCaffrey | 1986-03-28 | 781-932-9754 | 0 Sage Terrace | Waltham | MA    | 2323   |
 
-**Lost Updates**
+### Lost Updates
 
 当两个事务尝试更新相同的数据并且没有上锁时，就会发生这种情况，较晚提交的事务会覆盖较早事务做的更改。
 
 如下事务 A 和事务 B 对同一数据修改，如果事务 B 更晚提交就会覆盖事务 A 的提交，事务 A 的更新就会丢失。解决方法是使用锁。默认情况下 MySQL 会使用锁定机制。防止两个事务同时更新同样的数据。它们会一个一个按照顺序执行, 这样连个更新都能完成。
 
-![](mysql-tutorial/1599975511382.png)
+![](mysql-tutorial/loast_updates01.png)
 
-**Dirty Reads**
+### Dirty Reads
 
 脏读就是一个事务读取了尚未被提交的数据。事务 B 读取了事务 A 尚未提交的数据，并基于数据做了决策（每点积分给予 1% 折扣），但是之后事务 A 又进行了回滚，实际客人没有 20 积分, 事务 B 却给了 20 % 折扣。解决此问题需要为事务建立隔离级别 READ COMMITTED，这样事务就只能读取已经提交的数据。
 
-![](mysql-tutorial/1599976093618.png)
+![](mysql-tutorial/dirty_reads_00.png)
 
-![](mysql-tutorial/1599979563440.png)![](mysql-tutorial/1599979576117.png)
+| Connection One                         | Connection Two                         |
+| -------------------------------------- | -------------------------------------- |
+| ![](mysql-tutorial/dirty_reads_01.png) | ![](mysql-tutorial/dirty_reads_02.png) |
 
 使用隔离级别 READ COMMITTED `set transaction isolation level read uncommitted;`
 
-![](mysql-tutorial/1599980424630.png)![](mysql-tutorial/1599980437231.png)
+| Connection One                           | Connection Two                           |
+| ---------------------------------------- | ---------------------------------------- |
+| ![](mysql-tutorial/read_commited_01.png) | ![](mysql-tutorial/read_commited_02.png) |
 
-**Non-repeating Reads**
+### Non-repeating Reads
 
 不可重复读就是在事务过程中读取了某个数据两次，得到了不同结果。解决此问题需要为事务建立隔离级别 REPEATABLE READ, 将它与其他事务隔离，确保数据更改对事务不可见，读取的数据是可重复和一致的，即使其它事务更改了数据，我们会看到首次读取就创建的快照。
 
-![](mysql-tutorial/1599976915131.png)
+![](mysql-tutorial/non_repeating_reads_01.png)
 
-![](mysql-tutorial/1599981497342.png) ![](mysql-tutorial/1599981512930.png)
+| Connection One                                 | Connection Two                                 |
+| ---------------------------------------------- | ---------------------------------------------- |
+| ![](mysql-tutorial/non_repeating_reads_02.png) | ![](mysql-tutorial/non_repeating_reads_03.png) |
 
 使用隔离级别 REPEATABLE READ `set transaction isolation level repeatable read`
 
-![](mysql-tutorial/1599981497342.png)![](mysql-tutorial/1599982382709.png)
+| Connection One                             | Connection Two                             |
+| ------------------------------------------ | ------------------------------------------ |
+| ![](mysql-tutorial/repeatable_read_01.png) | ![](mysql-tutorial/repeatable_read_02.png) |
 
-**Phantom Reads**
+### Phantom Reads
 
 幻读是指在事务执行查询之后进行了添加，更新或删除，实际读取的是添加，更新或删除之前的数据，事务执行完成之后仍然有符合条件的数据，这种突然出现的数据就像幽灵 👻 一样。解决此问题需要为事务建立隔离级别 SERIALIZABLE, 它能保证当有别的事务在更新数据时，我们的事务能够知晓变动，如果有其它事务修改了可能影响查询结果的数据，我们的事务必须等待它们完成。这是事务的最高隔离级别，保证最大的确定性，但是会影响性能。
 
-![](mysql-tutorial/1599977856273.png)
+![](mysql-tutorial/phantom_reads_01.png)
 
-![](mysql-tutorial/1599983805136.png)![](mysql-tutorial/1599983817294.png)
+| Connection One                           | Connection Two                           |
+| ---------------------------------------- | ---------------------------------------- |
+| ![](mysql-tutorial/phantom_reads_02.png) | ![](mysql-tutorial/phantom_reads_03.png) |
 
 使用隔离级别 SERIALIZABLE `set transaction isolation level serializable`
 
-![](mysql-tutorial/1599984872155.png)![](mysql-tutorial/1599984896771.png)
-
-![](mysql-tutorial/1599985352139.png)![](mysql-tutorial/1599985372026.png)
+| Connection One                          | Connection Two                          |
+| --------------------------------------- | --------------------------------------- |
+| ![](mysql-tutorial/serializable_01.png) | ![](mysql-tutorial/serializable_02.png) |
+| ![](mysql-tutorial/serializable_03.png) | ![](mysql-tutorial/serializable_04.png) |
 
 更高的隔离级别意味着更低的并发问题，但同时也意味着更多的锁和过呢更低的并发性能。
 
@@ -606,20 +641,20 @@ set session transaction isolation level serializable;
 set global transaction isolation level serializable;
 ```
 
-![](mysql-tutorial/1599978323604.png)
+![](mysql-tutorial/transaction_summary.png)
 
-### Datatype
+## Datatype
 
-#### json
+### json
 
-![](mysql-tutorial/1600224943235.png)
+![](mysql-tutorial/json_type.png)
 
 json raw string
 
 ```sql
 update products set properties  = '
 {
-	"dimensions": [1, 2, 3],
+    "dimensions": [1, 2, 3],
     "weight": 10,
     "manufactor": { "name": "sony" }
 }
@@ -639,7 +674,7 @@ json_object, json_array
 
 ```sql
 update products set properties  =  json_object(
-	'weight', 10,
+    'weight', 10,
     'dimensions', json_array(1, 2, 3),
     'manufactor', json_object('name', 'sony')
 )
@@ -669,10 +704,10 @@ json_set
 ```sql
 update products
    set properties = json_set(
-		properties,
-		'$.weight', 20,
-		'$.age', 10
-	)
+        properties,
+        '$.weight', 20,
+        '$.age', 10
+    )
  where product_id = 1;
 ```
 
@@ -681,44 +716,44 @@ json_remove
 ```sql
 update products
    set properties = json_remove(
-		properties,
-		'$.age'
-	)
+        properties,
+        '$.age'
+    )
  where product_id = 1;
 ```
 
-### Data Modelling
+## Data Modelling
 
-#### conceptual model
+### conceptual model
 
 Represents the entities and their relationships. Generally use ER(Entity Relationship) Digram or UML
 
-![](mysql-tutorial/1600227670454.png)
+![](mysql-tutorial/conceptual_model.png)
 
-#### logic model
+### logic model
 
 Logic model is independent of database technologics. It's just an abstract data model that clearly shows our entities. But there's something more detailed than the conceptual model.
 
-![](mysql-tutorial/1600228847888.png)
+![](mysql-tutorial/logic_model.png)
 
-#### physic model
+### physic model
 
 File -> New Model
 
-![](mysql-tutorial/1600229278592.png)
+![](mysql-tutorial/physic_model_01.png)
 
 Add Diagram
 
-![](mysql-tutorial/1600229403034.png)
+![](mysql-tutorial/physic_model_02.png)
 
 Add Tables and Columns
 
-![](mysql-tutorial/1600229764919.png)
+![](mysql-tutorial/physic_model_03.png)
 
 Add Primary Key, Foreign Key and Relationship
 
-![](mysql-tutorial/1600235085319.png)
+![](mysql-tutorial/physic_model_04.png)
 
 Setting Foreign Key，CASCADE on update, NO ACTION(RESTRICT) on delete (reject delete)
 
-![](mysql-tutorial/1600235161619.png)
+![](mysql-tutorial/physic_model_05.png)

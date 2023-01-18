@@ -5,13 +5,54 @@
   image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
   color: "#e9546b"
 
+- site: JavaScript.Info
+  owner: JavaScript.Info
+  url: https://javascript.info/
+  desc: JavaScript
+  image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+  color: "#2ecc71"
+
+- site: Samantha
+  owner: Samantha
+  url: https://www.samanthaming.com/
+  desc: JavaScript & HTML & CSS
+  image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+  color: "#2ecc71"
+
+- site: 全栈公开课
+  owner: 全栈公开课
+  url: https://fullstackopen.com/
+  desc: JavaScript & HTML & CSS
+  image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+  color: "#2ecc71"
+
+- site: 峰华前端工程师- 让你学会前端开发
+  owner: 峰华
+  url: https://zxuqian.cn/
+  desc: JavaScript & HTML & CSS
+  image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+  color: "#2ecc71"
+
+- site: 廖雪峰的官方网站
+  owner: 廖雪峰
+  url: https://www.liaoxuefeng.com
+  desc: Java & JavaScript & Python
+  image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+  color: "#2ecc71"
+
+- site: 阮一峰的网络日志
+  owner: 阮一峰
+  url: http://www.ruanyifeng.com/blog/
+  desc: JavaScript
+  image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
+  color: "#3498db"
+
 - site: Vamei
   owner: Vamei
   url: https://www.cnblogs.com/vamei/
   desc: HTTP & Java & Python
   image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
   color: "#e9546b"
-
 
 - site: Python之禅
   owner: Python之禅
@@ -20,11 +61,9 @@
   image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
   color: "#e9546b"
 
-
 - site: 李文周的博客
   owner: 李文周
-  url: https://foofish.net/
+  url: https://www.liwenzhou.com/posts/Go/go_menu/
   desc: Go
   image: https://cdn.jsdelivr.net/gh/amehime/shoka@latest/images/avatar.jpg
   color: "#e9546b"
-

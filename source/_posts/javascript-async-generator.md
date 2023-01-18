@@ -4,7 +4,7 @@ tags: js
 date: 2021-08-25
 ---
 
-> [Async iteration and generators](https://javascript.info/async-iterators-generators)
+> [Async iteration and generators - javascript.info](https://javascript.info/async-iterators-generators)
 
 Asynchronous iteration allow us to iterate over data that comes asynchronously, on-demand. Like, for instance, when we download something chunk-by-chunk over a network. And asynchronous generators make it even more convenient.
 

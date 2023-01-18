@@ -5,33 +5,11 @@ date: 2019-07-15
 description: node 常用第三方模块
 ---
 
-### cheerio
+### [cheerio](https://www.npmjs.com/package/cheerio)
 
-[cherrio](https://www.npmjs.com/package/cheerio) Fast, flexible & lean implementation of core jQuery designed specifically for the server.
+Fast, flexible & lean implementation of core jQuery designed specifically for the server.
 
-#### 解析链接
-
-```javascript
-const http = require("http");
-const cheerio = require("cheerio");
-const url = "http://sports.sina.com.cn/nba/1.shtml";
-http.get(url, (res) => {
-    let html = "";
-    res.on("data", function (chunk) {
-        html += chunk;
-    });
-    res.on("end", function () {
-        const $ = cheerio.load(html);
-        $("#right a").each(function () {
-            console.log($(this).attr("href"));
-        });
-    });
-}).on("error", (e) => {
-    console.log(e.message);
-});
-```
-
-#### 解析网页内容到文件
+Parse HTML Content to File
 
 ```javascript
 const http = require("http");
@@ -75,9 +53,9 @@ httpGet(url, function (html) {
 });
 ```
 
-### Chart.js
+### [Chart.js](https://www.chartjs.org/docs/latest/)
 
-[Chart.js](https://www.chartjs.org/docs/latest/) Simple yet flexible JavaScript charting for designers & developers
+Simple yet flexible JavaScript charting for designers & developers
 
 ```html
 <!DOCTYPE html>
@@ -145,61 +123,71 @@ httpGet(url, function (html) {
 
 ![chart](node-module/chart.png)
 
-### colors
+### [colors](https://www.npmjs.com/package/colors)
 
-[get color and style in your node.js console](https://www.npmjs.com/package/colors)
+get color and style in your node.js console.
 
-### chalk
+### [chalk](https://www.npmjs.com/package/chalk)
 
-[Terminal string styling done right](https://www.npmjs.com/package/chalk)
+Terminal string styling done right.
 
-### mockjs
+### [mockjs](http://mockjs.com/)
 
-[生成随机数据，拦截 Ajax 请求](http://mockjs.com/)
+生成随机数据，拦截 Ajax 请求
 
-### pm2
+### [pm2](http://pm2.keymetrics.io/)
 
-[Advanced, production process manager for Node.js](http://pm2.keymetrics.io/)
+Advanced, production process manager for Node.js
 
-### lowdb
+### [lowdb](https://www.npmjs.com/package/lowdb)
 
-[Small JSON database for Node, Electron and the browser. Powered by Lodash](https://www.npmjs.com/package/lowdb)
+Small JSON database for Node, Electron and the browser. Powered by Lodash.
 
-### chokidar
+### [chokidar](https://www.npmjs.com/package/chokidar)
 
-[A neat wrapper around Node.js fs.watch / fs.watchFile / FSEvents.](https://www.npmjs.com/package/chokidar)
+A neat wrapper around Node.js fs.watch / fs.watchFile / FSEvents.
 
-### yrm
+### [yrm](https://www.npmjs.com/package/yrm)
 
-yrm yarn registry manager
-yrm 不仅可以快速切换镜像源，还可以测试自己网络访问不同源的速度
+`yrm` can help you easy and fast switch between different npm registries, now include: `npm`, `cnpm`, `taobao`, `nj(nodejitsu)`, `rednpm`, `yarn`.
 
-**安装 yrm**
-`npm install -g yrm`
+```
+Usage: yrm [options] [command]
 
-**列出当前可用的所有镜像源**
+  Commands:
 
-`yrm ls`
+    ls                           List all the registries
+    use <registry>               Change registry to registry
+    add <registry> <url> [home]  Add one custom registry
+    del <registry>               Delete one custom registry
+    home <registry> [browser]    Open the homepage of registry with optional browser
+    test [registry]              Show the response time for one or all registries
+    help                         Print this help
 
-npm ----- https://registry.npmjs.org/
-cnpm ---- http://r.cnpmjs.org/
-taobao -- https://registry.npm.taobao.org/
-nj ------ https://registry.nodejitsu.com/
-rednpm -- http://registry.mirror.cqupt.edu.cn
-skimdb -- https://skimdb.npmjs.com/registry
-yarn ---- https://registry.yarnpkg.com
+  Options:
 
-**使用淘宝镜像源**
-`yrm use taobao`
+    -h, --help     output usage information
+    -V, --version  output the version number
+```
 
-**测试访问速度**
-`yrm test taobao`
+### [Prism](https://prismjs.com/)
 
-### Prism
+Prism is a lightweight, extensible syntax highlighter, built with modern web standards in mind. It’s used in millions of websites, including some of those you visit daily.
 
-[Prism is a lightweight, extensible syntax highlighter, built with modern web standards in mind. It’s used in millions of websites, including some of those you visit daily.](https://prismjs.com/)
+### [furigana-markdown-it](https://www.npmjs.com/package/furigana-markdown-it)
 
-### furigana-markdown-it
+furigana-markdown-it  A markdown-it plugin which adds furigana support
 
-[furigana-markdown-it  A markdown-it plugin which adds furigana support](https://www.npmjs.com/package/furigana-markdown-it)
+### [case-police: 🚨](https://github.com/antfu/case-police)
 
+Make the case correct, PLEASE!
+
+- Git**H**ub, not *Github*
+- Type**S**cript, not *Typescript*
+- **m**acOS, not *MacOS*
+- **VS C**ode, not *Vscode*
+- [...](https://github.com/antfu/case-police/blob/main/dict)
+
+### [Slidev](https://sli.dev/)
+
+Presentation **Sli**des for **Dev**elopers

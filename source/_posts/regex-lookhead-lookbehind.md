@@ -1,5 +1,5 @@
 ---
-title: 正则表达式的先行断言(Lookahead)和后行断言(Lookbehind)
+title: 正则表达式(Regex)的先行断言(Lookahead)和后行断言(Lookbehind)
 tags: regex
 date: 2021-08-03
 ---
@@ -95,7 +95,7 @@ date: 2021-08-03
 
 这 4 个正则表达式测试上述的几句话，结果都能够满足要求。
 
-上述 4 种断言，括号里的 pattern 本身是一个正则表达式。但对 2 种后行断言有所限制，在 Perl 和 Python 中，这个表达式必须是定长(fixed length)的，即不能使用 **\*、+、?** 等元字符，如 **(?<=abc)** 没有问题，但 **(?<=a\*bc)** 是不被支持的，特别是当表达式中含有 **|**连接的分支时，各个分支的长度必须相同。之所以不支持变长表达式，是因为当引擎检查后行断言时，无法确定要回溯多少步。Java 支持 **?、{m}、{n,m}** 等符号，但同样不支持 **\*、+** 字符。Javascript 干脆不支持后行断言，不过一般来说，这不是太大的问题。
+上述 4 种断言，括号里的 pattern 本身是一个正则表达式。但对 2 种后行断言有所限制，在 Perl 和 Python 中，这个表达式必须是定长(fixed length)的，即不能使用 **\*、+、?** 等元字符，如 **(?<=abc)** 没有问题，但 **(?<=a\*bc)** 是不被支持的，特别是当表达式中含有 **|**连接的分支时，各个分支的长度必须相同。之所以不支持变长表达式，是因为当引擎检查后行断言时，无法确定要回溯多少步。Java 支持 **?、{m}、{n,m}** 等符号，但同样不支持 **\*、+** 字符。JavaScript 干脆不支持后行断言，不过一般来说，这不是太大的问题。
 
 先行断言和后行断言某种程度上就好比使用 **if** 语句对匹配的字符前后做判断验证。
 
@@ -116,3 +116,11 @@ date: 2021-08-03
 **(?<!=exp2)exp1**：查找前面不是 exp2 的 exp1。
 
 ![](regex-lookhead-lookbehind/reg-444.jpg)
+
+## Comments
+
+使用 **(?=pattern)** 零宽正向先行断言 (zero-width positive lookahead assertion) 替换 Markdown 两个 **```** 中的第一个为 **```python**。
+
+![Replace Before](regex-lookhead-lookbehind/1673265279172.png)
+
+![Replace After](regex-lookhead-lookbehind/1673265312801.png)

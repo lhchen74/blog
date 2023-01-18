@@ -1,8 +1,10 @@
 ---
-title: 在IIS上部署你的ASP.NET Core项目
+title: 在 IIS 上部署你的 ASP.NET Core 项目
 tags: csharp
 date: 2019-10-25
 ---
+
+> [在 IIS 上部署你的 ASP.NET Core 项目 - 王杰光 - 博客园](https://www.cnblogs.com/wangjieguang/p/core-iis.html)
 
 ### 概述
 
@@ -12,13 +14,13 @@ date: 2019-10-25
 
 ![](csharp-dotnetcore-iis/646372-20170403233424488-765402641.png)
 
-### 一、安装 IIS
+### 安装 IIS
 
 1、在控制面板 → 程序 → 启用或关闭 Windows 功能 → 勾选 Internet Information Services 以及 Web 管理工具下的 IIS 管理控制台
 
 ![](csharp-dotnetcore-iis/646372-20170403091242519-1710416629.png)
 
-### 二、发布项目
+### 发布项目
 
 1、发布我们上一篇建好的 ASP.NET Core API 项目，然后选择 IIS，新建一项发布配置
 
@@ -34,7 +36,7 @@ date: 2019-10-25
 
 4、当然了，你还可以基于 CLI 的 Publish 命令进行发布，只需切换到 Light.API 根目录下，输入以下命令即可
 
-```c###
+```c#
 dotnet publish --framework netcoreapp1.1 --output "E:\Publish" --configuration Release
 ```
 
@@ -42,13 +44,13 @@ framework 表示目标框架，output 表示要发布到的目录文件夹，con
 
 ![](csharp-dotnetcore-iis/646372-20170403235024566-699255267.png)
 
-### 三、在 IIS 中添加网站
+### 在 IIS 中添加网站
 
 1、添加一个网站，设置一下名称，并将路径指向你刚才发布的文件夹，然后启动网站即可
 
 ![](csharp-dotnetcore-iis/646372-20170404205827691-1090819485.png)
 
-2、设置应用程序池的.NET CLR 版本为“无托管代码”，因为刚才也说了，IIS 是作为一个反向代理的角色，并不需要它来托管代码
+2、设置应用程序池的 .NET CLR 版本为“无托管代码”，因为刚才也说了，IIS 是作为一个反向代理的角色，并不需要它来托管代码
 
 ![](csharp-dotnetcore-iis/646372-20170404210211957-350663298.png)
 
@@ -70,13 +72,13 @@ framework 表示目标框架，output 表示要发布到的目录文件夹，con
 
 ![](https://images2015.cnblogs.com/blog/646372/201704/646372-20170405231139316-1009486684.png)
 
-纠结了半天，原来是因为网站没有自动重定向到/swagger/ui 页面，重新访问：http://192.168.1.105/swagger/ui，你会看到熟悉的画面
+纠结了半天，原来是因为网站没有自动重定向到/swagger/ui 页面，重新访问: http://192.168.1.105/swagger/ui，你会看到熟悉的画面。
 
 ![](csharp-dotnetcore-iis/646372-20170405233033238-1688076616.png)
 
 6、最后一点，其实你还可以通过 CLI 来运行你发布的程序，切换到你发布文件夹下，输入以下命令：
 
-```
+```c#
 dotnet Light.API.dll
 ```
 
@@ -91,5 +93,3 @@ dotnet Light.API.dll
 ### 写在最后
 
 至此，整个 IIS 的搭建已经完成，不知道你是否有所收获。接下来不知道把它发布到 Linux 上，会有什么样的坑。不管怎样，你的每一步，回过头来看，都是值得的！
-
-> [在 IIS 上部署你的 ASP.NET Core 项目 - 王杰光 - 博客园](https://www.cnblogs.com/wangjieguang/p/core-iis.html)

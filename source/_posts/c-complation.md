@@ -16,7 +16,7 @@ In this post I will take a deep dive into the C compilation process. So let's be
 
 The process of translating source code written in [high level](https://codeforwin.org/2017/05/high-level-languages-advantages-disadvantages.html) to [low level](https://codeforwin.org/2017/05/low-level-languages-advantages-disadvantages.html) machine code is called as Compilation. The compilation is done by a special software known as [compiler](https://codeforwin.org/2017/05/compiler-and-its-need.html). The compiler checks source code for any syntactical or structural errors and generates object code with extension **.obj** (in Windows) or **.o** (in Linux) if source code is error free.
 
-![Source code and object code](c-complation/complation.png)Source code and executable code
+![Source code and object code](c-complation/complation.png)
 
 ## The C compilation
 
@@ -24,12 +24,12 @@ The entire C compilation is broken to four stages.
 
 1. [Pre-processing](https://codeforwin.org/2017/08/c-compilation-process.html#pre-processing)
 2. [Compilation](https://codeforwin.org/2017/08/c-compilation-process.html#compilation-process)
-3. [Assembling](https://codeforwin.org/2017/08/c-compilation-process.html#assembling) and
+3. [Assembling](https://codeforwin.org/2017/08/c-compilation-process.html#assembling)
 4. [Linking](https://codeforwin.org/2017/08/c-compilation-process.html#linking)
 
 The below image describes the entire C compilation process.
 
-![The C compilation process](c-complation/complation-flow.png)The C compilation process
+![The C compilation process](c-complation/complation-flow.png)
 
 To take a deep dive inside the C compilation process let’s compile a C program. Write or copy below C program and save it as compilation.c.
 
@@ -114,7 +114,7 @@ In next phase of C compilation the compiler comes in action. It accepts temporar
 -   Optionally optimize the translated code for better performance.
 
 After compiling it generates an intermediate code in assembly language as `<file-name.s>` file. It is assembly version of our source code.
-Let us look into compilation.s file.
+Let us look into **compilation.s** file.
 
 ```plain
 	.file	"compilation.c"
@@ -142,7 +142,7 @@ _main:
 
 ### Assembling of compiled source code
 
-Moving on to the next phase of compilation. Assembler accepts the compiled source code (**compilation.s**) and translates to low level machine code. After successful assembling it generates `<file-name.o>` (in Linux) or `<file-name.obj>` (in Windows) file known as [object file](https://codeforwin.org/2017/05/life-cycle-computer-program.html#object-code). In our case it generates the compilation.o file.
+Moving on to the next phase of compilation. Assembler accepts the compiled source code (**compilation.s**) and translates to low level machine code. After successful assembling it generates `<file-name.o>` (in Linux) or `<file-name.obj>` (in Windows) file known as [object file](https://codeforwin.org/2017/05/life-cycle-computer-program.html#object-code). In our case it generates the **compilation.o** file.
 
 This file is encoded in low level machine language and cannot be viewed using text editors. However, if you still open this in notepad, it look like.
 

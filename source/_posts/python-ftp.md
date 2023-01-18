@@ -1,10 +1,10 @@
 ---
-title: Python FTP and SFTP Connect
+title: FTP and SFTP File Upload and Download
 tags: python
 date: 2019-02-28
 ---
 
-### ftp 上传下载文件
+## FTP File Upload and Download
 
 ```python
 from ftplib import FTP
@@ -43,7 +43,7 @@ if __name__ == '__main__':
    print(ftp)
 ```
 
-### paramiko 上传下载 SFTP 文件
+## SFTP File Upload and Download use Paramiko
 
 ```python
 import paramiko
@@ -125,3 +125,33 @@ if __name__ == '__main__':
     sftp = sftpconnect(host, port, username, password)
     print(sftp)
 ```
+
+### Paramiko use SSH Private Key Connect SFTP
+
+Python paramiko connect SFTP cannot use ppk(PuTTY-User-Key-File, include public key and private key). So we need to use PuTTYgen load ppk then export OpenSSH(including private key only) key.
+
+```python
+import paramiko
+
+hostname = 'xxx'
+username = 'xxx'
+password = 'xxx'
+port = 22  # int
+
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+# customer_sftp.id_rsa SSH private key
+ssh.connect(hostname, port=port, username=username, password=password, key_filename='./customer_sftp.id_rsa')
+sftp = ssh.open_sftp()
+
+# print(sftp)
+# Some SFTP maybe not open the shell function 
+# stdin, stdout, stderr = ssh.exec_command('ls')
+# print(stdout.readlines())
+
+# sftp.put(sourcefile, uploadfile)
+
+sftp.close()
+ssh.close()
+```
+

@@ -10,9 +10,9 @@ date: 2020-01-20
 
 To raise an [exception](https://www.oracletutorial.com/plsql-tutorial/plsql-exception/) explicitly, you use the `RAISE` statement. The `RAISE` statement allows you to:
 
--   Raise a user-defined exception.
--   Raise an internally defined exception.
--   Reraising the current exception.
+- Raise a user-defined exception.
+- Raise an internally defined exception.
+- Reraising the current exception.
 
 ## Raising a user-defined exception
 
@@ -22,7 +22,7 @@ A user-defined exception is defined by users like you or other developers in the
 
 To define a user-defined exception, you use the following syntax:
 
-```plsql
+```sql
 DECLARE
 	exception_name EXCEPTION;
 ```
@@ -31,7 +31,7 @@ Similar to the [variable declaration](https://www.oracletutorial.com/plsql-tutor
 
 A user-defined exception must have assigned `error_code` . To do it, you use the `EXCEPTION_INIT` pragma as follows:
 
-```plsql
+```sql
 PRAGMA EXCEPTION_INIT(exception_name, error_code)
 ```
 
@@ -39,7 +39,7 @@ In this syntax, the `error_code` is an integer that ranges from `-20,999` to `-2
 
 The entire syntax for declaring a user-defined exception is as follows:
 
-```plsql
+```sql
 DECLARE
 	exception_name EXCEPTION;
  	PRAGMA EXCEPTION_INIT(exception_name, error_number);
@@ -49,7 +49,7 @@ DECLARE
 
 The following example illustrates how to declare a user-defined exception and associate it with an error code.
 
-```plsql
+```sql
 DECLARE
     e_credit_too_high EXCEPTION;
     PRAGMA exception_init(e_credit_too_high, -20001);
@@ -75,32 +75,32 @@ END;
 
 In this example,
 
--   First, declare a user-defined exception e_credit_too_high and associates it with the error number `-20001`.
--   Second, select maximum credit from the `customers` table using the `MAX()` function and assign this value to the `l_max_credit` variable.
--   Third, check if the input credit with the maximum credit, if the input credit is greater than the max, then raise the `e_credit_too_high` exception.
--   Finally, update the customer whose id is entered by the user with the new credit limit.
+- First, declare a user-defined exception `e_credit_too_high` and associates it with the error number `-20001`.
+- Second, select maximum credit from the `customers` table using the `MAX()` function and assign this value to the `l_max_credit` variable.
+- Third, check if the input credit with the maximum credit, if the input credit is greater than the max, then raise the `e_credit_too_high` exception.
+- Finally, update the customer whose id is entered by the user with the new credit limit.
 
 Here is the output if you enter customer id 100 and credit limit `20000`:
 
-```plsql
+```sql
 ORA-20001:
 ```
 
 If you want to include a custom message, you can replace the line:
 
-```plsql
+```sql
 RAISE e_credit_too_high;
 ```
 
 by the following line:
 
-```plsql
+```sql
 raise_application_error(-20001,'Credit is too high');
 ```
 
 And execute the code block again, you will receive the following error:
 
-```plsql
+```sql
 ORA-20001:Creditistoohigh
 ```
 
@@ -108,13 +108,13 @@ ORA-20001:Creditistoohigh
 
 Typically, the runtime system raises internally defined exceptions implicitly when they occur. Besides, you can explicitly raise an internally defined exception with the `RAISE` statement if the exception has a name:
 
-```plsql
+```sql
 RAISE exception_name;
 ```
 
 This example shows how to raise an internally defined exception `INVALID_NUMBER`:
 
-```plsql
+```sql
 DECLARE
     l_customer_id customers.customer_id%TYPE := &customer_id;
 BEGIN
@@ -128,7 +128,7 @@ END;
 
 If you execute the block and enter the customer id -10, you will get the following error:
 
-```plsql
+```sql
 ORA-01722:invalidnumber
 ```
 
@@ -136,7 +136,7 @@ ORA-01722:invalidnumber
 
 You can re-raise the current exception with the `RAISE` statement. Reraising an exception passes it to the enclosing block, which later can be handled further. To reraise an exception, you don’t need to specify the exception name.
 
-```plsql
+```sql
 DECLARE
     e_credit_too_high EXCEPTION;
     PRAGMA exception_init( e_credit_too_high, -20001 );
@@ -181,15 +181,16 @@ END;
 
 In this example:
 
--   First, get the max credit limit from the `customers` table.
--   Second, compare the max credit with the user-input credit. If the user-input credit is greater than the max credit, then raise the `e_credit_too_high` exception.
--   Third, display a message and reraise the exception in the exception-handling section in the inner block.
--   Finally, in the outer block, reassign the average credit to the `l_credit` variable and update the customer with the newly adjusted credit.
+- First, get the max credit limit from the `customers` table.
+- Second, compare the max credit with the user-input credit. If the user-input credit is greater than the max credit, then raise the `e_credit_too_high` exception.
+- Third, display a message and reraise the exception in the exception-handling section in the inner block.
+- Finally, in the outer block, reassign the average credit to the `l_credit` variable and update the customer with the newly adjusted credit.
 
 If you enter the customer id 100 and credit limit 10000, the credit limit of the customer will be updated to the average credit.
 
-```plsql
+```sql
 SELECT * FROM customers WHERE customer_id=100;
 ```
 
 In this tutorial, you have learned how to use the PL/SQL `RAISE` statement to explicitly raise a user-defined exception, internally defined exception, and reraising an exception.
+

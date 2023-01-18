@@ -6,7 +6,7 @@ date: 2019-10-25
 
 > 转载: [30 分钟掌握 C#7 - Virgil-Zhou - 博客园](https://www.cnblogs.com/VVStudy/p/6551300.html)
 
-## 1. out 变量（out variables）
+## out 变量（out variables）
 
 以前我们使用 out 变量必须在使用前进行声明，C# 7.0 给我们提供了一种更简洁的语法 “使用时进行内联声明” 。如下所示：
 
@@ -41,7 +41,7 @@ else
 
 备注：在进行内联声明时，即可直接写明变量的类型也可以写隐式类型，因为 out 关键字修饰的一定是局部变量。
 
-## 2. 元组（Tuples）
+## 元组（Tuples）
 
 **元组（Tuple）在 .Net 4.0 的时候就有了，但元组也有些缺点，如：**
 
@@ -156,7 +156,7 @@ public static void Deconstruct(this type instance, out type variable1, out type 
 使用 ValueTuple 则需要导入: Install - Package System.ValueTuple
 ```
 
-## 3. 模式匹配（Pattern matching）
+## 模式匹配（Pattern matching）
 
 **1. is 表达式（is expressions），如：**
 
@@ -257,7 +257,7 @@ switch (item)
 
 总结：模式匹配语法是想让我们在简单的情况下实现类似与多态一样的动态调用，即在运行时确定成员类型和调用具体的实现。
 
-## 4. 局部引用和引用返回 (Ref locals and returns)
+## 局部引用和引用返回 (Ref locals and returns)
 
 我们知道 C# 的 ref 和 out 关键字是对值传递的一个补充，是为了防止值类型大对象在 Copy 过程中损失更多的性能。现在在 C# 7 中 ref 关键字得
 
@@ -324,7 +324,7 @@ ref var n = ref list.Count;  // error: 属性或索引器不能作为 out 或 re
 
 原理解析：非常简单就是指针传递，并且个人觉得此语法的使用场景非常有限，都是用来处理大对象的，目的是减少 GC 提高性能。
 
-## 5. 局部函数（Local functions）
+## 局部函数（Local functions）
 
 C# 7 中的一个功能“局部函数”，如下所示：
 
@@ -363,7 +363,7 @@ static IEnumerable<char> GetCharList(string str)
 
 就是局部函数中的代码无法复用（反射除外）。
 
-## 6. 更多的表达式体成员（More expression-bodied members）
+## 更多的表达式体成员（More expression-bodied members）
 
 C# 6 的时候就支持表达式体成员，但当时只支持“函数成员”和“只读属性”，这一特性在 C# 7 中得到了扩展，它能支持更多的成员：构造函数
 
@@ -390,7 +390,7 @@ public class Student
 
 备注：索引器其实在 C# 6 中就得到了支持，但其它三种在 C# 6 中未得到支持。
 
-## 7. Throw 表达式（Throw expressions）
+## Throw 表达式（Throw expressions）
 
 异常机制是 C#的重要组成部分，但在以前并不是所有语句都可以抛出异常的，如：条件表达式（？ ：）、null 合并运算符（??）、一些 Lambda
 
@@ -410,7 +410,7 @@ public class Student
 }
 ```
 
-## 8. 扩展异步返回类型（Generalized async return types）
+## 扩展异步返回类型（Generalized async return types）
 
 以前异步的返回类型必须是：Task、Task<T>、void，现在 C# 7 中新增了一种类型：ValueTask<T>，如下所示：
 
@@ -430,7 +430,7 @@ public async ValueTask<int> Func()
   使用 ValueTask<T> 则需要导入： Install - Package System.Threading.Tasks.Extensions
 ```
 
-## 9. 数字文本语法的改进（Numeric literal syntax improvements）
+## 数字文本语法的改进（Numeric literal syntax improvements）
 
 C# 7 还包含两个新特性：二进制文字、数字分隔符，如下所示：
 
@@ -444,7 +444,3 @@ decimal pi = 3.141_592_653_589m;
 注：二进制文本是以 0b（零 b）开头，字母不区分大小写；数字分隔符只有三个地方不能写：开头，结尾，小数点前后。
 
 总结：二进制文本，数字分隔符 可使常量值更具可读性。
-
-> 作者：VVStudyQQ 群：469075305
-> 出处：http://www.cnblogs.com/VVStudy/
-> 本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接。

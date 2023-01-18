@@ -1,5 +1,5 @@
 ---
-title: Python Xml Parsing
+title: Python XML Parsing
 tags: python
 date: 2019-07-15
 ---
@@ -12,10 +12,10 @@ date: 2019-07-15
 
 `ElementTree`
 
-* ElementTree is much easier to use, because it represents an XML tree (basically) as a structure of lists, and attributes are represented as dictionaries. 
-* ElementTree needs much less memory for XML trees than DOM (and thus is faster), and the parsing overhead via(凭借) `iterparse` is comparable to SAX. Additionally, `iterparse` returns partial structures, and you can keep memory usage constant during parsing by discarding the structures as soon as you process them.
-* ElementTree, as in Python 2.5, has only a small feature set compared to full-blown XML libraries, but it's enough for many applications. If you need a validating parser or complete XPath support, lxml is the way to go. For a long time, it used to be quite unstable, but I haven't had any problems with it since 2.1.
-* ElementTree deviates(脱离) from DOM, where nodes have access to their parent and siblings. Handling actual documents rather than data stores is also a bit cumbersome(笨重的，难处理的）, because text nodes aren't treated as actual nodes. In the XML snippet
+-   ElementTree is much easier to use, because it represents an XML tree (basically) as a structure of lists, and attributes are represented as dictionaries.
+-   ElementTree needs much less memory for XML trees than DOM (and thus is faster), and the parsing overhead via(凭借) `iterparse` is comparable to SAX. Additionally, `iterparse` returns partial structures, and you can keep memory usage constant during parsing by discarding the structures as soon as you process them.
+-   ElementTree, as in Python 2.5, has only a small feature set compared to full-blown XML libraries, but it's enough for many applications. If you need a validating parser or complete XPath support, lxml is the way to go. For a long time, it used to be quite unstable, but I haven't had any problems with it since 2.1.
+-   ElementTree deviates(脱离) from DOM, where nodes have access to their parent and siblings. Handling actual documents rather than data stores is also a bit cumbersome(笨重的，难处理的）, because text nodes aren't treated as actual nodes. In the XML snippet
 
 ### SAX
 
@@ -96,7 +96,7 @@ class MovieHandler(xml.sax.ContentHandler):
         elif self.CurrentData == "description":
             print("Description:", self.description)
         self.CurrentData = ""
-        
+
     # 读取字符时调用
     def characters(self, content):
         if self.CurrentData == "type":
@@ -179,7 +179,7 @@ for child in root:
     print('***movie***')
     print("title:{}".format(title))
     print("type:{}".format(format))
-    
+
 # root:collection,shelf:New Arrivals
 # movie {'title': 'Enemy Behind'}
 # ***movie***
@@ -199,4 +199,3 @@ for child in root:
 # type:VHS
 
 ```
-

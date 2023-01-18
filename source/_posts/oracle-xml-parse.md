@@ -1,5 +1,5 @@
 ---
-title: Oracle Parse Xml
+title: Oracle Parse XML
 tags: db
 date: 2020-3-17
 ---

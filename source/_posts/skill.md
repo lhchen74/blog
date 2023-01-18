@@ -4,7 +4,7 @@ tags: other
 date: 2019-2-10
 ---
 
-## window 
+## window
 
 ### keyboard shortcuts
 
@@ -91,7 +91,7 @@ C:\Users\11435>tracert www.youdao.com
 
 ### service start
 
-以管理员权限启动 cmd,  执行相关服务的开启，停止，删除
+以管理员权限启动 cmd, 执行相关服务的开启，停止，删除
 
 ```bat
 net start servicename
@@ -103,10 +103,10 @@ sc delete servicename
 
 ## Chrome
 
-###  Disable Javascript
+### Disable JavaScript
 
 1. 打开开发者工具
-2. Ctrl + Shift + P 输入  Disable Javascript
+2. Ctrl + Shift + P 输入 Disable JavaScript
 3. 刷新页面, 页面中的 noscript 中的内容就会显示出来
 
 ![chrome_disable_javascript](skill/chrome_disable_javascript.png)
@@ -114,17 +114,15 @@ sc delete servicename
 ```html
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Example HTML Page</title>
+    </head>
 
-<head>
-    <title>Example HTML Page</title>
-</head>
-
-<body>
-    <noscript>
-        <p>This page requires a JavaScript-enabled browser.</p>
-    </noscript>
-</body>
-
+    <body>
+        <noscript>
+            <p>This page requires a JavaScript-enabled browser.</p>
+        </noscript>
+    </body>
 </html>
 ```
 

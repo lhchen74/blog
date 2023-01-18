@@ -4,9 +4,9 @@ date: 2021-10-13
 tags: edi
 ---
 
-跨区域跨国贸易中，因为有时区的差异，在发送 EDI 时关于时间的讯息一般会包含时区的讯息，例如 `DTM*002*20200331*121010*20` 这里的 `20` 就是 timezone，在转入订单等情况下需要将 EDI 中的时间转换为本地时间。
+跨区域跨国贸易中，因为有时区的差异，EDI 时关于时间的讯息一般会包含时区，例如 `DTM*002*20200331*121010*20` 这里的 `20` 就是 timezone 对应 UTC-5，在转入订单等情况下需要将 EDI 中的时间转换为本地时间。
 
-首先需要定义 EDI Time Code 所对应的 UTC offset.
+首先定义 EDI Time Code 所对应的 UTC offset.
 
 ```sql
 create table SOM_EDI_TIME_CODE
@@ -14,7 +14,7 @@ create table SOM_EDI_TIME_CODE
   code        VARCHAR2(2),
   meaning     VARCHAR2(100),
   utc_offset  NUMBER
-) 
+)
 ```
 
 | CODE | MEANING                       | UTC_OFFSET |
@@ -69,7 +69,7 @@ create table SOM_EDI_TIME_CODE
 | TT   | Atlantic Time                 | -4         |
 | UT   | Universal Time Coordinate     | 0          |
 
-定义计算函数，传入日期和 EDI Time Code, 输出对应的 Local 时间(这里是 China Local Time UTC+8)
+定义计算函数，传入日期和 EDI Time Code， 输出对应的 Local 时间（这里获取 China Local Time, timezone is UTC+8）。
 
 ```sql
 function get_local_time(p_datetime in date, p_time_code in varchar2) return date
@@ -87,19 +87,16 @@ function get_local_time(p_datetime in date, p_time_code in varchar2) return date
        when others then
          raise;
      end;
-     
+
      return l_return;
  end get_local_time;
 ```
 
-
-
-以 `DTM*002*20200331*121010*20` 为例  get_local_time 输出 `4/1/2020 1:10:10 AM`
+以 `DTM*002*20200331*121010*20` 为例 get_local_time 输出 `4/1/2020 1:10:10 AM`
 
 ```sql
 select get_local_time(
-        to_date('20200331 121010', 'yyyymmdd hh24miss'), 
+        to_date('20200331 121010', 'yyyymmdd hh24miss'),
         20)
   from dual;
 ```
-

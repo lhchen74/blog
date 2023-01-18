@@ -10,16 +10,16 @@ date: 2019-10-25
 
 Promise 对象是 JavaScript 的异步操作解决方案，为异步操作提供统一接口。它起到代理作用（proxy），充当异步操作与回调函数之间的中介，使得异步操作具备同步操作的接口。Promise 可以让异步操作写起来，就像在写同步操作的流程，而不必一层层地嵌套回调函数。
 
-注意，本章只是 Promise 对象的简单介绍。为了避免与后续教程的重复，更完整的介绍请看[《ES6 标准入门》](https://es6.ruanyifeng.com/)的[《Promise 对象》](https://es6.ruanyifeng.com/#docs/promise)一章。
+注意，本章只是 Promise 对象的简单介绍。为了避免与后续教程的重复，更完整的介绍请看[《ES6 标准入门》](https://ES6.ruanyifeng.com/)的[《Promise 对象》](https://ES6.ruanyifeng.com/#docs/promise)一章。
 
 首先，Promise 是一个对象，也是一个构造函数。
 
 ```js
 function f1(resolve, reject) {
-  // 异步代码...
+    // 异步代码...
 }
 
-var p1 = new Promise(f1)
+var p1 = new Promise(f1);
 ```
 
 上面代码中，`Promise`构造函数接受一个回调函数`f1`作为参数，`f1`里面是异步操作的代码。然后，返回的`p1`就是一个 Promise 实例。
@@ -27,8 +27,8 @@ var p1 = new Promise(f1)
 Promise 的设计思想是，所有异步任务都返回一个 Promise 实例。Promise 实例有一个`then`方法，用来指定下一步的回调函数。
 
 ```js
-var p1 = new Promise(f1)
-p1.then(f2)
+var p1 = new Promise(f1);
+p1.then(f2);
 ```
 
 上面代码中，`f1`的异步操作执行完成，就会执行`f2`。
@@ -37,21 +37,18 @@ p1.then(f2)
 
 ```js
 // 传统写法
-step1(function(value1) {
-  step2(value1, function(value2) {
-    step3(value2, function(value3) {
-      step4(value3, function(value4) {
-        // ...
-      })
-    })
-  })
-})
+step1(function (value1) {
+    step2(value1, function (value2) {
+        step3(value2, function (value3) {
+            step4(value3, function (value4) {
+                // ...
+            });
+        });
+    });
+});
 
 // Promise 的写法
-new Promise(step1)
-  .then(step2)
-  .then(step3)
-  .then(step4)
+new Promise(step1).then(step2).then(step3).then(step4);
 ```
 
 从上面代码可以看到，采用 Promises 以后，程序流程变得非常清楚，十分易读。注意，为了便于理解，上面代码的`Promise`实例的生成格式，做了简化，真正的语法请参照下文。
@@ -64,23 +61,23 @@ Promise 原本只是社区提出的一个构想，一些函数库率先实现了
 
 Promise 对象通过自身的状态，来控制异步操作。Promise 实例具有三种状态。
 
-- 异步操作未完成（pending）
-- 异步操作成功（fulfilled）
-- 异步操作失败（rejected）
+-   异步操作未完成（pending）
+-   异步操作成功（fulfilled）
+-   异步操作失败（rejected）
 
 上面三种状态里面，`fulfilled`和`rejected`合在一起称为`resolved`（已定型）。
 
 这三种的状态的变化途径只有两种。
 
-- 从“未完成”到“成功”
-- 从“未完成”到“失败”
+-   从“未完成”到“成功”
+-   从“未完成”到“失败”
 
 一旦状态发生变化，就凝固了，不会再有新的状态变化。这也是 Promise 这个名字的由来，它的英语意思是“承诺”，一旦承诺成效，就不得再改变了。这也意味着，Promise 实例的状态变化只可能发生一次。
 
 因此，Promise 的最终结果只有两种。
 
-- 异步操作成功，Promise 实例传回一个值（value），状态变为`fulfilled`。
-- 异步操作失败，Promise 实例抛出一个错误（error），状态变为`rejected`。
+-   异步操作成功，Promise 实例传回一个值（value），状态变为`fulfilled`。
+-   异步操作失败，Promise 实例抛出一个错误（error），状态变为`rejected`。
 
 ## Promise 构造函数
 
@@ -106,12 +103,12 @@ var promise = new Promise(function (resolve, reject) {
 
 ```js
 function timeout(ms) {
-  return new Promise((resolve, reject) => {
-    setTimeout(resolve, ms, 'done')
-  })
+    return new Promise((resolve, reject) => {
+        setTimeout(resolve, ms, "done");
+    });
 }
 
-timeout(100)
+timeout(100);
 ```
 
 上面代码中，`timeout(100)`返回一个 Promise 实例。100 毫秒以后，该实例的状态会变为`fulfilled`。
@@ -123,16 +120,16 @@ Promise 实例的`then`方法，用来添加回调函数。
 `then`方法可以接受两个回调函数，第一个是异步操作成功时（变为`fulfilled`状态）时的回调函数，第二个是异步操作失败（变为`rejected`）时的回调函数（该参数可以省略）。一旦状态改变，就调用相应的回调函数。
 
 ```js
-var p1 = new Promise(function(resolve, reject) {
-  resolve('成功')
-})
-p1.then(console.log, console.error)
+var p1 = new Promise(function (resolve, reject) {
+    resolve("成功");
+});
+p1.then(console.log, console.error);
 // "成功"
 
-var p2 = new Promise(function(resolve, reject) {
-  reject(new Error('失败'))
-})
-p2.then(console.log, console.error)
+var p2 = new Promise(function (resolve, reject) {
+    reject(new Error("失败"));
+});
+p2.then(console.log, console.error);
 // Error: 失败
 ```
 
@@ -141,10 +138,7 @@ p2.then(console.log, console.error)
 `then`方法可以链式使用。
 
 ```js
-p1.then(step1)
-  .then(step2)
-  .then(step3)
-  .then(console.log, console.error)
+p1.then(step1).then(step2).then(step3).then(console.log, console.error);
 ```
 
 上面代码中，`p1`后面有四个`then`，意味依次有四个回调函数。只要前一步的状态变为`fulfilled`，就会依次执行紧跟在后面的回调函数。
@@ -157,57 +151,53 @@ Promise 的用法，简单说就是一句话：使用`then`方法添加回调函
 
 ```js
 // 写法一
-f1().then(function() {
-  return f2()
-})
+f1().then(function () {
+    return f2();
+});
 
 // 写法二
-f1().then(function() {
-  f2()
-})
+f1().then(function () {
+    f2();
+});
 
 // 写法三
-f1().then(f2())
+f1().then(f2());
 
 // 写法四
-f1().then(f2)
+f1().then(f2);
 ```
 
 为了便于讲解，下面这四种写法都再用`then`方法接一个回调函数`f3`。写法一的`f3`回调函数的参数，是`f2`函数的运行结果。
 
 ```js
 f1()
-  .then(function() {
-    return f2()
-  })
-  .then(f3)
+    .then(function () {
+        return f2();
+    })
+    .then(f3);
 ```
 
 写法二的`f3`回调函数的参数是`undefined`。
 
 ```js
 f1()
-  .then(function() {
-    f2()
-    return
-  })
-  .then(f3)
+    .then(function () {
+        f2();
+        return;
+    })
+    .then(f3);
 ```
 
 写法三的`f3`回调函数的参数，是`f2`函数返回的函数的运行结果。
 
 ```js
-f1()
-  .then(f2())
-  .then(f3)
+f1().then(f2()).then(f3);
 ```
 
 写法四与写法一只有一个差别，那就是`f2`会接收到`f1()`返回的结果。
 
 ```js
-f1()
-  .then(f2)
-  .then(f3)
+f1().then(f2).then(f3);
 ```
 
 ## Promise 的实例
@@ -217,14 +207,14 @@ f1()
 我们可以把图片的加载写成一个`Promise`对象。
 
 ```js
-var preloadImage = function(path) {
-  return new Promise(function(resolve, reject) {
-    var image = new Image()
-    image.onload = resolve
-    image.onerror = reject
-    image.src = path
-  })
-}
+var preloadImage = function (path) {
+    return new Promise(function (resolve, reject) {
+        var image = new Image();
+        image.onload = resolve;
+        image.onerror = reject;
+        image.src = path;
+    });
+};
 ```
 
 ### Ajax 操作
@@ -233,76 +223,76 @@ Ajax 操作是典型的异步操作，传统上往往写成下面这样。
 
 ```js
 function search(term, onload, onerror) {
-  var xhr, results, url
-  url = 'http://example.com/search?q=' + term
+    var xhr, results, url;
+    url = "http://example.com/search?q=" + term;
 
-  xhr = new XMLHttpRequest()
-  xhr.open('GET', url, true)
+    xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
 
-  xhr.onload = function(e) {
-    if (this.status === 200) {
-      results = JSON.parse(this.responseText)
-      onload(results)
-    }
-  }
-  xhr.onerror = function(e) {
-    onerror(e)
-  }
+    xhr.onload = function (e) {
+        if (this.status === 200) {
+            results = JSON.parse(this.responseText);
+            onload(results);
+        }
+    };
+    xhr.onerror = function (e) {
+        onerror(e);
+    };
 
-  xhr.send()
+    xhr.send();
 }
 
-search('Hello World', console.log, console.error)
+search("Hello World", console.log, console.error);
 ```
 
 如果使用 Promise 对象，就可以写成下面这样。
 
 ```js
 function search(term) {
-  var url = 'http://example.com/search?q=' + term
-  var xhr = new XMLHttpRequest()
-  var result
+    var url = "http://example.com/search?q=" + term;
+    var xhr = new XMLHttpRequest();
+    var result;
 
-  var p = new Promise(function(resolve, reject) {
-    xhr.open('GET', url, true)
-    xhr.onload = function(e) {
-      if (this.status === 200) {
-        result = JSON.parse(this.responseText)
-        resolve(result)
-      }
-    }
-    xhr.onerror = function(e) {
-      reject(e)
-    }
-    xhr.send()
-  })
+    var p = new Promise(function (resolve, reject) {
+        xhr.open("GET", url, true);
+        xhr.onload = function (e) {
+            if (this.status === 200) {
+                result = JSON.parse(this.responseText);
+                resolve(result);
+            }
+        };
+        xhr.onerror = function (e) {
+            reject(e);
+        };
+        xhr.send();
+    });
 
-  return p
+    return p;
 }
 
-search('Hello World').then(console.log, console.error)
+search("Hello World").then(console.log, console.error);
 ```
 
 加载图片的例子，也可以用 Ajax 操作完成。
 
 ```js
 function imgLoad(url) {
-  return new Promise(function(resolve, reject) {
-    var request = new XMLHttpRequest()
-    request.open('GET', url)
-    request.responseType = 'blob'
-    request.onload = function() {
-      if (request.status === 200) {
-        resolve(request.response)
-      } else {
-        reject(new Error('图片加载失败：' + request.statusText))
-      }
-    }
-    request.onerror = function() {
-      reject(new Error('发生网络错误'))
-    }
-    request.send()
-  })
+    return new Promise(function (resolve, reject) {
+        var request = new XMLHttpRequest();
+        request.open("GET", url);
+        request.responseType = "blob";
+        request.onload = function () {
+            if (request.status === 200) {
+                resolve(request.response);
+            } else {
+                reject(new Error("图片加载失败：" + request.statusText));
+            }
+        };
+        request.onerror = function () {
+            reject(new Error("发生网络错误"));
+        };
+        request.send();
+    });
 }
 ```
 
@@ -319,11 +309,11 @@ Promise 的缺点是，编写的难度比传统写法高，而且阅读代码也
 Promise 的回调函数属于异步任务，会在同步任务之后执行。
 
 ```js
-new Promise(function(resolve, reject) {
-  resolve(1)
-}).then(console.log)
+new Promise(function (resolve, reject) {
+    resolve(1);
+}).then(console.log);
 
-console.log(2)
+console.log(2);
 // 2
 // 1
 ```
@@ -333,15 +323,15 @@ console.log(2)
 但是，Promise 的回调函数不是正常的异步任务，而是微任务（microtask）。它们的区别在于，正常任务追加到下一轮事件循环，微任务追加到本轮事件循环。这意味着，微任务的执行时间一定早于正常任务。
 
 ```js
-setTimeout(function() {
-  console.log(1)
-}, 0)
+setTimeout(function () {
+    console.log(1);
+}, 0);
 
-new Promise(function(resolve, reject) {
-  resolve(2)
-}).then(console.log)
+new Promise(function (resolve, reject) {
+    resolve(2);
+}).then(console.log);
 
-console.log(3)
+console.log(3);
 // 3
 // 2
 // 1
@@ -351,10 +341,10 @@ console.log(3)
 
 ## 参考链接
 
-- Sebastian Porto, [Asynchronous JS: Callbacks, Listeners, Control Flow Libs and Promises](https://sporto.github.com/blog/2012/12/09/callbacks-listeners-promises/)
-- Rhys Brett-Bowen, [Promises/A+ - understanding the spec through implementation](https://modernjavascript.blogspot.com/2013/08/promisesa-understanding-by-doing.html)
-- Matt Podwysocki, Amanda Silver, [Asynchronous Programming in JavaScript with “Promises”](https://blogs.msdn.com/b/ie/archive/2011/09/11/asynchronous-programming-in-javascript-with-promises.aspx)
-- Marc Harter, [Promise A+ Implementation](https://gist.github.com//wavded/5692344)
-- Bryan Klimt, [What’s so great about JavaScript Promises?](http://blog.parse.com/2013/01/29/whats-so-great-about-javascript-promises/)
-- Jake Archibald, [JavaScript Promises There and back again](https://www.html5rocks.com/en/tutorials/es6/promises/)
-- Mikito Takada, [7. Control flow, Mixu’s Node book](http://book.mixu.net/node/ch7.html)
+-   Sebastian Porto, [Asynchronous JS: Callbacks, Listeners, Control Flow Libs and Promises](https://sporto.github.com/blog/2012/12/09/callbacks-listeners-promises/)
+-   Rhys Brett-Bowen, [Promises/A+ - understanding the spec through implementation](https://modernjavascript.blogspot.com/2013/08/promisesa-understanding-by-doing.html)
+-   Matt Podwysocki, Amanda Silver, [Asynchronous Programming in JavaScript with “Promises”](https://blogs.msdn.com/b/ie/archive/2011/09/11/asynchronous-programming-in-javascript-with-promises.aspx)
+-   Marc Harter, [Promise A+ Implementation](https://gist.github.com//wavded/5692344)
+-   Bryan Klimt, [What’s so great about JavaScript Promises?](http://blog.parse.com/2013/01/29/whats-so-great-about-javascript-promises/)
+-   Jake Archibald, [JavaScript Promises There and back again](https://www.html5rocks.com/en/tutorials/ES6/promises/)
+-   Mikito Takada, [7. Control flow, Mixu’s Node book](http://book.mixu.net/node/ch7.html)

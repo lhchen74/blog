@@ -7,20 +7,23 @@ tags:
 date: 2019-07-10
 ---
 
-> 来源： https://www.bilibili.com/video/av67118491
+Web 的基本功能如下：
 
-web 中的基本功能:
+使用 Node 的 Express, Python 的 Flask, Go 的 Gin 等 Web 框架实现 Web 的基本功能。
 
-1. 获取路径参数，查询字符串，form 表单数据(body)，json 数据(body)
-2. 返回纯文本，json 数据
-3. static 静态文件访问
-4. 获取 header, 设置 header
+- 获取路径参数，查询字符串，Form 表单数据(body)，JSON 数据(body)。
 
-### node express
+- 返回纯文本，JSON 数据。
+
+- Static 静态文件访问。
+
+- 获取 HTTP Header, 设置 HTTP Header。
+
+### Node Express
 
 ```js
-var express = require('express')
-var app = express()
+const express = require('express')
+const app = express()
 // 使 express 可以解析 body 数据
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
@@ -55,7 +58,7 @@ app.post('/json', function(req, res) {
 app.listen(3001)
 ```
 
-### python flask
+### Python Flask
 
 ```python
 from flask import Flask,request
@@ -99,7 +102,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3002)
 ```
 
-### go gin
+### Go Gin
 
 ```go
 package main

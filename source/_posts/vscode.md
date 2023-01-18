@@ -174,7 +174,7 @@ vscode 自定义配置参考：
     "editor.fontSize": 18,
     "files.associations": {
         "*.es": "javascript",
-        "*.es6": "javascript"
+        "*.ES6": "javascript"
     },
     // 控制编辑器是否应呈现空白字符
     "editor.renderWhitespace": true,
@@ -184,7 +184,7 @@ vscode 自定义配置参考：
     "beautify.JSfiles": [
         "",
         "es",
-        "es6",
+        "ES6",
         "js",
         "json",
         "jsbeautifyrc",
@@ -195,17 +195,23 @@ vscode 自定义配置参考：
 
 ## 补充插件
 
--   [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
+-   [quotify](https://marketplace.visualstudio.com/items?itemName=alanmbarr.quotify)
+
+-   [change-case](https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case)
 
 -   [简体与繁体互转](https://marketplace.visualstudio.com/items?itemName=cipchk.zh-hans-tt-hant-vscode)
+
+-   [vscode-faker](https://marketplace.visualstudio.com/items?itemName=deerawan.vscode-faker)
+
+-   [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
 
 -   [Batch Rename](https://marketplace.visualstudio.com/items?itemName=JannisX11.batch-rename-extension)
 
 -   [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
 
--   [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
+-   [Indent one space](https://marketplace.visualstudio.com/items?itemName=usernamehw.indent-one-space)
 
--   [change-case](https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case)
+-   [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
 
 -   [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 
@@ -213,17 +219,65 @@ vscode 自定义配置参考：
 
 -   [Edi X12 Support](https://marketplace.visualstudio.com/items?itemName=Silvenga.edi-x12-support)
 
+-   [Rainbow CSV](https://marketplace.visualstudio.com/items?itemName=mechatroner.rainbow-csv)
+
 -   [Edit csv](https://marketplace.visualstudio.com/items?itemName=janisdd.vscode-edit-csv)
+
+-   [XML Tools](https://marketplace.visualstudio.com/items?itemName=DotJoshJohnson.xml)
 
 -   [Highlight Bad Chars](https://marketplace.visualstudio.com/items?itemName=wengerk.highlight-bad-chars)
 
 -   [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
--   [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+- [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 
--   [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+  ```python
+  @host=http://localhost:3000
+  
+  ### Get Request
+  GET {{host}}/api/v1/products HTTP/1.1
+  
+  ### Post Request
+  # @name login
+  POST {{host}}/api/v1/auth/login HTTP/1.1
+  Content-Type: application/json
+  
+  {
+      "username": "xxx",
+      "password": "XXX"
+  }
+  
+  
+  ### Pass Token
+  GET {host}}/api/v1/user/info HTTP/1.1
+  token: {{login.response.body.data}}
+  ```
 
--   [Quokka.js](https://marketplace.visualstudio.com/items?itemName=WallabyJs.quokka-vscode)
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+- [Formatting Toggle](https://marketplace.visualstudio.com/items?itemName=tombonnike.vscode-status-bar-format-toggle)
+
+- [Quokka.js](https://marketplace.visualstudio.com/items?itemName=WallabyJs.quokka-vscode)
+
+- [Color Manager](https://marketplace.visualstudio.com/items?itemName=RoyAction.color-manager)
+
+- [Peacock](https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock)
+
+- [Transformer](https://marketplace.visualstudio.com/items?itemName=dakara.transformer)
+
+- [Dyno File Utils](https://marketplace.visualstudio.com/items?itemName=dyno-nguyen.vscode-dynofileutils)
+
+- [Project Manager](https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager)
+
+- [Placeholder Images](https://marketplace.visualstudio.com/items?itemName=JakeWilson.vscode-placeholder-images)
+
+- [Image preview](https://marketplace.visualstudio.com/items?itemName=kisstkondoros.vscode-gutter-preview)
+
+- [Font Switcher](https://marketplace.visualstudio.com/items?itemName=evan-buss.font-switcher)
+
+- [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
+
+- [Emoji Snippets](https://marketplace.visualstudio.com/items?itemName=devzstudio.emoji-snippets)
 
 ## Q&A
 
@@ -252,7 +306,7 @@ print("世界，你好！")
 然后运行 python 成功， kotlin 依旧失败。控制台输出如下：
 
 ```
-$ cd "d:\study\kotlin\basic\" && kotlinc test-chinese.kt -include-runtime -d test-chinese.jar && java -jar test-chinese.jar>
+cd "d:\study\kotlin\basic\" && kotlinc test-chinese.kt -include-runtime -d test-chinese.jar && java -jar test-chinese.jar>
 ```
 
 原因是因为我的 VSCode Terminal 使用的是 Git, 不能使用反斜杠作为目录分割符，修改 Code Runner 的 executorMap 去掉 cd 到目录这部分。
@@ -262,3 +316,36 @@ $ cd "d:\study\kotlin\basic\" && kotlinc test-chinese.kt -include-runtime -d tes
   "kotlin": "kotlinc $fileName -include-runtime -d $fileNameWithoutExt.jar && java -jar $fileNameWithoutExt.jar"
 }
 ```
+
+## Markdown snippets
+
+```json
+"Meta of markdown file": {
+    "prefix": "meta",
+    "body": [
+        "---",
+        "title: ${TM_FILENAME/(.*)\\..*/${1:/pascalcase}/}$1",
+        "tags: ${TM_FILENAME/(.*\\.)//}$2",
+        "date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+        "---\n",
+        "$0",
+    ],
+    "description": "Meta of markdown file"
+}
+```
+
+在 settings.json 中设置如下，使 meta 可以被 trigger。
+
+```json
+"[markdown]": {
+    "editor.quickSuggestions": true
+},
+```
+
+以 markdown-test.md 为例, 输入 meta 点击 tab 。
+
+![](vscode/2021-12-09-10-58-49.png)
+
+## Screencast 显示按键
+
+`Ctrl+Shift+P` 输入 `Developer: Toogle Screencast Mode` 会打开 Screencast 模式, 之后会在屏幕上显示按下的键

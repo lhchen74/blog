@@ -9,47 +9,61 @@ date: 2021-04-25
 
 ### 移动和选择
 
-TAB 跳到本行下一个单元格, SHIFT TAB 跳到本行上一个单元格
-ENTER 跳到本列下一个单元格, SHIFT ENTER 跳到本列下一个单元格
-CTRL + 方向键 跳到指定方向的边界
-SHIFT + 方向键 选择指定方向一个单元格
-CTRL + SHIFT + 方向键 选择到指定方向边界
+| Key                     | Meaning                |
+| :---------------------- | ---------------------- |
+| `TAB`                   | 跳到本行下一个单元格   |
+| `SHIFT TAB`             | 跳到本行上一个单元格   |
+| `ENTER`                 | 跳到本列下一个单元格   |
+| `SHIFT ENTER`           | 跳到本列下一个单元格   |
+| `CTRL + 方向键`         | 跳到指定方向的边界     |
+| `SHIFT + 方向键`        | 选择指定方向一个单元格 |
+| `CTRL + SHIFT + 方向键` | 选择到指定方向边界     |
 
 ### 拖动
 
-鼠标左键栏位边缘呈现箭头十字拖动
-CTRL+ 鼠标左键箭头十字拖动复制
-SHIFT + 鼠标左键箭头十字拖动插入
+鼠标左键栏位边缘呈现十字箭头拖动。
+
+-   拖动复制：CTRL+ 鼠标左键十字箭头。
+-   拖动插入：SHIFT + 鼠标左键十字箭头。
 
 ### 调整栏宽行高
 
-鼠标放至栏位分隔綫処出现 `<-|->`
-`<-|-> ` 单击鼠标左键，调整单个栏宽至内容宽度
-选择单元格所有内容，`<-|->` 单击鼠标左键，调整所有栏宽至内容宽度
-选择单元格所有内容，`<-|->`鼠标左键拖动，调整所有栏宽至相同宽度
+鼠标放至栏位分隔线处出现 `<-|->`
+
+- 调整单个栏宽至内容宽度：`<-|-> ` 单击鼠标左键。
+
+- 调整所有栏宽至内容宽度：选择所有栏，`<-|->` 单击鼠标左键。如果栏宽没有调整到内容的宽度，需要注意是否开启了自动换行。
+
+  ![](excel/1662025467649.png)
+
+-   调整所有栏宽至相同宽度：选择所有栏，`<-|->`鼠标左键拖动。
 
 ### 快速插入多个空行
 
-右键插入空行，F4 重复上次操作
-选择多行，右键插入
+-   右键插入空行，然后 F4 重复上次操作。
+-   选择多行，然后右键插入。
 
 ### 重复填充
 
-Ctrl + D
+选择需要重复填充的源和待填充的行， 执行 `CTRL + D` 。
+
+| Initial                                   | Result                                    |
+| ----------------------------------------- | ----------------------------------------- |
+| ![1641454418471](excel/1641454418471.png) | ![1641454453915](excel/1641454453915.png) |
 
 ### 跨行复制
 
-按住 Ctrl，鼠标选择要复制的内容，然后 Ctrl + C 复制
+按住 `CTRL`，鼠标选择要复制的行，然后 `CTRL + C` 复制。
 
 ### 单元格内换行
 
-ALT + ENTER，用来输入对角线标题很方便
+`ALT + ENTER`
 
 ### 批注
 
 右键 => 插入批注 => 右键批注设置格式
 
-### F4 相对应用便绝对引用
+### F4 相对应用变绝对引用
 
 `A1 => $A$1`
 
@@ -65,7 +79,9 @@ ALT + ENTER，用来输入对角线标题很方便
 
 复制数据 => 选择性粘贴 => 勾选转置
 
-### 选择性粘贴 运算 所有英文成绩加 5
+### 选择性粘贴 运算
+
+所有英文成绩加 5
 
 复制数据 5 => 选择性粘贴 => 选择需要运算区域 => 勾选运算 **加**
 
@@ -106,7 +122,7 @@ ALT + ENTER，用来输入对角线标题很方便
 
 ![](excel/1619333874816.png)
 
-案例：将 students.txt 转换为 excel 格式, 并且 `0001` 保留原有的格式。
+案例：将 students.txt 转换为 excel 格式, 并且 `001` 保留原有的格式。
 
 ```csv
 id|name|age
@@ -115,15 +131,15 @@ id|name|age
 003|owen|40
 ```
 
-1. 选择待分列的列(A列)，点击数据 -> 分列，合适的文件类型中选择分隔符号。
+1. 选择待分列的列(A 列)，点击数据 -> 分列，合适的文件类型中选择分隔符号。
 
-   ![1629871207427](excel/1629871207427.png) 
+    ![1629871207427](excel/1629871207427.png)
 
 2. 选择分隔符号，可以勾选其他，手动填写分隔符号，这里使用 `|`。
 
 ![1629870555192](excel/1629870555192.png)
 
-3. 设置列的数据类型，这里将 id，name 设置为文本格式，可以 Shift 点选, 需要选择所有列使用 Ctrl + A.
+3. 设置列的数据类型，这里将 id，name 设置为文本格式，可以 Shift 点选, 需要选择所有列使用 CTRL + A.
 
 ![1629871012544](excel/1629871012544.png)
 
@@ -730,7 +746,6 @@ Sub CellRefTest4()
 
     Range("A1").End(xlToRight).End(xlDown).Select
 End Sub
-
 ```
 
 ### Function
@@ -753,7 +768,7 @@ End Function
 ```vb
 Sub HideColumn()
   Dim sheet As Worksheet
-  
+
   For Each sheet In ActiveWorkbook.Sheets
      sheet.Columns("A:F").EntireColumn.Hidden = True
      sheet.Columns("O:T").EntireColumn.Hidden = True
@@ -770,9 +785,9 @@ Sub Combine()
     Dim sheet As Worksheet
     Dim rowCount As Integer
     Dim combineSheetName As String
-    
+
     combineSheetName = "Combined"
-    
+
     On Error Resume Next
     Sheets(1).Select
     Worksheets.Add ' Add a sheet in first place
@@ -785,12 +800,12 @@ Sub Combine()
 
     For Each sheet In ActiveWorkbook.Sheets
         If sheet.Name <> "Combined" Then
-        
+
             Application.GoTo Sheets(sheet.Name).[A1]
             Selection.CurrentRegion.Select
             Selection.Offset(1, 0).Resize(Selection.Rows.Count - 2).Select ' Don't copy header and last line
             rowCount = Selection.Rows.Count 'Actual copy rowCount
-            
+
             If beginRow = 0 Then
                Selection.Copy Destination:=Sheets("Combined").Cells(2, 1)
                beginRow = beginRow + 1 + rowCount ' 1 represent header count
@@ -798,10 +813,10 @@ Sub Combine()
                Selection.Copy Destination:=Sheets("Combined").Cells(beginRow, 1)
                beginRow = beginRow + rowCount
             End If
-             
+
         End If
     Next
-    
+
     ActiveWorkbook.Sheets(combineSheetName).Activate
     Range("A1").EntireRow.Select
     Selection.CurrentRegion.Select
@@ -826,11 +841,10 @@ End Sub
 
 以 `,` 分隔的 `.csv` 虽然可以直接使用 excel 开启，不过对一些特殊的符号需要进行简单的处理，例如 `="007", =007, 007` 在 excel 中的显示分别是 `007, =007, 7`
 
-| reason                    |            csv            |              xlsx               |
-| :------------------------ | :-----------------------: | :-----------------------------: |
-| 显示逗号                  |     "Taipei, Taiwan"      |         Taipei, Taiwan          |
-| 显示双引号                |         "12'30"""         |             12’30"              |
-| 显示数字或字符串前面的 00 |          ="007"           |       ="007" （显示 007）       |
-| 使用 excel 公式           | =SUM(B2:B5)/"=SUM(B2:B5)" |     =SUM (B2:B5) （显示和）     |
+| reason                    |            csv            |             xlsx             |
+| :------------------------ | :-----------------------: | :--------------------------: |
+| 显示逗号                  |     "Taipei, Taiwan"      |        Taipei, Taiwan        |
+| 显示双引号                |         "12'30"""         |            12’30"            |
+| 显示数字或字符串前面的 00 |          ="007"           |     ="007" （显示 007）      |
+| 使用 excel 公式           | =SUM(B2:B5)/"=SUM(B2:B5)" |   =SUM (B2:B5) （显示和）    |
 | 双引号前后有空格          | `A, "B,C",D` `A,"B,C" ,D` | ![](excel/1575011576909.png) |
-

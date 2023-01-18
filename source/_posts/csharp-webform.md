@@ -64,13 +64,13 @@ namespace WindowsFormsApp1
 }
 ```
 
-`JavaScriptSerializer` 类需要添加 `System.Web.Extensions` 引用，因为此程序不是 web 程序
+`JavaScriptSerializer` 类需要添加 `System.Web.Extensions` 引用，因为此程序不是 web 程序，不会默认添加 `System.Web.Extensions` 依赖。
 
 ![](csharp-webform/1570241718390.png)
 
-User.cs
+需要将 User 属性设置为 public, 否则 json 序列化数据都是默认空值。
 
-需要将 User 属性设置为 public, 否则 json 序列化数据都是默认空值
+**User.cs**
 
 ```c#
 using System;
@@ -94,5 +94,3 @@ namespace WindowsFormsApp1
 ### 运行效果
 
 ![](csharp-webform/1570241940875.png)
-
-> 来源: https://www.bilibili.com/video/av67718217

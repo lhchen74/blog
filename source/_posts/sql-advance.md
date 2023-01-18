@@ -5,7 +5,7 @@ categories: manual
 date: 2020-09-01
 ---
 
-> SQL 进阶教程 /（日） MICK 著；吴炎昌译.
+> SQL 进阶教程 /（日） MICK 著；吴炎昌译
 
 ## CASE 表达式
 
@@ -14,13 +14,13 @@ date: 2020-09-01
 ```sql
 -- 简单 CASE 表达式
 CASE sex
-	WHEN '1' THEN '男'
-	WHEN '2' THEN '女'
+   WHEN '1' THEN '男'
+   WHEN '2' THEN '女'
 ELSE '其他' END
 
 -- 搜索 CASE 表达式
 CASE WHEN sex = '1' THEN '男'
-	  WHEN sex = '2' THEN '女'
+     WHEN sex = '2' THEN '女'
 ELSE '其他' END
 ```
 
@@ -40,67 +40,67 @@ ELSE '其他' END
 
 ### 将已有编号方式转换为新的方式并统计
 
-![](sql/case01.png)
+![](sql-advance/case01.png)
 
 ```sql
 -- 把县编号转换成地区编号 (1)
 SELECT CASE pref_name
-			WHEN '德岛' THEN '四国'
-			WHEN '香川' THEN '四国'
-			WHEN '爱媛' THEN '四国'
-			WHEN '高知' THEN '四国'
-			WHEN '福冈' THEN '九州'
-			WHEN '佐贺' THEN '九州'
-			WHEN '长崎' THEN '九州'
-			ELSE '其他' END AS district,
-			SUM(population)
+       WHEN '德岛' THEN '四国'
+       WHEN '香川' THEN '四国'
+       WHEN '爱媛' THEN '四国'
+       WHEN '高知' THEN '四国'
+       WHEN '福冈' THEN '九州'
+       WHEN '佐贺' THEN '九州'
+       WHEN '长崎' THEN '九州'
+       ELSE '其他' END AS district,
+       SUM(population)
 FROM PopTbl
 GROUP BY CASE pref_name
-			WHEN '德岛' THEN '四国'
-			WHEN '香川' THEN '四国'
-			WHEN '爱媛' THEN '四国'
-			WHEN '高知' THEN '四国'
-			WHEN '福冈' THEN '九州'
-			WHEN '佐贺' THEN '九州'
-			WHEN '长崎' THEN '九州'
-			ELSE '其他' END
+      WHEN '德岛' THEN '四国'
+      WHEN '香川' THEN '四国'
+      WHEN '爱媛' THEN '四国'
+      WHEN '高知' THEN '四国'
+      WHEN '福冈' THEN '九州'
+      WHEN '佐贺' THEN '九州'
+      WHEN '长崎' THEN '九州'
+      ELSE '其他' END
 
 
 -- 按人口数量等级划分都道府县
 SELECT CASE WHEN population < 100 THEN '01'
-			WHEN population >= 100 AND population < 200 THEN '02'
-			WHEN population >= 200 AND population < 300 THEN '03'
-			WHEN population >= 300 THEN '04'
-			ELSE NULL END AS pop_class,
-			COUNT(*) AS cnt
+            WHEN population >= 100 AND population < 200 THEN '02'
+            WHEN population >= 200 AND population < 300 THEN '03'
+            WHEN population >= 300 THEN '04'
+            ELSE NULL END AS pop_class,
+            COUNT(*) AS cnt
 FROM PopTbl
 GROUP BY CASE WHEN population < 100 THEN '01'
-			  WHEN population >= 100 AND population < 200 THEN '02'
-			  WHEN population >= 200 AND population < 300 THEN '03'
-			  WHEN population >= 300 THEN '04'
-			  ELSE NULL END;
+              WHEN population >= 100 AND population < 200 THEN '02'
+              WHEN population >= 200 AND population < 300 THEN '03'
+              WHEN population >= 300 THEN '04'
+              ELSE NULL END;
 
 pop_class cnt
 --------- ----
-01 		   1
-02 		   3
+01        1
+02        3
 03        3
 04        2
 ```
 
 ### 用一条 SQL 语句进行不同条件的统计
 
-![](sql/case02.png)
+![](sql-advance/case02.png)
 
 新手用 WHERE 子句进行条件分支，高手用 SELECT 子句进行条件分支。
 
 ```sql
 -- 这种方式可以实现列转行
 SELECT pref_name,
-	   -- 男性人口
-	   SUM( CASE WHEN sex = '1' THEN population ELSE 0 END) AS cnt_m,
-	   -- 女性人口
-	   SUM( CASE WHEN sex = '2' THEN population ELSE 0 END) AS cnt_f
+       -- 男性人口
+       SUM(CASE WHEN sex = '1' THEN population ELSE 0 END) AS cnt_m,
+       -- 女性人口
+       SUM(CASE WHEN sex = '2' THEN population ELSE 0 END) AS cnt_f
 FROM PopTbl2
 GROUP BY pref_name;
 ```
@@ -111,10 +111,10 @@ GROUP BY pref_name;
 
 ```sql
 CONSTRAINT check_salary CHECK
-	( CASE WHEN sex = '2'
-		   THEN CASE WHEN salary <= 200000
-		             THEN 1 ELSE 0 END
-		   ELSE 1 END = 1 )
+    (CASE WHEN sex = '2'
+          THEN CASE WHEN salary <= 200000
+          THEN 1 ELSE 0 END
+          ELSE 1 END = 1)
 ```
 
 ### 在 UPDATE 语句里进行条件分支
@@ -122,42 +122,41 @@ CONSTRAINT check_salary CHECK
 1. 对当前工资为 30 万日元以上的员工，降薪 10%。
 2. 对当前工资为 25 万日元以上且不满 28 万日元的员工，加薪 20%。
 
-![](sql/case03.png)
-
-![](sql/case04.png)
+![](sql-advance/case03.png)
+![](sql-advance/case04.png)
 
 ```sql
 -- 用 CASE 表达式写正确的更新操作
 UPDATE Salaries
    SET salary = CASE WHEN salary >= 300000
-					 THEN salary * 0.9
-					 WHEN salary >= 250000 AND salary < 280000
-					 THEN salary * 1.2
-					 ELSE salary END
+                     THEN salary * 0.9
+                     WHEN salary >= 250000 AND salary < 280000
+                     THEN salary * 1.2
+                     ELSE salary END
 ```
 
 用 CASE 表达式调换主键 a, b 的值
 
-![](sql/case05.png)
+![](sql-advance/case05.png)
 
 ```sql
 -- 用 CASE 表达式调换主键值
 UPDATE SomeTable
    SET p_key = CASE WHEN p_key = 'a'
-					THEN 'b'
-					WHEN p_key = 'b'
-					THEN 'a'
-					ELSE p_key END
-					WHERE p_key IN ('a', 'b');
+                    THEN 'b'
+                    WHEN p_key = 'b'
+                    THEN 'a'
+                    ELSE p_key END
+ WHERE p_key IN ('a', 'b');
 ```
 
 ### 表之间的数据匹配
 
 与 DECODE 函数等相比，CASE 表达式的一大优势在于能够判断表达式。也就是说，在 CASE 表达式里，我们可以使用 BETWEEN、 LIKE 和 <、 > 等便利的谓词组合，以及能嵌套子查询的 IN 和 EXISTS 谓词。因此， CASE 表达式具有非常强大的表达能力。
 
-![](sql/case06.png)
+![](sql-advance/case06.png)
 
-![](sql/case07.png)
+![](sql-advance/case07.png)
 
 ```sql
 -- 表的匹配：使用IN谓词
@@ -180,26 +179,31 @@ SELECT CM.course_name,
 -- 表的匹配：使用EXISTS谓词
 SELECT CM.course_name,
        CASE WHEN EXISTS
-                    (SELECT course_id FROM OpenCourses OC
-                      WHERE month = 200706
-                        AND CM.course_id = OC.course_id) THEN '○'
+                (SELECT course_id FROM OpenCourses OC
+                    WHERE month = 200706
+                    AND CM.course_id = OC.course_id) THEN '○'
             ELSE '×' END AS "6月",
        CASE WHEN EXISTS
-                    (SELECT course_id FROM OpenCourses OC
-                      WHERE month = 200707
-                        AND CM.course_id = OC.course_id) THEN '○'
+                (SELECT course_id FROM OpenCourses OC
+                    WHERE month = 200707
+                    AND CM.course_id = OC.course_id) THEN '○'
             ELSE '×' END AS "7月",
        CASE WHEN EXISTS
-                    (SELECT course_id FROM OpenCourses OC
-                      WHERE month = 200708
-                        AND CM.course_id = OC.course_id) THEN '○'
+                (SELECT course_id FROM OpenCourses OC
+                    WHERE month = 200708
+                    AND CM.course_id = OC.course_id) THEN '○'
             ELSE '×' END  AS "8月"
   FROM CourseMaster CM;
 ```
 
 ### 在 CASE 表达式中使用聚合函数
 
-![](sql/case08.png)
+![](sql-advance/case08.png)
+
+按照下面的条件查询 StudentClub 表里的数据。
+
+1. 获取只加入了一个社团的学生的社团 ID。
+2. 获取加入了多个社团的学生的主社团 ID。
 
 ```sql
 -- 在CASE表达式中使用聚合函数
@@ -213,23 +217,22 @@ SELECT std_id,
   FROM StudentClub
  GROUP BY std_id;
 
- std_id main_club
+std_id main_club
 ------ ----------
-    100  1
-    200  3
-    300  4
-    400  5
-    500  6
+100    1
+200    3
+300    4
+400    5
+500    6
 ```
 
 ## 自连接的用法
 
 ### 可重排列、排列、组合
 
-假设这里有一张存放了商品名称及价格的表，表里有“苹果、橘子、香蕉”这 3 条记录。在生成用于查询销售额的报表等的时候，我们有时会
-需要获取这些商品的组合。
+假设这里有一张存放了商品名称及价格的表，表里有“苹果、橘子、香蕉”这 3 条记录。在生成用于查询销售额的报表等的时候，我们有时会需要获取这些商品的组合。
 
-![](sql/selfjoin01.png)
+![](sql-advance/selfjoin01.png)
 
 这里所说的组合其实分为两种类型。一种是有顺序的有序对（orderedpair），另一种是无顺序的无序对（unordered pair）。有序对用尖括号括起来，如 <1, 2>；无序对用花括号括起来，如 {1, 2}。在有序对里，如果元素顺序相反，那就是不同的对，因此 <1, 2> ≠ <2, 1> ；而无序对与顺序无关，因此 {1, 2}＝{2, 1}。用学校里学到的术语来说，这两类分别对应着“排列”和“组合”。
 
@@ -288,7 +291,7 @@ name_1  name_2   name_3
 
 ### 删除重复行
 
-![](sql/selfjoin02.png)
+![](sql-advance/selfjoin02.png)
 
 ```sql
 -- 用于删除重复行的SQL语句（1）：使用极值函数
@@ -311,7 +314,7 @@ DELETE FROM Products P1
 
 如果家庭 ID 一样，住址也必须一样。那么我们该如何找出像前田夫妇这样的“是同一家人但住址却不同的记录”呢？
 
-![](sql/selfjoin03.png)
+![](sql-advance/selfjoin03.png)
 
 ```sql
 -- 用于查找是同一家人但住址却不同的记录的SQL语句
@@ -323,9 +326,9 @@ SELECT DISTINCT A1.name, A1.address
 
 ### 排序
 
-![](sql/selfjoin04.png)
+![](sql-advance/selfjoin04.png)
 
-![](sql/selfjoin05.png)
+![](sql-advance/selfjoin05.png)
 
 **使用窗口函数**
 
@@ -351,25 +354,20 @@ SELECT P1.name,
 
 子查询所做的，是计算出价格比自己高的记录的条数并将其作为自己的位次。为了便于理解，我们先考虑从 0 开始，对去重之后的 4 个价格“{ 100, 80, 50, 30 }”进行排序的情况。首先是价格最高的 100，因为不存在比它高的价格，所以 COUNT 函数返回 0。接下来是价格第二高的 80，比它高的价格有一个 100，所以 COUNT 函数返回 1。同样地，价格为 50 的时候返回 2，为 30 的时候返回 3。这样，就生成了一个与每个价格对应的集合，如下表所示。
 
-![](sql/selfjoin06.png)
+![](sql-advance/selfjoin06.png)
 
-也就是说，这条 SQL 语句会生成这样几个“同心圆状的”A 递归集合，然后数这些集合的元素个数。正如“同心圆状”这个词的字面意思那样，
-这几个集合之间存在如下包含关系。
+也就是说，这条 SQL 语句会生成这样几个“同心圆状的”A 递归集合，然后数这些集合的元素个数。正如“同心圆状”这个词的字面意思那样，这几个集合之间存在如下包含关系。
 
-![](sql/selfjoin07.png)
+![](sql-advance/selfjoin07.png)
 
-实际上，“通过递归集合来定义数”这个想法并不算新颖。有趣的是，它和集合论里沿用了 100 多年的自然数（包含 0）的递归定义（recursive
-definition）在思想上不谋而合 。研究这种思想的学者形成了几个流派，其中和这道例题的思路类型相同的是计算机之父、数学家冯·诺依曼提出
-的想法。冯·诺依曼首先将空集定义为 0，然后按照下面的规则定义了全体自然数。
+实际上，“通过递归集合来定义数”这个想法并不算新颖。有趣的是，它和集合论里沿用了 100 多年的自然数（包含 0）的递归定义（recursive definition）在思想上不谋而合 。研究这种思想的学者形成了几个流派，其中和这道例题的思路类型相同的是计算机之父、数学家冯·诺依曼提出的想法。冯·诺依曼首先将空集定义为 0，然后按照下面的规则定义了全体自然数。
 0 = φ
 1 = {0}
 2 = {0, 1}
 3 = {0, 1, 2}
 ·
 ·
-定义完 0 之后，用 0 来定义 1，然后用 0 和 1 来定义 2，再用 0、 1 和 2 来定义 3……以此类推。这种做法与上面例题里的集合 S0 ～ S3 在
-生成方法和结构上都是一样的（正是为了便于比较，例题里的位次才从 0 开始）。这道题很好地直接结合了 SQL 和集合论，而联系二者的正是
-自连接。
+定义完 0 之后，用 0 来定义 1，然后用 0 和 1 来定义 2，再用 0、 1 和 2 来定义 3……以此类推。这种做法与上面例题里的集合 S0 ～ S3 在生成方法和结构上都是一样的（正是为了便于比较，例题里的位次才从 0 开始）。这道题很好地直接结合了 SQL 和集合论，而联系二者的正是自连接。
 
 **使用自连接**
 
@@ -383,31 +381,29 @@ SELECT P1.name,
  ORDER BY rank_1;
 ```
 
-去掉这条 SQL 语句里的聚合并展开成下面这样，就可以更清楚地看出同心圆状的包含关系（为了看得更清楚，我们从表中去掉价格重复的行，
-只留下橘子、西瓜、葡萄和柠檬这 4 行）。
+去掉这条 SQL 语句里的聚合并展开成下面这样，就可以更清楚地看出同心圆状的包含关系（为了看得更清楚，我们从表中去掉价格重复的行，只留下橘子、西瓜、葡萄和柠檬这 4 行）。
 
-![](sql/selfjoin08.png)
+![](sql-advance/selfjoin08.png)
 
 使用内连接 第 1 名“橘子”竟然从结果里消失了。没有比橘子价格更高的水果，所以它被连接条件 P1.price < P2.price 排除掉了。外连接就是这样一个用于将第 1 名也存储在结果里的小技巧 。
 
-![](sql/selfjoin09.png)
+![](sql-advance/selfjoin09.png)
 
 ## 三值逻辑和 NULL
 
-总之，数据库里只要存在一个 NULL，查询的结果就可能不正确。而且，一般没有办法确定具体是哪个查询返回了不正确的结果，所以所有的结果看起来都很可疑。没有谁能保证一定能从包含 NULL 的数据库里查询出正确的结果。要我说，这种情况着实令人束手无策。 —C.J. Date
+> 总之，数据库里只要存在一个 NULL，查询的结果就可能不正确。而且，一般没有办法确定具体是哪个查询返回了不正确的结果，所以所有的结果看起来都很可疑。没有谁能保证一定能从包含 NULL 的数据库里查询出正确的结果。要我说，这种情况着实令人束手无策。 - C.J. Date
 
 ### 两种 NULL、三值逻辑还是四值逻辑
 
-说到三值逻辑，笔者认为话题应该从 NULL 开始，因为 NULL 正是产生三值逻辑的“元凶”。“两种 NULL”这种说法大家可能会觉得很奇怪，因为 SQL 里只存在一种 NULL。然而在讨论 NULL 时，我们一般都会将它分成两种类型来思考。因此这里先来介绍一些基础知识，即两种 NULL 之间的区别。两 种 NULL 分 别 指 的 是“ 未 知 ”（unknown） 和“ 不 适 用 ”（notapplicable, inapplicable）。以“不知道戴墨镜的人眼睛是什么颜色”这种情况为例，这个人的眼睛肯定是有颜色的，但是如果他不摘掉眼镜，别人就不知道他的眼睛是什么颜色。这就叫作未知。而“不知道冰箱的眼睛是什么颜色”则属于“不适用”。因为冰箱根本就没有眼睛，所以“眼睛的颜色”这一属性并不适用于冰箱。“冰箱的眼睛的颜色”这种说法和“圆的体积”“男性的分娩次数”一样，都是没有意义的。平时，我们习惯了说“不知道”，但是“不知道”也分很多种。“不适用”这种情况下的 NULL，在语义上更接近于“无意义”，而不是“不确定”。这里总结一下：“未知”指的是“虽然现在不知道，但加上某些条件后就可以知道”；而“不适用”指的是“无论怎么努力都无法知道”。
+说到三值逻辑，笔者认为话题应该从 NULL 开始，因为 NULL 正是产生三值逻辑的“元凶”。“两种 NULL”这种说法大家可能会觉得很奇怪，因为 SQL 里只存在一种 NULL。然而在讨论 NULL 时，我们一般都会将它分成两种类型来思考。因此这里先来介绍一些基础知识，即两种 NULL 之间的区别。两种 NULL 分别指的是 “未知”（unknown） 和 “不适用”（notapplicable, inapplicable）。以“不知道戴墨镜的人眼睛是什么颜色”这种情况为例，这个人的眼睛肯定是有颜色的，但是如果他不摘掉眼镜，别人就不知道他的眼睛是什么颜色。这就叫作未知。而“不知道冰箱的眼睛是什么颜色”则属于“不适用”。因为冰箱根本就没有眼睛，所以“眼睛的颜色”这一属性并不适用于冰箱。“冰箱的眼睛的颜色”这种说法和“圆的体积”，“男性的分娩次数”一样，都是没有意义的。平时，我们习惯了说“不知道”，但是“不知道”也分很多种。“不适用”这种情况下的 NULL，在语义上更接近于“无意义”，而不是“不确定”。这里总结一下：“未知”指的是“虽然现在不知道，但加上某些条件后就可以知道”；而“不适用”指的是“无论怎么努力都无法知道”。
 
-![](sql/null01.png)
+![](sql-advance/null01.png)
 
 Codd 曾经认为应该严格地区分两种类型的 NULL，并提倡在关系数据库中使用四值逻辑 。不知道是幸运还是不幸（笔者认为肯定是幸运），他的这个想法并没有得到广泛支持，现在所有的 DBMS 都将两种类型的 NULL 归为了一类并采用了三值逻辑。但是他的这种分类方法本身还是有很多优点的，因此后来依然有很多学者支持。
 
 ### 为什么必须写成“IS NULL”，而不是“＝ NULL”
 
-对 NULL 使用比较谓词后得到的结果总是 unknown。而查询结果只会包含 WHERE 子句里的判断结果为 true 的行，不会包含判断结果为 false 和 unknown 的行。不只是等号，对 NULL 使用
-其他比较谓词，结果也都是一样的。
+对 NULL 使用比较谓词后得到的结果总是 unknown。而查询结果只会包含 WHERE 子句里的判断结果为 true 的行，不会包含判断结果为 false 和 unknown 的行。不只是等号，对 NULL 使用其他比较谓词，结果也都是一样的。
 
 ```sql
 -- 以下的式子都会被判为 unknown
@@ -418,32 +414,33 @@ Codd 曾经认为应该严格地区分两种类型的 NULL，并提倡在关系�
 NULL = NULL
 ```
 
-那么，为什么对 NULL 使用比较谓词后得到的结果永远不可能为真呢？这是因为， NULL 既不是值也不是变量。 NULL 只是一个表示“没有值”的标记，而比较谓词只适用于值。因此，对并非值的 NULL 使用比较谓词本来就是没有意义的 (“我们先从定义一个表示‘虽然丢失了，但却适用的值’的标记开始。我们把它叫作 A-Mark。这个标记在关系数据库里既不被当作值（value），也不被当作变量（variable）。”（E.F. Codd， TheRelational Model for DatabaseManagement ：Version 2, P.173）“关于 NULL 的很重要的一件事情是， NULL 并不是值。”（C.J. Date，An Intruction To Database System（6thedition） , P.619） )。“列的值为 NULL”“NULL 值”这样的说法本身就是错误的。因为 NULL 不是值，所以不在定义域（domain）中。相反，如果有人认为 NULL 是值，那么笔者倒想请教一下：它是什么类型的值？关系数据库中存在的值必然属于某种类型，比如字符型或数值型等。所以，假如 NULL 是值，那么它就必须属于某种类型。
+那么，为什么对 NULL 使用比较谓词后得到的结果永远不可能为真呢？这是因为， NULL 既不是值也不是变量。 NULL 只是一个表示“没有值”的标记，而比较谓词只适用于值。因此，对并非值的 NULL 使用比较谓词本来就是没有意义的 (_“我们先从定义一个表示虽然丢失了，但却适用的值’的标记开始。我们把它叫作 A-Mark。这个标记在关系数据库里既不被当作值（value），也不被当作变量（variable）。”（E.F. Codd， TheRelational Model for DatabaseManagement ：Version 2, P.173）“关于 NULL 的很重要的一件事情是， NULL 并不是值。”（C.J. Date，An Intruction To Database System（6thedition） , P.619）_ )。“列的值为 NULL”“NULL 值”这样的说法本身就是错误的。因为 NULL 不是值，所以不在定义域（domain）中。相反，如果有人认为 NULL 是值，那么笔者倒想请教一下：它是什么类型的值？关系数据库中存在的值必然属于某种类型，比如字符型或数值型等。所以，假如 NULL 是值，那么它就必须属于某种类型。
 
 NULL 容易被认为是值的原因恐怕有两个。第一个是在 C 语言等编程语言里面， NULL 被定义为了一个常量（很多语言将其定义为了整数 0），这导致了人们的混淆。但是，其实 SQL 里的 NULL 和其他编程语言里的 NULL 是完全不同的东西。第二个原因是， IS NULL 这样的谓词是由两个单词构成的，所以人们容易把 IS 当作谓词，而把 NULL 当作值。特别是 SQL 里还有 IS TRUE、IS FALSE 这样的谓词，人们由此类推，从而这样认为也不是没有道理。但是正如讲解标准 SQL 的书里提醒人们注意的那样，我们应该把 IS NULL 看作是一个谓词。因此，如果可以的话，写成 IS_NULL 这样也许更合适 。
 
 ### unknown、第三个真值
 
-![](sql/null02.png)
+![](sql-advance/null02.png)
 
 三个真值之间有下面这样的优先级顺序。
 
--   AND 的情况： false ＞  unknown ＞  true
--   OR 的情况： true ＞  unknown ＞  false
+-   AND 的情况：`false ＞ unknown ＞ true`
+-   OR 的情况：`true ＞ unknown ＞ false`
 
 优先级高的真值会决定计算结果。例如 true AND unknown，因为 unknown 的优先级更高，所以结果是 unknown。而 true OR unknown 的话，因为 true 优先级更高，所以结果是 true。记住这个顺序后就能更方便地进行三值逻辑运算了。特别需要记住的是，当 AND 运算中包含 unknown 时，结果肯定不会是 true（反之，如果 AND 运算结果为 true，则参与运算的双方必须都为 true）。
 
 问题：假设 a = 2, b = 5, c = NULL，此时下面这些式子的真值是什么？
-1. a < b AND b > c
-2. a > b OR b < c
-3. a < b OR b < c
-4. NOT (b <> c)
+
+1. a < b AND b > c
+2. a > b OR b < c
+3. a < b OR b < c
+4. NOT (b <> c)
 
 答案：unknown； 2. unknown； 3. true； 4. unknown
 
 ### 比较谓词和 NULL(1) ：排中律不成立
 
-![](sql/null03.png)
+![](sql-advance/null03.png)
 
 ```sql
 -- 查询年龄是 20 岁或者不是 20 岁的学生
@@ -452,17 +449,18 @@ SELECT *
  WHERE age = 20
     OR age <> 20;
 
--- 1. 约翰年龄是 NULL（未知的 NULL ！
+-- 1. 约翰年龄是 NULL（未知的 NULL ！)
 SELECT *
   FROM Students
  WHERE age = NULL
-   OR age <> NULL;
+    OR age <> NULL;
 
 -- 2. 对 NULL 使用比较谓词后，结果为 unknown
 SELECT *
   FROM Students
  WHERE unknown
     OR unknown;
+
 -- 3． unknown OR unknown 的结果是 unknown（不为 true, 约翰不会被查询出来）
 SELECT *
   FROM Students
@@ -478,12 +476,12 @@ SELECT *
 
 ### 比较谓词和 NULL(2) ：CASE 表达式和 NULL
 
-这个 CASE 表达式一定不会返回 ×。这是因为，第二个 WHEN 子句是 col_1 = NULL 的缩写形式。正如大家所知，这个式子的真值永远是 unknown。而且 CASE 表达式的判断方法与 WHERE 子句一样，只认可真值为 true 的条件。 需要将 WHEN NULL 修改为 WHEN IS NULL。
+如下这个 CASE 表达式一定不会返回 ×。这是因为，第二个 WHEN 子句是 col_1 = NULL 的缩写形式。正如大家所知，这个式子的真值永远是 unknown。而且 CASE 表达式的判断方法与 WHERE 子句一样，只认可真值为 true 的条件。 需要将 WHEN NULL 修改为 WHEN IS NULL。
 
 ```sql
 --col_1 为 1 时返回○、为 NULL 时返回 × 的 CASE 表达式？
 CASE col_1
-	WHEN 1 THEN '○'
+    WHEN 1 THEN '○'
     WHEN NULL THEN '×'
 END
 ```
@@ -492,9 +490,9 @@ END
 
 查询“与 B 班住在东京的学生年龄不同的 A 班学生”
 
-![](sql/null04.png)
+![](sql-advance/null04.png)
 
-![](sql/null05.png)
+![](sql-advance/null05.png)
 
 **NOT IN**
 
@@ -586,10 +584,9 @@ SELECT *
 
 ### 限定谓词和 NULL
 
-SQL 里有 ALL 和 ANY 两个限定谓词。因为 ANY 与 IN 是等价的，所以
-我们不经常使用 ANY。
+SQL 里有 ALL 和 ANY 两个限定谓词。因为 ANY 与 IN 是等价的，所以我们不经常使用 ANY。
 
-![](sql/null07.png)
+![](sql-advance/null07.png)
 
 ```sql
 -- 查询比 B 班住在东京的所有学生年龄都小的 A 班学生
@@ -653,7 +650,7 @@ ALL 谓词和极值函数表达的命题含义分别如下所示。
 
 在现实世界中，这两个命题是一个意思。但是，正如我们通过前面的例题看到的那样，表里存在 NULL 时它们是不等价的。其实还有一种情况下它们也是不等价的，大家知道是什么吗？ 答案是，谓词（或者函数）的输入为空集的情况。 例如 Class_B 这张表为如下所示的情况。
 
-![](sql/null06.png)
+![](sql-advance/null06.png)
 
 如上表所示， B 班里没有学生住在东京。这时，使用 ALL 谓词的 SQL 语句会查询到 A 班的所有学生。然而，用极值函数查询时一行数据都查询不到。这是因为，极值函数在输入为空表（空集）时会返回 NULL。因此，使用极值函数的 SQL 语句会像下面这样一步步被执行。
 
@@ -688,12 +685,12 @@ SELECT *
 
 ### 寻找缺失的编号
 
-![](sql/having01.png)
+![](sql-advance/having01.png)
 
 ```sql
 -- 如果有查询结果，说明存在缺失的编号
 SELECT '存在缺失的编号' AS gap
-  FROM  SeqTbl
+  FROM SeqTbl
 HAVING COUNT(*) <> MAX(seq);
 
 gap
@@ -703,7 +700,7 @@ gap
 
 如果用集合论的语言来描述，那么这个查询所做的事情就是检查自然数集合和 SeqTbl 集合之间是否存在一一映射（又称双射）。换句话说，就是像下图展示的那样， MAX(seq) 计算的，是由“到 seq 最大值为止的没有缺失的连续编号（即自然数）”构成的集合的元素个数，而 COUNT(\*) 计算的是 SeqTbl 这张表里实际的元素个数（即行数）。
 
-![](sql/having02.png)
+![](sql-advance/having02.png)
 
 查询缺失编号的最小值
 
@@ -711,7 +708,7 @@ gap
 -- 查询缺失编号的最小值
 SELECT MIN(seq + 1) AS gap
   FROM SeqTbl
-  WHERE (seq+ 1) NOT IN ( SELECT seq FROM SeqTbl);
+ WHERE (seq+ 1) NOT IN ( SELECT seq FROM SeqTbl);
 
 gap
 ---
@@ -722,7 +719,7 @@ gap
 
 ### 用 HAVING 子句进行子查询 ：求众数
 
-![](sql/having03.png)
+![](sql-advance/having03.png)
 
 ```sql
 -- 求众数的SQL语句（1）：使用谓词
@@ -730,8 +727,8 @@ SELECT income, COUNT(*) AS cnt
   FROM Graduates
  GROUP BY income
 HAVING COUNT(*) >= ALL ( SELECT COUNT(*)
-						   FROM Graduates
-					   GROUP BY income);
+                           FROM Graduates
+                          GROUP BY income);
 
 income cnt
 ------ ---
@@ -741,7 +738,7 @@ income cnt
 
 GROUP BY 子句的作用是根据最初的集合生成若干个子集。因此，将收入（income）作为 GROUP BY 的列时，将得到 S1 ～ S5 这样 5 个子集。这几个子集里，元素数最多的是 S3 和 S5，都是 3 个元素，因此查询的结果也是这 2 个集合。
 
-![](sql/having04.png)
+![](sql-advance/having04.png)
 
 ALL 谓词用于 NULL 或空集时会出现问题，可以用极值函数来代替。这里要求的是元素数最多的集合，因此可以用 MAX 函数。
 
@@ -753,49 +750,42 @@ SELECT income, COUNT(*) AS cnt
 HAVING COUNT(*) >=  ( SELECT MAX(cnt)
                         FROM ( SELECT COUNT(*) AS cnt
                                  FROM Graduates
-                             GROUP BY income) TMP) ;
+                                GROUP BY income ) TMP ) ;
 ```
 
 ### 用 HAVING 子句进行自连接 ：求中位数
 
 将集合里的元素按照大小分为上半部分和下半部分两个子集，同时让这 2 个子集共同拥有集合正中间的元素。这样，共同部分的元素的平均值就是中位数，思路如下图所示。
 
-![](sql/having05.png)
+![](sql-advance/having05.png)
 
 ```sql
 -- 求中位数的SQL语句：在HAVING子句中使用非等值自连接
 SELECT AVG(DISTINCT income)
   FROM (SELECT T1.income
           FROM Graduates T1, Graduates T2
-      GROUP BY T1.income
-               -- S1的条件
-        HAVING SUM(CASE WHEN T2.income >= T1.income THEN 1 ELSE 0 END)
-                   >= COUNT(*) / 2
-               -- S2的条件
-           AND SUM(CASE WHEN T2.income <= T1.income THEN 1 ELSE 0 END)
-                   >= COUNT(*) / 2 ) TMP;
+         GROUP BY T1.income
+            -- S1的条件
+        HAVING SUM(CASE WHEN T2.income >= T1.income THEN 1 ELSE 0 END)>= COUNT(*) / 2
+            -- S2的条件
+           AND SUM(CASE WHEN T2.income <= T1.income THEN 1 ELSE 0 END)>= COUNT(*) / 2 ) TMP;
 ```
 
-这条 SQL 语句的要点在于比较条件`>= COUNT(*)/2`里的等号，这个等号是有意地加上的。加上等号并不是为了清晰地分开子集 S1 和 S2，而是为了让这 2 个子集拥有共同部分。如果去掉等号，将条件改成`>COUNT(*)/2`，那么当元素个数为偶数时， S1 和 S2 就没有共同的元素了，也就无法求出中位数了。
+这条 SQL 语句的要点在于比较条件`>= COUNT(*)/2`里的等号，这个等号是有意地加上的。加上等号并不是为了清晰地分开子集 S1 和 S2，而是为了让这 2 个子集拥有共同部分。如果去掉等号，将条件改成`> COUNT(*)/2`，那么当元素个数为偶数时， S1 和 S2 就没有共同的元素了，也就无法求出中位数了。
 
 ### 查询不包含 NULL 的集合
 
-COUNT 函数的使用方法有 `COUNT(*) 和 COUNT( 列名 ) `两种，它们的区
-别有两个：第一个是性能上的区别；第二个是` COUNT(*)` 可以用于 NULL，
-而 `COUNT( 列名 )`与其他聚合函数一样，要先排除掉 NULL 的行再进行统计。第二个区别也可以这么理解： `COUNT(*) `查询的是所有行的数目，而
-`COUNT( 列名 )`查询的则不一定是。
-对一张全是 NULL 的表 NullTbl 执行 SELECT 子句就能清楚地知道两
-者的区别了。
+COUNT 函数的使用方法有 `COUNT(*) 和 COUNT(列名) `两种，它们的区别有两个：第一个是性能上的区别；第二个是` COUNT(*)` 可以用于 NULL，而 `COUNT(列名)`与其他聚合函数一样，要先排除掉 NULL 的行再进行统计。第二个区别也可以这么理解： `COUNT(*) `查询的是所有行的数目，而 `COUNT(列名)`查询的则不一定是。对一张全是 NULL 的表 NullTbl 执行 SELECT 子句就能清楚地知道两者的区别了。
 
-![](sql/having06.png)
+![](sql-advance/having06.png)
 
 如下一张存储了学生提交报告的日期的表 Students 。学生提交报告后，“提交日期”列会被写入日期，而提交之前是 NULL。现在我们需要从这张表里找出哪些学院的学生全部都提交了报告（即理学院、经济学院）。
 
-![](sql/having07.png)
+![](sql-advance/having07.png)
 
 以“学院”为 GROUP BY 的列生成下面这样的子集。
 
-![](sql/having08.png)
+![](sql-advance/having08.png)
 
 这样生成的 4 个子集里，我们想要的是 S1 和 S4。那么，这 2 个子集具备而其他子集不具备的特征是`COUNT(*) 和 COUNT(sbmt_date) 结果一致`。这是因为 S2 和 S3 这 2 个子集里存在 NULL。
 
@@ -830,7 +820,7 @@ HAVING COUNT(*) = SUM(CASE WHEN sbmt_date IS NOT NULL
 
 如下是全国连锁折扣店的商品表 Items，以及各个店铺的库存管理表 ShopItems。
 
-![](sql/having09.png)
+![](sql-advance/having09.png)
 
 这次我们要查询的是囊括了表 Items 中所有商品的店铺。也就是说，要查询的是仙台店和东京店。大阪店没有啤酒，所以不是我们的目标。这个问题在实际工作中的原型是数据挖掘技术中的“购物篮分析” (购物篮分析是市场分析领域常用的一种分析手段，用来发现“经常被一起购买的商品”具有的规律。有一个有名的例子：某家超市发现，虽然不知为什么，但啤酒和纸尿裤经常被一起购买也许是因为来买纸尿裤的爸爸都会想顺便买些啤酒回去，于是便将啤酒和纸尿裤摆在相邻的货架，从而提升了销售额。)
 
@@ -896,13 +886,13 @@ shop
 
 以表 ShopItems 为主表进行外连接操作后，因为表 Items 里不存在窗帘和电视，所以连接后相应行的“I.item”列是 NULL。然后，我们就可以使用之前用到的检查学生提交报告日期的 COUNT 函数的技巧了。条件 1 会排除掉 COUNT(SI.item) = 4 的仙台店，条件 2 会排除掉 COUNT(I.item)= 2 的大阪店（NULL 不会被计数）。
 
-![](sql/having10.png)
+![](sql-advance/having10.png)
 
 ### 关系除法运算
 
 如果模仿数值运算的写法来写，可以写作 ShopItems ÷ Items。至于为什么称它为除法运算，我们可以从除法运算的逆运算——乘法运算的角度来理解一下。除法运算和乘法运算之间有这样的关系：除法运算的商和除数的乘积等于被除数。
 
-![](sql/having11.png)
+![](sql-advance/having11.png)
 
 在 SQL 里，交叉连接相当于乘法运算。把商和除数（表 Items）交叉连接，然后求笛卡儿积，就能得到表 ShopItems 的子集（不一定是完整的表 ShopItems），也就是被除数。这就是“除法运算”这一名称的由来。
 
@@ -913,7 +903,7 @@ shop
 
 查出现在可以出勤的队伍。可以出勤即队伍里所有队员都处于“待命”状态。
 
-![](sql/having12.png)
+![](sql-advance/having12.png)
 
 用谓词表达全称量化命题,“所有队员都处于待命状态”＝“不存在不处于待命状态的队员”
 
@@ -953,12 +943,12 @@ team_id
 
 使用 GROUP BY 子句将 Teams 集合以队伍为单位划分成几个子集。
 
-![](sql/having13.png)
+![](sql-advance/having13.png)
 
 目标集合是 S3 和 S4，那么只有这两个集合拥有而其他集合没有的特征是什么呢？答案是，处于“待命”状态的数据行数与集合中数据总行数相等。这个条件可以用 CASE 表达式来表达，状态为“待命”的情况下返回 1，其他情况下返回 0。也许大家已经注意到了，这里使用的是特征函数的方法。
 根据是否满足条件分别为表里的每一行数据加上标记 1 或 0，这样更好理解一些。
 
-![](sql/having14.png)
+![](sql-advance/having14.png)
 
 HAVING 子句中的条件还可以像下面这样写 。某个集合中，如果元素最大值和最小值相等，那么这个集合中肯定只有一种值。因为如果包含多种值，最大值和最小值肯定不会相等。极值函数可以使用参数字段的索引，所以这种写法性能更好 。
 
@@ -995,11 +985,11 @@ team_id status
 
 查出存在重复材料的生产地。
 
-![](sql/having15.png)
+![](sql-advance/having15.png)
 
 从表中我们可以看到，一个生产地对应着多条数据，因此“生产地”这一实体在表中是以集合的形式，而不是以元素的形式存在的。处理这种情况的基本方法就是使用 GROUP BY 子句将集合划分为若干个子集，像下面这样。
 
-![](sql/having16.png)
+![](sql-advance/having16.png)
 
 目标集合是锌重复的东京，以及钛和钢重复的名古屋。那么这两个集合满足而其他集合不满足的条件是什么呢？这个条件是，“排除掉重复元素后和排除掉重复元素前元素个数不相同”。这是因为，如果不存在重复的元素，不管是否加上 DISTINCT 可选项，COUNT 的结果都是相同的。
 
@@ -1041,7 +1031,7 @@ center  material
 
 ### 寻找缺失的编号 ： 升级版
 
-![](sql/having17.png)
+![](sql-advance/having17.png)
 
 ```sql
 /* 如果有查询结果，说明存在缺失的编号：只调查数列的连续性 */
@@ -1077,7 +1067,7 @@ SELECT CASE COUNT(*) = 0 OR WHEN MIN(seq) > 1    /* 最小值不是1时→返回
 
 ### 为集合设置详细的条件
 
-![](sql/having18.png)
+![](sql-advance/having18.png)
 
 查询出 75% 以上的学生分数都在 80 分以上的班级
 
@@ -1153,15 +1143,15 @@ HAVING AVG(CASE WHEN sex = '男'
 
 ### 调查集合性质时经常用到的条件
 
-![](sql/having19.png)
+![](sql-advance/having19.png)
 
 ## 外连接的用法
 
 ### 用外连接进行行列转换 (1)（行 → 列）：制作交叉表
 
-![](sql/outer_join01.png)
+![](sql-advance/outer_join01.png)
 
-![](sql/outer_join02.png)
+![](sql-advance/outer_join02.png)
 
 ```sql
 -- 水平展开求交叉表（1）：使用外连接
@@ -1218,9 +1208,9 @@ SELECT  name,
 
 ### 用外连接进行行列转换 (2)（列 → 行）：汇总重复项于一列
 
-![](sql/outer_join03.png)
+![](sql-advance/outer_join03.png)
 
-![](sql/outer_join04.png)
+![](sql-advance/outer_join04.png)
 
 ```sql
 -- 获取员工子女列表的SQL语句（没有孩子的员工也输出）
@@ -1239,11 +1229,11 @@ SELECT EMP.employee, CHILDREN.child
 
 表 TblPop 是一张按照县、年龄层级和性别统计的人口分布表，要求根据表 TblPop 生成交叉表“包含嵌套式表侧栏的统计表”。
 
-![](sql/outer_join05.png)
+![](sql-advance/outer_join05.png)
 
-![](sql/outer_join06.png)
+![](sql-advance/outer_join06.png)
 
-![](sql/outer_join07.png)
+![](sql-advance/outer_join07.png)
 
 ```sql
 -- 使用外连接生成嵌套式表侧栏：错误的SQL语句
@@ -1271,8 +1261,9 @@ age_class sex_cd pop_tohoku pop_kanto
 3         f      1800       2100
 ```
 
-原因是表 TblPop 里没有年龄层级为 2 的数据。 实际上，与年龄层级主表外连接之后，结果里是包含年龄层级为 2 的数据的。但是虽然年龄层级 2 确实可以通过外连接从表 TblAge 获取，但是在表 TblPop 里，与之相应的“性别编号”列却是 NULL。原因也不难理解。表 TblPop 里本来就没有年龄层级为 2 的数据，自然也没有相应的性别信息 m 或 f，于是“性别编号”列只能是 NULL。因此与性别主表进行外连接时，连接条件会变成 ON MASTER2.sex_cd =
-NULL，结果是 unknown。因此，最终结果里永远不会出现年龄层级为 2 的数据，即使改变两次外连接的先后顺序，结果也还是一样的
+原因是表 TblPop 里没有年龄层级为 2 的数据。 实际上，与年龄层级主表外连接之后，结果里是包含年龄层级为 2 的数据的。但是虽然年龄层级 2 确实可以通过外连接从表 TblAge 获取，但是在表 TblPop 里，与之相应的“性别编号”列却是 NULL。原因也不难理解。表 TblPop 里本来就没有年龄层级为 2 的数据，自然也没有相应的性别信息 m 或 f，于是“性别编号”列只能是 NULL。因此与性别主表进行外连接时，连接条件会变成 ON MASTER2.sex_cd = NULL，结果是 unknown。因此，最终结果里永远不会出现年龄层级为 2 的数据，即使改变两次外连接的先后顺序，结果也还是一样的。
+
+停在第 1 个外连接处时：结果里包含年龄层级为 2 的数据。
 
 ```sql
 -- 停在第1个外连接处时：结果里包含年龄层级为2的数据
@@ -1328,9 +1319,9 @@ FROM
 
 ### 作为乘法运算的连接
 
-![](sql/outer_join08.png)
+![](sql-advance/outer_join08.png)
 
-![](sql/outer_join09.png)
+![](sql-advance/outer_join09.png)
 
 ```sql
 -- 解答（1）：通过在连接前聚合来创建一对一的关系
@@ -1356,9 +1347,9 @@ SELECT I.item_no, SUM(SH.quantity) AS total_qty
 
 在两张班级学生表里，田中和铃木同时属于两张表，而伊集院和西园寺只属于其中一张表。全外连接是能够从这样两张内容不一致的表里，没有遗漏地获取全部信息的方法，所以也可以理解成“把两张表都当作主表来使用”的连接。
 
-![](sql/outer_join10.png)
+![](sql-advance/outer_join10.png)
 
-![](sql/outer_join11.png)
+![](sql-advance/outer_join11.png)
 
 ```sql
 -- 全外连接保留全部信息
@@ -1389,28 +1380,27 @@ SELECT B.id AS id, A.name, B.name
     ON A.id = B.id;
 ```
 
-其实，我们还可以换个角度，把表连接看成集合运算。内连接相当于求集合的积（INTERSECT，也称交集），全外连接相当于求集合的和（UNION，
-也称并集）。下面是两者的维恩图（Venn Diagram，亦称文氏图）。
+其实，我们还可以换个角度，把表连接看成集合运算。内连接相当于求集合的积（INTERSECT，也称交集），全外连接相当于求集合的和（UNION，也称并集）。下面是两者的维恩图（Venn Diagram，亦称文氏图）。
 
-![](sql/outer_join12.png)
+![](sql-advance/outer_join12.png)
 
 ### 用外连接进行集合运算
 
 **用外连接求差集 ： A － B**
 
-![](sql/outer_join13.png)
+![](sql-advance/outer_join13.png)
 
 **用全外连接求异或集**
-接下来我们考虑一下如何求两个集合的异或集。 SQL 没有定义求异或集的运算符，如果用集合运算符，可以有两种方法。一种是 (A UNION B)
-EXCEPT (A INTERSECT B)，另一种是 (A EXCEPT B) UNION (B EXCEPT A)。两种方法都比较麻烦，性能开销也会增大。
+
+接下来我们考虑一下如何求两个集合的异或集。 SQL 没有定义求异或集的运算符，如果用集合运算符，可以有两种方法。一种是 `(A UNION B) EXCEPT (A INTERSECT B)`，另一种是 `(A EXCEPT B) UNION (B EXCEPT A)`。两种方法都比较麻烦，性能开销也会增大。
 
 ```sql
 SELECT COALESCE(A.id, B.id) AS id,
-       COALESCE(A.name , B.name ) AS name
- FROM  Class_A A FULL OUTER JOIN Class_B B
-   ON A.id = B.id
-WHERE A.name IS NULL
-   OR B.name IS NULL;
+       COALESCE(A.name, B.name) AS name
+  FROM Class_A A FULL OUTER JOIN Class_B B
+    ON A.id = B.id
+ WHERE A.name IS NULL
+    OR B.name IS NULL;
 
 id   name
 ---- -----
@@ -1422,11 +1412,11 @@ id   name
 
 ### 增长、减少、维持现状
 
-![](sql/subquery01.png)
+![](sql-advance/subquery01.png)
 
 ```sql
 -- 求与上一年营业额一样的年份（1）：使用关联子查询
-SELECT year,sale
+SELECT year, sale
   FROM Sales S1
  WHERE sale = (SELECT sale
                  FROM Sales S2
@@ -1439,10 +1429,9 @@ year  sale
 1995  50
 ```
 
-![](sql/subquery02.png)
+![](sql-advance/subquery02.png)
 
-子查询里的 S2.year = S1.year – 1 这个条件起到了将要比较的数据偏移一行的作用。关联子查询和自连接在很多时候都是等价的，所以我
-们也可以像下面这样使用自连接来实现。
+子查询里的 `S2.year = S1.year - 1` 这个条件起到了将要比较的数据偏移一行的作用。关联子查询和自连接在很多时候都是等价的，所以我们也可以像下面这样使用自连接来实现。
 
 ```sql
 -- 求与上一年营业额一样的年份（2）：使用自连接
@@ -1471,14 +1460,14 @@ SELECT S1.year, S1.sale,
              (SELECT sale
                 FROM Sales S2
                WHERE S2.year = S1.year - 1) THEN '↓' -- 减少
-       ELSE '—' END AS var
+       ELSE '-' END AS var
   FROM Sales S1
  ORDER BY year;
 
 
 year   sale var
 ------ ---- ---
-1990   50    —
+1990   50    -
 1991   51    ↑
 1992   52    ↑
 1993   52    →
@@ -1502,9 +1491,9 @@ SELECT S1.year, S1.sale,
  ORDER BY year;
 ```
 
-### 时间轴有间断时 ： 和过去最临近的时间进行比较
+### 时间轴有间断时: 和过去最临近的时间进行比较
 
-![](sql/subquery03.png)
+![](sql-advance/subquery03.png)
 
 使用子查询
 
@@ -1558,10 +1547,10 @@ SELECT S2.year AS pre_year,
 
 pre_year now_year pre_sale now_sale diff
 -------- -------- -------- -------- ----
-1990     1992     50       50       0 --50 - 50 = 0
-1992     1993     50       52       2 --52 - 50 = 2
-1993     1994     52       55       3 --55 - 52 = 3
-1994     1997     55       55       0 --55 - 55 = 0
+1990     1992     50       50       0 -- 50 - 50 = 0
+1992     1993     50       52       2 -- 52 - 50 = 2
+1993     1994     52       55       3 -- 55 - 52 = 3
+1994     1997     55       55       0 -- 55 - 55 = 0
 ```
 
 这条 SQL 语句无法获取到最早年份 1990 年的数据。这是因为，表里没有比 1990 年更早的年份，所以在进行内连接的时候 1990 年的数据就被排除掉了。如果想让结果里出现 1990 年的数据，可以使用“自外连接”来实现。
@@ -1590,7 +1579,7 @@ pre_year now_year pre_sale now_sale diff
 
 ### 移动累计值和移动平均值
 
-![](sql/subquery04.png)
+![](sql-advance/subquery04.png)
 
 ```sql
 -- 求累计值：使用窗口函数
@@ -1638,7 +1627,7 @@ SELECT prc_date, A1.prc_amt,
           AND (SELECT COUNT(*)
                  FROM Accounts A3
                 WHERE A3.prc_date
-                  BETWEEN A2.prc_date AND A1.prc_date  ) <= 3 ) AS mvg_sum
+                  BETWEEN A2.prc_date AND A1.prc_date) <= 3 ) AS mvg_sum
   FROM Accounts A1
  ORDER BY prc_date;
 
@@ -1664,7 +1653,7 @@ SELECT prc_date, A1.prc_amt,
             FROM Accounts A3
            WHERE A3.prc_date
              BETWEEN A2.prc_date AND A1.prc_date  ) <= 3
-   HAVING  COUNT(*) =3) AS mvg_sum  -- 不满3行数据的不显示
+   HAVING  COUNT(*) = 3) AS mvg_sum  -- 不满3行数据的不显示
   FROM  Accounts A1
  ORDER BY prc_date;
 
@@ -1679,7 +1668,7 @@ prc_date   prc_amt mvg_sum
 2006-11-11 11000   13200
 ```
 
-如果觉得这条 SQL 语句的处理过程难以理解，我们可以输出去掉聚合后的明细数据来看一下，这样应该会好理解 。
+如果觉得这条 SQL 语句的处理过程难以理解，我们可以输出去掉聚合后的明细数据来看一下。
 
 ```sql
 -- 去掉聚合并输出
@@ -1723,7 +1712,7 @@ A1_date    A2_date    amt
 
 像上面这样展开后，我们发现，这里的思路与冯·诺依曼型递归集合一样，生成了几个集合。只不过，这些集合间的关系不是嵌套，而是存在交集，又有一点“偏移”。而且，集合 S3 刚好与所有集合都有交集。
 
-![](sql/subquery05.png)
+![](sql-advance/subquery05.png)
 
 通过将这个集合簇与冯·诺依曼型同心圆式嵌套集合进行对比，我们可以明白，集合的生成方式是多种多样的，也是非常有趣的。如果自连接的关键字是“嵌套（递归）”，那么这里的关键字可以暂定为“偏移”。
 
@@ -1731,11 +1720,11 @@ A1_date    A2_date    amt
 
 表 Reservations，记录了酒店或者旅馆的预约情况。 这张表里没有房间编号，请把表中数据当成是某一房间在某段期间内的预约情况。那么，正常情况下，每天只能有一组客人在该房间住宿。从表中数据可以看出，这里存在重叠的预定日期。
 
-![](sql/subquery08.png)
+![](sql-advance/subquery08.png)
 
-![](sql/subquery09.png)
+![](sql-advance/subquery09.png)
 
-![](sql/subquery07.png)
+![](sql-advance/subquery07.png)
 
 ```sql
 -- 求重叠的住宿期间
@@ -1746,7 +1735,7 @@ SELECT reserver, start_date, end_date
           FROM Reservations R2
          WHERE R1.reserver <> R2.reserver  -- 与自己以外的客人进行比较
            AND ( R1.start_date BETWEEN R2.start_date AND R2.end_date    -- 条件（1）：自己的入住日期在他人的住宿期间内
-              OR R1.end_date  BETWEEN R2.start_date AND R2.end_date));  -- 条件（2）：自己的离店日期在他人的住宿期间内
+              OR R1.end_date BETWEEN R2.start_date AND R2.end_date));  -- 条件（2）：自己的离店日期在他人的住宿期间内
 
 reserver start_date end_date
 -------- ---------- ----------
@@ -1776,29 +1765,26 @@ WHERE EXISTS
 
 ### 集合运算的几个注意事项
 
-注意事项 1： SQL 能操作具有重复行的集合，可以通过可选项 ALL 来支持
-一般的集合论是不允许集合里存在重复元素的，因此集合 {1, 1, 2, 3, 3,3} 和集合 {1, 2, 3} 被视为相同的集合。但是关系数据库里的表允许存在重复行，称为多重集合（multiset, bag）。因此，SQL 的集合运算符也提供了允许重复和不允许重复的两种用法。如果直接使用 UNION 或 INTERSECT，结果里就不会出现重复的行。如果想在结果里留下重复行，可以加上可选项 ALL，写作 UNION ALL。 ALL 的作用和 SELECT 子句里的 DISTINCT 可选项刚好相反。但是，不知道为什么，SQL 并不支持 UNION DISTINCT 这样的写法。除了运算结果以外，这两种用法还有一个不同。集合运算符为了排除
-掉重复行，默认地会发生排序，而加上可选项 ALL 之后，就不会再排序，所以性能会有提升。这是非常有效的用于优化查询性能的方法，所以如果不关心结果是否存在重复行，或者确定结果里不会产生重复行，加上可选项 ALL 会更好些。
+注意事项 1: SQL 能操作具有重复行的集合
+可以通过可选项 ALL 来支持一般的集合论是不允许集合里存在重复元素的，因此集合 {1, 1, 2, 3, 3, 3} 和集合 {1, 2, 3} 被视为相同的集合。但是关系数据库里的表允许存在重复行，称为多重集合（multiset, bag）。因此，SQL 的集合运算符也提供了允许重复和不允许重复的两种用法。如果直接使用 UNION 或 INTERSECT，结果里就不会出现重复的行。如果想在结果里留下重复行，可以加上可选项 ALL，写作 UNION ALL。 ALL 的作用和 SELECT 子句里的 DISTINCT 可选项刚好相反。但是，不知道为什么，SQL 并不支持 UNION DISTINCT 这样的写法。除了运算结果以外，这两种用法还有一个不同。集合运算符为了排除掉重复行，默认地会发生排序，而加上可选项 ALL 之后，就不会再排序，所以性能会有提升。这是非常有效的用于优化查询性能的方法，所以如果不关心结果是否存在重复行，或者确定结果里不会产生重复行，加上可选项 ALL 会更好些。
 
 注意事项 2：集合运算符有优先级
-标准 SQL 规定， INTERSECT 比 UNION 和 EXCEPT 优先级更高。因此，当同时使用 UNION 和 INTERSECT，又想让 UNION 优先执行时，必须用括
-号明确地指定运算顺序
+标准 SQL 规定， INTERSECT 比 UNION 和 EXCEPT 优先级更高。因此，当同时使用 UNION 和 INTERSECT，又想让 UNION 优先执行时，必须用括号明确地指定运算顺序
 
 注意事项 3：各个 DBMS 提供商在集合运算的实现程度上参差不齐
 前面说过，早期的 SQL 对集合运算的支持程度不是很高。受到这一点影响，各个数据库提供商的实现程度也参差不齐。 SQL Server 从 2005 版开始支持 INTERSECT 和 EXCEPT，而 MySQL 还都不支持（包含在“中长期计划”里）。还有像 Oracle 这样，实现了 EXCEPT 功能但却命名为 MINUS 的数据库。这一点比较麻烦，因为 Oracle 用户需要在使用时将 EXCEPT 全部改写成 MINUS。
 
 注意事项 4：除法运算没有标准定义
+四则运算里的和（UNION）、差（EXCEPT）、积（CROSS JOIN）都被引 入了标准 SQL。但是很遗憾，商（DIVIDE BY）因为各种原因迟迟没能标准化。因此，现阶段我们需要自己写 SQL 语句来实现除法运算。
 
-四则运算里的和（UNION）、差（EXCEPT）、积（CROSS JOIN）都被引 入了标准 SQL。但是很遗憾，商（DIVIDE BY）因为各种原因迟迟没能标
-准化。因此，现阶段我们需要自己写 SQL 语句来实现除法运算。
+### 比较表和表：检查集合相等性
 
-### 比较表和表 ： 检查集合相等性
-
-![](sql/set01.png)
+![tbl_A & tbl_B](sql-advance/set01.png)
 
 在集合论里，判定两个集合是否相等时，一般使用下面两种方法。
-1. (A  ∩ B )  且  (A ∩  B) ⇔ (A = B) 
-2. (A ∪ B ) = (A ∩ B) ⇔ (A = B)
+
+1. (A ⊂ B ) And (A ⊃ B) ⇔ (A = B)
+2. (A ∪ B ) Equal (A ∩ B) ⇔ (A = B)
 
 ```sql
 -- 比较表和表：（在Oracle中使用 Minus）
@@ -1818,7 +1804,7 @@ SELECT DISTINCT CASE WHEN COUNT(*) = 0
 
 从表 EmpSkills 中找出精通表 Skills 中所有技术的员工。也就是说，答案是相田和神崎。平井很可惜，会的技术很多，但是不会 Java，所以落选了。
 
-![](sql/set02.png)
+![](sql-advance/set02.png)
 
 ```sql
 -- 用求差集的方法进行关系除法运算（有余数）
@@ -1837,7 +1823,7 @@ SELECT DISTINCT emp
 
 如下是 供应商及其经营的零件的表 ，找出经营的零件在种类数和种类上都完全相同的供应商组合。由表格我们可以看出，答案是 A-C 和 B-D 这两组。
 
-![](sql/set03.png)
+![](sql-advance/set03.png)
 
 ```sql
 -- 寻找相等的子集
@@ -1845,7 +1831,7 @@ SELECT SP1.sup, SP2.sup
   FROM SupParts SP1, SupParts SP2
  WHERE SP1.sup < SP2.sup              -- 生成供应商的全部组合
    AND SP1.part = SP2.part            -- 条件1：经营同种类型的零件
-GROUP BY SP1.sup, SP2.sup
+ GROUP BY SP1.sup, SP2.sup
 HAVING COUNT(*) = (SELECT COUNT(*)    -- 条件2：经营的零件种类数相同
                      FROM SupParts SP3
                     WHERE SP3.sup = SP1.sup)
@@ -1856,7 +1842,7 @@ HAVING COUNT(*) = (SELECT COUNT(*)    -- 条件2：经营的零件种类数相�
 
 ### 用于删除重复行的高效 SQL
 
-![](sql/set04.png)
+![](sql-advance/set04.png)
 
 ```sql
 -- 删除重复行 ：使用关联子查询
@@ -1894,12 +1880,11 @@ SQL 的保留字中，有很多都被归为谓词一类。例如，“=、 <、 
 
 在关系数据库里，表中的一行数据可以看作是一个命题。
 
-![](sql/exists01.png)
+![](sql-advance/exists01.png)
 
-例如，这张表里第一行数据就可以认为表示这样一个命题：田中性别是男，而且年龄是 28 岁。表常常被认为是行的集合，但从谓词逻辑的观点看，也可以认为是命题的集合（＝陈述句的集合）。 C.J. Date 曾经这样调侃过：数据库这种叫法有点名不副实，它存储的与其说是数据，还不如说是命题 。
+例如，这张表里第一行数据就可以认为表示这样一个命题：田中性别是男，而且年龄是 28 岁。表常常被认为是行的集合，但从谓词逻辑的观点看，也可以认为是命题的集合（＝陈述句的集合）。 _C.J. Date 曾经这样调侃过：数据库这种叫法有点名不副实，它存储的与其说是数据，还不如说是命题。_
 
-同样，我们平时使用的 WHERE 子句，其实也可以看成是由多个谓词组合而成的新谓词。只有能让 WHERE 子句的返回值为真的命题，才能从表（命
-题的集合）中查询到。
+同样，我们平时使用的 WHERE 子句，其实也可以看成是由多个谓词组合而成的新谓词。只有能让 WHERE 子句的返回值为真的命题，才能从表（命题的集合）中查询到。
 
 ### 实体的阶层
 
@@ -1910,23 +1895,23 @@ SQL 的保留字中，有很多都被归为谓词一类。例如，“=、 <、 
 3. 列名： SELECT col
 
 但是，不管采用上面这三种写法中的哪一种，得到的结果都是一样的。
-![](sql/exists02.png)
+![](sql-advance/exists02.png)
 
 从上面的图表我们可以知道， EXISTS 的特殊性在于输入值的阶数（输出值和其他谓词一样，都是真值）。谓词逻辑中，根据输入值的阶数对谓词进行分类。 = 或者 BETWEEEN 等输入值为一行的谓词叫作“一阶谓词”，而像 EXISTS 这样输入值为行的集合的谓词叫作“二阶谓词”。阶（order）是用来区分集合或谓词的阶数的概念。
 
 ### 全称量化和存在量化
 
-从这些我们可以知道，形式语言没必要同时显式地支持 EXISTS 和 FORALL 两者。但是实际上，我们希望同时支持这两者，因为有些问题适合使用 EXISTS 来解决，而有的问题适合使用 FORALL。例如， SQL 支持 EXISTS，不支持 FORALL。于是会有一些查询只能选择用 EXISTS，那么代码写起来就会非常麻烦。 —C.J. Date
+_从这些我们可以知道，形式语言没必要同时显式地支持 EXISTS 和 FORALL 两者。但是实际上，我们希望同时支持这两者，因为有些问题适合使用 EXISTS 来解决，而有的问题适合使用 FORALL。例如， SQL 支持 EXISTS，不支持 FORALL。于是会有一些查询只能选择用 EXISTS，那么代码写起来就会非常麻烦。 -C.J. Date_
 
 谓词逻辑中有量词（限量词、数量词）这类特殊的谓词。我们可以用它们来表达一些这样的命题：“所有的 x 都满足条件 P”或者“存在（至少 一个）满足条件 P 的 x”。前者称为“全称量词”，后者称为“存在量词”，分别记作 ∀、 ∃。这两个符号看起来很奇怪。其实，全称量词的符号其实是将字母 A 上下颠倒而形成的，存在量词则是将字母 E 左右颠倒而形成的。“对于所有的 x，……”的英语是“for All x， …”，而“存在满足……的 x”的英语是“there Exists x that…”，这就是这两个符号的由来。也许大家已经明白了， SQL 中的 EXISTS 谓词实现了谓词逻辑中的存在量词。然而遗憾的是，对于与本节核心内容有关的另一个全称量词，SQL 却并没有予以实现。 C.J. Date 在自己的书里写了 FORALL 谓词，但实际上 SQL 里并没有这个实现。但是没有全称量词并不算是 SQL 的致命缺陷。因为全称量词和存在量词只要定义了一个，另一个就可以被推导出来。具体可以参考下面这个等价改写的规则（德·摩根定律）。
 
-![](sql/exists03.png)
+![](sql-advance/exists03.png)
 
 因此在 SQL 中，为了表达全称量化，需要将“所有的行都满足条件 P”这样的命题转换成“不存在不满足条件 P 的行”。就像 C.J. Date 所说，虽然 SQL 里有全称量词会很方便，但是既然 SQL 并没有实现它，我们也就没有办法了。
 
 ### 查询表中“不”存在的数据
 
-![](sql/exists04.png)
+![](sql-advance/exists04.png)
 
 从这张表中求出“参加了某次会议的人”是很容易的。但是，如果反过来求“没有参加某次会议的人”，该怎么做呢？例如，伊藤参加了第 1 次会议和第 2 次会议，但是没有参加第 3 次会议；坂东没有参加第 2 次会议。也就是说，目标结果如下所示，是各次会议缺席者的列表。
 
@@ -1961,7 +1946,7 @@ SELECT meeting, person
 
 ### 全称量化 (1) ：习惯“肯定 ⇔ 双重否定”之间的转换
 
-![](sql/exists05.png)
+![TestScores](sql-advance/exists05.png)
 
 查询出“所有科目分数都在 50 分以上的学生”。答案是学号分别为 100、 200、 400 的 3 人。
 
@@ -2019,7 +2004,7 @@ student_id
 
 从这张表中查询出哪些项目已经完成到了工程 1。可以明显地看出，只完成到工程 0 的项目 AA100 以及还没有开始的项目 B200 不符合条件，而项目 CS300 符合条件。项目 DY400 已经完成到了工程 2，是否符合条件有点微妙，我们先按它不符合条件来实现。
 
-![](sql/exists06.png)
+![](sql-advance/exists06.png)
 
 ```sql
 -- 查询完成到了工程1的项目：面向集合的解法
@@ -2053,7 +2038,7 @@ project_id  step_nbr status
 ----------- -------- ------
 CS300       0        完成
 CS300       1        完成
-CS300 	    2        等待
+CS300       2        等待
 CS300       3        等待
 ```
 
@@ -2061,7 +2046,7 @@ CS300       3        等待
 
 ### 对列进行量化：查询全是 1 的行
 
-![](sql/exists07.png)
+![](sql-advance/exists07.png)
 
 查询“都是 1”的行。
 
@@ -2072,7 +2057,7 @@ SELECT *
  WHERE 1 = ALL (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10);
 
 
--- 上面的代码在PostgreSQL中运行时会报错。将代码改为下面这样即可成功运行
+-- 上面的代码在 PostgreSQL 中运行时会报错。将代码改为下面这样即可成功运行
 SELECT *
   FROM ArrayTbl
  WHERE 1 = ALL (values (col1), (col2), (col3), (col4), (col5), (col6), (col7), (col8), (col9), (col10));
@@ -2086,7 +2071,7 @@ SELECT *
   FROM ArrayTbl
  WHERE 9 = ANY (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10);
 
-/*上面的代码在PostgreSQL中运行时会报错。将代码改为下面这样即可成功运行
+-- 面的代码在 PostgreSQL 中运行时会报错。将代码改为下面这样即可成功运行
 SELECT *
   FROM ArrayTbl
  WHERE 9 = ANY (values (col1), (col2), (col3), (col4), (col5), (col6), (col7), (col8), (col9), (col10));
@@ -2110,13 +2095,13 @@ SELECT *
 
 ### 生成连续编号
 
-![](sql/arr01.png)
+![](sql-advance/arr01.png)
 
-![](sql/arr02.png)
+![](sql-advance/arr02.png)
 
 ```SQL
 -- 求连续编号（1）：求0到99的数
-SELECT D1.digit + (D2.digit * 10)  AS seq
+SELECT D1.digit + (D2.digit * 10) AS seq
   FROM Digits D1, Digits D2
 ORDER BY seq;
 ```
@@ -2131,7 +2116,7 @@ ORDER BY seq;
 
 ### 求全部的缺失编号
 
-![](sql/arr03.png)
+![](sql-advance/arr03.png)
 
 ```sql
 -- 生成序列视图（包含0到999）
@@ -2163,18 +2148,17 @@ SELECT seq FROM SeqTbl;
 
 ### 三个人能坐得下吗
 
-![](sql/arr04.png)
+![](sql-advance/arr04.png)
 
-假设一共 3 个人一起去旅行，准备预订这列火车的车票。问题是，从 1 ～ 15 的座位编号中，找出连续 3 个空位的全部组合。我们把由连续
-的整数构成的集合，也就是连续编号的集合称为“序列”。
+假设一共 3 个人一起去旅行，准备预订这列火车的车票。问题是，从 1 ～ 15 的座位编号中，找出连续 3 个空位的全部组合。我们把由连续的整数构成的集合，也就是连续编号的集合称为“序列”。
 
-![](sql/arr05.png)
+![](sql-advance/arr05.png)
 
 ```sql
 -- 找出需要的空位（1）：不考虑座位的换排
-SELECT S1.seat   AS start_seat, '～' , S2.seat AS end_seat
+SELECT S1.seat AS start_seat, '～' , S2.seat AS end_seat
   FROM Seats S1, Seats S2
- WHERE S2.seat = S1.seat + (3 -1)  -- 决定起点和终点
+ WHERE S2.seat = S1.seat + (3 - 1)  -- 决定起点和终点
    AND NOT EXISTS
           (SELECT *
              FROM Seats S3
@@ -2184,23 +2168,23 @@ ORDER BY start_seat;
 
 start_seat ~  end_seat
 ---------  -- ----------
-    3	   ~	5
-    7	   ~	9
-    8	   ~	10
-    9 	   ~	11
+    3      ~    5
+    7      ~    9
+    8      ~    10
+    9      ~    11
 ```
 
 考虑发生换排的情况。假设这列火车每一排有 5 个座位。我们在表中加上表示行编号“row_id”列表示某一排的编号。
 
-![](sql/arr07.png)
+![](sql-advance/arr07.png)
 
-![](sql/arr06.png)
+![](sql-advance/arr06.png)
 
 ```SQL
 -- 找出需要的空位（2）：考虑座位的换排
-SELECT S1.seat   AS start_seat, '～' , S2.seat AS end_seat
+SELECT S1.seat AS start_seat, '～' , S2.seat AS end_seat
   FROM Seats2 S1, Seats2 S2
- WHERE S2.seat = S1.seat + (3 -1)  --决定起点和终点
+ WHERE S2.seat = S1.seat + (3 - 1)  --决定起点和终点
    AND NOT EXISTS
           (SELECT *
              FROM Seats2 S3
@@ -2211,9 +2195,9 @@ ORDER BY start_seat;
 
 start_seat ~  end_seat
 ---------  -- ----------
-    3	   ~	5
-    8	   ~	10
-    11 	   ~	13
+    3      ~    5
+    8      ~    10
+    11     ~    13
 ```
 
 ### 最多能坐下多少人
@@ -2224,13 +2208,13 @@ start_seat ~  end_seat
 -   条件 2：起点之前的座位状态不是“未预订”。
 -   条件 3：终点之后的座位状态不是“未预订”。
 
-![](sql/arr08.png)
+![](sql-advance/arr08.png)
 
 ```sql
 -- 第一阶段：生成存储了所有序列的视图
 CREATE VIEW Sequences (start_seat, end_seat, seat_cnt) AS
-SELECT S1.seat  AS start_seat,
-       S2.seat  AS end_seat,
+SELECT S1.seat AS start_seat,
+       S2.seat AS end_seat,
        S2.seat - S1.seat + 1 AS seat_cnt
   FROM Seats3 S1, Seats3 S2
  WHERE S1.seat <= S2.seat  -- 第一步：生成起点和终点的组合
@@ -2238,7 +2222,7 @@ SELECT S1.seat  AS start_seat,
        (SELECT *
           FROM Seats3 S3
          WHERE (     S3.seat BETWEEN S1.seat AND S2.seat
-                 AND S3.status <> '未预订')                         -- 条件1的否定
+                 AND S3.status <> '未预订')                          -- 条件1的否定
             OR  (S3.seat = S2.seat + 1 AND S3.status = '未预订' )    -- 条件2的否定
             OR  (S3.seat = S1.seat - 1 AND S3.status = '未预订' ));  -- 条件3的否定
 
@@ -2252,15 +2236,15 @@ SELECT start_seat, '～', end_seat, seat_cnt
 
 求一下股价单调递增的时间区间。目标结果是 2007-01-06 ～ 2007-01-08 和 2007-01-14 ～ 2007-01-17 。
 
-![](sql/arr09.png)
+![](sql-advance/arr09.png)
 
 ```sql
 -- 求单调递增的区间的SQL语句：子集也输出
-SELECT S1.deal_date   AS start_date,
-       S2.deal_date   AS end_date
+SELECT S1.deal_date AS start_date,
+       S2.deal_date AS end_date
   FROM MyStock S1, MyStock S2
  WHERE S1.deal_date < S2.deal_date  -- 第一步：生成起点和终点的组合
-   AND  NOT EXISTS                  -- 第二步：描述区间内所有日期需要满足的条件
+   AND NOT EXISTS                   -- 第二步：描述区间内所有日期需要满足的条件
            ( SELECT *
                FROM MyStock S3, MyStock S4
               WHERE S3.deal_date BETWEEN S1.deal_date AND S2.deal_date
@@ -2305,7 +2289,7 @@ ORDER BY start_date;
 
 **参数是子查询时，使用 EXISTS 代替 IN**
 
-![](sql/optimization01.png)
+![](sql-advance/optimization01.png)
 
 ```sql
 -- 慢
@@ -2348,12 +2332,12 @@ SELECT A.id, A.name
 
 -   GROUP BY 子句
 -   ORDER BY 子句
--   聚合函数（SU M、 COUNT、 AVG、 MAX、 MIN）
+-   聚合函数（SUM、 COUNT、 AVG、 MAX、 MIN）
 -   DISTINCT
 -   集合运算符（UNION、 INTERSECT、 EXCEPT）
 -   窗口函数（RANK、 ROW_NUMBER 等）
 
-**灵活使用集合运算符的 ALL 可选项 **
+**灵活使用集合运算符的 ALL 可选项**
 
 如果不在乎结果中是否有重复数据，或者事先知道不会有重复数据，请使用 UNION ALL 代替 UNION。这样就不会进行排序了。
 
@@ -2363,13 +2347,13 @@ UNION ALL
 SELECT * FROM Class_B;
 ```
 
-![](sql/optimization02.png)
+![](sql-advance/optimization02.png)
 
-**使用 EXISTS 代替 DISTINCT **
+**使用 EXISTS 代替 DISTINCT**
 
 为了排除重复数据， DISTINCT 也会进行排序。如果需要对两张表的连接结果进行去重，可以考虑使用 EXISTS 代替 DISTINCT，以避免排序。
 
-![](sql/optimization03.png)
+![](sql-advance/optimization03.png)
 
 从上面的商品表 Items 中找出同时存在于销售记录表 SalesHistory 中的商品。简而言之，就是找出有销售记录的商品。
 
@@ -2396,7 +2380,7 @@ SELECT item_no
       WHERE I.item_no = SH.item_no);
 ```
 
-**在极值函数中使用索引（MAX/MIN） **
+**在极值函数中使用索引（MAX/MIN）**
 
 SQL 语言里有 MAX 和 MIN 两个极值函数。使用这两个函数时都会进行排序。但是如果参数字段上建有索引，则只需要扫描索引，不需要扫描整张表。以刚才的表 Items 为例来说， SQL 语句可以像下面这样写。因为 item_no 是表 Items 的唯一索引，所以效果更好。对于联合索引，只要查询条件是联合索引的第一个字段，索引就是有效的。这种方法并不是去掉了排序这一过程，而是优化了排序前的查找速度，从而减弱排序对整体性能的影响。
 
@@ -2410,7 +2394,7 @@ SELECT MAX(item_no)
   FROM Items;
 ```
 
-**能写在 WHERE 子句里的条件不要写在 HAVING 子句里 **
+**能写在 WHERE 子句里的条件不要写在 HAVING 子句里**
 
 例如，下面两条 SQL 语句返回的结果是一样的。
 
@@ -2434,9 +2418,9 @@ sale_date      sum(quantity)
 
 但是从性能上来看，第二条语句写法效率更高。原因通常有两个。第一个是在使用 GROUP BY 子句聚合时会进行排序，如果事先通过 WHERE 子句筛选出一部分行，就能够减轻排序的负担。第二个是在 WHERE 子句的条件里可以使用索引。 HAVING 子句是针对聚合后生成的视图进行筛选的，但是很多时候聚合后的视图都没有继承原表的索引结构。
 
-**在 GROUP BY 子句和 ORDER BY 子句中使用索引 **
+**在 GROUP BY 子句和 ORDER BY 子句中使用索引**
 
-一般来说， GROUP BY 子句和 ORDER BY 子句都会进行排序，来对行进行排列和替换。不过，通过指定带索引的列作为 GROUP BY 和 ORDERBY 的列，可以实现高速查询。特别是，在一些数据库中，如果操作对象的列上建立的是唯一索引，那么排序过程本身都会被省略掉。
+一般来说， GROUP BY 子句和 ORDER BY 子句都会进行排序，来对行进行排列和替换。不过，通过指定带索引的列作为 GROUP BY 和 ORDER BY 的列，可以实现高速查询。特别是，在一些数据库中，如果操作对象的列上建立的是唯一索引，那么排序过程本身都会被省略掉。
 
 ### 真的用到索引了吗
 
@@ -2464,7 +2448,7 @@ SELECT *
 ```
 
 **使用 IS NULL 谓词**
-通常，索引字段是不存在 NULL 的，所以指定 IS NULL 和 IS NOTNULL 的话会使得索引无法使用，进而导致查询性能低下。关于索引字段不存在 NULL 的原因，简单来说是 NULL 并不是值。非值不会被包含在值的集合中。
+通常，索引字段是不存在 NULL 的，所以指定 IS NULL 和 IS NOT NULL 的话会使得索引无法使用，进而导致查询性能低下。关于索引字段不存在 NULL 的原因，简单来说是 NULL 并不是值。非值不会被包含在值的集合中。
 
 ```sql
 SELECT *
@@ -2483,7 +2467,7 @@ SELECT *
 
 原理很简单，只要使用不等号并指定一个比最小值还小的数，就可以选出 col_1 中所有的值。因为 col_1 > NULL 的执行结果是 unknown，所以当“col_1” 列的值为 NULL 的行不会被选择。不过，如果要选择“非 NULL 的行”，正确的做法还是使用 IS NOT NULL。上面这种写法意思有些容易混淆，所以也不太推荐，请只在应急的情况下使用。
 
-**使用否定形式 **
+**使用否定形式**
 
 下面这几种否定形式不能用到索引。
 
@@ -2543,15 +2527,15 @@ SELECT *
 
 ### 减少中间表
 
-**灵活使用 HAVING 子句 **
+**灵活使用 HAVING 子句**
 
 对聚合结果指定筛选条件时，使用 HAVING 子句是基本原则。不习惯使用 HAVING 子句的数据库工程师可能会倾向于像下面这样先生成一张中间表，然后在 WHERE 子句中指定筛选条件。
 
 ```sql
 SELECT *
   FROM (SELECT sale_date, MAX(quantity) AS max_qty
-	      FROM SalesHistory
-         GROUP BY sale_date) TMP 没用的中间表
+          FROM SalesHistory
+         GROUP BY sale_date) TMP -- 没用的中间表
  WHERE max_qty >= 10;
 
 sale_date    tot_qty
@@ -2570,7 +2554,7 @@ SELECT sale_date, MAX(quantity)
 HAVING MAX(quantity) >= 10;
 ```
 
-**需要对多个字段使用 IN 谓词时，将它们汇总到一处 **
+**需要对多个字段使用 IN 谓词时，将它们汇总到一处**
 
 ```sql
 SELECT id, state, city
@@ -2619,7 +2603,7 @@ SELECT I.item_no, SH.total_qty
 -- 先进行一对多的连接再聚合
 SELECT I.item_no, SUM(SH.quantity) AS total_qty
   FROM Items I LEFT OUTER JOIN SalesHistory SH
-    ON I.item_no = SH.item_no 一对多的连接
+    ON I.item_no = SH.item_no -- 一对多的连接
  GROUP BY I.item_no;
 ```
 
@@ -2631,3 +2615,7 @@ SELECT I.item_no, SUM(SH.quantity) AS total_qty
 -   集合运算符（UNION、 INTERSECT、 EXCEPT 等）
 
 一般来说， 要格外注意避免在视图中进行聚合操作后需要特别注意。最近越来越多的数据库为了解决视图的这个缺点，实现了物化视图（materialized view）等技术。当视图的定义变得复杂时，可以考虑使用一下。
+
+## SQL 进阶教程
+
+{% pdf ./sql-advance.pdf %}

@@ -5,6 +5,8 @@ date: 2019-10-26
 description: JSON-Server 是一个 Node 模块，运行 Express 服务器，你可以指定一个 json 文件作为 api 的数据源。
 ---
 
+> 转载：[json-server 详解 - FlyDragon - 博客园](https://www.cnblogs.com/fly_dragon/p/9150732.html)
+
 JSON-Server 是一个 Node 模块，运行 Express 服务器，你可以指定一个 json 文件作为 api 的数据源。
 
 ## 安装 json-server
@@ -367,8 +369,3 @@ server.listen(3000, () => {
   console.log('JSON Server is running')
 })
 ```
-
-> 作者：[FlyDragon](http://www.cnblogs.com/fly_dragon/)
-> 出处：http://www.cnblogs.com/fly_dragon/
-> 关于作者：专注于微软平台项目架构、管理和企业解决方案。如有问题或建议，请多多赐教！
-> 本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，如有问题，可以通 malun666@126.com 联系我，非常感谢。

@@ -4,7 +4,7 @@ tags: js
 date: 2021-08-25
 ---
 
-> 转载：[Generators](https://javascript.info/generators)
+> 转载：[Generators - javascript.info](https://javascript.info/generators)
 
 Regular functions return only one, single value (or nothing).
 

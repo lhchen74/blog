@@ -112,7 +112,7 @@ const divsCounts = await page.$$eval('div', divs => divs.length)
 
 ### evaluate
 
-如果我们有一些及其个性的需求，无法通过 page.$() 或者 page.$eval() 实现，可以用大招——evaluate，有几个相关的 API
+如果我们有一些及其个性的需求，无法通过 `page.$()` 或者 `page.$eval()` 实现，可以用大招 - evaluate，有几个相关的 API
 
 1. page.evaluate(pageFunction, …args)
 2. page.evaluateHandle(pageFunction, …args):

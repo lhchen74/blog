@@ -1,5 +1,5 @@
 ---
-title: Javascript This
+title: JavaScript This
 tags: js
 date: 2020-11-29
 ---

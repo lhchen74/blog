@@ -7,27 +7,32 @@ date: 2020-06-28
 mail.js
 
 ```js
-const fs = require('fs')
-const path = require('path')
+const fs = require("fs");
+const path = require("path");
 const nodemailer = require("nodemailer");
-const ejs = require('ejs')
-const { MAIL_TRANSPORT_CONFIG, MAIL_FROM, MAIL_TO } = require('./config')
-const usersService = require('./services/users')
+const ejs = require("ejs");
+const { MAIL_TRANSPORT_CONFIG, MAIL_FROM, MAIL_TO } = require("./config");
+const usersService = require("./services/users");
 
 const renderHtml = async function () {
-    const users = await usersService.query({ ename: null, deptno: null })
-    const template = ejs.compile(fs.readFileSync(path.resolve(__dirname, 'template', 'email.ejs'), 'utf8'), { async: false });
+    const users = await usersService.query({ ename: null, deptno: null });
+    const template = ejs.compile(
+        fs.readFileSync(
+            path.resolve(__dirname, "template", "email.ejs"),
+            "utf8"
+        ),
+        { async: false }
+    );
     const html = template({
-        title: 'EDI Group',
-        users: users
-    })
+        title: "EDI Group",
+        users: users,
+    });
 
-    return html
-}
-
+    return html;
+};
 
 // async..await is not allowed in global scope, must use a wrapper
-async function mail () {
+async function mail() {
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport(MAIL_TRANSPORT_CONFIG);
 
@@ -39,11 +44,12 @@ async function mail () {
         text: "Hello world?", // plain text body
         html: await renderHtml(), // html body
         attachments: [
-            {   // file on disk as an attachment
-                filename: 'data.json',
-                path: './data.json' // stream this file
+            {
+                // file on disk as an attachment
+                filename: "data.json",
+                path: "./data.json", // stream this file
             },
-        ]
+        ],
     });
 
     console.log("Message sent: %s", info.messageId);
@@ -59,13 +65,13 @@ config.js
 const MAIL_CONFIG = {
     MAIL_TRANSPORT_CONFIG: {
         host: "xxx",
-        port: xx
+        port: xx,
     },
     MAIL_FROM: "Babb_Chen@xx.com",
-    MAIL_TO: "Babb_Chen@xx.com"
-}
+    MAIL_TO: "Babb_Chen@xx.com",
+};
 
-module.exports = MAIL_CONFIG
+module.exports = MAIL_CONFIG;
 ```
 
 services/users.js
@@ -73,11 +79,11 @@ services/users.js
 读取数据库返回 node 对象数组
 
 ```js
-const oracledb = require('oracledb');
+const oracledb = require("oracledb");
 
 oracledb.outFormat = oracledb.OBJECT;
 
-function query (queryObj) {
+function query(queryObj) {
     return new Promise(async function (resolve, reject) {
         let connection;
 
@@ -85,22 +91,25 @@ function query (queryObj) {
             connection = await oracledb.getConnection({
                 user: "xxx",
                 password: "xxx",
-                connectString: "DEV"
+                connectString: "DEV",
             });
 
-            const sql =
-                `SELECT empno, ename, job, mgr, hiredate, sal, comm, deptno FROM scott.emp
+            const sql = `SELECT empno, ename, job, mgr, hiredate, sal, comm, deptno FROM scott.emp
                   WHERE ename = nvl(:ename, ename)
-                    AND deptno = nvl(:deptno, deptno)`
+                    AND deptno = nvl(:deptno, deptno)`;
 
-            const result = await connection.execute(sql, [queryObj.ename, queryObj.deptno]);
+            const result = await connection.execute(sql, [
+                queryObj.ename,
+                queryObj.deptno,
+            ]);
 
             resolve(result.rows);
-
-        } catch (err) { // catches errors in getConnection and the query
+        } catch (err) {
+            // catches errors in getConnection and the query
             reject(err);
         } finally {
-            if (connection) {   // the connection assignment worked, must release
+            if (connection) {
+                // the connection assignment worked, must release
                 try {
                     await connection.release();
                 } catch (e) {
@@ -112,13 +121,13 @@ function query (queryObj) {
 }
 
 module.exports = {
-    query
-}
+    query,
+};
 ```
 
 template/email.ejs
 
-```ejs
+```html
 <!DOCTYPE html>
 <html lang="en">
     <head>

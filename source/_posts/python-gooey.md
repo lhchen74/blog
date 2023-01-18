@@ -108,7 +108,7 @@ def main():
 
 ### 布局流
 
-布局实例可以在下载这个 [exmaple 库](https://github.com/chriskiehl/GooeyExamples)体验。
+布局实例可以在下载这个 [exmaple 库](https://github.com/chriskiehl/GooeyExamples) 体验。
 
 | Flat Layout                         | Column Layout                          |
 | ----------------------------------- | -------------------------------------- |

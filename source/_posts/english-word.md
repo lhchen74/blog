@@ -6,7 +6,7 @@ date: 2020-08-13
 
 ### Business
 
-> Can I move this call for tomorrow? I am stuck in other call. 我可以把这个电话挪到明天吗?我被其他电话困住了。
+> Can I move this call for tomorrow? I am stuck in another call. 我可以把这个电话挪到明天吗?我被其他电话困住了。
 
 > We had an issue with the invoice. Can you please resubmit the invoice with the correct Tax type? Please confirm once corrected invoice is submitted. 我们的发票出了问题。能否重新提交正确税种的发票?提交正确的发票后，请确认。
 

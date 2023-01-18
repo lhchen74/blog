@@ -51,7 +51,10 @@ end;
 网友 雷厉\*风行 指出下面的方式速度更快，我测试插入一百万条记录十秒左右，当然了，这跟机器性能也有关系。
 
 ```sql
-insert into TMP_UPSTATE_CASEKEY select 'TMP'||LPAD(rownum,7,0),1,sysdate from dual connect by level <= 1000000;
+insert into TMP_UPSTATE_CASEKEY 
+ select 'TMP'||LPAD(rownum,7,0),1,sysdate 
+   from dual 
+connect by level <= 1000000;
 ```
 
 ## 使用 python 生成 SQL 文件

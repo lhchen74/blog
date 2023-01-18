@@ -758,7 +758,7 @@ console.log(window.name2); // undefined, const not belong top window
 // console.log(obj); // {name: "babb", age: 18}
 
 // const obj = {
-//     name: "es6",
+//     name: "ES6",
 //     extensions: ["es7", "es8", "es9"],
 // };
 // Object.freeze(obj);
@@ -766,7 +766,7 @@ console.log(window.name2); // undefined, const not belong top window
 // console.log(obj.extensions); // ["es2016", "es8", "es9"]
 
 const obj = {
-    name: "es6",
+    name: "ES6",
     extensions: ["es7", "es8", "es9"],
 };
 function myFreeze(obj) {
@@ -808,7 +808,7 @@ if no package.json found in the folder, node will still try to run index.js file
 在 node 中除以 0 不会产生异常
 
 ```js
-console.log(0 / 0, 1 / 0, -1 / 0)
+console.log(0 / 0, 1 / 0, -1 / 0);
 // NaN Infinity -Infinity
 ```
 
@@ -817,7 +817,81 @@ console.log(0 / 0, 1 / 0, -1 / 0)
 undefined 可以和其它类型比较
 
 ```js
-console.log(undefined < 1, undefined > 1, undefined < '1')
+console.log(undefined < 1, undefined > 1, undefined < "1");
 // false false false
+```
+
+## JS Quiz
+
+### 数组扁平化，去重，升序
+
+```javascript
+const arr = [
+    [1, 2, 2],
+    [3, 4, 5, 5],
+    [6, 7, 8, 9, [11, 12, [12, 12, [13]]]],
+    10
+]
+
+// 递归实现扁平化
+Array.prototype.flat = function () {
+    const result = this.map(item => {
+        if (Array.isArray(item)) {
+            return item.flat()
+        }
+
+        return [item]
+    })
+
+    return [].concat(...result)
+}
+
+// while 循环实现扁平化
+Array.prototype.flat2 = function () {
+    let result = this;
+
+    while (result.some(item => Array.isArray(item))) {
+        result = [].concat(...result)
+    }
+    return result;
+}
+
+Array.prototype.unique = function () {
+    return [...new Set(this)]
+}
+
+const sortFn = (a, b) => a - b;
+
+let result = arr.flat().unique().sort(sortFn)
+console.log(result)
+result = arr.flat2().unique().sort(sortFn)
+console.log(result)
+
+// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+```
+
+### 实现 AOP
+
+```js
+Function.prototype.before = function (callback) {
+    return () => {
+        callback(this.name)
+        this()
+    }
+}
+
+function hello () {
+    console.log('Hello World')
+}
+
+const wrapHello = hello.before((funcName) => {
+    console.log(`start call ${funcName}`)
+})
+
+wrapHello()
+
+// start call hello
+// Hello World
 ```
 

@@ -1,6 +1,6 @@
 ---
 title: UTL_FILE - Random Access of Files
-tag: db
+tags: db
 date: 2021-05-25
 ---
 

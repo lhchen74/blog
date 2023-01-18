@@ -9,8 +9,7 @@ date: 2019-10-28
 ### 数字签名
 
 将报文按双方约定的 HASH 算法计算得到一个固定位数的报文摘要。在数学上保证：只要改动报文中任何一位，重新计算出的报文摘要值就会与原先的值不相符。这样就保证了报文的不可更改性。
-
-将该报文摘要值用发送者的私人密钥加密，然后连同原报文一起发送给接收者，而产生的报文即称数字签名
+将该报文摘要值用发送者的私人密钥加密，然后连同原报文一起发送给接收者，而产生的报文即称数字签名。
 
 ### 数字证书
 
@@ -26,7 +25,7 @@ date: 2019-10-28
 
 ![](concept-x509-certificate/20160807210405977.jpg)
 
-苏珊要给鲍勃写一封保密的信。她写完后用鲍勃的公钥加密，就可以达到保密的效果
+苏珊要给鲍勃写一封保密的信。她写完后用鲍勃的公钥加密，就可以达到保密的效果。
 
 ![](concept-x509-certificate/20160807210420243.jpg)
 
@@ -97,29 +96,23 @@ CN=Java Duke，OU=Java Software Division，O=Sun Microsystems Inc，C=US
 **主体公钥信息**
 这是被命名实体的公钥，同时包括指定该密钥所属公钥密码系统的算法标识符及所有相关的密钥参数。
 
-**常见的 X.509 证书格式**
+ **常见的 X.509 证书格式**
 
-```yaml
-cer/crt: 是用于存放证书，它是 2 进制形式存放的，不含私钥。
+- **.der** — in binary DER form
 
-pem: 跟 crt/cer 的区别是它以 Ascii 来表示，可以用于存放证书或私钥。
-
-pfx/p12: 用于存放个人证书/私钥，他通常包含保护密码，2 进制方式。
-
-p10: 是证书请求。
-
-p7r: 是 CA 对证书请求的回复，只用于导入
-
-p7b: 以树状展示证书链(certificate chain)，同时也支持单个证书，不含私钥。
-```
+- **.pem** — This is a (Privacy-enhanced Electronic Mail) Base64 encoded DER certificate, enclosed between “—–BEGIN CERTIFICATE—–” and “—–END CERTIFICATE—–“
+- **.cer, .crt** — Base64-encoded certificates are also common (see .pem above) or binary DER form (.der).
+- **.p7b and .p7c** — PKCS#7 SignedData structure without data, just certificate(s) or CRL(s).
+- **.p12** — PKCS#12 files may contain certificate(s) (public) and private keys (password protected).
+- **.pfx** — PFX is the predecessor of PKCS#12. This type of file usually contains data in PKCS#12 format (e.g., with PFX files generated in IIS).
 
 **证书文件/私钥文件**
 
 在 HTTPS 通讯中最常用的是 cer/crt 和 pem。下面以 pem 格式的证书为例进行说明。下面是一个完整的 PEM 格式证书：
 
+```
 Certificate:
 
-```
 Data:
 
      Version: 1 (0x0)
@@ -159,15 +152,11 @@ Signature Algorithm: md5WithRSAEncryption
 MIICFDCCAb4CAQEwDQYJKoZIhvcNAQEEBQAwgZ4xCzAJBgNVBAYTAlVTMRAwDgYDVQQIEwdNb250YW5hMRAwDgYDVQQHEwdCb3plbWFuMREwDwYDVQQKEwhzYXd0b290aDETMBEGA1UECxMKY29uc3VsdGluZzEkMCIGA1UEAxMbd3d3LnNhd3Rvb3RoLWNvbnN1bHRpbmcuY29tMR0wGwYJKoZIhvcNAQkBFg5pbmZvQHlhc3NsLmNvbTAeFw0xMDA2MzAxODUyMTdaFw0xMzAzMjYxODUyMTdaMIGKMQswCQYDVQQGEwJVUzEQMA4GA1UECBMHTW9udGFuYTEQMA4GA1UEBxMHQm96ZW1hbjEOMAwGA1UEChMFeWFTU0wxEDAOBgNVBAsTB3N1cHBvcnQxFjAUBgNVBAMTDXd3dy55YXNzbC5jb20xHTAbBgkqhkiG9w0BCQEWDmluZm9AeWFzc2wuY29tMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMZ7wGiBL96CP/msw4ZKZrfs1PH2ZCH/9aI0QtA4n8bdO24mZWpUlt3Se+s2oq5+Kp5+VqW2h58VxxhmfhZ34qcCAwEAATANBgkqhkiG9w0BAQQFAANBAFipmOcWUkxA5+FHkhkbOo+XbHu3sMsgba2100dY2OTyPjLp74d35VQ29I1QjQe0d0XqnaQzNpsL4HRYEcUBe00=
 
 -----END CERTIFICATE-----
-
-     从Certificate开始到“-----BEGIN CERTIFICATE-----”为止，中间的内容是证书的明文格式。
-
-    从“-----BEGIN CERTIFICATE-----”开始到“-----END CERTIFICATE-----”为止是证书的明文格式经过ASN.1编码再经过Base64编码得到的。
-
-对于私钥文件，真正的私钥是包含在字符串"-----BEGIN PRIVATE KEY-----"和字符串"-----END PRIVATE KEY-----"之间。
 ```
 
-如果该私钥文件是 pkcs8 格式的，那么该私钥文件的格式为
+从 Certificate 开始到"-----BEGIN CERTIFICATE-----"为止，中间的内容是证书的明文格式。从"-----BEGIN CERTIFICATE-----"开始到"-----END CERTIFICATE-----"为止是证书的明文格式经过 ASN.1 编码再经过 Base64 编码得到的。
+
+对于私钥文件，真正的私钥是包含在字符串"-----BEGIN PRIVATE KEY-----"和字符串"-----END PRIVATE KEY-----"之间。如果该私钥文件是 pkcs8 格式的，那么该私钥文件的格式如下。如果不是 pkcs8 格式的，那么"-----BEGIN PRIVATE KEY-----"和"-----END PRIVATE KEY-----"之间的内容就是私钥的 Base64 编码。
 
 ```
 PrivateKeyInfo ::= SEQUENCE {
@@ -181,17 +170,7 @@ PrivateKeyInfo ::= SEQUENCE {
     attributes [] IMPLICIT Attributes OPTIONAL(SET OF Attribute)
 
 }
-
-    如果不是pkcs8格式的，那么"-----BEGIN PRIVATE KEY-----"和"-----END PRIVATE KEY-----"之间的内容就是私钥的Base64编码。
-
-    在客户端或服务器在交换证书时，需要首先把Base64编码转换为ASCII编码再进行传输。
 ```
-
-**公钥和私钥**
-
-公钥和私钥是证书文件和私钥文件中最核心的内容。
-
-在 SSL/TLS 协议中需要是用公钥算法，来进行对称密钥的交换。最常见的算法是 RSA 和 DH，而 RSA 算法和 DH 算法的公钥、私钥的数据格式是不同的。
 
 ### X.509 证书数据结构
 
@@ -222,18 +201,12 @@ TBSCertificate ::= SEQUENCE {
 
         subjectPublicKeyInfo SubjectPublicKeyInfo,--证书公钥
 
-        issuerUniqueID [] IMPLICIT UniqueIdentifier OPTIONAL,
+        issuerUniqueID [] IMPLICIT UniqueIdentifier OPTIONAL, -- 证书发行者ID(可选)，只在证书版本2、3中才有
 
-                             -- 证书发行者ID(可选)，只在证书版本2、3中才有
+        subjectUniqueID [] IMPLICIT UniqueIdentifier OPTIONAL,-- 证书主体ID(可选)，只在证书版本2、3中才有
 
-        subjectUniqueID [] IMPLICIT UniqueIdentifier OPTIONAL,
-
-                             -- 证书主体ID(可选)，只在证书版本2、3中才有
-
-        extensions      [] EXPLICIT Extensions OPTIONAL
-
-                             -- 证书扩展段（可选），只在证书版本3中才有
-
+        extensions      [] EXPLICIT Extensions OPTIONAL -- 证书扩展段（可选），只在证书版本3中才有
+        
         }
 
 Version ::= INTEGER { v1(0), v2(1), v3(2) }
@@ -264,11 +237,11 @@ Dss-Sig-Value ::= SEQUENCE { -- sha1DSA 签名算法时,签名值
 
                    r       INTEGER,
 
-                      s       INTEGER }
+                   s       INTEGER }
 
 Name ::= CHOICE {
 
-     RDNSequence }
+     RDNSequence  }
 
 RDNSequence ::= SEQUENCE OF RelativeDistinguishedName
 

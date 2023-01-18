@@ -1,0 +1,1 @@
+find ../images -maxdepth 1 -name "*.jpg" -printf '- %p\n' > images.yml

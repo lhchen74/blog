@@ -336,3 +336,33 @@ Use the `type="search"` for your search inputs and you get the “clear” butto
 ```
 
 ![](html-tips/1624182004962.png)
+
+### Comments
+
+#### input autocomplete
+
+When submit form, the Browser will record the history of the input. The next time you focus on the same type of input will popup the history for autofill. If your website doesn't want the Browser to do this, you can set `autocomplete="off"`. 
+
+```html
+<form>
+  <input type="email" name="email">
+  <input type="email" name="email" autocomplete="off">
+  <input type="submit" value="Submit">
+</form>
+```
+
+![](html-tips/1663298243094.png)
+
+If you are a user, you can clean the history as below: 
+
+- Deleting unwanted entries one at a time. Reference [How to Delete Autocomplete History](https://www.computerhope.com/issues/ch000553.htm)
+  1. Open Google Chrome.
+  2. Locate the [field](https://www.computerhope.com/jargon/f/field.htm) where the unwanted item is being autocompleted. This field can be any search box or the [address bar](https://www.computerhope.com/jargon/a/addrebar.htm).
+  3. Start typing the unwanted phrase or web address, or press the **down arrow key** until it is highlighted.
+  4. Press [Delete](https://www.computerhope.com/jargon/d/delete.htm). If the entry is not removed, press Shift+Delete.
+
+![](html-tips/chrome-selected-autocomplete.jpg)
+
+- Close Autofill function. 
+
+![](html-tips/1663298534862.png)

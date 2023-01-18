@@ -1,5 +1,5 @@
 ---
-title: Html5
+title: HTML5
 tags: html
 date: 2020-07-17
 ---

@@ -7,6 +7,10 @@ categories: manual
 
 ## DB
 
+> [Database Star Blog - Database Star](https://www.databasestar.com/blog/)
+>
+> [60 Best Resources for Learning SQL - Database Star](https://www.databasestar.com/learn-sql/)
+
 > [TechOnTheNet - Online tutorials for Excel, SQL, Oracle, PLSQL and more!](https://www.techonthenet.com/)
 
 > [ cx_Oracle 8.3.0-dev documentation](https://cx-oracle.readthedocs.io/en/latest/)
@@ -14,8 +18,6 @@ categories: manual
 > [SQL client programming - SQL Server | Microsoft Docs](https://docs.microsoft.com/en-us/sql/connect/homepage-sql-connection-programming?view=sql-server-ver15)
 
 > [PL/SQL Language Fundamentals](https://docs.oracle.com/cd/E11882_01/appdev.112/e25519/fundamentals.htm#LNPLS002)
-
-> [PostgreSQL 13.1 手册](http://www.postgres.cn/docs/13/index.html)
 
 ## Haskell
 
@@ -49,15 +51,19 @@ categories: manual
 
 > [The Modern JavaScript Tutorial](https://javascript.info/)
 
+> [Dmitri Pavlutin Blog](https://dmitripavlutin.com/)
+
+> [SamanthaMing.com](https://www.samanthaming.com/)
+
 > [JavaScript 教程 - 网道](https://wangdoc.com/javascript/basic/index.html)
 
-> [ES6 入门教程 - ECMAScript 6 入门](https://es6.ruanyifeng.com/)
+> [ES6 入门教程 - ECMAScript 6 入门](https://ES6.ruanyifeng.com/)
 
 > [TypeScript 入门教程](https://ts.xcatliu.com/)
 
 > [全栈公开课 2020](https://fullstackopen.com/zh/)
 
-> [ 函数式编程指北](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)
+> [函数式编程指北](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)
 
 > [阮一峰的网络日志](http://www.ruanyifeng.com/blog/)
 
@@ -96,6 +102,8 @@ categories: manual
 > [Stars-one - 博客园](https://www.cnblogs.com/stars-one/)
 
 > [Java - 随笔分类 - 码农神说 - 博客园](https://www.cnblogs.com/zhaiqianfeng/category/707145.html)
+
+> [Road 2 Coding](https://www.r2coding.com/#/README)
 
 ## Kotlin
 
@@ -141,7 +149,9 @@ categories: manual
 
 > [Docker - 从入门到实践](https://yeasy.gitbook.io/docker_practice/)
 
-## API Doc
+## API
+
+> [public-apis/public-apis: A collective list of free APIs](https://github.com/public-apis/public-apis)
 
 > [DevDocs API Documentation](https://devdocs.io/)
 
@@ -191,17 +201,21 @@ categories: manual
 
 > [aria2](http://aria2.github.io/)
 
-> [Programming-Idioms](https://programming-idioms.org/about#about-block-cheatsheets)  Different Languages Compare
+> [Programming-Idioms](https://programming-idioms.org/about#about-block-cheatsheets) Different Languages Compare
 
 > [Online Ping, Traceroute, DNS lookup, WHOIS, Port check, Reverse lookup, Proxy checker, Bandwidth meter, Network calculator, Network mask calculator, Country by IP, Unit converter](https://ping.eu/)
 
 > [Ping, mtr, dig and TCP port check from multiple locations](http://ping.pe/)
+
+> [Programming Fonts - Test Drive](https://www.programmingfonts.org/)
 
 ## Tutorial
 
 > [GeeksforGeeks | A computer science portal for geeks](https://www.geeksforgeeks.org/)
 
 ## Chinese
+
+> [漢典](https://www.zdic.net/)
 
 > [全历史](https://www.allhistory.com/)
 
@@ -220,3 +234,19 @@ categories: manual
 > [JSONPlaceholder - Free Fake REST API](https://jsonplaceholder.typicode.com/)
 
 > [HTTPie – command-line HTTP client for the API era](https://httpie.io/)
+
+## Package Repository
+
+> [Openbase: choose the right package every time](https://openbase.com/)
+
+## Online Editor
+
+> [StackBlitz | Instant Dev Environments | Click. Code. Done. - StackBlitz](https://stackblitz.com/)
+
+## Anime
+
+> [TV アニメ「３月のライオン」公式サイト](https://3lion-anime.com/)
+
+> [ヒグチユウコ Higuchi Yuko Official Website](https://higuchiyuko.com/)
+
+> [《三月的狮子》 Endcard & 作者介绍 - 初之音](https://www.himiku.com/archives/3lion-endcard.html)

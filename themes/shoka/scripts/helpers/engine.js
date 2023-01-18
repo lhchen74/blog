@@ -8,13 +8,13 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
-const randomServer = parseInt(Math.random()*4,10)+1
+const randomServer = parseInt(Math.random() * 4, 10) + 1
 
-const randomBG = function(count = 1, image_server = null, image_list = []) {
+const randomBG = function (count = 1, image_server = null, image_list = []) {
   if (image_server) {
-    if(count && count > 1) {
+    if (count && count > 1) {
       var arr = new Array(count);
-      for(var i=0; i < arr.length; i++){
+      for (var i = 0; i < arr.length; i++) {
         arr[i] = image_server + '?' + Math.floor(Math.random() * 999999)
       }
 
@@ -24,15 +24,16 @@ const randomBG = function(count = 1, image_server = null, image_list = []) {
     return image_server + '?' + Math.floor(Math.random() * 999999)
   }
 
-  var parseImage = function(img, size) {
+  var parseImage = function (img, size) {
     if (img.startsWith('//') || img.startsWith('http')) {
       return img
     } else {
-      return 'https://tva'+randomServer+'.sinaimg.cn/'+size+'/'+img
+      // return 'https://tva'+randomServer+'.sinaimg.cn/'+size+'/'+img
+      return img // Babb modify at 2022/10/20
     }
   }
 
-  if(count && count > 1) {
+  if (count && count > 1) {
     var shuffled = image_list.slice(0), i = image_list.length, min = i - count, temp, index;
     while (i-- > min) {
       index = Math.floor((i + 1) * Math.random());
@@ -41,7 +42,7 @@ const randomBG = function(count = 1, image_server = null, image_list = []) {
       shuffled[i] = temp;
     }
 
-    return shuffled.slice(min).map(function(img) {
+    return shuffled.slice(min).map(function (img) {
       return parseImage(img, 'large')
     });
   }
@@ -49,7 +50,7 @@ const randomBG = function(count = 1, image_server = null, image_list = []) {
   return parseImage(image_list[Math.floor(Math.random() * image_list.length)], 'mw690')
 }
 
-hexo.extend.helper.register('_url', function(path, text, options = {}) {
+hexo.extend.helper.register('_url', function (path, text, options = {}) {
   const { config } = this;
   const data = url.parse(path);
   const siteHost = url.parse(config.url).hostname || config.url;
@@ -65,7 +66,7 @@ hexo.extend.helper.register('_url', function(path, text, options = {}) {
     exturl = 'exturl';
     const encoded = Buffer.from(path).toString('base64');
     attrs = {
-      class     : exturl,
+      class: exturl,
       'data-url': encoded
     };
   }
@@ -104,7 +105,7 @@ hexo.extend.helper.register('_url', function(path, text, options = {}) {
   return htmlTag(tag, attrs, decodeURI(text), false);
 });
 
-hexo.extend.helper.register('_image_url', function(img, path = '') {
+hexo.extend.helper.register('_image_url', function (img, path = '') {
   const { statics } = hexo.theme.config;
   const { post_asset_folder } = hexo.config;
 
@@ -115,10 +116,10 @@ hexo.extend.helper.register('_image_url', function(img, path = '') {
   }
 })
 
-hexo.extend.helper.register('_cover', function(item, num) {
+hexo.extend.helper.register('_cover', function (item, num) {
   const { statics, js, image_server, image_list } = hexo.theme.config;
 
-  if(item.cover) {
+  if (item.cover) {
     return this._image_url(item.cover, item.path)
   } else if (item.photos && item.photos.length > 0) {
     return this._image_url(item.photos[0], item.path)
@@ -128,14 +129,14 @@ hexo.extend.helper.register('_cover', function(item, num) {
 
 })
 
-hexo.extend.helper.register('_md5', function(path) {
+hexo.extend.helper.register('_md5', function (path) {
   let str = url_for.call(this, path);
   str.replace('index.html', '');
   return crypto.createHash('md5').update(str).digest('hex');
 });
 
 
-hexo.extend.helper.register('canonical', function() {
+hexo.extend.helper.register('canonical', function () {
   // https://support.google.com/webmasters/answer/139066
   const { permalink } = hexo.config;
   let url = this.url.replace(/index\.html$/, '');
@@ -148,7 +149,7 @@ hexo.extend.helper.register('canonical', function() {
 /**
  * Get page path given a certain language tag
  */
-hexo.extend.helper.register('i18n_path', function(language) {
+hexo.extend.helper.register('i18n_path', function (language) {
   const { path, lang } = this.page;
   const base = path.startsWith(lang) ? path.slice(lang.length + 1) : path;
   return url_for.call(this, `${this.languages.indexOf(language) === 0 ? '' : '/' + language}/${base}`);
@@ -157,7 +158,7 @@ hexo.extend.helper.register('i18n_path', function(language) {
 /**
  * Get the language name
  */
-hexo.extend.helper.register('language_name', function(language) {
+hexo.extend.helper.register('language_name', function (language) {
   const name = hexo.theme.i18n.__(language)('name');
   return name === 'name' ? language : name;
 });

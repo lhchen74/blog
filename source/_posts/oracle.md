@@ -37,9 +37,9 @@ end;
 
 user_tables 只能查询当前用户的表, 如果查询其他 `owner` 的表需要查询 `dba_tables` 或者 `all_tables`
 
--   **dba_tables:** describes all relational tables in the database.
--   **all_tables:** describes the relational tables **accessible** to the current user.
--   **user_tables:** describes the relational tables **owned** by the current user.
+- **dba_tables:** describes all relational tables in the database.
+- **all_tables:** describes the relational tables **accessible** to the current user.
+- **user_tables:** describes the relational tables **owned** by the current user.
 
 ```sql
 select *
@@ -52,8 +52,8 @@ select *
 
 在做 Transact Move Orders 时弹出错误：累计拣货数量超过报关数量。
 
--   检查 form 的 trigger 没有发现 **累计拣货数量超过报关数量** 相关代码和描述。
--   在 PL/SQL 中使用 `select * from all_source s where s.text like '%累计拣货数量超过报关数量%';` 可以在 DB trigger 中找到相关文字，查看 trigger 代码可以看到实际原因是报关资料抄写没有抄写成功。
+- 检查 form 的 trigger 没有发现 **累计拣货数量超过报关数量** 相关代码和描述。
+- 在 PL/SQL 中使用 `select * from all_source s where s.text like '%累计拣货数量超过报关数量%';` 可以在 DB trigger 中找到相关文字，查看 trigger 代码可以看到实际原因是报关资料抄写没有抄写成功。
 
 ### Table Columns
 
@@ -104,19 +104,19 @@ select dbms_metadata.get_ddl('SEQUENCE', u.object_name)
 
 以 `v$`开头的表一般是 oracle 的系统视图 ，具体存放数据库相关动态信息。
 
-**v\$session**
+#### v\$session
 
 `v$session` 是 APPS 用户下面对于 `sys.v_$session` 视图的同义词。在这个视图中，每一个连接到数据库实例中的 session 都拥有一条记录。包括用户 session 及后台进程如 DBWR，LGWR，arcchiver 等等。v\$session 是基础信息视图，用于找寻用户 `SID 或 SADDR` 。
 
-**v\$sql**
+#### v\$sql
 
 含有 SQL_TEXT, USERS_OPENING （执行语句的用户数等）
 
-**v\$database**
+#### v\$database
 
 select name from v\$database; （返回当前数据库名，例如 TEST)
 
-**v\$version**
+#### v\$version
 
 返回数据库版本
 
@@ -136,41 +136,10 @@ RENAME TABLE SAMP.EMP_ACT TO EMPLOYEE_ACT
 | 修改字段数据类型 | alter table table_name **modify column_name** varchar2(20);       |
 | 修改字段值       | update table_name set column_name=value where column_name=value;  |
 
-### Cretate Synonym
+### Recover the Dropped Table
 
 ```sql
---before
-select * from app.suppliers;
-
---create synonym
-CREATE PUBLIC SYNONYM suppliers
-FOR app.suppliers;
-
---now
-select * from suppliers;
-
---drop
-drop public SYNONYM suppliers;
-
---没有 public 创建的 synonym 仅对当前 owner 有效
-CREATE SYNONYM suppliers
-FOR app.suppliers;
-
--- 查询所有 synonym
-select * from all_synonyms sn where sn.SYNONYM_NAME like 'SOM_EDI%';
-```
-
-### DB Link
-
-```sql
--- 查询数据库 db_link (user_db_links, all_db_links, dba_db_links)
-select * from all_db_links;
-
--- 查询远程数据库数据
-select * from "dbo"."ssc_t_edi_head"@db_link  where "delivery_no" = 'xxx'
-
--- 获取当前数据库 ip
-select utl_inaddr.get_host_address from dual;
+flashback table hr.regions_hist to before drop;
 ```
 
 ## DML
@@ -266,7 +235,7 @@ select 'd','3',99 from dual
 | case 语句   | end case; | 报错 ORA-06592: CASE not found while executing CASE statement |
 | case 表达式 | end       | 返回 NULL                                                     |
 
-**简单 case 语句 ，case 后有 selector**
+#### Sample Case
 
 ```sql
 CASE SELECTOR
@@ -285,7 +254,7 @@ if som_edi_temp_d_rec.customer_id = 'XXX' then
 end if;
 ```
 
-**搜索式 case 语句 ，case 后没有 selector**
+#### Search Case
 
 ```sql
 CASE
@@ -516,12 +485,26 @@ select 1 from dual null != null
 select 1 from dual null <> 'D'
 ```
 
-### null & ''
+### Null & ''
 
 ```sql
 select length(''), length(null) from dual; --'' ''
 select nvl('', 1) from dual; --1
 select * from dual where '' is null; --X
+```
+
+### Nulls First
+
+`nulls first`将 null 查询结果集排在最前面；`nulls last`将 null 查询结果集排在最后面。
+
+```sql
+select * 
+  from som_edi_810_header seh 
+ order by seh.invoice_date nulls last;
+
+select * 
+  from som_edi_810_header seh 
+ order by seh.invoice_date nulls first;
 ```
 
 ### For Update
@@ -565,16 +548,6 @@ q'' 内的内容会原样输出
 替换字符串中的单引号为双引号
 `replace(str, '''', '''''')`
 
-### Nulls First
-
-`nulls first`将 null 查询结果集排在最前面；`nulls last `将 null 查询结果集排在最后面。
-
-```sql
-select * from som_edi_810_header seh order by seh.invoice_date nulls last;
-
-select * from som_edi_810_header seh order by seh.invoice_date nulls first;
-```
-
 ### Flash Back
 
 ```sql
@@ -609,6 +582,16 @@ update som_edi_temp_d_temp sed
    );
 ```
 
+### Trigger Implements ID Autoincrement
+
+```sql
+    CREATE OR REPLACE TRIGGER YSC.som_hub_dn_upload_header_bi1 BEFORE
+    INSERT ON som_hub_dn_upload_header FOR EACH ROW WHEN (NEW.header_id is null)
+    BEGIN
+       SELECT som_hub_dn_upload_header_s.NEXTVAL INTO :NEW.header_id FROM DUAL;
+    END;
+```
+
 ## DCL
 
 `DCL(Data Control Language)`数据控制语言，用来授予或回收访问数据库的某种特权，并控制数据库操纵事务发生的时间及效果，对数据库实行监视等，包括 `COMMI, SAVEPOINT, ROLLBACK, SET TRANSACTION`
@@ -641,7 +624,48 @@ BEGIN
 END;
 ```
 
+### ERP Request Commit
+
+ERP Request Error 可以设置 retcode = '2' 会自动 rollback, 没有 Error 会自动 commit, 如果在 Error 的情况下需要更新表中的状态，可以手动 rollback 之前的操作，然后更新错误状态，然后手动 commit。
+
+```sql
+procedure insert_so(errbuf   out varchar2,
+                    retcode  out varchar2,
+                    p_edi_id in number) is
+begin
+   begin
+     exception
+       when others then
+         retcode := 2; --1
+         l_error_msg := l_error_msg || dbms_utility.format_error_backtrace || dbms_utility.format_error_stack;
+         debug('error occured in insert_so: ' || l_error_msg);
+
+         rollback; --2
+
+         update som_edi_temp_h seh
+            set seh.transfer = 'E',
+                seh.transfer_date = sysdate,
+                seh.attribute1 = l_error_msg
+          where seh.edi_id = p_edi_id; --3
+
+         commit; --4
+   end;
+end insert_so;
+```
+
 ## Func Procedure
+
+### DBMS_OUTPUT and FND_FILE
+
+| code                                   | meaning                                                          |
+| -------------------------------------- | ---------------------------------------------------------------- |
+| dbms_output.put('')                    | Output content to buffer                                         |
+| dbms_output.put_line('')               | Output content to console and newline                            |
+| fnd_file.put(fnd_file.output, '')      | Writes text to a file, without appending any new line characters |
+| fnd_file.new_line(fnd_file.output, 1)  | Writes line terminators to a file (new line character)           |
+| fnd_file.put_line(fnd_file.output, '') | Writes text to a file followed by a new line character           |
+
+注意：`dbms_output.put` 只会输出内容到缓存; `dbms_output.new_line` 输出缓存内容并换行.
 
 ### Package Create
 
@@ -709,6 +733,75 @@ begin
 end;
 --删除存储过程
 drop procedure p_babb_test;
+```
+
+### Synonym
+
+```sql
+-- CREATE [OR REPLACE] [PUBLIC] SYNONYM [schema.] synonym_name
+-- FOR [schema.] object_name [@dblink_name];
+
+--before
+select * from app.suppliers;
+
+--create synonym
+CREATE PUBLIC SYNONYM suppliers
+FOR app.suppliers;
+
+--now
+select * from suppliers;
+
+--drop
+drop public SYNONYM suppliers;
+
+--没有 public 创建的 synonym 仅对当前 owner 有效
+CREATE SYNONYM suppliers
+FOR app.suppliers;
+
+-- 查询所有 synonym
+select * from all_synonyms sn where sn.SYNONYM_NAME like 'SOM_EDI%';
+
+--Synonym 可以用在 dblink 对应的 object。
+create synonym edi_mes_head for "dbo"."ssc_t_edi_head"@mes2edi;
+
+select * from edi_mes_head where "delivery_no" in ('102234');
+```
+
+### View
+
+```sql
+create or replace view som_edi_mes_header_v as
+  select  "dbname" as dbname,
+          "head_id" as head_id,
+          "invoice_no" as invoice_no,
+          "exc_seq" as exc_seq,
+          "work_order" as work_order,
+          "part_no" as part_no,
+          "customer" as customer,
+          "qty" as qty,
+          "ctns" as ctns,
+          "pallets" as pallets,
+          "po_no" as po_no,
+          "delivery_no" as delivery_no,
+          "create_time" as create_time,
+          "update_time" as update_time,
+          "country_of_origin" as country_of_origin,
+          "transfer_flag" as transfer_flag,
+          "transfer_time" as transfer_time,
+          "update_by" as update_by,
+          "model_name" as model_name,
+          "ver_no" as ver_no,
+          "tran_create_time" as tran_create_time
+  from (
+    select 'SN'  as "dbname", sn.*  from "dbo"."ssc_t_edi_head"@mes2edi.sn sn union all
+    select 'SP'  as "dbname", sp.*  from  "dbo"."ssc_t_edi_head"@MES_PHQ2EDI sp union all
+    select 'SPM' as "dbname", spm.* from "dbo"."ssc_t_edi_head"@mes_spm2edi.spm spm union all
+    select 'SC'  as "dbname", sc.*  from  "dbo"."ssc_t_edi_head"@mes2edi.sc sc
+  );
+
+--dblink 是 Oracle 连接到 SQLServer DB
+--现在不用在 delivery_no 上加双引号，sev."delivery_no" = '102234'
+select * from som_edi_mes_header_v sev where sev.delivery_no = '102234'
 ```
 
 ### Default Param
@@ -971,9 +1064,9 @@ select nation, listagg(city,',')  within group(order by city desc), count(1)
 
 nation  citylistagg                   count(1)
 ------  --------------------------    --------
-China	Guangzhou	                  3
-Japan	Tokyo	                      1
-USA	    New York,Bostom	              2
+China   Guangzhou                     3
+Japan   Tokyo                         1
+USA     New York,Bostom               2
 
 --partitiobn by 不会影响记录条数
 with temp as(
@@ -984,17 +1077,21 @@ with temp as(
   select 'USA' nation ,'Bostom' city from dual union all
   select 'Japan' nation ,'Tokyo' city from dual
 )
-select nation, listagg(city, ',')  within group(order by city desc) over (partition by nation) as citylistagg, count(1) over(partition by nation) as g_total, count(1) over(partition by 1) as total
+select nation,
+       listagg(city, ',')  within group(order by city desc) over (partition by nation) as citylistagg,
+       count(1) over(partition by nation) as g_total,
+       --count(1) over(partition by 1) as total
+      count(1) over() as total
 from temp;
 
-NATION	CITYLISTAGG	                  G_TOTAL	TOTAL
+NATION  CITYLISTAGG                   G_TOTAL   TOTAL
 ------  --------------------------    --------  ------
-China	Shanghai,Guangzhou,Beijing	  3	        6
-China	Shanghai,Guangzhou,Beijing	  3	        6
-China	Shanghai,Guangzhou,Beijing	  3	        6
-Japan	Tokyo	                      1	        6
-USA	    New York,Bostom	              2	        6
-USA	    New York,Bostom               2	        6
+China   Shanghai,Guangzhou,Beijing    3         6
+China   Shanghai,Guangzhou,Beijing    3         6
+China   Shanghai,Guangzhou,Beijing    3         6
+Japan   Tokyo                         1         6
+USA     New York,Bostom               2         6
+USA     New York,Bostom               2         6
 ```
 
 ### Length
@@ -1034,7 +1131,7 @@ select * from dual where least('a', 2, 3, null, sysdate) is null;
     /**
      * Standard ASCII Characters
      * Decimal    Description
-     * 9    	    Horizontal tab (HT)
+     * 9         Horizontal tab (HT)
      * 10         Line feed (LF)
      * 13         Carriage return (CR)
      */
@@ -1060,9 +1157,9 @@ Oracle 内置函数 `SQLCODE` 和 `SQLERRM` 是一般用在异常 `OTHERS` 处�
 
 在一个内在的异常中，SQLCODE 返回 Oracle 错误的序号，而 SQLERRM 返回的是相应的错误消息。
 
--   SQLCODE 返回 +100, SQLERRM 返回 "ORA-01403：NO DATA FOUND";
--   SQLCODE 返回 +1, SQLERRM 返回的是 "User-Defined Exception";
--   SQLCODE 返回 0, SQLERRM 返回 "ORA-0000：normal, successful completion"。
+- SQLCODE 返回 +100, SQLERRM 返回 "ORA-01403：NO DATA FOUND";
+- SQLCODE 返回 +1, SQLERRM 返回的是 "User-Defined Exception";
+- SQLCODE 返回 0, SQLERRM 返回 "ORA-0000：normal, successful completion"。
 
 ### Error Backtrace
 
@@ -1176,10 +1273,27 @@ DEV =
       (ADDRESS = (PROTOCOL = tcp)(HOST = xxx)(PORT = yyy))
     )
     (CONNECT_DATA =
-      (SID = DEV1)
+      (SERVICE_NAME = DEV1)
     )
   )
 --------tnsnames.ora--------
+```
+
+### DB Link
+
+```sql
+-- 查询数据库 db_link (user_db_links, all_db_links, dba_db_links)
+select * from all_db_links;
+
+-- 可以跨不同 DB 查询远程数据库数据，如下在 Oracle 中查询 SQLServer 中的资料
+select * from "dbo"."ssc_t_edi_head"@sqlserver_db_link where "delivery_no" = 'xxx'
+
+-- 获取当前数据库 ip
+select utl_inaddr.get_host_address from dual;
+
+-- 在 Oracle Prod 环境中 Test 环境的 DB Link: test_db_link
+-- 可以通过如下方式把 Prod 环境中的资料写到 Test 环境中
+insert into ysc_edi_inbound_header@test_db_link select * from ysc_edi_inbound_header;
 ```
 
 ### Build Id Seq
@@ -1187,11 +1301,11 @@ DEV =
 ```sql
 select level as id from dual connect by  level < 5;
 /*
-1	1
-2	2
-3	3
-4	4
-5	5
+1 1
+2 2
+3 3
+4 4
+5 5
 */
 select rownum as id from xmltable('1 to 10');
 select level + 5 as id from dual connect by  level <= 10 - 5;
@@ -1212,19 +1326,133 @@ X
 
 ![ampersand](oracle/ampersand.png)
 
+## ERP and Form
+
+### ERP Request recursive call
+
+有的时候程式 Parent Request 调用 Sub Request 时不小心将 Parrent Request 需要调用的 Sub Request 的名字写成了自己，会造成循环调用 Request 无法停止, 这时可以将 Request 调用的 Package 故意修改成编译产生错误的形式，然后编译，此时 Request 会错误然后停止。
+
+### ERP Request Concurrent
+
+在一个 Parent Request 中先后调用两个 Sub Request 时，不能依赖它们的先后执行顺序，并且这两个 Sub Request 不应该共用同一张表的同一个 Flag。 以 A 和 B 两个 Request 对同一个表 T 生成不同的 A_ASN, B_ASN 为例, 具体为 A 抓取表 T 的 transfer_flag 为 'N' 的资料，生成 A_ASN, 然后将 transfer_flag 更新为 'Y',
+B 抓取表 T 的 transfer_flag 为 'N' 的资料，生成 B_ASN, 然后将 transfer_flag 更新为 'Y'。可能的结果有：
+
+A 执行生成 A_ASN, B 执行生成 B_ASN，A 更新 transfer_flag, B 更新 transfer_flag
+
+A 执行生成 A_ASN, A 更新 transfer_flag, B 此时抓不到资料
+
+B 执行生成 B_ASN, B 更新 transfer_flag，A 此时抓不到资料
+
+...
+
+这种代码可能测试时总是第一种期望的情况，但是这里是存在问题的，ERP 网络环境，表结构，程式结构的更改都可能造成下一次的运行结果与上一次不一致。
+
+### ERP Form Error
+
+在做 Transact Move Orders 时弹出错误：`累计拣货数量超过报关数量`
+
+1. 搜索 `累计拣货数量超过报关数量`, 检查 form 的 trigger 都没有发现相关代码和描述
+2. 在 plsql 中使用 `select * from all_source s where s.TEXT like '%累计拣货数量超过报关数量%';` 结果在一个 table trigger 中找到相关文字，查看 trigger 代码可以看到实际原因是报关资料抄写没有抄写成功。
+
+### ERP Form setting item property to Unspecified
+
+How to set item propert to `Unspecified` value. For example, i have radio button with Background color sets to 'gray' and i want set it to `Unspecified` to get transparency effect and i can't do this. If i set property value to blank forms builder shout "color by this name does not exist".
+
+Answser: Go to the item in question and press the 'Inherit' button in the 'Property Palette'.
+
+### Get Form Rquest Name and Excustion File Name
+
+```sql
+select fv.USER_EXECUTABLE_NAME, fv.EXECUTION_FILE_NAME
+  from FND_EXECUTABLES_FORM_V fv
+ where upper(fv.USER_EXECUTABLE_NAME) like 'SOMP%EDI%'
+    or upper(fv.USER_EXECUTABLE_NAME) like 'SOMP%HUB%'
+ order by fv.USER_EXECUTABLE_NAME
+
+--USER_EXECUTABLE_NAME	           EXECUTION_FILE_NAME
+--SOMP3101: EDI Outbound 855/865   SOM_EDI855865_OUTBOUND_PKG.MAIN
+--SOMP4031: HUB ASN	               som_hub_pkg.asn
+```
+
+### Get Organization ID and CODE from MTL_PARAMETERS
+
+```sql
+select mp.organization_id,
+       mp.organization_code
+  from mtl_parameters mp;
+-- organization_id  organization_code
+-- 85               SN
+
+select mp.organization_code
+  from oe_order_lines_all ol,
+       mtl_parameters     mp
+ where ol.ship_from_org_id = mp.organization_id;
+```
+
+### SET_POLICY_CONTEXT
+
+oe_transaction_types_v 直接查询会查不到数据，需要设置 CONTEXT. ?
+
+```sql
+declare
+begin
+  MO_GLOBAL.SET_POLICY_CONTEXT('S', 81);
+end;
+
+select * from oe_transaction_types_v;
+```
+
+### Get Profile
+
+```sql
+select fnd_profile.value('ORG_ID')
+  from dual;
+```
+
+### Get FlexField
+
+```sql
+--1. fnd_flex_value_sets 这张表记录了所有值集的名称和值集id
+select *
+  from fnd_flex_value_sets
+ where upper(flex_value_set_name) = 'NOTES_STATUS';
+
+--2. fnd_flex_values这张表记录了每一个值集对应的可选值
+select flex_value
+  from fnd_flex_values
+ where flex_value_set_id in
+       (select flex_value_set_id
+          from fnd_flex_value_sets
+         where upper(flex_value_set_name) = 'NOTES_STATUS');
+--flex_value
+--10
+--20
+
+--3. fnd_flex_values_tl对应每一个值集对应的可选值的说明
+select description
+  from fnd_flex_values_tl
+ where flex_value_id in
+       (select flex_value_id
+          from fnd_flex_values
+         where flex_value_set_id in
+               (select flex_value_set_id
+                  from fnd_flex_value_sets
+                 where upper(flex_value_set_name) = 'NOTES_STATUS'));
+```
+
 ### Request Check
 
 ```sql
 select r.argument1, r.argument2, r.request_date
-from sfn_fnd_concurrent_requests r,
-      fnd_concurrent_programs_tl  t
-where 1 = 1
-  and t.concurrent_program_id = r.concurrent_program_id
-  --and r.request_id = 33534323
-  --and r.concurrent_program_id = 62486
-  and r.last_update_date > to_date('2020-05-01 18:14:15', 'yyyy-mm-dd hh24:mi:ss')
-  and t.user_concurrent_program_name = 'SOMP4024: 3C3 Invoice OUTPUT'
-  and r.status_code = 'E';
+  from sfn_fnd_concurrent_requests r,
+       fnd_concurrent_programs_tl t
+ where  1 = 1
+   and t.concurrent_program_id = r.concurrent_program_id
+   --and r.request_id = 33534323
+   --and r.concurrent_program_id = 62486
+   and r.last_update_date > to_date('2020-05-01 18:14:15', 'yyyy-mm-dd hh24:mi:ss')
+   and t.user_concurrent_program_name = 'SOMP4024: 3C3 Invoice OUTPUT'
+   and r.status_code = 'E';
 ```
 
 ### In Trigger call Request
@@ -1246,17 +1474,66 @@ exception
 end;
 ```
 
-## Form
+### Customer Address Relation
 
-### ERP Form Error
+![](oracle/customer-address-relation.png)
 
-在做 Transact Move Orders 时弹出错误：`累计拣货数量超过报关数量`
+```sql
+create or replace view som_edi_customer_sites_v as
+select party.party_name,
+       party.duns_number_c duns_number,
+       cust_acct.cust_account_id,  --mtl_customer_items.customer_id
+       cust_acct.account_number,
+       cust_acct.attribute19 as edi_customer_no,
+       site_use.org_id,         --Operating Unit
+       site_use.status,
+       site_use.site_use_id,    --Order ship_to_org_id/invoice_to_org_id
+       site_use.site_use_code,  --SHIP_TO/BILL_TO
+       site_use.location,
+       site_use.attribute2 as edi_ship_bill_to_code,
+       site_use.attribute3 as edi_ship_bill_to_customer,
+       site_use.attribute4 as customer_site_name, --Title for Customer Site
+       site_use.attribute5 as edi_region_code,
+       party_site.party_site_number,
+       loc.address1,
+       loc.address2,
+       loc.address3,
+       loc.country, --US
+       loc.city,
+       loc.state,
+       loc.province,
+       loc.postal_code,
+       territory.territory_short_name,  --United States
+       territory.iso_territory_code, --USA
+       territory.iso_numeric_code --country_code
+  from hz_parties             party,
+       hz_cust_accounts       cust_acct,
+       hz_cust_acct_sites_all acct_site,
+       hz_cust_site_uses_all  site_use,
+       hz_party_sites         party_site,
+       hz_locations           loc,
+       fnd_territories_vl     territory
+ where party.party_id = cust_acct.party_id
+   and cust_acct.cust_account_id = acct_site.cust_account_id
+   and acct_site.cust_acct_site_id = site_use.cust_acct_site_id
+   and acct_site.party_site_id = party_site.party_site_id
+   and party_site.location_id = loc.location_id
+   and loc.country = territory.territory_code(+);
 
-1. 搜索 `累计拣货数量超过报关数量`, 检查 form 的 trigger 都没有发现相关代码和描述
-2. 在 plsql 中使用 `select * from all_source s where s.TEXT like '%累计拣货数量超过报关数量%';` 结果在一个 table trigger 中找到相关文字，查看 trigger 代码可以看到实际原因是报关资料抄写没有抄写成功。
+```
 
-### ERP Form setting item property to <Unspecified>
+### ERP Term
 
-How to set item propert to <Unspecified> value. For example, i have radio button with Background color sets to 'gray' and i want set it to <Unspecified> to get transparency effect and i can't do this. If i set property value to blank forms builder shout "color by this name does not exist".
-
-Answser: Go to the item in question and press the 'Inherit' button in the 'Property Palette'.
+| Term          | Meaning                                                                          |
+| ------------- | -------------------------------------------------------------------------------- |
+| EDI           | Electronic Data Interchange 电子数据交换                                         |
+| ETD           | Estimated Time of Departure 预计出发时间，出货日                                 |
+| ETA           | Estimated Time of Arrival 预计抵达时间，到货日                                   |
+| Incoterm      | International Commercial Term 贸易条款                                           |
+| EXW           | Ex Works 工厂交货                                                                |
+| Freight Terms | 运输条款                                                                         |
+| FOB           | Free On Board 离岸价格                                                           |
+| FCA           | Free Carrier 货交承运人                                                          |
+| Payment Term  | 付款条款，一般是按照合同约定多少天付款，如: 0600                                 |
+| RMA           | Return Material Authorization 退料审查。是处理用户不良产品退货、换货的主要流程。 |
+| VMI           | Vendor Managed Inventory 供应商管理库存                                          |

@@ -46,10 +46,10 @@ print(len([ line for line in open('test.txt')]))
 
 ### file state
 
--   获取文件目录名，文件名
--   获取文件是否存在，是目录还是文件
--   获取文件大小
--   获取文件创建时间，上次访问时间，修改时间
+- 获取文件目录名，文件名
+- 获取文件是否存在，是目录还是文件
+- 获取文件大小
+- 获取文件创建时间，上次访问时间，修改时间
 
 ```python
 import os,sys
@@ -70,7 +70,6 @@ print(os.path.exists(path)
      ,os.path.getctime(path))
 # True True False 1740 1536125104.7735167 2018-09-05 16:59:29.086361 1536125104.7735167
 ```
-
 
 ### os.walk
 
@@ -453,6 +452,169 @@ for no, role in itertools.groupby(employees, itemgetter(0)):
     D[no] = D.setdefault(no, 0) + 1
 
 print(D) # {100: 3, 200: 2, 300: 1}
+```
+
+### itertools product
+
+100 以内所有勾股数, (3, 4, 5) 和 (4, 3, 5) ... 算不同的勾股数
+
+```python
+from itertools import product
+
+for i in range(1, 100):
+  for j in range(1, 100):
+    for k in range(1, 100):
+      if i * i + j * j == k  * k:
+        print(i, j, k)
+
+# product 计算笛卡尔积
+items = product('ABCD', 'xy')
+print(items)
+for item in items:
+  print(item)
+# <itertools.product object at 0x000001BC20F1E600>
+# ('A', 'x')
+# ('A', 'y')
+# ('B', 'x')
+# ('B', 'y')
+# ('C', 'x')
+# ('C', 'y')
+# ('D', 'x')
+# ('D', 'y')
+
+
+items = product(range(2), repeat=3)
+print(items)
+for item in items:
+  print(item)
+# <itertools.product object at 0x000001AAF4ECE6C0>
+# (0, 0, 0)
+# (0, 0, 1)
+# (0, 1, 0)
+# (0, 1, 1)
+# (1, 0, 0)
+# (1, 0, 1)
+# (1, 1, 0)
+# (1, 1, 1)
+
+for i, j, k in product(range(1, 100), repeat=3):
+  if i * i + j * j == k * k:
+    print(i, j, k)
+```
+
+### itertools combinations_with_replacement
+
+100 以内所有勾股数, (3, 4, 5) 和 (4, 3, 5) ... 算相同的勾股数
+
+```Python
+from itertools import combinations_with_replacement
+
+for i in range(1, 100):
+  for j in range(i, 100):
+    for k in range(j, 100):
+      if i * i + j * j == k  * k:
+        print(i, j, k)
+
+# combinations_with_replacement 容器取 n 个元素，元素可以重复的组合。
+items = combinations_with_replacement('ABC', 2)
+print(items)
+for item in items:
+  print(item)
+
+# <itertools.combinations_with_replacement object at 0x000002845DA23EA0>
+# ('A', 'A')
+# ('A', 'B')
+# ('A', 'C')
+# ('B', 'B')
+# ('B', 'C')
+# ('C', 'C')
+
+for i, j, k in combinations_with_replacement(range(1, 100), 3):
+  if i * i + j * j == k * k:
+    print(i, j, k)
+```
+
+### itertools combinations
+
+有 10 个不同重量的砝码，任意取三个组合，在 [a, b] 重量区间，那些重量无法覆盖？
+
+```python
+
+wlist = [5, 2, 3, 4, 5, 5, 6, 9, 12, 10]
+n = len(wlist)
+a, b = 10, 30
+wset = set(range(a, b + 1))
+
+for i in range(n):
+  for j in range(i + 1, n):
+    for k in range(j + 1, n):
+      total = wlist[i] + wlist[j] + wlist[k]
+      if total in wset:
+        wset.remove(total)
+
+print(wset)
+# {29, 30}
+
+
+# combinations 容器取 n 个元素，元素不重复的组合。
+items = combinations('ABC', 2)
+print(items)
+for item in items:
+  print(item)
+
+# <itertools.combinations object at 0x000002150036EAE0>
+# ('A', 'B')
+# ('A', 'C')
+# ('B', 'C')
+
+for i, j, k in combinations(wlist, 3):
+  total = i + j + k
+  if total in wset:
+    wset.remove(total)
+
+print(wset)
+# {29, 30}
+```
+
+### itertools permutations
+
+SEND + MORE = MONEY, 每个字母代表不同的数字， S = ?, D = ? ...
+
+```python
+from itertools import permutations
+
+# permutations 排列
+items = permutations('ABC', 2)
+print(items)
+for item in items:
+  print(item)
+# <itertools.permutations object at 0x000002D06EB67E00>
+# ('A', 'B')
+# ('A', 'C')
+# ('B', 'A')
+# ('B', 'C')
+# ('C', 'A')
+# ('C', 'B')
+
+items = permutations(range(3))
+print(items)
+for item in items:
+  print(item)
+# <itertools.permutations object at 0x000002D06E594E00>
+# (0, 1, 2)
+# (0, 2, 1)
+# (1, 0, 2)
+# (1, 2, 0)
+# (2, 0, 1)
+# (2, 1, 0)
+
+
+for s, e, n, d, m, o, r, y in permutations(range(10), 8):
+  if (s*1000+e*100+n*10+d) + (m*1000+o*100+r*10+e) == (m*10000+o*1000+n*100+e*10+y):
+    if m != 0 and s != 0:
+      print(f"{s=},{e=}, {n=}, {d=}, {m=}, {o=}, {r=}, {y=}")
+# s=9,e=5, n=6, d=7, m=1, o=0, r=8, y=2
+# 9567 + 1085 = 10652
 ```
 
 ## Class
@@ -1134,6 +1296,15 @@ ret = re.match(r"<([a-zA-Z]*)>\w*</\1>", "<html>hh</html>")
 print(ret.group())
 ```
 
+### operate sub group
+
+```python
+import re
+s = 'start TT end'
+re.sub(r'([A-Z])\1', lambda pat: pat.group(1).lower(), s)
+# 'start t end'
+```
+
 ### regex example
 
 提取网页中的文字内容
@@ -1294,11 +1465,11 @@ print(make_averager_nonlocal().__code__.co_freevars)
 
 python3 create virtual enviroment
 
--   创建虚拟环境 `python -m venv my-project`
--   激活虚拟环境
-    在 Posix 标准平台下：`source <venv>/bin/activate`
+- 创建虚拟环境 `python -m venv my-project`
+- 激活虚拟环境
+  在 Posix 标准平台下：`source <venv>/bin/activate`
 
-    在 Windows 下：`<venv>/Scripts/activate.bat`
+  在 Windows 下：`<venv>/Scripts/activate.bat`
 
 ### reload module
 
@@ -1503,4 +1674,78 @@ s = 'PHP'
 print(s == s[::-1]) # True
 ```
 
+### Quit Python Interactive Shell
 
+Python Interactive Shell 通过 EOF(End Of File) 退出，Python 在 parse stdin 的时候判断是否是 EOF。
+
+Mac/Linux 按 Ctrl + D 退出，Window 先按 Ctrl + Z 然后按 Enter 退出。
+
+```shell
+Python 3.9.6 (tags/v3.9.6:db3ff76, Jun 28 2021, 15:26:21) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> ^Z
+
+
+```
+
+## Quiz
+
+### Why judgement None must use 'is' in python?
+
+```python
+a = None
+
+# 1
+if not a:
+    print('None')
+
+# 2
+if a == None:
+    print('None')
+
+# 3
+if a is None:
+    print('None')
+
+# None
+# None
+# None
+```
+
+第一种方式在`[], {}, set(), None, False` 这几种情况下都符合, 用户自定义类型也可以通过重载 `__bool__` 定义什么时候是 True/False.
+
+```python
+lst = [[], {}, set(), None, False]
+for a in lst:
+    if not a:
+        print(a)
+
+# []
+# {}
+# set()
+# None
+# False
+
+class MyDataStructure:
+    def __bool__(self):
+        return False
+
+d = MyDataStructure()
+if not d:
+    print("It's None")
+
+# It's None
+```
+
+第二种方式,用户自定义类型可以通过重载 **eq** 定义什么时候是 True/False.
+
+```python
+class MyDataStructure:
+    def __eq__(self, other):
+        return True
+
+d = MyDataStructure()
+if d == None:
+    print(d)
+# <__main__.MyDataStructure object at 0x000001BAA1B0AFA0>
+```

@@ -1,10 +1,10 @@
 ---
-title: JS 中的 import 和 require 
+title: JS 中的 import 和 require
 tags: js
 date: 2019-10-29
 ---
 
-> 转载: [JS中的「import」和「require 」 - 简书](https://www.jianshu.com/p/f1e54dde30c8)
+> 转载: [JS 中的「import」和「require 」 - 简书](https://www.jianshu.com/p/f1e54dde30c8)
 
 `import` 和 `require` 是 JS 模块化编程使用的，是前端开发者们在性能探索中的又一大进步。
 
@@ -39,13 +39,13 @@ date: 2019-10-29
 ```jsx
 // module.js
 module.exports = {
-  a: function() {
-    console.log('exports from module')
-  }
-}
+    a: function () {
+        console.log("exports from module");
+    },
+};
 // sample.js
-var obj = require('./module.js')
-obj.a() // exports from module
+var obj = require("./module.js");
+obj.a(); // exports from module
 ```
 
 当我们不需要导出模块中的全部数据时，使用大括号包含所需要的模块内容。
@@ -53,14 +53,14 @@ obj.a() // exports from module
 ```jsx
 // module.js
 function test(str) {
-  console.log(str)
+    console.log(str);
 }
 module.exports = {
-  test
-}
+    test,
+};
 // sample.js
-let { test } = require('./module.js')
-test('this is a test')
+let { test } = require("./module.js");
+test("this is a test");
 ```
 
 #### | import 的基本语法
@@ -70,20 +70,20 @@ test('this is a test')
 ```jsx
 // module.js
 export function test(args) {
-  console.log(args)
+    console.log(args);
 }
 // 定义一个默认导出文件, 一个文件只能定义一次
 export default {
-  a: function() {
-    console.log('export from module')
-  }
-}
+    a: function () {
+        console.log("export from module");
+    },
+};
 
-export const name = 'gzc'
+export const name = "gzc";
 // 使用_导出export default的内容
-import _, { test, name } from './a.js'
+import _, { test, name } from "./a.js";
 
-test(`my name is ${name}`) // 模板字符串中使用${}加入变量
+test(`my name is ${name}`); // 模板字符串中使用${}加入变量
 ```
 
 ### 写法形式
@@ -116,7 +116,7 @@ export * from 'fs';
 
 ### 要点总结
 
-- 通过`require`引入基础数据类型时,属于复制该变量
-- 通过`require`引入复杂数据类型时, 属于浅拷贝该对象
-- 出现模块之间循环引用时, 会输出已执行的模块, 未执行模块不会输出
-- CommonJS 规范默认`export`的是一个对象,即使导出的是基础数据类型
+-   通过`require`引入基础数据类型时,属于复制该变量
+-   通过`require`引入复杂数据类型时, 属于浅拷贝该对象
+-   出现模块之间循环引用时, 会输出已执行的模块, 未执行模块不会输出
+-   CommonJS 规范默认`export`的是一个对象,即使导出的是基础数据类型

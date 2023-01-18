@@ -378,10 +378,9 @@ students.xsl
 </xsl:stylesheet>
 ```
 
-
 ## XML Tool
 
->  [BaseX | The XML Framework: Lightweight and High-Performance Data Processing](https://basex.org/)
+> [BaseX | The XML Framework: Lightweight and High-Performance Data Processing](https://basex.org/)
 
 > [XML - Visual Studio Code Plugin](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml)
 
@@ -389,46 +388,45 @@ students.xsl
 
 ## XML、HTML and Excel
 
-XML 和 HTML 可以使用 Excel 打开，并且HTML 中可以使用 CSS 样式。
+XML 和 HTML 可以使用 Excel 打开，并且 HTML 中可以使用 CSS 样式。
 
 customers.html
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-    <!-- <head>
+    <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>table</title>
-    </head> -->
-    <style>
-        #customers {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            width: 100%;
-            border-collapse: collapse;
-        }
+        <style>
+            #customers {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                width: 100%;
+                border-collapse: collapse;
+            }
 
-        #customers td,
-        #customers th {
-            font-size: 1em;
-            border: 1px solid #98bf21;
-            padding: 3px 7px 2px 7px;
-        }
+            #customers td,
+            #customers th {
+                font-size: 1em;
+                border: 1px solid #98bf21;
+                padding: 3px 7px 2px 7px;
+            }
 
-        #customers th {
-            font-size: 1.1em;
-            text-align: left;
-            padding-top: 5px;
-            padding-bottom: 4px;
-            background-color: #a7c942;
-            color: #ffffff;
-        }
+            #customers th {
+                font-size: 1.1em;
+                text-align: left;
+                padding-top: 5px;
+                padding-bottom: 4px;
+                background-color: #a7c942;
+                color: #ffffff;
+            }
 
-        #customers tr.alt td {
-            color: #000000;
-            background-color: #eaf2d3;
-        }
-    </style>
+            #customers tr.alt td {
+                color: #000000;
+                background-color: #eaf2d3;
+            }
+        </style>
+    </head>
     <body>
         <table id="customers">
             <tr>
@@ -495,11 +493,22 @@ customers.html
 
 目前发现需要注意的问题：
 
-- 01 在 Excel 中会显示为 1, 需要在 XML、HTML 中写成 ="01",  类似 csv 使用 Excel 打开的表现。
-- XML 中的元素属性也会变成 Excel 中的一列。
-- HTML 中不应该有 header 标签否则样式不生效。
+-   01 在 Excel 中会显示为 1, 需要在 XML、HTML 中写成 ="01", 类似 csv 使用 Excel 打开的表现。
+-   XML 中的元素属性也会变成 Excel 中的一列。
 
-扩展：在 ERP 中使用 RTF 开发报表时生成的 xls 文件实际就是包含样式的 HTML 文件，所以可以考虑不借助 RTF Template 而是直接输出 HTML 并将文件后缀修改为 xls（可以用 Excel 直接打开，并进行公式计算等）. 这种做法的好处是比较灵活，例如可以为不同客户编写不同的样式文件，也可以定义多套样式，每次报表输出随机选择其中一个样式等。 
+扩展：在 ERP 中使用 RTF 开发报表时生成的 xls 文件实际就是包含样式的 HTML 文件，所以可以考虑不借助 RTF Template 而是直接输出 HTML 并将文件后缀修改为 xls（可以用 Excel 直接打开，并进行公式计算等）. 这种做法的好处是比较灵活，例如可以为不同客户编写不同的样式文件，也可以定义多套样式，每次报表输出随机选择其中一个样式等。另外因为 RTF 报表本质是 HTML 的 table, 可以使用 pandas 解析。
+
+```python
+import pandas as pd
+
+tables = pd.read_html('./DN.html')
+# one html maybe has many tables
+df = pd.DataFrame(tables[0])
+print(df.head())
+# replace ="data" to data
+df.replace(regex={'^="(.*?)"$': '\\1'}, inplace=True)
+print(df.head())
+```
 
 ## XML Parser
 
@@ -537,3 +546,227 @@ customers.html
 如下，IE 发现非 ASCII 字符会停止解析，Chrome 会尝试解析但是中文也会显示错误，因为 xml 中指定 `encoding="ASCII"` 但是 `ASCII ` 不包含中文。如果 xml 中包含中文需要使用 `encoding="UTF-8"`.
 
 ![1629872763547](xml/1629872763547.png)
+
+## Preserve Space
+
+如下在  XML 中 title 的 lang 属性值中间有 4 个空格，其内容前中后各有 4 个空格，但是在 Chrome 浏览器中多个连续空格会显示成一个空格。
+
+```xml
+<?xml version="1.0" encoding="ASCII"?>
+<books>
+   <book category="JAVA">
+      <title lang="e    n">    Learn    Java    </title>
+      <author>Robert</author>
+      <year>2005</year>
+      <price>30.00</price>
+   </book>
+</books>
+```
+
+![](xml/1653009452447.png)
+
+可以设置 `xml: space="preserve"`  保留元素和其子元素中的多个空白内容。 *但是在浏览器中无效。*
+
+```xml
+<?xml version="1.0" encoding="ASCII"?>
+<books xml:space="preserve">
+   <book category="JAVA">
+      <title lang="e    n">    Learn    Java    </title>
+      <author>Robert</author>
+      <year>2005</year>
+      <price>30.00</price>
+   </book>
+</books>
+```
+
+![](xml/1653011334364.png)
+
+在 HTML 中内容包含多个连续空格同样只会显示一个空格，可以使用 `pre` 标签，或者通过 CSS 设定 `{ white-space: pre; }` , 另外也可以通过 HTML 实体`&nbsp;`表示空格, 例如 4 个空格可以使用 `&nbsp;&nbsp;&nbsp;&nbsp;`.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books Table</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+      }
+
+      table {
+        width: 80%;
+        border-collapse: collapse;
+      }
+
+      table td,
+      table th {
+        font-size: 1em;
+        border: 1px solid #98bf21;
+        padding: 3px 7px 2px 7px;
+      }
+
+      table th {
+        font-size: 1.3em;
+        text-align: left;
+        padding: 5px auto;
+        background-color: #a7c942;
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+       <tr>
+         <th>title</th>
+         <th>author</th>
+         <th>year</th>
+         <th>price</th>
+       </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>    Learn    Java    </td> 
+          <td>Robert</td>
+          <td>2005</td>
+          <td>30.00</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+```
+
+![](xml/1653012312139.png)
+
+**Use `pre` tag**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books Table</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+      }
+
+      table {
+        width: 80%;
+        border-collapse: collapse;
+      }
+
+      table td,
+      table th {
+        font-size: 1em;
+        border: 1px solid #98bf21;
+        padding: 3px 7px 2px 7px;
+      }
+
+      table th {
+        font-size: 1.3em;
+        text-align: left;
+        padding: 5px auto;
+        background-color: #a7c942;
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>title</th>
+          <th>author</th>
+          <th>year</th>
+          <th>price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><pre>    Learn    Java    </pre></td>
+          <td>Robert</td>
+          <td>2005</td>
+          <td>30.00</td>  
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+```
+
+![](xml/1653013081590.png)
+
+**Use CSS  `{ white-space: pre; }`** 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books Table</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+      }
+
+      table {
+        width: 80%;
+        border-collapse: collapse;
+      }
+
+      table td,
+      table th {
+        font-size: 1em;
+        border: 1px solid #98bf21;
+        padding: 3px 7px 2px 7px;
+      }
+
+      table th {
+        font-size: 1.3em;
+        text-align: left;
+        padding: 5px auto;
+        background-color: #a7c942;
+        color: #ffffff;
+      }
+
+      tr td:first-child {
+        white-space: pre;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>title</th>
+          <th>author</th>
+          <th>year</th>
+          <th>price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>    Learn    Java    </td>
+          <td>Robert</td>
+          <td>2005</td>
+          <td>30.00</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+```
+
+![](xml/1653013259364.png)

@@ -1,5 +1,5 @@
 ---
-title: Es6 Lambda
+title: ES6 Lambda
 tags: js
 date: 2019-10-29
 ---
@@ -42,13 +42,13 @@ callback = callback || (() => {}); // ok
 3.如果参数只有一个，可以省略参数列表的小括号
 
 ```js
-singleParam => {
-  statements
-}
+(singleParam) => {
+    statements;
+};
 // 等价于
 (singleParam) => {
-  statements
-}
+    statements;
+};
 ```
 
 4.如果函数没有参数，参数列表的小括号不能省略
@@ -56,22 +56,22 @@ singleParam => {
 ```js
 // 参数列表的小括号不能省略
 () => {
-  statements
-}
+    statements;
+};
 ```
 
 5.当返回值是对象字面量时，为了避免函数体的大括号与对象字面量的大括号冲突，必须在字面量上加一对小括号
 
 ```js
-params => ({ foo: bar })
+(params) => ({ foo: bar });
 ```
 
 6.使用可变参数
 
 ```js
 (param1, param2, ...rest) => {
-  statements
-}
+    statements;
+};
 ```
 
 7.参数默认值
@@ -80,37 +80,37 @@ params => ({ foo: bar })
 
 ```js
 (param1 = defaultValue1, param2 = defaultValue2, paramN = defaultValueN) => {
-  statements
-}
+    statements;
+};
 ```
 
 8.在参数列表中使用解构赋值
 
 ```js
 // a+b+c = a+b+a+b
-var f = ([a = 5, b = 6] = [1, 2], { x: c } = { x: a + b }) => a + b + c
+var f = ([a = 5, b = 6] = [1, 2], { x: c } = { x: a + b }) => a + b + c;
 
-f() // 6
-f([3, 4]) // 14
-f([3]) // 18
-f([3, 4], { x: 5 }) // 12
+f(); // 6
+f([3, 4]); // 14
+f([3]); // 18
+f([3, 4], { x: 5 }); // 12
 ```
 
 9.对象解构赋值
 
 ```js
-var materials = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium']
+var materials = ["Hydrogen", "Helium", "Lithium", "Beryllium"];
 
-materials.map(function(material) {
-  return material.length
-}) // [8, 6, 7, 9]
+materials.map(function (material) {
+    return material.length;
+}); // [8, 6, 7, 9]
 // 等价于
-materials.map(material => {
-  return material.length
-}) // [8, 6, 7, 9]
+materials.map((material) => {
+    return material.length;
+}); // [8, 6, 7, 9]
 // 等价于
 // 在参数列表中直接解构数组对象的 length 属性
-materials.map(({ length }) => length) // [8, 6, 7, 9]
+materials.map(({ length }) => length); // [8, 6, 7, 9]
 ```
 
 10.箭头函数没有绑定 this 变量
@@ -119,18 +119,18 @@ materials.map(({ length }) => length) // [8, 6, 7, 9]
 // this 作用域问题
 
 function Person() {
-  // 构造函数中的 this 表示对象本身
-  this.age = 0;
+    // 构造函数中的 this 表示对象本身
+    this.age = 0;
 
-  setInterval(function growUp() {
-    // 在 non-strict 模式中, growUp()函数中的 this 是全局对象
-    // growUp 是全局函数，不是对象的方法
-    this.age++;
-    // 浏览器环境中全局对象为 window
-    // window.age=undefined
-    // undefined++ -> NAN
-    // NAN++ -> NAN
-    // 一直都是 NAN
+    setInterval(function growUp() {
+        // 在 non-strict 模式中, growUp()函数中的 this 是全局对象
+        // growUp 是全局函数，不是对象的方法
+        this.age++;
+        // 浏览器环境中全局对象为 window
+        // window.age=undefined
+        // undefined++ -> NAN
+        // NAN++ -> NAN
+        // 一直都是 NAN
     }, 1000);
 }
 
@@ -139,37 +139,36 @@ var p = new Person();
 // ES3/5 中，可以定义一个变量指向外部对象
 
 function Person() {
-  var that = this
-  that.age = 0
+    var that = this;
+    that.age = 0;
 
-  setInterval(function growUp() {
-    // that 暂存了对象的引用
-    that.age++
-  }, 1000)
+    setInterval(function growUp() {
+        // that 暂存了对象的引用
+        that.age++;
+    }, 1000);
 }
 
 // 还有一种方式直接绑定函数的 this 对象
 function Person() {
-  this.age = 0
+    this.age = 0;
 
-  setInterval(
-    function growUp() {
-      // 这时的 this 就是 Person 对象
-      this.age++
-    }.bind(this),
-    1000
-  )
+    setInterval(
+        function growUp() {
+            // 这时的 this 就是 Person 对象
+            this.age++;
+        }.bind(this),
+        1000
+    );
 }
 
-
 // ES6 有了箭头函数，就不用这么麻烦了，因为箭头函数中没有 this 变量
-function Person(){
-  this.age = 0;
+function Person() {
+    this.age = 0;
 
-  setInterval(() => {
-    // 这里的 this 对象就是 Person 对象
-    this.age++;
-  }, 1000);
+    setInterval(() => {
+        // 这里的 this 对象就是 Person 对象
+        this.age++;
+    }, 1000);
 }
 
 var p = new Person();
@@ -178,65 +177,65 @@ var p = new Person();
 11.箭头函数使用 call 和 apply 方法
 
 ```js
-var func = (a, b) => a + b
-func.call(null, 1, 2) // 3
-func.apply(null, [1, 2]) // 3
+var func = (a, b) => a + b;
+func.call(null, 1, 2); // 3
+func.apply(null, [1, 2]); // 3
 ```
 
 12.箭头函数没有绑定 arguments 变量
 
 ```js
-var arr = () => arguments[0]
-arr() // ReferenceError: arguments is not defined
+var arr = () => arguments[0];
+arr(); // ReferenceError: arguments is not defined
 
-var arguments = [1, 2, 3]
+var arguments = [1, 2, 3];
 // 因为箭头函数没有自己的 arguments
 // 所以访问的是父作用域中的 arguments
-var arr = () => arguments[0]
-arr() // 1
+var arr = () => arguments[0];
+arr(); // 1
 
 // 使用可变参数作为 arguments 使用
-var f = (...args) => args[0] + n
+var f = (...args) => args[0] + n;
 
 // 普通函数有自己的 arguments 变量
 function foo(n) {
-  var f = () => arguments[0] + n
-  return f()
+    var f = () => arguments[0] + n;
+    return f();
 }
 
-foo(1) // 2
+foo(1); // 2
 ```
 
 13.箭头函数作为对象的方法，注意 this 的问题
 
 ```js
 var obj = {
-  i: 10,
-  // 箭头函数没有 this,所以访问的是全局 this
-  b: () => console.log(this.i, this),
-  c: function() {
-    console.log(this.i, this)
-  }
-}
+    i: 10,
+    // 箭头函数没有 this,所以访问的是全局 this
+    b: () => console.log(this.i, this),
+    c: function () {
+        console.log(this.i, this);
+    },
+};
 
-obj.b() // undefined, Window {...} (or the global object)
-obj.c() // 10, Object {...}
+obj.b(); // undefined, Window {...} (or the global object)
+obj.c(); // 10, Object {...}
 ```
 
 14.箭头函数不能作为构造函数
 
 ```js
 var Foo = () => {
-  this.age = 18
-}
-var foo = new Foo() // TypeError: Foo is not a constructor
+    this.age = 18;
+};
+var foo = new Foo(); // TypeError: Foo is not a constructor
 ```
 
 15.箭头函数没有 prototype 属性
 
 ```js
-var Foo = () => {}
-console.log(Foo.prototype) // undefined
+var Foo = () => {};
+console.log(Foo.prototype); // undefined
 ```
 
 ————————————————

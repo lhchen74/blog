@@ -1,5 +1,5 @@
 ---
-title: Oracle Generate Xml
+title: Oracle Generate XML
 tags: db
 date: 2020-3-17
 ---

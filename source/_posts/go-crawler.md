@@ -444,7 +444,7 @@ Now you’re cookin’. This program will now pretty reliably walk around the we
 
 Nothing so far prevents us from visiting a page that has one link pointing to itself and just looping on that single page forever. That’s dumb, let’s not fetch any page more than once.
 
-The right data structure for keeping track of the presence or absense of things is a set. Go, like Javascript, doesn’t have a native way of doing sets so we need to use a map (a.k.a a hash or hashmap or a dictionary) with urls as keys to keep track of which pages we’ve visited.
+The right data structure for keeping track of the presence or absense of things is a set. Go, like JavaScript, doesn’t have a native way of doing sets so we need to use a map (a.k.a a hash or hashmap or a dictionary) with urls as keys to keep track of which pages we’ve visited.
 
 ```go
 package main

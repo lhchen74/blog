@@ -4,7 +4,7 @@ tags: js
 date: 2021-10-09
 ---
 
-> 转载：[Mutation observer](https://javascript.info/mutation-observer)
+> 转载：[Mutation observer - javascript.info](https://javascript.info/mutation-observer)
 
 `MutationObserver` is a built-in object that observes a DOM element and fires a callback when it detects a change.
 

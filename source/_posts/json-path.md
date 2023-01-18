@@ -35,7 +35,7 @@ or
 x["store"]["book"][0]["title"];
 ```
 
-In Javascript, Python and PHP with a variable `x` holding the JSON structure. Here we observe, that the particular language usually has a fundamental XPath feature already built in.
+In JavaScript, Python and PHP with a variable `x` holding the JSON structure. Here we observe, that the particular language usually has a fundamental XPath feature already built in.
 
 The JSONPath tool in question should
 
@@ -62,7 +62,7 @@ $["store"]["book"][0]["title"];
 
 for input pathes. Internal or output pathes will always be converted to the more general _bracket_-notation.
 
-JSONPath allows the _wildcard_ symbol * for member names and array indices. It borrows the *descendant* operator '..' from [E4X](http://en.wikipedia.org/wiki/E4X) and the *array slice syntax\* proposal `[start:end:step]` from [ECMASCRIPT 4](http://www.ecmascript.org/).
+JSONPath allows the _wildcard_ symbol `*` for member names and array indices. It borrows the _descendant_ operator `..` from [E4X](http://en.wikipedia.org/wiki/E4X) and the _array slice syntax_ proposal `[start:end:step]` from [ECMASCRIPT 4](http://www.ecmascript.org/).
 
 Expressions of the underlying scripting language `(<expr>)` can be used as an alternative to explicit names or indices as in
 
@@ -79,20 +79,20 @@ $.store.book[?(@.price < 10)].title
 Here is a complete overview and a side by side comparison of the JSONPath syntax elements with its XPath counterparts.
 
 | **XPath** | **JSONPath**       | **Description**                                                                                                                                                                            |
-| --------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| /         | $                  | the root object/element                                                                                                                                                                    |
-| .         | @                  | the current object/element                                                                                                                                                                 |
-| /         | . or []            | child operator                                                                                                                                                                             |
-| ..        | n/a                | parent operator                                                                                                                                                                            |
-| //        | ..                 | recursive descent. JSONPath borrows this syntax from E4X.                                                                                                                                  |
-| \*        | \*                 | wildcard. All objects/elements regardless their names.                                                                                                                                     |
-| @         | n/a                | attribute access. JSON structures don't have attributes.                                                                                                                                   |
-| []        | []                 | subscript operator. XPath uses it to iterate over element collections and for [predicates](http://www.w3.org/TR/xpath#predicates). In Javascript and JSON it is the native array operator. |
-| \|        | [,]                | Union operator in XPath results in a combination of node sets. JSONPath allows alternate names or array indices as a set.                                                                  |
-| n/a       | `[start:end:step]` | array slice operator borrowed from ES4.                                                                                                                                                    |
-| []        | ?()                | applies a filter (script) expression.                                                                                                                                                      |
-| n/a       | ()                 | script expression, using the underlying script engine.                                                                                                                                     |
-| ()        | n/a                | grouping in Xpath                                                                                                                                                                          |
+| --------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| `/`       | `$`                | the root object/element                                                                                                                                                                    |
+| `.`       | `@`                | the current object/element                                                                                                                                                                 |
+| `/`       | `. or []`          | child operator                                                                                                                                                                             |
+| `..`      | `n/a`              | parent operator                                                                                                                                                                            |
+| `//`      | `..`               | recursive descent. JSONPath borrows this syntax from E4X.                                                                                                                                  |
+| `*`       | `*`                | wildcard. All objects/elements regardless their names.                                                                                                                                     |
+| `@`       | `n/a`              | attribute access. JSON structures don't have attributes.                                                                                                                                   |
+| `[]`      | `[]`               | subscript operator. XPath uses it to iterate over element collections and for [predicates](http://www.w3.org/TR/xpath#predicates). In JavaScript and JSON it is the native array operator. |
+| `         | `                  | `[,]`                                                                                                                                                                                      | Union operator in XPath results in a combination of node sets. JSONPath allows alternate names or array indices as a set. |
+| `n/a`     | `[start:end:step]` | array slice operator borrowed from ES4.                                                                                                                                                    |
+| `[]`      | `?()`              | applies a filter (script) expression.                                                                                                                                                      |
+| `n/a`     | `()`               | script expression, using the underlying script engine.                                                                                                                                     |
+| `()`      | `n/a`              | grouping in Xpath                                                                                                                                                                          |
 
 XPath has a lot more to offer (Location pathes in not abbreviated syntax, operators and functions) than listed here. Moreover there is a remarkable difference how the subscript operator works in Xpath and JSONPath.
 
@@ -157,7 +157,7 @@ Let's practice JSONPath expressions by some more examples. We start with a simpl
 
 ## JSONPath implementation
 
-JSONPath is implemented in Javascript for clientside usage and ported over to PHP for use on the server.
+JSONPath is implemented in JavaScript for clientside usage and ported over to PHP for use on the server.
 
 ### Usage
 
@@ -196,7 +196,7 @@ jsonPath(obj, expr [, args])
 
     Array holding either values or normalized path expressions matching the input path expression, which can be used for lazy evaluation. `false` in case of no match.
 
-**Javascript Example**:
+**JavaScript Example**:
 
 ```js
 var o = {
@@ -250,3 +250,87 @@ Please note, that the return value of `jsonPath` is an array, which is also a va
 -   Currently only single quotes allowed inside of JSONPath expressions.
 -   Script expressions inside of JSONPath locations are currently not recursively evaluated by `jsonPath`. Only the global `$` and local `@` symbols are expanded by a simple regular expression.
 -   An alternative for `jsonPath` to return `false` in case of _no match_ may be to return an empty array in future.
+
+## Annex
+
+Python implements of XPath and JSONPath.
+
+_XPath_
+
+```python
+from lxml import etree
+
+xml_data = open('./store.xml', encoding="utf-8").read()
+xml = etree.XML(xml_data)
+
+authors = xml.xpath('/store/book/author/text()')
+print(authors)
+
+authors = xml.xpath('//author/text()')
+print(authors)
+
+store = xml.xpath('/store/*')
+print(store)
+
+prices = xml.xpath('/store//price/text()')
+print(prices)
+
+third_book = xml.xpath('//book[3]/title/text()')
+print(third_book)
+
+last_book = xml.xpath('//book[last()]/title/text()')
+print(last_book)
+
+the_first_two_books = xml.xpath('//book[position() < 3]/title/text()')
+print(the_first_two_books)
+
+with_isbn_books = xml.xpath('//book[isbn]/title/text()')
+print(with_isbn_books)
+
+price_lesss_ten_books = xml.xpath('//book[price < 10]/title/text()')
+print(price_lesss_ten_books)
+
+all_elements = xml.xpath('//*')
+print(all_elements)
+```
+
+_JSONPath_
+
+```python
+from jsonpath import jsonpath
+import json
+
+json_data = json.load(open('./store.json', encoding="utf-8"))
+authors = jsonpath(json_data, '$.store.book[*].author')
+print(authors)
+
+authors = jsonpath(json_data, '$..author')
+print(authors)
+
+store = jsonpath(json_data, '$.store.*')
+print(store)
+
+prices = jsonpath(json_data, '$.store..price')
+print(prices)
+
+third_book = jsonpath(json_data, "$..book[2]")
+print(third_book)
+
+last_book = jsonpath(json_data, '$..book[(@.length - 1)]')
+print(last_book)
+
+the_first_two_books = jsonpath(json_data, '$..book[0,1]')
+print(the_first_two_books)
+
+the_first_two_books = jsonpath(json_data, '$..book[:2]')
+print(the_first_two_books)
+
+with_isbn_books = jsonpath(json_data, '$..book[?(@.isbn)]')
+print(with_isbn_books)
+
+price_less_ten_books = jsonpath(json_data, '$..book[?(@.price < 10)]')
+print(price_less_ten_books)
+
+all_elements = jsonpath(json_data, '$..*')
+print(all_elements)
+```
